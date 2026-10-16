@@ -1,0 +1,778 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"duotone": [],
+			"palette": [
+				{
+					"slug": "base",
+					"name": "Base (พื้นขาว)",
+					"color": "#FFFFFF"
+				},
+				{
+					"slug": "base-alt",
+					"name": "Base Alt (พื้นรอง)",
+					"color": "#F5F7F7"
+				},
+				{
+					"slug": "surface-brand",
+					"name": "Surface Brand (พื้นโทนแบรนด์)",
+					"color": "#E8F8F9"
+				},
+				{
+					"slug": "contrast",
+					"name": "Contrast (ข้อความหลัก)",
+					"color": "#333333"
+				},
+				{
+					"slug": "contrast-muted",
+					"name": "Contrast Muted (ข้อความรอง)",
+					"color": "#54595F"
+				},
+				{
+					"slug": "heading",
+					"name": "Heading (หัวข้อ)",
+					"color": "#351A0E"
+				},
+				{
+					"slug": "primary",
+					"name": "Primary (แบรนด์)",
+					"color": "#00B0BD"
+				},
+				{
+					"slug": "primary-strong",
+					"name": "Primary Strong (ลิงก์/ปุ่ม)",
+					"color": "#0F7070"
+				},
+				{
+					"slug": "primary-deep",
+					"name": "Primary Deep (พื้นเข้ม)",
+					"color": "#073D3D"
+				},
+				{
+					"slug": "accent",
+					"name": "Accent (ฟ้าอมเขียว)",
+					"color": "#3AD2DD"
+				},
+				{
+					"slug": "secondary",
+					"name": "Secondary (เขียว)",
+					"color": "#007040"
+				},
+				{
+					"slug": "secondary-light",
+					"name": "Secondary Light (เขียวสด)",
+					"color": "#00A070"
+				},
+				{
+					"slug": "highlight",
+					"name": "Highlight (เหลือง)",
+					"color": "#FBBD13"
+				},
+				{
+					"slug": "border",
+					"name": "Border (เส้นขอบ)",
+					"color": "#DCE3E3"
+				}
+			],
+			"gradients": [
+				{
+					"slug": "brand",
+					"name": "Brand Teal",
+					"gradient": "linear-gradient(135deg, #0F7070 0%, #00B0BD 100%)"
+				},
+				{
+					"slug": "growth",
+					"name": "Growth Green",
+					"gradient": "linear-gradient(135deg, #005030 0%, #00A070 100%)"
+				},
+				{
+					"slug": "deep",
+					"name": "Deep Teal",
+					"gradient": "linear-gradient(180deg, #042626 0%, #0B5858 100%)"
+				}
+			]
+		},
+		"typography": {
+			"customFontSize": false,
+			"defaultFontSizes": false,
+			"dropCap": false,
+			"fluid": {
+				"minViewportWidth": "390px",
+				"maxViewportWidth": "1366px"
+			},
+			"fontStyle": true,
+			"fontWeight": true,
+			"letterSpacing": false,
+			"textDecoration": false,
+			"textTransform": true,
+			"writingMode": false,
+			"fontFamilies": [
+				{
+					"slug": "body",
+					"name": "Kanit (Body)",
+					"fontFamily": "\"Kanit\", \"M PLUS 1 Variable\", system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-thai-300-normal.woff2"
+							],
+							"unicodeRange": "U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-300-normal.woff2"
+							],
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-ext-300-normal.woff2"
+							],
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-thai-400-normal.woff2"
+							],
+							"unicodeRange": "U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-400-normal.woff2"
+							],
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-ext-400-normal.woff2"
+							],
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-thai-500-normal.woff2"
+							],
+							"unicodeRange": "U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-500-normal.woff2"
+							],
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-ext-500-normal.woff2"
+							],
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-thai-600-normal.woff2"
+							],
+							"unicodeRange": "U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-600-normal.woff2"
+							],
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-ext-600-normal.woff2"
+							],
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-thai-700-normal.woff2"
+							],
+							"unicodeRange": "U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-700-normal.woff2"
+							],
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+						},
+						{
+							"fontFamily": "Kanit",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/kanit/kanit-latin-ext-700-normal.woff2"
+							],
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+						}
+					]
+				},
+				{
+					"slug": "display",
+					"name": "Montserrat (Display)",
+					"fontFamily": "\"Montserrat Variable\", \"Kanit\", system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Montserrat Variable",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-latin-wght-normal.woff2"
+							],
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+						},
+						{
+							"fontFamily": "Montserrat Variable",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/montserrat/montserrat-latin-ext-wght-normal.woff2"
+							],
+							"unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+						}
+					]
+				},
+				{
+					"slug": "japanese",
+					"name": "M PLUS 1 (日本語)",
+					"fontFamily": "\"M PLUS 1 Variable\", \"Kanit\", system-ui, sans-serif"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "x-small",
+					"name": "XS",
+					"size": "14px",
+					"fluid": {
+						"min": "13px",
+						"max": "14px"
+					}
+				},
+				{
+					"slug": "small",
+					"name": "S",
+					"size": "15px",
+					"fluid": {
+						"min": "14px",
+						"max": "15px"
+					}
+				},
+				{
+					"slug": "medium",
+					"name": "M (Body)",
+					"size": "16px",
+					"fluid": false
+				},
+				{
+					"slug": "large",
+					"name": "L",
+					"size": "20px",
+					"fluid": {
+						"min": "17px",
+						"max": "20px"
+					}
+				},
+				{
+					"slug": "x-large",
+					"name": "XL",
+					"size": "26px",
+					"fluid": {
+						"min": "20px",
+						"max": "26px"
+					}
+				},
+				{
+					"slug": "xx-large",
+					"name": "2XL",
+					"size": "38px",
+					"fluid": {
+						"min": "26px",
+						"max": "38px"
+					}
+				},
+				{
+					"slug": "xxx-large",
+					"name": "3XL",
+					"size": "45px",
+					"fluid": {
+						"min": "32px",
+						"max": "45px"
+					}
+				},
+				{
+					"slug": "display",
+					"name": "Display",
+					"size": "56px",
+					"fluid": {
+						"min": "38px",
+						"max": "56px"
+					}
+				}
+			]
+		},
+		"spacing": {
+			"defaultSpacingSizes": false,
+			"units": [
+				"px",
+				"rem",
+				"%",
+				"vw"
+			],
+			"spacingSizes": [
+				{
+					"slug": "10",
+					"name": "2XS · 4",
+					"size": "0.25rem"
+				},
+				{
+					"slug": "20",
+					"name": "XS · 8",
+					"size": "0.5rem"
+				},
+				{
+					"slug": "30",
+					"name": "S · 12",
+					"size": "0.75rem"
+				},
+				{
+					"slug": "40",
+					"name": "M · 16",
+					"size": "1rem"
+				},
+				{
+					"slug": "50",
+					"name": "L · 24",
+					"size": "1.5rem"
+				},
+				{
+					"slug": "60",
+					"name": "XL · 32–48",
+					"size": "clamp(2rem, 4vw, 3rem)"
+				},
+				{
+					"slug": "70",
+					"name": "2XL · 48–72",
+					"size": "clamp(3rem, 6vw, 4.5rem)"
+				},
+				{
+					"slug": "80",
+					"name": "3XL · 64–96",
+					"size": "clamp(4rem, 8vw, 6rem)"
+				},
+				{
+					"slug": "90",
+					"name": "4XL · 80–128",
+					"size": "clamp(5rem, 10vw, 8rem)"
+				}
+			]
+		},
+		"shadow": {
+			"defaultPresets": false,
+			"presets": [
+				{
+					"slug": "sm",
+					"name": "Small",
+					"value": "0 1px 2px rgba(7, 61, 61, 0.08), 0 1px 3px rgba(7, 61, 61, 0.06)"
+				},
+				{
+					"slug": "md",
+					"name": "Medium",
+					"value": "0 4px 12px rgba(7, 61, 61, 0.10)"
+				},
+				{
+					"slug": "lg",
+					"name": "Large",
+					"value": "0 16px 40px rgba(7, 61, 61, 0.14)"
+				}
+			]
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "1366px"
+		},
+		"custom": {
+			"color": {
+				"teal": {
+					"50": "#E8F8F9",
+					"100": "#C9F0F3",
+					"200": "#96E3E8",
+					"300": "#3AD2DD",
+					"400": "#14C1CD",
+					"500": "#00B0BD",
+					"600": "#008F9A",
+					"700": "#0F7070",
+					"800": "#0B5858",
+					"900": "#073D3D",
+					"950": "#042626"
+				},
+				"green": {
+					"50": "#E9F6EF",
+					"100": "#C8EAD6",
+					"200": "#93D5AE",
+					"300": "#4DBB85",
+					"400": "#00A070",
+					"500": "#009060",
+					"600": "#00804F",
+					"700": "#007040",
+					"800": "#005030",
+					"900": "#003B24",
+					"950": "#002416"
+				},
+				"neutral": {
+					"0": "#FFFFFF",
+					"50": "#F5F7F7",
+					"100": "#EDF1F1",
+					"200": "#DCE3E3",
+					"300": "#C2CCCC",
+					"400": "#94A0A0",
+					"500": "#69727D",
+					"600": "#54595F",
+					"700": "#3F444B",
+					"800": "#333333",
+					"900": "#1F2124",
+					"950": "#111111"
+				},
+				"brown": {
+					"900": "#351A0E"
+				},
+				"yellow": {
+					"400": "#FBBD13"
+				},
+				"blue": {
+					"700": "#0050A0"
+				}
+			},
+			"radius": {
+				"sm": "4px",
+				"md": "8px",
+				"lg": "16px",
+				"pill": "999px"
+			},
+			"lineHeight": {
+				"body": "1.7",
+				"heading": "1.3",
+				"tight": "1.15"
+			},
+			"fontWeight": {
+				"light": "300",
+				"regular": "400",
+				"medium": "500",
+				"semibold": "600",
+				"bold": "700"
+			},
+			"motion": {
+				"fast": "150ms",
+				"base": "250ms",
+				"easing": "cubic-bezier(0.2, 0, 0, 1)"
+			},
+			"gutter": "var(--wp--preset--spacing--50)"
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--base)",
+			"text": "var(--wp--preset--color--contrast)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--body)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"fontWeight": "300",
+			"lineHeight": "var(--wp--custom--line-height--body)"
+		},
+		"spacing": {
+			"blockGap": "var(--wp--preset--spacing--50)",
+			"padding": {
+				"left": "var(--wp--custom--gutter)",
+				"right": "var(--wp--custom--gutter)"
+			}
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--primary-strong)"
+				},
+				"typography": {
+					"textDecoration": "underline"
+				},
+				":hover": {
+					"color": {
+						"text": "var(--wp--custom--color--teal--800)"
+					}
+				},
+				":focus": {
+					"outline": {
+						"color": "var(--wp--preset--color--primary)",
+						"offset": "2px",
+						"style": "solid",
+						"width": "2px"
+					}
+				}
+			},
+			"heading": {
+				"color": {
+					"text": "var(--wp--preset--color--heading)"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontWeight": "600",
+					"lineHeight": "var(--wp--custom--line-height--heading)"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--display)",
+					"lineHeight": "var(--wp--custom--line-height--tight)"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--xx-large)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--x-large)"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--medium)"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--small)",
+					"textTransform": "uppercase"
+				}
+			},
+			"button": {
+				"border": {
+					"radius": "var(--wp--custom--radius--sm)",
+					"width": "2px",
+					"style": "solid",
+					"color": "var(--wp--preset--color--primary-strong)"
+				},
+				"color": {
+					"background": "var(--wp--preset--color--primary-strong)",
+					"text": "var(--wp--preset--color--base)"
+				},
+				"spacing": {
+					"padding": {
+						"top": "0.85rem",
+						"bottom": "0.85rem",
+						"left": "1.75rem",
+						"right": "1.75rem"
+					}
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--body)",
+					"fontSize": "var(--wp--preset--font-size--medium)",
+					"fontWeight": "500",
+					"lineHeight": "1.2"
+				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--custom--color--teal--800)"
+					},
+					"border": {
+						"color": "var(--wp--custom--color--teal--800)"
+					}
+				},
+				":focus": {
+					"outline": {
+						"color": "var(--wp--preset--color--primary)",
+						"offset": "3px",
+						"style": "solid",
+						"width": "2px"
+					}
+				}
+			},
+			"caption": {
+				"color": {
+					"text": "var(--wp--preset--color--contrast-muted)"
+				},
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--small)"
+				}
+			}
+		},
+		"blocks": {
+			"core/button": {
+				"variations": {
+					"outline": {
+						"color": {
+							"background": "transparent",
+							"text": "var(--wp--preset--color--primary-strong)"
+						},
+						"border": {
+							"color": "var(--wp--preset--color--primary-strong)"
+						}
+					}
+				}
+			},
+			"core/site-title": {
+				"color": {
+					"text": "var(--wp--preset--color--primary-deep)"
+				},
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var(--wp--preset--color--primary-deep)"
+						},
+						"typography": {
+							"textDecoration": "none"
+						}
+					}
+				},
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)",
+					"fontWeight": "600"
+				}
+			},
+			"core/navigation": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontWeight": "400"
+				},
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						}
+					}
+				}
+			},
+			"core/separator": {
+				"color": {
+					"text": "var(--wp--preset--color--border)"
+				},
+				"border": {
+					"width": "1px"
+				}
+			},
+			"core/quote": {
+				"border": {
+					"left": {
+						"color": "var(--wp--preset--color--primary)",
+						"width": "4px",
+						"style": "solid"
+					}
+				},
+				"spacing": {
+					"padding": {
+						"left": "var(--wp--preset--spacing--50)"
+					}
+				}
+			},
+			"core/post-title": {
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						},
+						"color": {
+							"text": "inherit"
+						}
+					}
+				}
+			},
+			"core/post-excerpt": {
+				"color": {
+					"text": "var(--wp--preset--color--contrast-muted)"
+				}
+			}
+		}
+	},
+	"templateParts": [
+		{
+			"name": "header",
+			"title": "Header",
+			"area": "header"
+		},
+		{
+			"name": "footer",
+			"title": "Footer",
+			"area": "footer"
+		}
+	]
+}

@@ -1,0 +1,45 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "HRI DeOne — rebuild preview",
+		"description": "Installs hri-theme and hri-core from GitHub main and opens the Style Guide.",
+		"author": "imeeba"
+	},
+	"landingPage": "/",
+	"preferredVersions": { "php": "8.3", "wp": "latest" },
+	"features": { "networking": true },
+	"login": true,
+	"siteOptions": {
+		"blogname": "HRI DeOne",
+		"blogdescription": "สถาบันฝึกอบรม Executive Training ชั้นนำ",
+		"permalink_structure": "/%postname%/"
+	},
+	"steps": [
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/imeeba/hrideone-web",
+				"ref": "main",
+				"refType": "branch",
+				"path": "wp-content/themes/hri-theme"
+			},
+			"options": { "activate": true, "targetFolderName": "hri-theme" }
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/imeeba/hrideone-web",
+				"ref": "main",
+				"refType": "branch",
+				"path": "wp-content/plugins/hri-core"
+			},
+			"options": { "activate": true, "targetFolderName": "hri-core" }
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; $existing = get_page_by_path( 'style-guide' ); $id = $existing ? $existing->ID : wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Style Guide', 'post_name' => 'style-guide', 'post_content' => '<!-- wp:pattern {\"slug\":\"hri/style-guide\"} /-->' ) ); update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', $id ); foreach ( get_posts( array( 'post_type' => array( 'post', 'page' ), 'post_status' => 'any', 'numberposts' => -1, 'post_name__in' => array( 'hello-world', 'sample-page' ) ) ) as $p ) { wp_delete_post( $p->ID, true ); }"
+		}
+	]
+}
