@@ -8,6 +8,14 @@
 	"description": "Searchable, filterable list of courses. Reads filter values from the URL.",
 	"keywords": [ "course", "filter", "หลักสูตร" ],
 	"textdomain": "hri-core",
+	"attributes": {
+		"program": {
+			"type": "string",
+			"enum": [ "", "inhouse", "public" ],
+			"default": "",
+			"label": "แสดงเฉพาะประเภท (เว้นว่าง = ทุกประเภท)"
+		}
+	},
 	"supports": {
 		"align": [ "wide", "full" ],
 		"html": false,

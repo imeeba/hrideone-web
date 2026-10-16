@@ -38,9 +38,10 @@ function hri_filter_groups(): array {
 /**
  * Read and sanitize filter parameters from the request.
  *
- * @return array{groups:array<string,string[]>,q:string,pg:int}
+ * @param string $lock Program slug the list is locked to ('' = all programs).
+ * @return array{groups:array<string,string[]>,q:string,pg:int,lock:string}
  */
-function hri_filter_params(): array {
+function hri_filter_params( string $lock = '' ): array {
 	$groups = array();
 	foreach ( array_keys( hri_filter_groups() ) as $key ) {
 		$raw = isset( $_GET[ $key ] ) ? (array) wp_unslash( $_GET[ $key ] ) : array(); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput
@@ -52,13 +53,19 @@ function hri_filter_params(): array {
 	$q = isset( $_GET['q'] ) && is_string( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 	$pg = isset( $_GET['pg'] ) && is_scalar( $_GET['pg'] ) ? max( 1, absint( $_GET['pg'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification
 
-	return array( 'groups' => $groups, 'q' => $q, 'pg' => $pg );
+	// A locked list ignores the program filter: it is fixed by the block.
+	$lock = sanitize_title( $lock );
+	if ( '' !== $lock ) {
+		$groups['program'] = array();
+	}
+
+	return array( 'groups' => $groups, 'q' => $q, 'pg' => $pg, 'lock' => $lock );
 }
 
 /**
  * Build the WP_Query for the current parameters.
  *
- * @param array{groups:array<string,string[]>,q:string,pg:int} $params
+ * @param array{groups:array<string,string[]>,q:string,pg:int,lock?:string} $params
  */
 function hri_filter_query( array $params ): WP_Query {
 	$args = array(
@@ -70,6 +77,13 @@ function hri_filter_query( array $params ): WP_Query {
 	);
 
 	$tax_query = array();
+	if ( '' !== ( $params['lock'] ?? '' ) ) {
+		$tax_query[] = array(
+			'taxonomy' => 'hri_program',
+			'field'    => 'slug',
+			'terms'    => array( $params['lock'] ),
+		);
+	}
 	foreach ( hri_filter_groups() as $key => $group ) {
 		if ( empty( $group['taxonomy'] ) || empty( $params['groups'][ $key ] ) ) {
 			continue;
@@ -111,27 +125,85 @@ function hri_filter_query( array $params ): WP_Query {
 /**
  * Checkbox options for a group: [ value => [label, count] ].
  *
+ * @param int[]|null $object_ids When set, only count (and list) terms used by these courses.
  * @return array<string,array{0:string,1:int|null}>
  */
-function hri_filter_options( array $group ): array {
+function hri_filter_options( array $group, ?array $object_ids = null ): array {
 	if ( ! empty( $group['options'] ) ) {
-		return array_map( static fn( $label ) => array( $label, null ), $group['options'] );
+		return hri_duration_options( $group['options'], $object_ids );
 	}
 
-	$terms = get_terms(
-		array(
-			'taxonomy'   => $group['taxonomy'],
-			'hide_empty' => true,
-			'orderby'    => 'term_id',
-		)
+	if ( null !== $object_ids && ! $object_ids ) {
+		return array();
+	}
+
+	$args = array(
+		'taxonomy'   => $group['taxonomy'],
+		'hide_empty' => true,
+		'orderby'    => 'term_id',
 	);
+	if ( null !== $object_ids ) {
+		$args['object_ids'] = $object_ids;
+		$args['fields']     = 'all_with_object_id';
+	}
+
+	$terms = get_terms( $args );
 	if ( is_wp_error( $terms ) ) {
 		return array();
 	}
 
+	// With object_ids, get_terms returns one row per (term, course): count the rows.
 	$out = array();
 	foreach ( $terms as $term ) {
-		$out[ $term->slug ] = array( $term->name, (int) $term->count );
+		if ( null === $object_ids ) {
+			$out[ $term->slug ] = array( $term->name, (int) $term->count );
+		} else {
+			$out[ $term->slug ] = array( $term->name, ( $out[ $term->slug ][1] ?? 0 ) + 1 );
+		}
+	}
+	return $out;
+}
+
+/**
+ * Duration buckets with course counts; buckets with no courses are left out.
+ *
+ * @param array<string,string> $buckets    value => label ("3" means 3 days or more).
+ * @param int[]|null           $object_ids Limit counting to these courses.
+ * @return array<string,array{0:string,1:int}>
+ */
+function hri_duration_options( array $buckets, ?array $object_ids = null ): array {
+	$args = array(
+		'post_type'        => 'course',
+		'post_status'      => 'publish',
+		'numberposts'      => -1,
+		'fields'           => 'ids',
+		'no_found_rows'    => true,
+		'suppress_filters' => false,
+	);
+	if ( null !== $object_ids ) {
+		if ( ! $object_ids ) {
+			return array();
+		}
+		$args['post__in'] = $object_ids;
+	}
+
+	$counts = array_fill_keys( array_keys( $buckets ), 0 );
+	foreach ( get_posts( $args ) as $id ) {
+		$days = (int) get_post_meta( $id, 'hri_duration_days', true );
+		if ( $days < 1 ) {
+			continue;
+		}
+		$key = (string) min( $days, 3 );
+		if ( isset( $counts[ $key ] ) ) {
+			++$counts[ $key ];
+		}
+	}
+
+	$out = array();
+	foreach ( $buckets as $value => $label ) {
+		if ( $counts[ $value ] > 0 ) {
+			$out[ $value ] = array( $label, $counts[ $value ] );
+		}
 	}
 	return $out;
 }
@@ -139,7 +211,7 @@ function hri_filter_options( array $group ): array {
 /**
  * Whether any filter or search is active.
  *
- * @param array{groups:array<string,string[]>,q:string,pg:int} $params
+ * @param array{groups:array<string,string[]>,q:string,pg:int,lock?:string} $params
  */
 function hri_filter_is_active( array $params ): bool {
 	return '' !== $params['q'] || (bool) array_filter( $params['groups'] );
@@ -159,7 +231,7 @@ function hri_filter_action_url(): string {
 /**
  * Results area (count, grid, pagination). This is what view.js swaps.
  *
- * @param array{groups:array<string,string[]>,q:string,pg:int} $params
+ * @param array{groups:array<string,string[]>,q:string,pg:int,lock?:string} $params
  */
 function hri_render_course_results( WP_Query $query, array $params, string $action ): string {
 	ob_start();
@@ -209,10 +281,32 @@ function hri_render_course_results( WP_Query $query, array $params, string $acti
 }
 
 /**
- * Full block output: filter form + results.
+ * Course IDs of one program (for scoped filter counts).
+ *
+ * @return int[]
  */
-function hri_render_course_filter(): string {
-	$params = hri_filter_params();
+function hri_program_course_ids( string $program ): array {
+	return get_posts(
+		array(
+			'post_type'        => 'course',
+			'post_status'      => 'publish',
+			'numberposts'      => -1,
+			'fields'           => 'ids',
+			'no_found_rows'    => true,
+			'suppress_filters' => false,
+			'tax_query'        => array( array( 'taxonomy' => 'hri_program', 'field' => 'slug', 'terms' => $program ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+		)
+	);
+}
+
+/**
+ * Full block output: filter form + results.
+ *
+ * @param array{program?:string} $args `program` locks the list to one program (e.g. "inhouse").
+ */
+function hri_render_course_filter( array $args = array() ): string {
+	$params = hri_filter_params( (string) ( $args['program'] ?? '' ) );
+	$scope  = '' !== $params['lock'] ? array_map( 'intval', hri_program_course_ids( $params['lock'] ) ) : null;
 	$action = hri_filter_action_url();
 	$query  = hri_filter_query( $params );
 
@@ -234,7 +328,12 @@ function hri_render_course_filter(): string {
 			<details class="hri-filter__panel" open>
 				<summary><?php esc_html_e( 'ตัวกรอง', 'hri-core' ); ?></summary>
 				<?php foreach ( hri_filter_groups() as $key => $group ) : ?>
-					<?php $options = hri_filter_options( $group ); ?>
+					<?php
+					if ( 'program' === $key && null !== $scope ) {
+						continue;
+					}
+					$options = hri_filter_options( $group, $scope );
+					?>
 					<?php if ( ! $options ) { continue; } ?>
 					<fieldset class="hri-filter__group">
 						<legend><?php echo esc_html( $group['label'] ); ?></legend>

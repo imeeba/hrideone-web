@@ -2,10 +2,10 @@
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"meta": {
 		"title": "HRI DeOne — rebuild preview",
-		"description": "Installs hri-theme and hri-core from GitHub main, adds 20 sample courses and opens the course list (/courses/). Style Guide is at /style-guide/ (front page).",
+		"description": "Installs hri-theme and hri-core from GitHub main, adds 20 sample courses and creates In-house and Public Training pages and opens /in-house/ (all courses: /courses/). Style Guide is at /style-guide/ (front page).",
 		"author": "imeeba"
 	},
-	"landingPage": "/courses/",
+	"landingPage": "/in-house/",
 	"preferredVersions": {
 		"php": "8.3",
 		"wp": "latest"
