@@ -50,6 +50,38 @@
 		},
 		{
 			"step": "writeFile",
+			"path": "/wordpress/hri-sample-1.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/sample/sample-1.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/hri-sample-2.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/sample/sample-2.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/hri-sample-3.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/sample/sample-3.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/hri-sample-4.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/sample/sample-4.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
 			"path": "/wordpress/hri-seed.php",
 			"data": {
 				"resource": "url",

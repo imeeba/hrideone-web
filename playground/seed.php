@@ -75,7 +75,29 @@ $map = static function ( string $taxonomy, array $slugs ) use ( $ids ): array {
 	return array_values( array_filter( array_map( static fn( $slug ) => $ids[ $taxonomy ][ $slug ] ?? 0, $slugs ) ) );
 };
 
+// Sample thumbnails (abstract, 3:2). Two courses stay without one to show the fallback.
+require_once ABSPATH . 'wp-admin/includes/file.php';
+require_once ABSPATH . 'wp-admin/includes/media.php';
+require_once ABSPATH . 'wp-admin/includes/image.php';
+
+$sample_dirs   = array( __DIR__ . '/sample', __DIR__ );
+$sample_prefix = array( 'sample-', 'hri-sample-' );
+$without_image = array( 'essential-sales-masterclass', 'the-new-manager' );
+
+$sample_image = static function ( int $n ) use ( $sample_dirs, $sample_prefix ): string {
+	foreach ( $sample_dirs as $dir ) {
+		foreach ( $sample_prefix as $prefix ) {
+			$file = "{$dir}/{$prefix}{$n}.jpg";
+			if ( is_readable( $file ) ) {
+				return $file;
+			}
+		}
+	}
+	return '';
+};
+
 $created = 0;
+$index   = 0;
 foreach ( $courses as $c ) {
 	list( $slug, $title, $program, $pillar, $topic, $levels, $formats, $days, $batch, $excerpt ) = $c;
 
@@ -109,6 +131,20 @@ foreach ( $courses as $c ) {
 		update_post_meta( $post_id, 'hri_batch_no', $batch );
 		update_post_meta( $post_id, 'hri_reg_status', 'open' );
 	}
+
+	if ( ! has_post_thumbnail( $post_id ) && ! in_array( $slug, $without_image, true ) ) {
+		$source = $sample_image( ( $index % 4 ) + 1 );
+		if ( $source ) {
+			$tmp = wp_tempnam( 'hri-sample.jpg' );
+			copy( $source, $tmp );
+			$attachment = media_handle_sideload( array( 'name' => "{$slug}.jpg", 'tmp_name' => $tmp ), $post_id, $title );
+			if ( ! is_wp_error( $attachment ) ) {
+				set_post_thumbnail( $post_id, $attachment );
+				update_post_meta( $attachment, '_wp_attachment_image_alt', '' );
+			}
+		}
+	}
+	++$index;
 	++$created;
 }
 
