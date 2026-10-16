@@ -154,7 +154,8 @@
 	margin-top: var(--wp--preset--spacing--60);
 }
 
-.hri-pagination ul {
+.hri-pagination ul.page-numbers {
+	border: 0;
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--wp--preset--spacing--20);
@@ -164,17 +165,23 @@
 	padding: 0;
 }
 
-.hri-pagination .page-numbers {
+.hri-pagination li {
+	margin: 0;
+}
+
+.hri-pagination a.page-numbers,
+.hri-pagination span.page-numbers {
 	border: 1px solid var(--wp--preset--color--border);
 	border-radius: var(--wp--custom--radius--sm);
 	display: inline-block;
 	min-width: 2.5rem;
+	line-height: 1.4;
 	padding: 0.45rem 0.75rem;
 	text-align: center;
 	text-decoration: none;
 }
 
-.hri-pagination .page-numbers.current {
+.hri-pagination span.page-numbers.current {
 	background: var(--wp--preset--color--primary-strong);
 	border-color: var(--wp--preset--color--primary-strong);
 	color: var(--wp--preset--color--base);
