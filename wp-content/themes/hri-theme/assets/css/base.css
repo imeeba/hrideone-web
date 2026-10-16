@@ -132,3 +132,9 @@ video {
 .wp-block-column > .is-style-card:only-child {
 	height: 100%;
 }
+
+/* Header: keep the brand on one line when the menu wraps. */
+.hri-header .wp-block-site-title {
+	flex: none;
+	white-space: nowrap;
+}
