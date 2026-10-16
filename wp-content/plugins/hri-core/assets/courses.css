@@ -207,7 +207,7 @@
 }
 
 .hri-card__media {
-	aspect-ratio: 16 / 7;
+	aspect-ratio: var(--wp--custom--ratio--thumb, 3 / 2);
 	background: var(--wp--preset--gradient--deep);
 	position: relative;
 }

@@ -93,6 +93,7 @@ s.custom = {
 	radius: tokens.radius,
 	lineHeight: tokens.font.lineHeight,
 	fontWeight: tokens.font.weight,
+	ratio: tokens.ratio,
 	motion: tokens.motion,
 	gutter: tokens.layout.gutter,
 };

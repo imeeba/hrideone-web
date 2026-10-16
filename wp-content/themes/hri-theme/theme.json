@@ -500,6 +500,9 @@
 				"semibold": "600",
 				"bold": "700"
 			},
+			"ratio": {
+				"thumb": "3 / 2"
+			},
 			"motion": {
 				"fast": "150ms",
 				"base": "250ms",
