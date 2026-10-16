@@ -1,0 +1,329 @@
+/**
+ * Course card, course filter and course facts.
+ * Colors, type, spacing and radius come from the theme's tokens (theme.json variables).
+ */
+
+/* ---------- Layout ---------- */
+.hri-courses {
+	display: grid;
+	gap: var(--wp--preset--spacing--50);
+}
+
+@media (min-width: 900px) {
+	.hri-courses {
+		align-items: start;
+		gap: var(--wp--preset--spacing--60);
+		grid-template-columns: 280px minmax(0, 1fr);
+	}
+
+	.hri-filter {
+		position: sticky;
+		top: var(--wp--preset--spacing--50);
+	}
+
+	.hri-filter__panel > summary {
+		display: none;
+	}
+}
+
+.hri-courses.is-loading .hri-results {
+	opacity: 0.5;
+	transition: opacity var(--wp--custom--motion--fast) var(--wp--custom--motion--easing);
+}
+
+/* ---------- Filter ---------- */
+.hri-filter {
+	background: var(--wp--preset--color--base-alt);
+	border-radius: var(--wp--custom--radius--md);
+	display: grid;
+	gap: var(--wp--preset--spacing--40);
+	padding: var(--wp--preset--spacing--50);
+}
+
+.hri-filter__search input {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--sm);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--contrast);
+	font: inherit;
+	padding: 0.7rem 0.9rem;
+	width: 100%;
+}
+
+.hri-filter__search input:focus-visible {
+	border-color: var(--wp--preset--color--primary-strong);
+	box-shadow: var(--hri-ring);
+	outline: none;
+}
+
+.hri-filter__panel > summary {
+	cursor: pointer;
+	font-weight: 500;
+	list-style: none;
+	padding-block: var(--wp--preset--spacing--20);
+}
+
+.hri-filter__panel > summary::after {
+	content: '＋';
+	float: right;
+}
+
+.hri-filter__panel[open] > summary::after {
+	content: '－';
+}
+
+.hri-filter__group {
+	border: 0;
+	margin: var(--wp--preset--spacing--40) 0 0;
+	min-width: 0;
+	padding: 0;
+}
+
+.hri-filter__group legend {
+	color: var(--wp--preset--color--contrast);
+	font-weight: 500;
+	margin-bottom: var(--wp--preset--spacing--20);
+	padding: 0;
+}
+
+.hri-check {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: var(--wp--preset--spacing--30);
+	padding: 5px 0;
+}
+
+.hri-check input {
+	accent-color: var(--wp--preset--color--primary-strong);
+	block-size: 1.1rem;
+	flex: none;
+	inline-size: 1.1rem;
+	margin: 0;
+}
+
+.hri-check__label {
+	flex: 1;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.hri-check__count {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--x-small);
+}
+
+/* The submit button is only needed without JavaScript. */
+.is-enhanced .hri-filter__submit {
+	display: none;
+}
+
+.hri-filter__submit {
+	margin-top: var(--wp--preset--spacing--40);
+	width: 100%;
+}
+
+/* ---------- Results ---------- */
+.hri-results__head {
+	align-items: baseline;
+	color: var(--wp--preset--color--contrast-muted);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--40);
+	margin: 0 0 var(--wp--preset--spacing--40);
+}
+
+.hri-results__reset {
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.hri-results__empty {
+	background: var(--wp--preset--color--base-alt);
+	border-radius: var(--wp--custom--radius--md);
+	padding: var(--wp--preset--spacing--60);
+	text-align: center;
+}
+
+.hri-grid {
+	display: grid;
+	gap: var(--wp--preset--spacing--50);
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.hri-pagination {
+	margin-top: var(--wp--preset--spacing--60);
+}
+
+.hri-pagination ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
+	justify-content: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.hri-pagination .page-numbers {
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--sm);
+	display: inline-block;
+	min-width: 2.5rem;
+	padding: 0.45rem 0.75rem;
+	text-align: center;
+	text-decoration: none;
+}
+
+.hri-pagination .page-numbers.current {
+	background: var(--wp--preset--color--primary-strong);
+	border-color: var(--wp--preset--color--primary-strong);
+	color: var(--wp--preset--color--base);
+}
+
+/* ---------- Card ---------- */
+.hri-card {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	box-shadow: var(--wp--preset--shadow--sm);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	position: relative;
+	transition: box-shadow var(--wp--custom--motion--base) var(--wp--custom--motion--easing), transform var(--wp--custom--motion--base) var(--wp--custom--motion--easing);
+}
+
+.hri-card:hover,
+.hri-card:focus-within {
+	box-shadow: var(--wp--preset--shadow--md);
+	transform: translateY(-2px);
+}
+
+.hri-card__media {
+	aspect-ratio: 16 / 7;
+	background: var(--wp--preset--gradient--deep);
+	position: relative;
+}
+
+.hri-card--leadership .hri-card__media { background: var(--wp--preset--gradient--brand); }
+.hri-card--business .hri-card__media { background: var(--wp--preset--gradient--growth); }
+
+.hri-card__media img {
+	block-size: 100%;
+	inline-size: 100%;
+	object-fit: cover;
+}
+
+.hri-card__badge {
+	background: var(--wp--preset--color--base);
+	border-radius: var(--wp--custom--radius--pill);
+	color: var(--wp--preset--color--primary-deep);
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 500;
+	inset: var(--wp--preset--spacing--30) auto auto var(--wp--preset--spacing--30);
+	padding: 2px 10px;
+	position: absolute;
+}
+
+.hri-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--20);
+	padding: var(--wp--preset--spacing--50);
+}
+
+.hri-card__body > p {
+	margin: 0;
+}
+
+.hri-card__eyebrow {
+	color: var(--wp--preset--color--secondary);
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.hri-card__title {
+	font-size: var(--wp--preset--font-size--large);
+	margin: 0;
+}
+
+.hri-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Whole card is clickable. */
+.hri-card__title a::after {
+	content: '';
+	inset: 0;
+	position: absolute;
+}
+
+.hri-card__title a:focus-visible {
+	outline: none;
+}
+
+.hri-card:has(.hri-card__title a:focus-visible) {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+.hri-card__excerpt {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.hri-card__batch {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+}
+
+.hri-card__meta {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--x-small);
+	margin-top: auto !important;
+	padding-top: var(--wp--preset--spacing--30);
+}
+
+.hri-chip {
+	border-radius: var(--wp--custom--radius--pill);
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 500;
+	margin-left: 4px;
+	padding: 1px 10px;
+}
+
+.hri-chip--open { background: var(--wp--custom--color--green--100); color: var(--wp--custom--color--green--900); }
+.hri-chip--full,
+.hri-chip--closed { background: var(--wp--preset--color--base-alt); color: var(--wp--preset--color--contrast-muted); }
+
+/* ---------- Facts (single course) ---------- */
+.hri-facts {
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	margin: 0;
+	overflow: hidden;
+}
+
+.hri-facts__row {
+	display: grid;
+	gap: var(--wp--preset--spacing--30);
+	grid-template-columns: minmax(110px, 1fr) 2fr;
+	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);
+}
+
+.hri-facts__row:nth-child(even) {
+	background: var(--wp--preset--color--base-alt);
+}
+
+.hri-facts dt {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.hri-facts dd {
+	font-weight: 500;
+	margin: 0;
+}

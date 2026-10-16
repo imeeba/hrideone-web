@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/course-filter",
+	"title": "Course Filter",
+	"category": "widgets",
+	"icon": "filter",
+	"description": "Searchable, filterable list of courses. Reads filter values from the URL.",
+	"keywords": [ "course", "filter", "หลักสูตร" ],
+	"textdomain": "hri-core",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-courses",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

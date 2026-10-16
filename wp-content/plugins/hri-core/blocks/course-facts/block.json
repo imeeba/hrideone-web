@@ -1,0 +1,14 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/course-facts",
+	"title": "Course Facts",
+	"category": "widgets",
+	"icon": "list-view",
+	"description": "Summary table of a course: audience, duration, format and, for Public Training, the current batch.",
+	"textdomain": "hri-core",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false, "autoRegister": true },
+	"style": "hri-courses",
+	"render": "file:./render.php"
+}
