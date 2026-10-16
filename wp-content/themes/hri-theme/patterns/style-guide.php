@@ -65,7 +65,7 @@ $white = '#FFFFFF';
 <h2 class="wp-block-heading is-style-section-title">Semantic colors</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>สีที่ทีมการตลาดเลือกได้ใน editor มีแค่ชุดนี้ (ปิดการเลือกสีอิสระไว้) ตัวเลขคือค่า contrast เทียบกับพื้นขาวตามมาตรฐาน WCAG</p>
+<p>สีที่ทีมการตลาดเลือกได้ใน editor มีแค่ชุดนี้ (ปิดการเลือกสีอิสระไว้) ตัวเลขคือค่า contrast เทียบกับพื้นขาว (WCAG)</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="sg-swatches">
@@ -111,10 +111,10 @@ $white = '#FFFFFF';
 <?php endforeach; ?>
 </div>
 <!-- /wp:html -->
-<!-- wp:group {"className":"sg-note","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}},"border":{"radius":"8px","left":{"color":"var:preset|color|highlight","width":"4px"}}},"backgroundColor":"base-alt","layout":{"type":"default"}} -->
-<div class="wp-block-group sg-note has-base-alt-background-color has-background" style="border-radius:8px;border-left-color:var(--wp--preset--color--highlight);border-left-width:4px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--50)">
+<!-- wp:group {"className":"sg-note","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}},"border":{"radius":"8px","left":{"color":"var:preset|color|primary","width":"4px"}}},"backgroundColor":"base-alt","layout":{"type":"default"}} -->
+<div class="wp-block-group sg-note has-base-alt-background-color has-background" style="border-radius:8px;border-left-color:var(--wp--preset--color--primary);border-left-width:4px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--50)">
 <!-- wp:paragraph -->
-<p><strong>ข้อสังเกตด้าน Accessibility:</strong> สี Primary (#00B0BD) ที่เว็บเดิมใช้เป็นตัวหนังสือและพื้นปุ่ม มี contrast กับพื้นขาวแค่ประมาณ 2.6:1 ซึ่งอ่านยากและไม่ผ่านมาตรฐาน ในระบบใหม่ Primary ยังคงเป็นสีแบรนด์สำหรับพื้น ไอคอน และกราฟิก แต่ตัวหนังสือ ลิงก์ และปุ่มจะใช้ <strong>Primary Strong (#0F7070)</strong> ซึ่งเป็นเฉดเดียวกับโลโก้และผ่าน AA</p>
+<p><strong>ข้อสังเกตด้าน Accessibility:</strong> สี Primary (#00B0BD) ที่เว็บเดิมใช้เป็นตัวหนังสือและพื้นปุ่ม มี contrast กับพื้นขาวแค่ประมาณ 2.6:1 ซึ่งอ่านยากและไม่ผ่านมาตรฐาน ในระบบใหม่ Primary ยังคงเป็นสีแบรนด์สำหรับพื้น ไอคอน และกราฟิก แต่ตัวหนังสือ ลิงก์ และปุ่มจะใช้ <strong>Primary Strong (#0F7070)</strong> ซึ่งผ่าน AA</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

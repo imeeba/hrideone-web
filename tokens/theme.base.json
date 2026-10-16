@@ -67,7 +67,7 @@
 				}
 			},
 			"heading": {
-				"color": { "text": "var(--wp--preset--color--heading)" },
+				"color": { "text": "var(--wp--preset--color--contrast)" },
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--body)",
 					"fontWeight": "600",

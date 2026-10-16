@@ -21,7 +21,7 @@
 				{
 					"slug": "base-alt",
 					"name": "Base Alt (พื้นรอง)",
-					"color": "#F5F7F7"
+					"color": "#F4F6F6"
 				},
 				{
 					"slug": "surface-brand",
@@ -30,18 +30,13 @@
 				},
 				{
 					"slug": "contrast",
-					"name": "Contrast (ข้อความหลัก)",
-					"color": "#333333"
+					"name": "Contrast (ข้อความและหัวข้อ)",
+					"color": "#111111"
 				},
 				{
 					"slug": "contrast-muted",
 					"name": "Contrast Muted (ข้อความรอง)",
 					"color": "#54595F"
-				},
-				{
-					"slug": "heading",
-					"name": "Heading (หัวข้อ)",
-					"color": "#351A0E"
 				},
 				{
 					"slug": "primary",
@@ -74,14 +69,9 @@
 					"color": "#00A070"
 				},
 				{
-					"slug": "highlight",
-					"name": "Highlight (เหลือง)",
-					"color": "#FBBD13"
-				},
-				{
 					"slug": "border",
 					"name": "Border (เส้นขอบ)",
-					"color": "#DCE3E3"
+					"color": "#D9DFDF"
 				}
 			],
 			"gradients": [
@@ -470,51 +460,26 @@
 				"teal": {
 					"50": "#E8F8F9",
 					"100": "#C9F0F3",
-					"200": "#96E3E8",
 					"300": "#3AD2DD",
-					"400": "#14C1CD",
 					"500": "#00B0BD",
-					"600": "#008F9A",
 					"700": "#0F7070",
 					"800": "#0B5858",
 					"900": "#073D3D",
 					"950": "#042626"
 				},
 				"green": {
-					"50": "#E9F6EF",
 					"100": "#C8EAD6",
-					"200": "#93D5AE",
-					"300": "#4DBB85",
 					"400": "#00A070",
-					"500": "#009060",
-					"600": "#00804F",
 					"700": "#007040",
 					"800": "#005030",
-					"900": "#003B24",
-					"950": "#002416"
+					"900": "#003B24"
 				},
 				"neutral": {
 					"0": "#FFFFFF",
-					"50": "#F5F7F7",
-					"100": "#EDF1F1",
-					"200": "#DCE3E3",
-					"300": "#C2CCCC",
-					"400": "#94A0A0",
-					"500": "#69727D",
+					"100": "#F4F6F6",
+					"300": "#D9DFDF",
 					"600": "#54595F",
-					"700": "#3F444B",
-					"800": "#333333",
-					"900": "#1F2124",
-					"950": "#111111"
-				},
-				"brown": {
-					"900": "#351A0E"
-				},
-				"yellow": {
-					"400": "#FBBD13"
-				},
-				"blue": {
-					"700": "#0050A0"
+					"900": "#111111"
 				}
 			},
 			"radius": {
@@ -585,7 +550,7 @@
 			},
 			"heading": {
 				"color": {
-					"text": "var(--wp--preset--color--heading)"
+					"text": "var(--wp--preset--color--contrast)"
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--body)",
