@@ -8,6 +8,8 @@
 [lang|="ja"] {
 	--wp--preset--font-family--body: var(--wp--preset--font-family--japanese);
 	--wp--preset--font-family--display: var(--wp--preset--font-family--japanese);
+	/* Re-declare so inherited text (which resolved the variable on body) switches too. */
+	font-family: var(--wp--preset--font-family--japanese);
 	line-break: strict;
 	word-break: normal;
 	overflow-wrap: anywhere;
@@ -124,4 +126,9 @@ video {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* Cards in a row share the tallest height. */
+.wp-block-column > .is-style-card:only-child {
+	height: 100%;
 }
