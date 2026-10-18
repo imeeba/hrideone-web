@@ -53,7 +53,8 @@
 
 .hri-contact a {
 	display: inline-block;
-	padding-block: 0.35rem; /* ≥ 44px tap target with the line height */
+	min-height: 44px; /* tap target */
+	padding-block: 0.5rem;
 	text-decoration: none;
 	text-underline-offset: 0.2em;
 }
@@ -142,6 +143,7 @@
 }
 
 .hri-cta__actions {
+	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--wp--preset--spacing--20);
