@@ -99,10 +99,11 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Patterns (หมวด HRI DeOne, ใส่ซ้ำได้): `hri/home` (ทุก section) และ `hri/home-{hero,intro,highlight,services,stats,clients,message,gallery,knowledge}` ลำดับใน `hri_home_sections()` (`functions.php`) · ข้อความใน pattern เป็น gettext ของ theme → seed สร้างหน้า EN/JA จาก pattern ด้วยไฟล์แปล (`playground/seed-home.php`)
 - Hero = Cover block style **Hero** (`is-style-hero`): พื้นหลังเป็นรูปหรือวิดีโอที่อัปโหลด (MP4/WebM, ปิดเสียง วนซ้ำ) · `assets/js/hero.js` เล่นแค่ 10 วินาทีแรกแล้ววน (วิดีโอสั้นกว่านั้นวนตามความยาวจริง) · ปุ่มหยุด/เล่น 44px · prefers-reduced-motion = หยุดที่เฟรมแรก · overlay `primary-deep` 70% (ตัวขาวผ่าน AA แม้รูปพื้นหลังขาวล้วน: 4.9:1) · ไม่รองรับ YouTube (Jimmi เลือกแบบอัปโหลดไฟล์)
 - Gallery style **Slider** (`is-style-slider`): scroll-snap (เลื่อนได้แม้ไม่มี JS) + `assets/js/slider.js` ปุ่มก่อน/ถัดไป, จุด, ลูกศรคีย์บอร์ด, รูปข้างเอียงแบบ 3D ที่ ≥782px (ตามเว็บเดิม) · 1 รูป = 1 สไลด์ (รูปเว็บเดิมเป็นภาพ collage อยู่แล้ว)
-- Gallery style **Logos** (`is-style-logos`): โลโก้ลูกค้า 6/4/3 คอลัมน์ · ใส่ชื่อบริษัทเป็น alt ทุกโลโก้
+- Gallery style **Logos** (`is-style-logos`): แสดงโลโก้ลูกค้าทั้งหมดพร้อมกัน 10/8/4 ต่อแถว (≥1100 / ≥600 / มือถือ; 40 โลโก้ = 4 แถวบน desktop) · ใส่ชื่อบริษัทเป็น alt ทุกโลโก้
 - ปุ่ม style **Outline light** (ปุ่มขอบขาวบนพื้นเข้ม)
 - `hri/course-highlight` (hri-core): การ์ดคอร์ส Public ที่ `open` เรียงวันเริ่มเร็วสุดก่อน (ไม่มีวันที่ไปท้าย) ตามภาษาปัจจุบัน · attribute `count` (ค่าเริ่ม 4), `program` · ไม่มีคอร์ส = ไม่แสดงอะไร
 - บทความ = Query Loop ของ core 3 เรื่องล่าสุด (Polylang กรองภาษาเอง) · ปุ่ม "ดูบทความทั้งหมด" → `/blog/`
+- บริการ: infographic หลอดไฟ 01–03 (`services-bulb.svg`, ตัวเลขอยู่ในรูป) + หัวข้อ/คำอธิบายเป็น block แปลได้ (`hri-svcmap`): desktop ≥1000px หลอดไฟกลาง 01/03 ซ้าย 02 ขวาตามแถบสี · จอเล็กหลอดไฟบน รายการเรียง 01→03 · ข้อความจากรูป reference ที่ Jimmi ส่งมา · ต่อด้วยการ์ดบริการ 3 ใบเหมือนเดิม
 - รูปบริการ 3 รูปเป็น SVG ใน `hri-theme/assets/images/home/service-*.svg` (คมทุกขนาดจอ, สีเป็นค่า hex เดียวกับ token เพราะ SVG ใน `<img>` อ่าน CSS variable ไม่ได้) · `hero.svg` = พื้นหลัง hero ชั่วคราว · placeholder ใน `assets/images/placeholder/` (photo, portrait, logo)
 - ลิงก์ภายในในเนื้อหา (button, paragraph, heading, list, image, cover, media-text) แปลงด้วย `hri_localize_url()` ตอน render ทุกภาษา (`polylang.php`) → พิมพ์ `/in-house/` ได้เหมือนกันทุกภาษา
 - Favicon: `<link rel="icon">` จาก `mark.svg` เมื่อยังไม่ได้ตั้ง Site Icon (Settings → General ต้องเป็นรูป PNG ≥512px)
@@ -129,7 +130,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
 - เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี (ปุ่มในหน้าแรกชี้ไป `/transformation-solutions/` `/japanese-concept/` `/blog/` ซึ่งยัง 404)
 - หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ · tag ใต้ชื่อบริการ (In-house Training / Organization Transformation / Cross-cultural Collaboration) ตั้งเอง
-- หน้าแรก: โลโก้ลูกค้า 12 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
+- หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 

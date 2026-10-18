@@ -183,11 +183,6 @@ msgctxt "Pattern title"
 msgid "Home — Our customers"
 msgstr ""
 
-#: patterns/home-clients.php
-msgctxt "Pattern description"
-msgid "Logo wall (Gallery, style \"Logos\"). Replace the placeholders with client logos and give each one the company name as alt text."
-msgstr ""
-
 #: patterns/home-clients.php:16
 msgid "ลูกค้าที่ให้ความไว้วางใจ"
 msgstr "信頼をいただいているお客様"
@@ -317,28 +312,23 @@ msgctxt "Pattern title"
 msgid "Home — Our services"
 msgstr ""
 
-#: patterns/home-services.php
-msgctxt "Pattern description"
-msgid "Three service cards (Future Leader, Transformation Solutions, Japanese Concept) with SVG illustrations."
-msgstr ""
-
-#: patterns/home-services.php:17
+#: patterns/home-services.php:22
 msgid "พัฒนาผู้นำและทีมงานให้เติบโตได้จริง ตั้งแต่การรู้จักตัวเอง การนำทีม สู่การบริหารธุรกิจในทุกมิติ"
 msgstr "自己理解からチームの率い方、そしてあらゆる面での事業運営まで、リーダーとチームの確かな成長を支援します。"
 
-#: patterns/home-services.php:24
+#: patterns/home-services.php:29
 msgid "โซลูชันสำหรับองค์กรที่ต้องการเปลี่ยนแปลงอย่างเป็นระบบ ครอบคลุมกลยุทธ์ธุรกิจ เทคโนโลยี คน และวัฒนธรรมองค์กร"
 msgstr "事業戦略、テクノロジー、人材、組織文化までを網羅し、体系的な変革を目指す組織のためのソリューションです。"
 
-#: patterns/home-services.php:31
+#: patterns/home-services.php:36
 msgid "แนวคิดการทำงานแบบญี่ปุ่นที่เสริมทักษะการสื่อสารและการทำงานร่วมกันข้ามวัฒนธรรม"
 msgstr "日本流の仕事の考え方で、コミュニケーションと異文化間の協働の力を高めます。"
 
-#: patterns/home-services.php:38
+#: patterns/home-services.php:43
 msgid "บริการของเรา"
 msgstr "サービス"
 
-#: patterns/home-services.php:68
+#: patterns/home-services.php:95
 msgid "ดูรายละเอียด"
 msgstr "詳しく見る"
 
@@ -377,3 +367,25 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "Every home page section in order. Insert into an empty page, then edit the texts and images."
 msgstr ""
+
+#: patterns/home-clients.php
+msgctxt "Pattern description"
+msgid "Logo wall (Gallery, style \"Logos\"): all logos at once, 10 per row on desktop. Replace the placeholders with client logos and give each one the company name as alt text."
+msgstr ""
+
+#: patterns/home-services.php
+msgctxt "Pattern description"
+msgid "Light-bulb infographic (01–03) with the three services around it, then three service cards (Future Leader, Transformation Solutions, Japanese Concept) with SVG illustrations."
+msgstr ""
+
+#: patterns/home-services.php:13
+msgid "สร้างผู้นำยุคใหม่ที่แข็งแกร่งทั้งด้าน Leadership และ Business เพราะผู้นำที่แท้จริงต้องนำคนเป็นและเข้าใจธุรกิจอย่างลึกซึ้ง"
+msgstr "リーダーシップとビジネスの両面に強い次世代のリーダーを育成します。真のリーダーには、人を導く力と事業への深い理解が欠かせないからです。"
+
+#: patterns/home-services.php:14
+msgid "วางกลยุทธ์และขับเคลื่อนการเปลี่ยนแปลงองค์กรแบบองค์รวม ครอบคลุม 4 มิติ ได้แก่ Business Strategy, Technology Strategy, People Strategy และ Culture Strategy"
+msgstr "Business Strategy、Technology Strategy、People Strategy、Culture Strategyの4つの視点から、組織全体の変革を設計し推進します。"
+
+#: patterns/home-services.php:15
+msgid "นำปรัชญาและแนวปฏิบัติการทำงานแบบญี่ปุ่นที่พิสูจน์แล้วว่าสร้างองค์กรยั่งยืน มาประยุกต์ใช้ในบริบทไทยอย่างเป็นระบบ"
+msgstr "持続する組織づくりで実証された日本の仕事の哲学と実践を、タイの環境に合わせて体系的に取り入れます。"

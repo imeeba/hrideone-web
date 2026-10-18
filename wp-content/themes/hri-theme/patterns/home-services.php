@@ -4,11 +4,16 @@
  * Slug: hri/home-services
  * Categories: hri
  * Keywords: services, บริการ
- * Description: Three service cards (Future Leader, Transformation Solutions, Japanese Concept) with SVG illustrations.
+ * Description: Light-bulb infographic (01–03) with the three services around it, then three service cards (Future Leader, Transformation Solutions, Japanese Concept) with SVG illustrations.
  *
  * @package hri-theme
  */
 
+$hri_map = array(
+	array( '01', 'Future Leader', __( 'สร้างผู้นำยุคใหม่ที่แข็งแกร่งทั้งด้าน Leadership และ Business เพราะผู้นำที่แท้จริงต้องนำคนเป็นและเข้าใจธุรกิจอย่างลึกซึ้ง', 'hri-theme' ) ),
+	array( '02', 'Transformation Solutions', __( 'วางกลยุทธ์และขับเคลื่อนการเปลี่ยนแปลงองค์กรแบบองค์รวม ครอบคลุม 4 มิติ ได้แก่ Business Strategy, Technology Strategy, People Strategy และ Culture Strategy', 'hri-theme' ) ),
+	array( '03', 'Japanese Concept', __( 'นำปรัชญาและแนวปฏิบัติการทำงานแบบญี่ปุ่นที่พิสูจน์แล้วว่าสร้างองค์กรยั่งยืน มาประยุกต์ใช้ในบริบทไทยอย่างเป็นระบบ', 'hri-theme' ) ),
+);
 $hri_services = array(
 	array(
 		'image' => 'service-leader.svg',
@@ -41,6 +46,28 @@ $hri_services = array(
 <!-- wp:heading {"textAlign":"center","className":"is-style-section-title"} -->
 <h2 class="wp-block-heading has-text-align-center is-style-section-title">Our Services</h2>
 <!-- /wp:heading -->
+
+<!-- wp:group {"className":"hri-svcmap","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-svcmap"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"hri-svcmap__bulb"} -->
+<figure class="wp-block-image size-full hri-svcmap__bulb"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/services-bulb.svg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+<?php foreach ( $hri_map as $hri_item ) : ?>
+<!-- wp:group {"className":"hri-svcmap__item hri-svcmap__item--<?php echo esc_attr( $hri_item[0] ); ?>","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-svcmap__item hri-svcmap__item--<?php echo esc_attr( $hri_item[0] ); ?>"><!-- wp:paragraph {"className":"hri-svcmap__num"} -->
+<p class="hri-svcmap__num"><?php echo esc_html( $hri_item[0] ); ?></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"className":"hri-svcmap__title"} -->
+<h3 class="wp-block-heading hri-svcmap__title"><?php echo esc_html( $hri_item[1] ); ?></h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"hri-svcmap__text"} -->
+<p class="hri-svcmap__text"><?php echo esc_html( $hri_item[2] ); ?></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+<?php endforeach; ?>
+</div>
+<!-- /wp:group -->
 
 <!-- wp:group {"className":"hri-services","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
 <div class="wp-block-group hri-services">

@@ -364,7 +364,102 @@ video {
 	outline-offset: 3px;
 }
 
-/* ---------- Home: services ---------- */
+/* ---------- Home: services — light-bulb infographic (01–03) ---------- */
+.hri-svcmap {
+	display: grid;
+	gap: var(--wp--preset--spacing--50);
+	grid-template-columns: minmax(0, 1fr);
+	justify-items: center;
+}
+
+.hri-svcmap > * {
+	margin: 0 !important;
+}
+
+.hri-svcmap__bulb {
+	max-width: 17rem;
+	width: 100%;
+}
+
+.hri-svcmap__bulb img {
+	display: block;
+	width: 100%;
+}
+
+.hri-svcmap__item {
+	max-width: 32rem;
+	width: 100%;
+}
+
+.hri-svcmap__item > * {
+	margin-block: 0 !important;
+}
+
+.hri-svcmap__num {
+	color: var(--wp--preset--color--primary-strong);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight--bold);
+	letter-spacing: 0.08em;
+}
+
+.hri-svcmap__title {
+	color: var(--wp--preset--color--primary-strong);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--xx-large);
+	font-weight: var(--wp--custom--font-weight--bold);
+	line-height: var(--wp--custom--line-height--tight);
+	margin-top: var(--wp--preset--spacing--10) !important;
+}
+
+.hri-svcmap__text {
+	border-top: 1px solid var(--wp--preset--color--primary);
+	margin-top: var(--wp--preset--spacing--40) !important;
+	padding-top: var(--wp--preset--spacing--40);
+}
+
+/* Desktop: bulb in the middle, 01 and 03 on the left (towards their bands), 02 on the right. */
+@media (min-width: 1000px) {
+	.hri-svcmap {
+		align-items: center;
+		column-gap: var(--wp--preset--spacing--60);
+		grid-template-areas: "one bulb two" "three bulb two";
+		grid-template-columns: minmax(0, 1fr) minmax(0, 24rem) minmax(0, 1fr);
+		justify-items: stretch;
+		row-gap: var(--wp--preset--spacing--70);
+	}
+
+	.hri-svcmap__bulb {
+		grid-area: bulb;
+		max-width: none;
+	}
+
+	.hri-svcmap__item--01 {
+		align-self: end;
+		grid-area: one;
+	}
+
+	.hri-svcmap__item--02 {
+		grid-area: two;
+	}
+
+	.hri-svcmap__item--03 {
+		align-self: start;
+		grid-area: three;
+	}
+
+	.hri-svcmap__item--01,
+	.hri-svcmap__item--03 {
+		justify-self: end;
+		text-align: right;
+	}
+}
+
+/* ---------- Home: services — cards ---------- */
+.hri-svcmap + .hri-services {
+	margin-block-start: var(--wp--preset--spacing--80) !important;
+}
+
 .hri-services {
 	gap: var(--wp--preset--spacing--50);
 }
@@ -449,21 +544,22 @@ video {
 
 /* ---------- Gallery style "Logos" (client logo wall) ---------- */
 .wp-block-gallery.is-style-logos {
-	--wp--style--unstable-gallery-gap: var(--wp--preset--spacing--40);
+	--wp--style--unstable-gallery-gap: var(--wp--preset--spacing--20);
 	display: grid !important;
-	gap: var(--wp--preset--spacing--40);
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--20);
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+/* All logos at once: 10 per row on desktop (40 logos = 4 rows), 8 on tablet, 4 on mobile. */
 @media (min-width: 600px) {
 	.wp-block-gallery.is-style-logos {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(8, minmax(0, 1fr));
 	}
 }
 
 @media (min-width: 1100px) {
 	.wp-block-gallery.is-style-logos {
-		grid-template-columns: repeat(6, minmax(0, 1fr));
+		grid-template-columns: repeat(10, minmax(0, 1fr));
 	}
 }
 
@@ -476,7 +572,7 @@ video {
 	box-sizing: border-box;
 	justify-content: center;
 	margin: 0;
-	padding: var(--wp--preset--spacing--30);
+	padding: var(--wp--preset--spacing--20);
 	width: auto;
 }
 

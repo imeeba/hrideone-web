@@ -4,7 +4,7 @@
  * Slug: hri/home-clients
  * Categories: hri
  * Keywords: clients, customers, logos, ลูกค้า
- * Description: Logo wall (Gallery, style "Logos"). Replace the placeholders with client logos and give each one the company name as alt text.
+ * Description: Logo wall (Gallery, style "Logos"): all logos at once, 10 per row on desktop. Replace the placeholders with client logos and give each one the company name as alt text.
  *
  * @package hri-theme
  */
@@ -20,9 +20,9 @@ $hri_logo = get_theme_file_uri( 'assets/images/placeholder/logo.svg' );
 <h2 class="wp-block-heading has-text-align-center is-style-section-title">Our Customers</h2>
 <!-- /wp:heading -->
 
-<!-- wp:gallery {"columns":6,"imageCrop":false,"linkTo":"none","className":"is-style-logos"} -->
-<figure class="wp-block-gallery has-nested-images columns-6 is-style-logos">
-<?php for ( $hri_i = 0; $hri_i < 12; $hri_i++ ) : ?>
+<!-- wp:gallery {"columns":8,"imageCrop":false,"linkTo":"none","className":"is-style-logos"} -->
+<figure class="wp-block-gallery has-nested-images columns-8 is-style-logos">
+<?php for ( $hri_i = 0; $hri_i < 40; $hri_i++ ) : ?>
 <!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full"><img src="<?php echo esc_url( $hri_logo ); ?>" alt=""/></figure>
 <!-- /wp:image -->

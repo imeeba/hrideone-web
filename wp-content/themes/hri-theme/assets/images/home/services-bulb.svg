@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 660" role="img" aria-labelledby="t"><title id="t">01 Future Leader · 02 Transformation Solutions · 03 Japanese Concept</title>
+<defs>
+<path id="bulb" d="M236 480C236 424 132 370 132 252A188 188 0 1 1 508 252C508 370 404 424 404 480C404 494 394 504 380 504H260C246 504 236 494 236 480Z"/>
+<clipPath id="left"><use href="#bulb"/><rect width="320" height="660"/></clipPath>
+<clipPath id="right"><use href="#bulb"/><rect x="320" width="320" height="660"/></clipPath>
+<linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#003B24"/><stop offset=".55" stop-color="#007040"/><stop offset="1" stop-color="#005030"/></linearGradient>
+<linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#073D3D"/><stop offset=".5" stop-color="#0F7070"/><stop offset="1" stop-color="#0B5858"/></linearGradient>
+<linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="#005030"/><stop offset=".5" stop-color="#00A070"/><stop offset="1" stop-color="#007040"/></linearGradient>
+<radialGradient id="shine"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+</defs>
+<use href="#bulb" fill="#E8F8F9" stroke="#C9F0F3" stroke-width="12" stroke-linejoin="round"/>
+<rect x="20" y="160" width="560" height="76" rx="38" fill="url(#g1)" clip-path="url(#left)"/>
+<rect x="72" y="252" width="548" height="76" rx="38" fill="url(#g2)" clip-path="url(#right)"/>
+<rect x="56" y="344" width="524" height="76" rx="38" fill="url(#g3)" clip-path="url(#left)"/>
+<g fill="url(#shine)"><ellipse cx="320" cy="198" rx="130" ry="38"/><ellipse cx="320" cy="290" rx="130" ry="38"/><ellipse cx="320" cy="382" rx="130" ry="38"/></g>
+<use href="#bulb" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+<g fill="#FFFFFF" font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="700" text-anchor="middle" dominant-baseline="central"><text x="320" y="200">01</text><text x="320" y="292">02</text><text x="320" y="384">03</text></g>
+<g fill="#042626"><rect x="234" y="520" width="172" height="34" rx="17"/><rect x="234" y="566" width="172" height="34" rx="17"/><path d="M264 612H376A56 42 0 0 1 264 612Z"/></g>
+</svg>
