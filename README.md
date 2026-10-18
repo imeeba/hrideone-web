@@ -33,6 +33,7 @@ wp-content/
     theme.json           ไฟล์ที่ build ขึ้นมา ห้ามแก้ตรง
     assets/fonts/        Kanit, Montserrat, M PLUS 1 (self-hosted, OFL)
     assets/css/          base.css, fonts-ja.css, style-guide.css
+    assets/images/logo/  โลโก้ SVG (สี / ขาว / ดำ / mark)
     parts/ templates/ patterns/
   plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter), ภาษา (Polylang), ข้อมูลบริษัท + blocks ของ footer
 playground/
