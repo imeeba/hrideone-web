@@ -5,9 +5,23 @@
 	"title": "Language Switcher",
 	"category": "widgets",
 	"icon": "translation",
-	"description": "TH · EN · 日本語 switcher. Uses Polylang when active.",
+	"description": "Language switcher. Dropdown for the header on desktop; list for inside the mobile menu. Uses Polylang when active.",
 	"textdomain": "hri-core",
-	"supports": { "html": false, "autoRegister": true },
+	"supports": {
+		"html": false,
+		"autoRegister": true
+	},
 	"style": "hri-language",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"enum": [
+				"dropdown",
+				"list"
+			],
+			"default": "dropdown"
+		}
+	},
+	"viewScript": "file:./view.js"
 }
