@@ -1,0 +1,40 @@
+/* Language switcher: TH · EN · 日本語 */
+.hri-lang ul {
+	align-items: center;
+	display: flex;
+	gap: 2px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.hri-lang li {
+	margin: 0;
+}
+
+.hri-lang a,
+.hri-lang span {
+	border-radius: var(--wp--custom--radius--pill);
+	color: var(--wp--preset--color--contrast-muted);
+	display: block;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+	line-height: 1;
+	padding: 0.45rem 0.7rem;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.hri-lang a:hover {
+	background: var(--wp--preset--color--surface-brand);
+	color: var(--wp--preset--color--primary-deep);
+}
+
+.hri-lang .is-current {
+	background: var(--wp--preset--color--surface-brand);
+	color: var(--wp--preset--color--primary-deep);
+}
+
+.hri-lang .is-soon {
+	opacity: 0.55;
+}

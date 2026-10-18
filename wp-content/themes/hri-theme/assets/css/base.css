@@ -138,3 +138,26 @@ video {
 	flex: none;
 	white-space: nowrap;
 }
+
+/* Header: brand left; menu + language switcher grouped right, never wrapping. */
+.hri-header__bar {
+	gap: var(--wp--preset--spacing--40);
+}
+
+.hri-header__end {
+	flex: 0 1 auto;
+	min-width: 0;
+}
+
+.hri-header .wp-block-navigation .wp-block-navigation-item__content {
+	white-space: nowrap;
+}
+
+.hri-header .wp-block-navigation a {
+	text-decoration: none;
+}
+
+.hri-header .wp-block-navigation a:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.3em;
+}
