@@ -161,3 +161,14 @@ video {
 	text-decoration: underline;
 	text-underline-offset: 0.3em;
 }
+
+/* Seven menu items need room: switch to the menu button below 1100px (core switches at 600px). */
+@media (max-width: 1099px) {
+	.hri-header .wp-block-navigation__responsive-container:not(.is-menu-open) {
+		display: none;
+	}
+
+	.hri-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+}
