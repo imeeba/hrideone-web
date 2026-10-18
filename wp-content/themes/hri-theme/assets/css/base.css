@@ -412,6 +412,10 @@ video {
 	margin-top: var(--wp--preset--spacing--10) !important;
 }
 
+.hri-svcmap__cta {
+	margin-top: var(--wp--preset--spacing--40) !important;
+}
+
 .hri-svcmap__text {
 	border-top: 1px solid var(--wp--preset--color--primary);
 	margin-top: var(--wp--preset--spacing--40) !important;
@@ -453,66 +457,11 @@ video {
 		justify-self: end;
 		text-align: right;
 	}
-}
 
-/* ---------- Home: services — cards ---------- */
-.hri-svcmap + .hri-services {
-	margin-block-start: var(--wp--preset--spacing--80) !important;
-}
-
-.hri-services {
-	gap: var(--wp--preset--spacing--50);
-}
-
-.hri-service {
-	display: flex;
-	flex-direction: column;
-}
-
-.hri-service > *,
-.hri-post > *,
-.hri-post__body > * {
-	margin-block: 0;
-}
-
-.hri-service__media,
-.hri-post__media {
-	overflow: hidden;
-}
-
-.hri-service__media img,
-.hri-post__media img {
-	display: block;
-	width: 100%;
-}
-
-.hri-service__body {
-	display: flex;
-	flex: 1;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--30);
-	padding: var(--wp--preset--spacing--50);
-}
-
-.hri-service__body > * {
-	margin-block: 0 !important;
-}
-
-.hri-service__body > .wp-block-buttons {
-	margin-top: auto !important;
-	padding-top: var(--wp--preset--spacing--30);
-}
-
-.hri-service__tag {
-	color: var(--wp--preset--color--primary-strong);
-	font-size: var(--wp--preset--font-size--x-small);
-	font-weight: var(--wp--custom--font-weight--medium);
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-}
-
-.hri-service__title {
-	font-size: var(--wp--preset--font-size--x-large);
+	.hri-svcmap__item--01 .hri-svcmap__cta,
+	.hri-svcmap__item--03 .hri-svcmap__cta {
+		justify-content: flex-end;
+	}
 }
 
 /* ---------- Home: statistics ---------- */
@@ -547,10 +496,10 @@ video {
 	--wp--style--unstable-gallery-gap: var(--wp--preset--spacing--20);
 	display: grid !important;
 	gap: var(--wp--preset--spacing--20);
-	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-/* All logos at once: 10 per row on desktop (40 logos = 4 rows), 8 on tablet, 4 on mobile. */
+/* All logos at once: 10 per row on desktop (40 logos = 4 rows), 8 on tablet, 5 on mobile (8 rows). */
 @media (min-width: 600px) {
 	.wp-block-gallery.is-style-logos {
 		grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -752,6 +701,20 @@ video {
 }
 
 /* ---------- Home: latest posts ---------- */
+.hri-post > *,
+.hri-post__body > * {
+	margin-block: 0;
+}
+
+.hri-post__media {
+	overflow: hidden;
+}
+
+.hri-post__media img {
+	display: block;
+	width: 100%;
+}
+
 .hri-post {
 	display: flex;
 	flex-direction: column;
