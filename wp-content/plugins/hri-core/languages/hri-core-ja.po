@@ -1,0 +1,266 @@
+# Copyright (C) 2026 HRI DeOne
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: HRI Core 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hri-core\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-18T11:58:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: hri-core\n"
+
+#. Plugin Name of the plugin
+#: hri-core.php
+msgid "HRI Core"
+msgstr ""
+
+#. Description of the plugin
+#: hri-core.php
+msgid "Site features for HRI DeOne (content model, search, lead forms, images, SEO). Theme-independent."
+msgstr ""
+
+#. Author of the plugin
+#: hri-core.php
+msgid "HRI DeOne"
+msgstr ""
+
+#: blocks/language-switcher/render.php:44
+msgid "เลือกภาษา / Language"
+msgstr "言語を選択"
+
+#: blocks/language-switcher/render.php:52
+msgid "ภาษา / Language"
+msgstr "言語"
+
+#: inc/content-model.php:20
+#: inc/course-card.php:137
+#: inc/course-filter.php:22
+msgid "ประเภท"
+msgstr "種類"
+
+#: inc/content-model.php:21
+#: inc/course-card.php:138
+#: inc/course-filter.php:23
+msgid "หมวด"
+msgstr "カテゴリー"
+
+#: inc/content-model.php:22
+#: inc/course-card.php:139
+#: inc/course-filter.php:24
+msgid "หัวข้อ"
+msgstr "テーマ"
+
+#: inc/content-model.php:23
+#: inc/course-card.php:140
+#: inc/course-filter.php:25
+msgid "ระดับผู้เรียน"
+msgstr "対象階層"
+
+#: inc/content-model.php:24
+#: inc/course-card.php:143
+#: inc/course-filter.php:26
+msgid "รูปแบบ"
+msgstr "実施形式"
+
+#: inc/content-model.php:44
+msgid "เปิดรับสมัคร"
+msgstr "受付中"
+
+#: inc/content-model.php:45
+msgid "เต็มแล้ว"
+msgstr "満席"
+
+#: inc/content-model.php:46
+msgid "ปิดรับสมัคร"
+msgstr "受付終了"
+
+#: inc/content-model.php:83
+#: inc/content-model.php:84
+#: inc/content-model.php:85
+msgid "หลักสูตร"
+msgstr "講座"
+
+#: inc/content-model.php:86
+msgid "หลักสูตรทั้งหมด"
+msgstr "すべての講座"
+
+#: inc/content-model.php:87
+msgid "เพิ่มหลักสูตร"
+msgstr "講座を追加"
+
+#: inc/content-model.php:88
+msgid "แก้ไขหลักสูตร"
+msgstr "講座を編集"
+
+#: inc/content-model.php:89
+#: inc/course-filter.php:330
+msgid "ค้นหาหลักสูตร"
+msgstr "講座を検索"
+
+#: inc/content-model.php:90
+msgid "ไม่พบหลักสูตร"
+msgstr "講座が見つかりません"
+
+#: inc/content-model.php:145
+msgid "รายละเอียดหลักสูตร"
+msgstr "講座の詳細"
+
+#: inc/content-model.php:175
+msgid "ระยะเวลา (วัน)"
+msgstr "期間（日数）"
+
+#: inc/content-model.php:175
+msgid "ใช้กับตัวกรองระยะเวลา"
+msgstr "期間の絞り込みに使用します"
+
+#: inc/content-model.php:176
+#: inc/course-card.php:141
+msgid "กลุ่มเป้าหมาย"
+msgstr "対象者"
+
+#: inc/content-model.php:179
+msgid "เฉพาะ Public Training (เว้นว่างถ้าเป็น In-house)"
+msgstr "公開講座のみ（企業内研修の場合は空欄）"
+
+#: inc/content-model.php:180
+msgid "เก็บเฉพาะรุ่นที่เปิดอยู่ล่าสุด เมื่อเปิดรุ่นใหม่ให้แก้ตัวเลขที่นี่ ไม่ต้องสร้างหน้าใหม่"
+msgstr "最新の開講回のみ保存します。新しい回を開講するときは、新しいページを作らずここを更新してください。"
+
+#: inc/content-model.php:183
+msgid "รุ่นที่"
+msgstr "開講回"
+
+#: inc/content-model.php:185
+msgid "— ไม่ระบุ —"
+msgstr "— 未設定 —"
+
+#: inc/content-model.php:189
+msgid "สถานะการรับสมัคร"
+msgstr "受付状況"
+
+#: inc/content-model.php:191
+msgid "วันเริ่ม"
+msgstr "開始日"
+
+#: inc/content-model.php:192
+#: inc/course-card.php:148
+msgid "วันสิ้นสุด"
+msgstr "終了日"
+
+#: inc/content-model.php:193
+#: inc/course-card.php:149
+msgid "สถานที่"
+msgstr "会場"
+
+#: inc/content-model.php:194
+#: inc/course-card.php:150
+msgid "ราคา"
+msgstr "受講料"
+
+#: inc/content-model.php:194
+msgid "พิมพ์เป็นข้อความได้ เช่น 12,900 บาท/ท่าน"
+msgstr "自由入力（例：1名 12,900 バーツ）"
+
+#. translators: %d: number of days
+#: inc/course-card.php:34
+#, php-format
+msgid "%d วัน"
+msgid_plural "%d วัน"
+msgstr[0] "%d日間"
+
+#. translators: %d: batch number
+#: inc/course-card.php:53
+#, php-format
+msgid "รุ่นที่ %d"
+msgstr "第%d期"
+
+#: inc/course-card.php:142
+#: inc/course-filter.php:28
+msgid "ระยะเวลา"
+msgstr "期間"
+
+#: inc/course-card.php:146
+msgid "รุ่นที่เปิด"
+msgstr "開講回"
+
+#: inc/course-card.php:152
+msgid "สถานะ"
+msgstr "状況"
+
+#: inc/course-filter.php:30
+msgid "1 วัน"
+msgstr "1日"
+
+#: inc/course-filter.php:31
+msgid "2 วัน"
+msgstr "2日"
+
+#: inc/course-filter.php:32
+msgid "3 วันขึ้นไป"
+msgstr "3日以上"
+
+#. translators: %d: number of courses
+#: inc/course-filter.php:242
+#, php-format
+msgid "พบ %d หลักสูตร"
+msgstr "%d件の講座"
+
+#: inc/course-filter.php:245
+msgid "ล้างตัวกรอง"
+msgstr "条件をクリア"
+
+#: inc/course-filter.php:273
+msgid "หน้า"
+msgstr "ページ"
+
+#: inc/course-filter.php:276
+msgid "ไม่พบหลักสูตรที่ตรงกับตัวกรอง ลองลดเงื่อนไขหรือล้างตัวกรอง"
+msgstr "条件に合う講座がありません。条件を減らすか、クリアしてください。"
+
+#: inc/course-filter.php:328
+msgid "ค้นหาและกรองหลักสูตร"
+msgstr "講座の検索と絞り込み"
+
+#: inc/course-filter.php:331
+msgid "ค้นหาชื่อหลักสูตร"
+msgstr "講座名で検索"
+
+#: inc/course-filter.php:335
+msgid "ตัวกรอง"
+msgstr "絞り込み"
+
+#: inc/course-filter.php:357
+msgid "ค้นหา"
+msgstr "検索"
+
+#: inc/languages.php:160
+msgid "ชื่อภาษาอังกฤษ (EN)"
+msgstr "英語名（EN）"
+
+#: inc/languages.php:161
+msgid "ชื่อภาษาญี่ปุ่น (JA)"
+msgstr "日本語名（JA）"
+
+#: inc/languages.php:201
+#: inc/languages.php:214
+msgid "เว้นว่างได้ ถ้าว่างจะแสดงชื่อหลัก"
+msgstr "任意。空欄の場合はメインの名前を表示します。"
+
+#: inc/polylang.php:344
+msgid "ยังไม่ได้ตั้งค่าภาษา TH / EN / JA ใน Polylang"
+msgstr "Polylang で TH / EN / JA の言語がまだ設定されていません。"
+
+#: inc/polylang.php:347
+msgid "ตั้งค่าภาษาตามมาตรฐานเว็บ"
+msgstr "サイトの言語を設定する"
+
+#: inc/polylang.php:357
+msgid "ไม่มีสิทธิ์"
+msgstr "この操作を行う権限がありません。"

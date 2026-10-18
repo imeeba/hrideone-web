@@ -12,11 +12,12 @@ defined( 'ABSPATH' ) || exit;
 define( 'HRI_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 
 /**
- * Theme supports.
+ * Theme supports and translations (languages/hri-theme-{locale}).
  */
 add_action(
 	'after_setup_theme',
 	static function () {
+		load_theme_textdomain( 'hri-theme', get_template_directory() . '/languages' );
 		add_theme_support( 'editor-styles' );
 		add_editor_style( 'assets/css/base.css' );
 		remove_theme_support( 'core-block-patterns' );
@@ -24,11 +25,25 @@ add_action(
 );
 
 /**
+ * Whether this is the Style Guide page (or its EN / JA translation).
+ */
+function hri_is_style_guide(): bool {
+	if ( is_page( 'style-guide' ) ) {
+		return true;
+	}
+	if ( ! is_page() || ! function_exists( 'pll_get_post' ) || ! function_exists( 'pll_default_language' ) ) {
+		return false;
+	}
+	$source = pll_get_post( get_queried_object_id(), pll_default_language() );
+	return $source && 'style-guide' === get_post_field( 'post_name', $source );
+}
+
+/**
  * Whether the Japanese font set is needed on this request.
  * Its @font-face list is ~100 KB, so it only loads on Japanese pages and the style guide.
  */
 function hri_needs_japanese_fonts(): bool {
-	$needs = str_starts_with( determine_locale(), 'ja' ) || is_page( 'style-guide' );
+	$needs = str_starts_with( determine_locale(), 'ja' ) || hri_is_style_guide();
 	return (bool) apply_filters( 'hri_needs_japanese_fonts', $needs );
 }
 
@@ -45,7 +60,7 @@ add_action(
 			wp_enqueue_style( 'hri-fonts-ja', $uri . 'fonts-ja.css', array(), HRI_THEME_VERSION );
 		}
 
-		if ( is_page( 'style-guide' ) ) {
+		if ( hri_is_style_guide() ) {
 			wp_enqueue_style( 'hri-style-guide', $uri . 'style-guide.css', array( 'hri-base' ), HRI_THEME_VERSION );
 		}
 	}

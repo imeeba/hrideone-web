@@ -26,6 +26,15 @@ function hri_course_taxonomies(): array {
 }
 
 /**
+ * Course taxonomy names only (no labels, so it is safe before `init`).
+ *
+ * @return string[]
+ */
+function hri_course_taxonomy_names(): array {
+	return array( 'hri_program', 'hri_pillar', 'hri_topic', 'hri_level', 'hri_format' );
+}
+
+/**
  * Registration status labels for Public courses.
  *
  * @return array<string,string>

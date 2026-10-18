@@ -1,0 +1,267 @@
+# Copyright (C) 2026 HRI DeOne
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: HRI Core 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hri-core\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-18T11:58:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: hri-core\n"
+
+#. Plugin Name of the plugin
+#: hri-core.php
+msgid "HRI Core"
+msgstr ""
+
+#. Description of the plugin
+#: hri-core.php
+msgid "Site features for HRI DeOne (content model, search, lead forms, images, SEO). Theme-independent."
+msgstr ""
+
+#. Author of the plugin
+#: hri-core.php
+msgid "HRI DeOne"
+msgstr ""
+
+#: blocks/language-switcher/render.php:44
+msgid "เลือกภาษา / Language"
+msgstr "Choose language"
+
+#: blocks/language-switcher/render.php:52
+msgid "ภาษา / Language"
+msgstr "Language"
+
+#: inc/content-model.php:20
+#: inc/course-card.php:137
+#: inc/course-filter.php:22
+msgid "ประเภท"
+msgstr "Type"
+
+#: inc/content-model.php:21
+#: inc/course-card.php:138
+#: inc/course-filter.php:23
+msgid "หมวด"
+msgstr "Category"
+
+#: inc/content-model.php:22
+#: inc/course-card.php:139
+#: inc/course-filter.php:24
+msgid "หัวข้อ"
+msgstr "Topic"
+
+#: inc/content-model.php:23
+#: inc/course-card.php:140
+#: inc/course-filter.php:25
+msgid "ระดับผู้เรียน"
+msgstr "Learner level"
+
+#: inc/content-model.php:24
+#: inc/course-card.php:143
+#: inc/course-filter.php:26
+msgid "รูปแบบ"
+msgstr "Format"
+
+#: inc/content-model.php:44
+msgid "เปิดรับสมัคร"
+msgstr "Open for registration"
+
+#: inc/content-model.php:45
+msgid "เต็มแล้ว"
+msgstr "Full"
+
+#: inc/content-model.php:46
+msgid "ปิดรับสมัคร"
+msgstr "Registration closed"
+
+#: inc/content-model.php:83
+#: inc/content-model.php:84
+#: inc/content-model.php:85
+msgid "หลักสูตร"
+msgstr "Courses"
+
+#: inc/content-model.php:86
+msgid "หลักสูตรทั้งหมด"
+msgstr "All courses"
+
+#: inc/content-model.php:87
+msgid "เพิ่มหลักสูตร"
+msgstr "Add course"
+
+#: inc/content-model.php:88
+msgid "แก้ไขหลักสูตร"
+msgstr "Edit course"
+
+#: inc/content-model.php:89
+#: inc/course-filter.php:330
+msgid "ค้นหาหลักสูตร"
+msgstr "Search courses"
+
+#: inc/content-model.php:90
+msgid "ไม่พบหลักสูตร"
+msgstr "No courses found"
+
+#: inc/content-model.php:145
+msgid "รายละเอียดหลักสูตร"
+msgstr "Course details"
+
+#: inc/content-model.php:175
+msgid "ระยะเวลา (วัน)"
+msgstr "Duration (days)"
+
+#: inc/content-model.php:175
+msgid "ใช้กับตัวกรองระยะเวลา"
+msgstr "Used by the duration filter"
+
+#: inc/content-model.php:176
+#: inc/course-card.php:141
+msgid "กลุ่มเป้าหมาย"
+msgstr "Audience"
+
+#: inc/content-model.php:179
+msgid "เฉพาะ Public Training (เว้นว่างถ้าเป็น In-house)"
+msgstr "Public Training only (leave empty for In-house)"
+
+#: inc/content-model.php:180
+msgid "เก็บเฉพาะรุ่นที่เปิดอยู่ล่าสุด เมื่อเปิดรุ่นใหม่ให้แก้ตัวเลขที่นี่ ไม่ต้องสร้างหน้าใหม่"
+msgstr "Only the latest open batch is kept. When a new batch opens, update the numbers here instead of creating a new page."
+
+#: inc/content-model.php:183
+msgid "รุ่นที่"
+msgstr "Batch no."
+
+#: inc/content-model.php:185
+msgid "— ไม่ระบุ —"
+msgstr "— Not set —"
+
+#: inc/content-model.php:189
+msgid "สถานะการรับสมัคร"
+msgstr "Registration status"
+
+#: inc/content-model.php:191
+msgid "วันเริ่ม"
+msgstr "Start date"
+
+#: inc/content-model.php:192
+#: inc/course-card.php:148
+msgid "วันสิ้นสุด"
+msgstr "End date"
+
+#: inc/content-model.php:193
+#: inc/course-card.php:149
+msgid "สถานที่"
+msgstr "Venue"
+
+#: inc/content-model.php:194
+#: inc/course-card.php:150
+msgid "ราคา"
+msgstr "Price"
+
+#: inc/content-model.php:194
+msgid "พิมพ์เป็นข้อความได้ เช่น 12,900 บาท/ท่าน"
+msgstr "Free text, e.g. 12,900 THB per person"
+
+#. translators: %d: number of days
+#: inc/course-card.php:34
+#, php-format
+msgid "%d วัน"
+msgid_plural "%d วัน"
+msgstr[0] "%d day"
+msgstr[1] "%d days"
+
+#. translators: %d: batch number
+#: inc/course-card.php:53
+#, php-format
+msgid "รุ่นที่ %d"
+msgstr "Batch %d"
+
+#: inc/course-card.php:142
+#: inc/course-filter.php:28
+msgid "ระยะเวลา"
+msgstr "Duration"
+
+#: inc/course-card.php:146
+msgid "รุ่นที่เปิด"
+msgstr "Open batch"
+
+#: inc/course-card.php:152
+msgid "สถานะ"
+msgstr "Status"
+
+#: inc/course-filter.php:30
+msgid "1 วัน"
+msgstr "1 day"
+
+#: inc/course-filter.php:31
+msgid "2 วัน"
+msgstr "2 days"
+
+#: inc/course-filter.php:32
+msgid "3 วันขึ้นไป"
+msgstr "3 days or more"
+
+#. translators: %d: number of courses
+#: inc/course-filter.php:242
+#, php-format
+msgid "พบ %d หลักสูตร"
+msgstr "%d courses found"
+
+#: inc/course-filter.php:245
+msgid "ล้างตัวกรอง"
+msgstr "Clear filters"
+
+#: inc/course-filter.php:273
+msgid "หน้า"
+msgstr "Pages"
+
+#: inc/course-filter.php:276
+msgid "ไม่พบหลักสูตรที่ตรงกับตัวกรอง ลองลดเงื่อนไขหรือล้างตัวกรอง"
+msgstr "No courses match these filters. Try removing some, or clear the filters."
+
+#: inc/course-filter.php:328
+msgid "ค้นหาและกรองหลักสูตร"
+msgstr "Search and filter courses"
+
+#: inc/course-filter.php:331
+msgid "ค้นหาชื่อหลักสูตร"
+msgstr "Search course names"
+
+#: inc/course-filter.php:335
+msgid "ตัวกรอง"
+msgstr "Filters"
+
+#: inc/course-filter.php:357
+msgid "ค้นหา"
+msgstr "Search"
+
+#: inc/languages.php:160
+msgid "ชื่อภาษาอังกฤษ (EN)"
+msgstr "English name (EN)"
+
+#: inc/languages.php:161
+msgid "ชื่อภาษาญี่ปุ่น (JA)"
+msgstr "Japanese name (JA)"
+
+#: inc/languages.php:201
+#: inc/languages.php:214
+msgid "เว้นว่างได้ ถ้าว่างจะแสดงชื่อหลัก"
+msgstr "Optional. When empty, the main name is shown."
+
+#: inc/polylang.php:344
+msgid "ยังไม่ได้ตั้งค่าภาษา TH / EN / JA ใน Polylang"
+msgstr "The TH / EN / JA languages are not set up in Polylang yet."
+
+#: inc/polylang.php:347
+msgid "ตั้งค่าภาษาตามมาตรฐานเว็บ"
+msgstr "Set up the site languages"
+
+#: inc/polylang.php:357
+msgid "ไม่มีสิทธิ์"
+msgstr "You are not allowed to do this."

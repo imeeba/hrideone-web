@@ -2,7 +2,7 @@
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"meta": {
 		"title": "HRI DeOne — rebuild preview",
-		"description": "Installs hri-theme and hri-core from GitHub main, adds 20 sample courses and creates In-house and Public Training pages and opens /in-house/ (all courses: /courses/). Style Guide is at /style-guide/ (front page).",
+		"description": "Installs Polylang, hri-theme and hri-core from GitHub main, adds 20 sample courses with EN / JA translations, creates In-house and Public Training pages and opens /in-house/ (all courses: /courses/, English: /en/, Japanese: /ja/). Style Guide is the front page.",
 		"author": "imeeba"
 	},
 	"landingPage": "/in-house/",
@@ -20,6 +20,16 @@
 		"permalink_structure": "/%postname%/"
 	},
 	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "polylang"
+			},
+			"options": {
+				"activate": true
+			}
+		},
 		{
 			"step": "installTheme",
 			"themeData": {
@@ -89,8 +99,24 @@
 			}
 		},
 		{
+			"step": "writeFile",
+			"path": "/wordpress/hri-seed-languages.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/seed-languages.php"
+			}
+		},
+		{
 			"step": "runPHP",
 			"code": "<?php require '/wordpress/wp-load.php'; require '/wordpress/hri-seed.php'; $existing = get_page_by_path( 'style-guide' ); $id = $existing ? $existing->ID : wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Style Guide', 'post_name' => 'style-guide', 'post_content' => '<!-- wp:pattern {\"slug\":\"hri/style-guide\"} /-->' ) ); update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', $id ); foreach ( get_posts( array( 'post_type' => array( 'post', 'page' ), 'post_status' => 'any', 'numberposts' => -1, 'post_name__in' => array( 'hello-world', 'sample-page' ) ) ) as $p ) { wp_delete_post( $p->ID, true ); } flush_rewrite_rules();"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; $r = hri_polylang_setup(); echo is_wp_error( $r ) ? $r->get_error_message() : implode( \"\\n\", $r );"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; require '/wordpress/hri-seed-languages.php';"
 		}
 	]
 }

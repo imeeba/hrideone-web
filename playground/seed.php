@@ -42,6 +42,47 @@ foreach ( $terms as $taxonomy => $list ) {
 	}
 }
 
+// English / Japanese term names (shown on /en/ and /ja/ pages). Machine-made: JA needs a review.
+$term_names = array(
+	'hri_program' => array(
+		'inhouse' => array( 'In-house', '企業内研修' ),
+		'public'  => array( 'Public Training', '公開講座' ),
+	),
+	'hri_pillar'  => array(
+		'leadership' => array( 'Leadership', 'リーダーシップ' ),
+		'business'   => array( 'Business', 'ビジネス' ),
+	),
+	'hri_topic'   => array(
+		'self-improvement'       => array( 'Self Improvement', '自己成長' ),
+		'thinking'               => array( 'Thinking', '思考力' ),
+		'personal-communication' => array( 'Personal Communication', 'パーソナル・コミュニケーション' ),
+		'coaching'               => array( 'Coaching', 'コーチング' ),
+		'team-communication'     => array( 'Team Communication', 'チーム・コミュニケーション' ),
+		'strategy'               => array( 'Strategy', '戦略' ),
+		'sales'                  => array( 'Sales', '営業' ),
+		'customer-service'       => array( 'Customer Service', 'カスタマーサービス' ),
+	),
+	'hri_level'   => array(
+		'staff'     => array( 'Staff', '一般社員' ),
+		'manager'   => array( 'Manager', 'マネージャー' ),
+		'director'  => array( 'Director', 'ディレクター' ),
+		'executive' => array( 'Senior Executive', '経営層' ),
+	),
+	'hri_format'  => array(
+		'on-site' => array( 'On-site', '対面' ),
+		'online'  => array( 'Online', 'オンライン' ),
+		'hybrid'  => array( 'Hybrid', 'ハイブリッド' ),
+	),
+);
+foreach ( $term_names as $taxonomy => $list ) {
+	foreach ( $list as $slug => $names ) {
+		if ( ! empty( $ids[ $taxonomy ][ $slug ] ) ) {
+			update_term_meta( $ids[ $taxonomy ][ $slug ], 'hri_name_en', $names[0] );
+			update_term_meta( $ids[ $taxonomy ][ $slug ], 'hri_name_ja', $names[1] );
+		}
+	}
+}
+
 $all_formats = array( 'on-site', 'online', 'hybrid' );
 
 // slug, title, program, pillar, topic, levels, formats, days, batch, excerpt
@@ -101,7 +142,7 @@ $index   = 0;
 foreach ( $courses as $c ) {
 	list( $slug, $title, $program, $pillar, $topic, $levels, $formats, $days, $batch, $excerpt ) = $c;
 
-	$existing = get_posts( array( 'post_type' => 'course', 'name' => $slug, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids' ) );
+	$existing = get_posts( array( 'post_type' => 'course', 'name' => $slug, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
 	$post_id  = wp_insert_post(
 		array(
 			'ID'           => $existing ? $existing[0] : 0,

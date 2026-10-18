@@ -1,0 +1,135 @@
+# Copyright (C) 2026 HRI DeOne
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: HRI DeOne 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/hri-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-18T11:58:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: hri-theme\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+#: style.css
+#: functions.php:106
+msgid "HRI DeOne"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://hrideone.com"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Lightweight block theme for HRI DeOne. Design tokens live in tokens/tokens.json and are compiled into theme.json."
+msgstr ""
+
+#: functions.php:101
+msgid "Light (on dark)"
+msgstr ""
+
+#: functions.php:102
+msgid "Eyebrow"
+msgstr ""
+
+#: functions.php:103
+msgid "Card"
+msgstr ""
+
+#: functions.php:104
+msgid "Section title"
+msgstr ""
+
+#: patterns/archive-course-header.php
+msgctxt "Pattern title"
+msgid "Course archive header"
+msgstr ""
+
+#: patterns/archive-course-header.php
+msgctxt "Pattern description"
+msgid "Heading of /courses/. Text comes from the theme translations (TH / EN / JA)."
+msgstr ""
+
+#: patterns/archive-course-header.php:19
+#: patterns/single-course-back.php:15
+msgid "หลักสูตรทั้งหมด"
+msgstr "All courses"
+
+#: patterns/archive-course-header.php:22
+msgid "ค้นหาและกรองหลักสูตร In-house และ Public Training ตามหมวด หัวข้อ ระดับผู้เรียน และรูปแบบ"
+msgstr "Search and filter In-house and Public Training courses by category, topic, learner level and format."
+
+#: patterns/no-results.php
+msgctxt "Pattern title"
+msgid "No results"
+msgstr ""
+
+#: patterns/no-results.php
+msgctxt "Pattern description"
+msgid "Message for an empty post list."
+msgstr ""
+
+#: patterns/no-results.php:14
+msgid "ไม่พบเนื้อหา"
+msgstr "Nothing found."
+
+#: patterns/not-found.php
+msgctxt "Pattern title"
+msgid "Page not found"
+msgstr ""
+
+#: patterns/not-found.php
+msgctxt "Pattern description"
+msgid "404 message and search."
+msgstr ""
+
+#: patterns/not-found.php:17
+msgid "ไม่พบหน้าที่คุณต้องการ"
+msgstr "We couldn’t find that page"
+
+#: patterns/not-found.php:19
+msgid "ค้นหา"
+msgstr "Search"
+
+#: patterns/single-course-back.php
+msgctxt "Pattern title"
+msgid "Course back link"
+msgstr ""
+
+#: patterns/single-course-back.php
+msgctxt "Pattern description"
+msgid "\"All courses\" link above a course title, to the course list in the visitor's language."
+msgstr ""
+
+#: patterns/single-course-cta.php
+msgctxt "Pattern title"
+msgid "Course call to action"
+msgstr ""
+
+#: patterns/single-course-cta.php
+msgctxt "Pattern description"
+msgid "Enquiry button beside the course facts, to the contact page in the visitor's language."
+msgstr ""
+
+#: patterns/single-course-cta.php:17
+msgid "สนใจหลักสูตรนี้ / ขอใบเสนอราคา"
+msgstr "Enquire / request a quote"
+
+#: patterns/style-guide.php
+msgctxt "Pattern title"
+msgid "Style Guide"
+msgstr ""
+
+#: patterns/style-guide.php
+msgctxt "Pattern description"
+msgid "Living style guide. Colors, type, spacing and components are read from theme.json, so this page always matches the tokens."
+msgstr ""

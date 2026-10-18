@@ -281,22 +281,27 @@ function hri_render_course_results( WP_Query $query, array $params, string $acti
 }
 
 /**
- * Course IDs of one program (for scoped filter counts).
+ * Course IDs in the current language, optionally of one program (for filter counts).
  *
+ * Counts always come from this list rather than the term's own count: the course taxonomies are
+ * shared by all languages, so a term count would add up TH + EN + JA courses.
+ *
+ * @param string $program Program slug, '' for all programs.
  * @return int[]
  */
-function hri_program_course_ids( string $program ): array {
-	return get_posts(
-		array(
-			'post_type'        => 'course',
-			'post_status'      => 'publish',
-			'numberposts'      => -1,
-			'fields'           => 'ids',
-			'no_found_rows'    => true,
-			'suppress_filters' => false,
-			'tax_query'        => array( array( 'taxonomy' => 'hri_program', 'field' => 'slug', 'terms' => $program ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
-		)
+function hri_program_course_ids( string $program = '' ): array {
+	$args = array(
+		'post_type'        => 'course',
+		'post_status'      => 'publish',
+		'numberposts'      => -1,
+		'fields'           => 'ids',
+		'no_found_rows'    => true,
+		'suppress_filters' => false, // Lets Polylang limit the list to the current language.
 	);
+	if ( '' !== $program ) {
+		$args['tax_query'] = array( array( 'taxonomy' => 'hri_program', 'field' => 'slug', 'terms' => $program ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+	}
+	return array_map( 'intval', get_posts( $args ) );
 }
 
 /**
@@ -306,7 +311,8 @@ function hri_program_course_ids( string $program ): array {
  */
 function hri_render_course_filter( array $args = array() ): string {
 	$params = hri_filter_params( (string) ( $args['program'] ?? '' ) );
-	$scope  = '' !== $params['lock'] ? array_map( 'intval', hri_program_course_ids( $params['lock'] ) ) : null;
+	$locked = '' !== $params['lock'];
+	$scope  = hri_program_course_ids( $params['lock'] );
 	$action = hri_filter_action_url();
 	$query  = hri_filter_query( $params );
 
@@ -329,7 +335,7 @@ function hri_render_course_filter( array $args = array() ): string {
 				<summary><?php esc_html_e( 'ตัวกรอง', 'hri-core' ); ?></summary>
 				<?php foreach ( hri_filter_groups() as $key => $group ) : ?>
 					<?php
-					if ( 'program' === $key && null !== $scope ) {
+					if ( 'program' === $key && $locked ) {
 						continue;
 					}
 					$options = hri_filter_options( $group, $scope );

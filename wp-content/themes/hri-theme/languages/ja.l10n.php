@@ -1,0 +1,2 @@
+<?php
+return ['domain'=>'hri-theme','plural-forms'=>'nplurals=1; plural=0;','language'=>'ja','project-id-version'=>'HRI DeOne 0.1.0','pot-creation-date'=>'2026-10-18T11:58:38+00:00','po-revision-date'=>'YEAR-MO-DA HO:MI+ZONE','x-generator'=>'WP-CLI 2.12.0','messages'=>['หลักสูตรทั้งหมด'=>'すべての講座','ค้นหาและกรองหลักสูตร In-house และ Public Training ตามหมวด หัวข้อ ระดับผู้เรียน และรูปแบบ'=>'企業内研修と公開講座を、カテゴリー・テーマ・対象階層・実施形式で検索できます。','ไม่พบเนื้อหา'=>'コンテンツが見つかりません。','ไม่พบหน้าที่คุณต้องการ'=>'お探しのページが見つかりません','ค้นหา'=>'検索','สนใจหลักสูตรนี้ / ขอใบเสนอราคา'=>'お問い合わせ・お見積もり']];
