@@ -165,6 +165,38 @@ add_filter(
 );
 
 /**
+ * Links typed into page content (buttons, paragraphs, headings, lists, images, covers):
+ * on an English or Japanese page, "/in-house/" goes to the English or Japanese page, and on a
+ * Thai page to the Thai page's permalink (also right in a sub-folder install).
+ * The marketing team can type the same Thai-site path in every language.
+ */
+add_filter(
+	'render_block',
+	static function ( $content, $block ) {
+		static $blocks = array( 'core/button', 'core/paragraph', 'core/heading', 'core/list-item', 'core/image', 'core/cover', 'core/media-text' );
+		if ( ! in_array( $block['blockName'] ?? '', $blocks, true ) || ! str_contains( (string) $content, 'href=' ) ) {
+			return $content;
+		}
+		if ( is_admin() || ! hri_has_polylang() ) {
+			return $content;
+		}
+		$tags = new WP_HTML_Tag_Processor( (string) $content );
+		while ( $tags->next_tag( 'a' ) ) {
+			$href = $tags->get_attribute( 'href' );
+			if ( is_string( $href ) && '' !== $href ) {
+				$localized = hri_localize_url( $href );
+				if ( $localized !== $href ) {
+					$tags->set_attribute( 'href', $localized );
+				}
+			}
+		}
+		return $tags->get_updated_html();
+	},
+	9,
+	2
+);
+
+/**
  * Texts typed into the header and footer template parts (menu labels, headings, paragraphs,
  * buttons) in the default language. They are Polylang strings, so the marketing team edits
  * the Thai text in the Site Editor and translates it in Languages → Translations

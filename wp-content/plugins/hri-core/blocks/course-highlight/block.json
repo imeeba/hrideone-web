@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/course-highlight",
+	"title": "Course Highlight",
+	"category": "widgets",
+	"icon": "star-filled",
+	"description": "Cards of Public Training courses that are open for registration, in the visitor’s language (soonest start date first).",
+	"keywords": [ "course", "highlight", "หลักสูตร", "ยอดฮิต" ],
+	"textdomain": "hri-core",
+	"attributes": {
+		"count": {
+			"type": "integer",
+			"default": 4,
+			"minimum": 1,
+			"maximum": 12,
+			"label": "จำนวนหลักสูตรที่แสดง"
+		},
+		"program": {
+			"type": "string",
+			"enum": [ "public", "inhouse" ],
+			"default": "public",
+			"label": "ประเภทหลักสูตร"
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-courses",
+	"render": "file:./render.php"
+}

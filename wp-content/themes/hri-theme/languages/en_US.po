@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:106
+#: functions.php:110
 msgid "HRI DeOne"
 msgstr ""
 
@@ -132,10 +132,248 @@ msgctxt "Pattern description"
 msgid "Living style guide. Colors, type, spacing and components are read from theme.json, so this page always matches the tokens."
 msgstr ""
 
-#: functions.php:126
+#: functions.php:130
 msgid "เมนูท้ายเว็บ"
 msgstr "Footer menu"
 
-#: functions.php:126
+#: functions.php:130
 msgid "เมนูหลัก"
 msgstr "Main menu"
+
+#: functions.php:105
+msgid "Outline light (on dark)"
+msgstr ""
+
+#: functions.php:106
+msgid "Hero (video ≤ 10 s)"
+msgstr ""
+
+#: functions.php:107
+msgid "Slider"
+msgstr ""
+
+#: functions.php:108
+msgid "Logos"
+msgstr ""
+
+#: functions.php:179
+msgid "หยุดวิดีโอ"
+msgstr "Pause video"
+
+#: functions.php:180
+msgid "เล่นวิดีโอ"
+msgstr "Play video"
+
+#: functions.php:183
+msgid "รูปก่อนหน้า"
+msgstr "Previous photo"
+
+#: functions.php:184
+msgid "รูปถัดไป"
+msgstr "Next photo"
+
+#. translators: 1: slide number, 2: number of slides
+#: functions.php:186
+#, php-format
+msgid "รูปที่ %1$s จาก %2$s"
+msgstr "Photo %1$s of %2$s"
+
+#: patterns/home-clients.php
+msgctxt "Pattern title"
+msgid "Home — Our customers"
+msgstr ""
+
+#: patterns/home-clients.php
+msgctxt "Pattern description"
+msgid "Logo wall (Gallery, style \"Logos\"). Replace the placeholders with client logos and give each one the company name as alt text."
+msgstr ""
+
+#: patterns/home-clients.php:16
+msgid "ลูกค้าที่ให้ความไว้วางใจ"
+msgstr "Clients who trust us"
+
+#: patterns/home-gallery.php
+msgctxt "Pattern title"
+msgid "Home — Gallery"
+msgstr ""
+
+#: patterns/home-gallery.php
+msgctxt "Pattern description"
+msgid "Photo slider (Gallery, style \"Slider\"): add or remove images in the Gallery, one slide per image."
+msgstr ""
+
+#: patterns/home-gallery.php:16
+msgid "บรรยากาศการจัดอบรมที่ผ่านมา"
+msgstr "Moments from our past trainings"
+
+#: patterns/home-hero.php
+msgctxt "Pattern title"
+msgid "Home — Hero"
+msgstr ""
+
+#: patterns/home-hero.php
+msgctxt "Pattern description"
+msgid "Full-width hero. Background: an image or a short muted video (Media Library, MP4/WebM); a video longer than 10 seconds loops its first 10 seconds."
+msgstr ""
+
+#: patterns/home-hero.php:20
+msgid "พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต"
+msgstr "Develop leaders, drive your organization into the future"
+
+#: patterns/home-hero.php:24
+msgid "หลักสูตรพัฒนาผู้นำและองค์กร ผสานแนวคิดการทำงานแบบญี่ปุ่น เพื่อสร้างองค์กรที่เติบโตอย่างยั่งยืนข้ามรุ่น"
+msgstr "Leadership and organization development programs, combined with the Japanese way of working, for organizations that thrive across generations."
+
+#: patterns/home-hero.php:29
+msgid "หลักสูตรที่เปิดรับสมัคร"
+msgstr "Open courses"
+
+#: patterns/home-hero.php:33
+msgid "In-house Training"
+msgstr "In-house Training"
+
+#: patterns/home-highlight.php
+msgctxt "Pattern title"
+msgid "Home — Highlight programs"
+msgstr ""
+
+#: patterns/home-highlight.php
+msgctxt "Pattern description"
+msgid "Public Training courses open for registration (automatic), with a link to all Public courses."
+msgstr ""
+
+#: patterns/home-highlight.php:15
+msgid "หลักสูตรยอดฮิต"
+msgstr "Popular programs"
+
+#: patterns/home-highlight.php:26
+msgid "ดูหลักสูตร Public Training ทั้งหมด"
+msgstr "See all Public Training courses"
+
+#: patterns/home-intro.php
+msgctxt "Pattern title"
+msgid "Home — Introduction"
+msgstr ""
+
+#: patterns/home-intro.php
+msgctxt "Pattern description"
+msgid "Short company introduction, centred."
+msgstr ""
+
+#: patterns/home-intro.php:15
+msgid "เกี่ยวกับเรา"
+msgstr "About us"
+
+#: patterns/home-intro.php:23
+msgid "ด้วยประสบการณ์กว่า 20 ปี ในการพัฒนาผู้นำและพัฒนาองค์กร ผนวกกับแนวคิดการทำงานแบบญี่ปุ่น และเครือข่ายระดับสากลของ HR Institute ประเทศญี่ปุ่นที่สั่งสมมากว่า 30 ปี HRI DeOne พร้อมเป็นพันธมิตรครบวงจรในการพัฒนาคนและองค์กรในประเทศไทย"
+msgstr "With more than 20 years of experience in leadership and organization development, the Japanese way of working, and the international network of HR Institute in Japan, built over more than 30 years, HRI DeOne is a full-service partner for developing people and organizations in Thailand."
+
+#: patterns/home-knowledge.php
+msgctxt "Pattern title"
+msgid "Home — Knowledge (latest posts)"
+msgstr ""
+
+#: patterns/home-knowledge.php
+msgctxt "Pattern description"
+msgid "The three latest posts in the visitor's language, with a link to the blog."
+msgstr ""
+
+#: patterns/home-knowledge.php:15
+msgid "คลังความรู้"
+msgstr "Knowledge"
+
+#: patterns/home-knowledge.php:37
+msgid "ยังไม่มีบทความ"
+msgstr "No articles yet"
+
+#: patterns/home-knowledge.php:44
+msgid "ดูบทความทั้งหมด"
+msgstr "See all articles"
+
+#: patterns/home-message.php
+msgctxt "Pattern title"
+msgid "Home — Message from the executives"
+msgstr ""
+
+#: patterns/home-message.php
+msgctxt "Pattern description"
+msgid "Two executive quotes with photos (placeholders)."
+msgstr ""
+
+#: patterns/home-message.php:14
+msgid "การก่อตั้ง HRI DeOne ไม่ใช่เพียงการรวมกันของสองบริษัท แต่เป็นการรวมกันของสองจุดแข็ง สองวัฒนธรรม และวิสัยทัศน์เดียวกัน"
+msgstr "Founding HRI DeOne is not just bringing two companies together. It brings together two strengths, two cultures and one shared vision."
+
+#: patterns/home-message.php:19
+msgid "HRI DeOne มุ่งหวังที่จะเป็นสะพานเชื่อมระหว่างญี่ปุ่น ไทย และภูมิภาคเอเชียตะวันออกเฉียงใต้ พร้อมเป็นพันธมิตรที่ร่วมสร้างการเติบโตในอนาคตไปพร้อมกับทุกท่าน"
+msgstr "HRI DeOne aims to be a bridge between Japan, Thailand and Southeast Asia, and a partner that builds future growth together with you."
+
+#: patterns/home-message.php:28
+msgid "สาส์นจากผู้บริหาร"
+msgstr "Message from our executives"
+
+#: patterns/home-services.php
+msgctxt "Pattern title"
+msgid "Home — Our services"
+msgstr ""
+
+#: patterns/home-services.php
+msgctxt "Pattern description"
+msgid "Three service cards (Future Leader, Transformation Solutions, Japanese Concept) with SVG illustrations."
+msgstr ""
+
+#: patterns/home-services.php:17
+msgid "พัฒนาผู้นำและทีมงานให้เติบโตได้จริง ตั้งแต่การรู้จักตัวเอง การนำทีม สู่การบริหารธุรกิจในทุกมิติ"
+msgstr "Leaders and teams that truly grow: from knowing yourself and leading a team to running every side of the business."
+
+#: patterns/home-services.php:24
+msgid "โซลูชันสำหรับองค์กรที่ต้องการเปลี่ยนแปลงอย่างเป็นระบบ ครอบคลุมกลยุทธ์ธุรกิจ เทคโนโลยี คน และวัฒนธรรมองค์กร"
+msgstr "Solutions for organizations that want systematic change, covering business strategy, technology, people and corporate culture."
+
+#: patterns/home-services.php:31
+msgid "แนวคิดการทำงานแบบญี่ปุ่นที่เสริมทักษะการสื่อสารและการทำงานร่วมกันข้ามวัฒนธรรม"
+msgstr "The Japanese way of working, strengthening communication and cross-cultural collaboration."
+
+#: patterns/home-services.php:38
+msgid "บริการของเรา"
+msgstr "Our services"
+
+#: patterns/home-services.php:68
+msgid "ดูรายละเอียด"
+msgstr "Learn more"
+
+#: patterns/home-stats.php
+msgctxt "Pattern title"
+msgid "Home — Statistics"
+msgstr ""
+
+#: patterns/home-stats.php
+msgctxt "Pattern description"
+msgid "Four key numbers on a dark band. Edit the numbers and labels directly."
+msgstr ""
+
+#: patterns/home-stats.php:13
+msgid "ปีแห่งประสบการณ์ ให้บริการองค์กรชั้นนำในประเทศไทย"
+msgstr "years of experience serving leading organizations in Thailand"
+
+#: patterns/home-stats.php:14
+msgid "องค์กรที่ให้ความไว้วางใจใช้บริการ"
+msgstr "organizations that trust our services"
+
+#: patterns/home-stats.php:15
+msgid "คลาสที่จัดอบรมมาแล้ว"
+msgstr "training classes delivered"
+
+#: patterns/home-stats.php:16
+msgid "วิทยากรและผู้บริหารที่เป็น Partner"
+msgstr "trainers and executives in our partner network"
+
+#: patterns/home.php
+msgctxt "Pattern title"
+msgid "Home page (all sections)"
+msgstr ""
+
+#: patterns/home.php
+msgctxt "Pattern description"
+msgid "Every home page section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""

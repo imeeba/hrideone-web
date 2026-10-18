@@ -43,7 +43,6 @@ if ! $WP core is-installed 2>/dev/null; then
 	$WP theme activate hri-theme --quiet
 	$WP plugin activate hri-core --quiet
 	$WP eval-file "$REPO/playground/seed.php"
-	$WP eval '$e = get_page_by_path( "style-guide" ); $id = $e ? $e->ID : wp_insert_post( array( "post_type" => "page", "post_status" => "publish", "post_title" => "Style Guide", "post_name" => "style-guide", "post_content" => "<!-- wp:pattern {\"slug\":\"hri/style-guide\"} /-->" ) ); update_option( "show_on_front", "page" ); update_option( "page_on_front", $id ); flush_rewrite_rules();'
 fi
 
 # Serve $DIR so the site lives at /wp/ (same as the original test setup).

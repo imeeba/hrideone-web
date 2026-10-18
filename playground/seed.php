@@ -6,6 +6,9 @@
  * topic of each Public course are PLACEHOLDERS so the filter has something to filter:
  * replace them with real data in the editor.
  *
+ * Also creates the home page (front page, from the theme's home patterns), three sample blog
+ * posts and the Style Guide page.
+ *
  * Usage: `wp eval-file playground/seed.php`, or from a Playground blueprint after wp-load.php.
  *
  * @package hri-core
@@ -219,6 +222,64 @@ foreach ( $pages as $slug => $page ) {
 			'post_content' => $page[1],
 		)
 	);
+}
+
+// Blog posts for the home page "Knowledge" section: titles and slugs from the current site,
+// body text is a placeholder.
+$posts = array(
+	array( 'hri-deone-launch-event-develop-leaders', 'HRI DeOne เปิดตัว อย่างเป็นทางการกับงาน “Develop Leaders, Transform the Future”', '-3 days', 1 ),
+	array( 'why-leadership-remains-human-in-the-age-of-ai', 'เมื่อ AI ครองโลก ทำไม ‘เก้าอี้กัปตัน’ ถึงยังต้องเป็นของมนุษย์?', '-10 days', 2 ),
+	array( 'why-success-ompanies-fail-in-15-years', 'ทำไมองค์กรที่เคยแข็งแกร่ง ถึงล้มหายไปใน 15 ปี', '-17 days', 3 ),
+);
+foreach ( $posts as $p ) {
+	list( $slug, $title, $when, $image ) = $p;
+	$existing = get_posts( array( 'post_type' => 'post', 'name' => $slug, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
+	$post_id  = wp_insert_post(
+		array(
+			'ID'           => $existing ? $existing[0] : 0,
+			'post_type'    => 'post',
+			'post_status'  => 'publish',
+			'post_name'    => $slug,
+			'post_title'   => $title,
+			'post_date'    => wp_date( 'Y-m-d H:i:s', strtotime( $when ) ),
+			'post_content' => '<!-- wp:paragraph --><p>ข้อความตัวอย่าง เนื้อหาบทความจริงอยู่ที่เว็บเดิม</p><!-- /wp:paragraph -->',
+		)
+	);
+	if ( $post_id && ! is_wp_error( $post_id ) && ! has_post_thumbnail( $post_id ) ) {
+		$source = $sample_image( $image );
+		if ( $source ) {
+			$tmp        = wp_tempnam( 'hri-sample.jpg' );
+			copy( $source, $tmp );
+			$attachment = media_handle_sideload( array( 'name' => "{$slug}.jpg", 'tmp_name' => $tmp ), $post_id, $title );
+			if ( ! is_wp_error( $attachment ) ) {
+				set_post_thumbnail( $post_id, $attachment );
+			}
+		}
+	}
+}
+
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
+
+// Home page (front page). EN / JA translations: seed-languages.php.
+$home    = get_page_by_path( 'home' );
+$home_id = wp_insert_post(
+	array(
+		'ID'           => $home ? $home->ID : 0,
+		'post_type'    => 'page',
+		'post_status'  => 'publish',
+		'post_name'    => 'home',
+		'post_title'   => 'หน้าแรก',
+		'post_content' => wp_slash( hri_seed_home_content() ),
+	)
+);
+if ( $home_id && ! is_wp_error( $home_id ) ) {
+	update_option( 'show_on_front', 'page' );
+	update_option( 'page_on_front', $home_id );
+}
+
+// Style Guide stays available at /style-guide/.
+if ( ! get_page_by_path( 'style-guide' ) ) {
+	wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Style Guide', 'post_name' => 'style-guide', 'post_content' => '<!-- wp:pattern {"slug":"hri/style-guide"} /-->' ) );
 }
 
 flush_rewrite_rules();
