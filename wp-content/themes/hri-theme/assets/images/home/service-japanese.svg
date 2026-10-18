@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="t"><title id="t">Japanese Concept</title>
+<rect width="480" height="320" fill="#E8F8F9"/>
+<circle cx="240" cy="150" r="118" fill="#C9F0F3"/>
+<circle cx="430" cy="40" r="70" fill="#C8EAD6" opacity=".7"/>
+<path d="M60 268h360" stroke="#0F7070" stroke-width="4" stroke-linecap="round"/>
+<g fill="#0F7070">
+<path d="M150 92q90 -22 180 0l-6 18q-84-18-168 0z"/>
+<rect x="164" y="122" width="152" height="12" rx="3"/>
+<rect x="180" y="104" width="16" height="164" rx="3"/>
+<rect x="284" y="104" width="16" height="164" rx="3"/>
+<rect x="232" y="110" width="16" height="24" rx="2"/>
+</g>
+<g stroke-linejoin="round" stroke-width="4">
+<path d="M58 150h72a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H90l-16 16v-16H58a12 12 0 0 1-12-12v-34a12 12 0 0 1 12-12z" fill="#FFFFFF" stroke="#00A070"/>
+<path d="M350 64h72a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12h-16v16l-16-16h-40a12 12 0 0 1-12-12V76a12 12 0 0 1 12-12z" fill="#FFFFFF" stroke="#00B0BD"/>
+</g>
+<g stroke-linecap="round" stroke-width="5"><path d="M66 172h56M66 188h36" stroke="#00A070"/><path d="M360 86h52M360 102h32" stroke="#00B0BD"/></g>
+</svg>

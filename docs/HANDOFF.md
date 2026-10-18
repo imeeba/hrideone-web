@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-18 (Footer)
+> อัปเดตล่าสุด: 2026-10-18 (หน้าแรก)
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -32,8 +32,8 @@
 
 - Preview (Playground, ดึงจาก `main` ทุกครั้ง): <https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json>
   - เติม `&v=<เลขใหม่>` ถ้าเห็นเวอร์ชันเก่า (cache)
-  - เปิดมาที่ `/in-house/` · หน้าแรก = Style Guide (`/style-guide/`) · รวมคอร์ส `/courses/` · `/public-training/`
-  - ภาษาอื่น: `/en/` `/ja/` · `/en/in-house-en/` · `/ja/public-training-ja/` · `/en/courses/negotiation-mastery-en/`
+  - เปิดมาที่หน้าแรก `/` · Style Guide `/style-guide/` · รวมคอร์ส `/courses/` · `/in-house/` · `/public-training/`
+  - ภาษาอื่น: `/en/` `/ja/` (หน้าแรก) · `/en/in-house-en/` · `/ja/public-training-ja/` · `/en/courses/negotiation-mastery-en/`
   - ทดสอบ branch อื่น: เอา blueprint มาแทน `main` เป็นชื่อ branch แล้วเปิดแบบ `https://playground.wordpress.net/#<blueprint JSON ที่ encode แล้ว>`
 - Local test site: `scripts/local-setup.sh [dir] [port]` → `http://127.0.0.1:8899/wp/` (admin/admin)
   - WordPress 7.1.3 จาก GitHub + SQLite + WP-CLI, symlink theme/plugin จาก repo
@@ -91,8 +91,22 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ข้อความที่พิมพ์ใน header/footer (label เมนู, heading, paragraph, button) = Polylang strings กลุ่ม "HRI header & footer" แปลที่ Languages → Translations (`hri_part_strings()` ใน `polylang.php` แทนที่ตอน render) ทีมการตลาดแก้ข้อความไทยใน Site Editor ได้ แต่แก้แล้วต้องแปลใหม่ (ข้อความเปลี่ยน = string ใหม่)
 - navigation ที่ไม่มีชื่อได้ aria-label "เมนูหลัก" / "เมนูท้ายเว็บ" (`functions.php`)
 
-**Header** (`parts/header.html`): ชื่อเว็บ · navigation 7 รายการ (+ language-switcher list อยู่ใน nav) · language-switcher dropdown
+**Header** (`parts/header.html`): โลโก้ `hri/logo` (สี, กว้าง 196) · navigation 7 รายการ (+ language-switcher list อยู่ใน nav) · language-switcher dropdown
 - CSS ใน `base.css` บังคับเมนูแฮมเบอร์เกอร์ที่ <1100px (core ทำแค่ <600px)
+
+**หน้าแรก** — page `home` (TH) + คำแปล `home-en` / `home-ja` (Polylang) ตั้งเป็น front page · Style Guide ย้ายไปอยู่แค่ `/style-guide/`
+- เนื้อหาเป็น block ธรรมดาในหน้า (ไม่ใช่ pattern อ้างอิง) → ทีมการตลาดแก้ข้อความ ตัวเลข รูป ของแต่ละภาษาใน editor ได้ตรงๆ
+- Patterns (หมวด HRI DeOne, ใส่ซ้ำได้): `hri/home` (ทุก section) และ `hri/home-{hero,intro,highlight,services,stats,clients,message,gallery,knowledge}` ลำดับใน `hri_home_sections()` (`functions.php`) · ข้อความใน pattern เป็น gettext ของ theme → seed สร้างหน้า EN/JA จาก pattern ด้วยไฟล์แปล (`playground/seed-home.php`)
+- Hero = Cover block style **Hero** (`is-style-hero`): พื้นหลังเป็นรูปหรือวิดีโอที่อัปโหลด (MP4/WebM, ปิดเสียง วนซ้ำ) · `assets/js/hero.js` เล่นแค่ 10 วินาทีแรกแล้ววน (วิดีโอสั้นกว่านั้นวนตามความยาวจริง) · ปุ่มหยุด/เล่น 44px · prefers-reduced-motion = หยุดที่เฟรมแรก · overlay `primary-deep` 70% (ตัวขาวผ่าน AA แม้รูปพื้นหลังขาวล้วน: 4.9:1) · ไม่รองรับ YouTube (Jimmi เลือกแบบอัปโหลดไฟล์)
+- Gallery style **Slider** (`is-style-slider`): scroll-snap (เลื่อนได้แม้ไม่มี JS) + `assets/js/slider.js` ปุ่มก่อน/ถัดไป, จุด, ลูกศรคีย์บอร์ด, รูปข้างเอียงแบบ 3D ที่ ≥782px (ตามเว็บเดิม) · 1 รูป = 1 สไลด์ (รูปเว็บเดิมเป็นภาพ collage อยู่แล้ว)
+- Gallery style **Logos** (`is-style-logos`): โลโก้ลูกค้า 6/4/3 คอลัมน์ · ใส่ชื่อบริษัทเป็น alt ทุกโลโก้
+- ปุ่ม style **Outline light** (ปุ่มขอบขาวบนพื้นเข้ม)
+- `hri/course-highlight` (hri-core): การ์ดคอร์ส Public ที่ `open` เรียงวันเริ่มเร็วสุดก่อน (ไม่มีวันที่ไปท้าย) ตามภาษาปัจจุบัน · attribute `count` (ค่าเริ่ม 4), `program` · ไม่มีคอร์ส = ไม่แสดงอะไร
+- บทความ = Query Loop ของ core 3 เรื่องล่าสุด (Polylang กรองภาษาเอง) · ปุ่ม "ดูบทความทั้งหมด" → `/blog/`
+- รูปบริการ 3 รูปเป็น SVG ใน `hri-theme/assets/images/home/service-*.svg` (คมทุกขนาดจอ, สีเป็นค่า hex เดียวกับ token เพราะ SVG ใน `<img>` อ่าน CSS variable ไม่ได้) · `hero.svg` = พื้นหลัง hero ชั่วคราว · placeholder ใน `assets/images/placeholder/` (photo, portrait, logo)
+- ลิงก์ภายในในเนื้อหา (button, paragraph, heading, list, image, cover, media-text) แปลงด้วย `hri_localize_url()` ตอน render ทุกภาษา (`polylang.php`) → พิมพ์ `/in-house/` ได้เหมือนกันทุกภาษา
+- Favicon: `<link rel="icon">` จาก `mark.svg` เมื่อยังไม่ได้ตั้ง Site Icon (Settings → General ต้องเป็นรูป PNG ≥512px)
+- CSS ทั้งหมดอยู่ใน `base.css` ส่วน "Home" · script โหลดเฉพาะหน้าที่มี block นั้น (`render_block` ใน `functions.php`)
 
 ## 5. เสร็จแล้ว
 
@@ -103,6 +117,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] Thumbnail 3:2 + รูปตัวอย่าง
 - [x] Header ใหม่ + ปุ่มภาษา (ตรวจที่ 1280/1100/1024/768/375 ผ่านการจำลองจอ)
 - [x] Footer ใหม่ + โลโก้ SVG 5 แบบ + หน้าข้อมูลบริษัท + แถบ CTA (ทดสอบ 1280/768/375, TH/EN/JA ใน Playground)
+- [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (SVG), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
@@ -112,12 +127,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - รูปคอร์สเป็นภาพนามธรรมที่สร้างเอง (`playground/sample/`)
 - ที่อยู่ภาษาไทยใน `hri_company_defaults()` เรียบเรียงเองจากที่อยู่ภาษาอังกฤษ (ชื่อบริษัทคงเป็นอังกฤษ) ต้องให้ Jimmi ตรวจ · ข้อความแถบ CTA มี "(ข้อความตัวอย่าง)" · LinkedIn ยังไม่มี URL (ช่องว่าง = ไม่แสดง)
 - คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
-- เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี
+- เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี (ปุ่มในหน้าแรกชี้ไป `/transformation-solutions/` `/japanese-concept/` `/blog/` ซึ่งยัง 404)
+- หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ · tag ใต้ชื่อบริการ (In-house Training / Organization Transformation / Cross-cultural Collaboration) ตั้งเอง
+- หน้าแรก: โลโก้ลูกค้า 12 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
-1. **หน้าแรก** — patterns: Hero, Stats, Logo wall, Knowledge/บทความ (ข้อความต้องแปลได้: ใช้ block ที่อ่าน `hri_company()`/gettext หรือ Polylang strings) · พิจารณาเปลี่ยนชื่อเว็บใน header เป็น `hri/logo` (ต้องถาม Jimmi เพราะ header รับไปแล้ว) · ตั้ง Site Icon จาก `mark.svg`
-   - หน้า Contact / About ยังไม่มี: CTA และเมนูชี้ไป `/contact-us/` `/about/` ซึ่งยัง 404
+1. **ใส่รูปจริงหน้าแรก** — โลโก้ลูกค้า 40 รายการ (เว็บเดิม `/wp-content/uploads/2026/03/Website-Customer-logo-01…40.webp`), รูปผู้บริหาร, รูป Gallery, รูป/วิดีโอ Hero (ทำในหน้าแรกแต่ละภาษา หรือให้ Jimmi แนบไฟล์มา)
+   - หน้า Contact / About / Blog / Transformation / Japanese Concept ยังไม่มี: CTA, เมนู และปุ่มหน้าแรกชี้ไปหน้าที่ยัง 404
 2. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
 3. **ฟอร์ม Lead → Google Sheet** — REST endpoint ใน hri-core + Google Apps Script, honeypot/Turnstile, checkbox PDPA, ห้ามใช้ nonce ในหน้าที่ถูก cache
 4. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi เรื่องค่าใช้จ่ายก่อน
@@ -141,7 +158,17 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Theme pattern list ถูก cache ตาม version theme → เพิ่ม pattern ใหม่ให้ bump `Version` ใน style.css (local: `wp eval 'wp_get_theme()->delete_pattern_cache();'`)
 - ทั้ง theme ไม่มี `box-sizing: border-box` global → element ที่ตั้ง `min-height`/padding ให้ใส่ `box-sizing: border-box` เอง
 - Playground ที่เปิดด้วย `#<blueprint>` เปลี่ยนแค่ hash จะไม่โหลดใหม่ ให้เปลี่ยน query (`?v=2#...`)
+- Gallery ของ core ตั้งความกว้าง `figure` ด้วย `:not(#individual-image)` → CSS ที่จะ override ต้องใส่ selector เดียวกัน · ในกล่อง scroll ที่มี padding `%` ของ flex-basis คิดจากความกว้างหลังหัก padding → slider ใช้ `vw`
+- `wp i18n make-pot` ของ theme ต้องใส่ `--skip-theme-json` (ไม่งั้นจะโหลด theme-i18n.json จาก svn.wordpress.org ซึ่ง workspace เข้าไม่ได้)
+- Screenshot แบบ full page ไม่โหลดรูป `loading="lazy"` → ตั้ง `loading="eager"` ก่อนถ่าย หรือถ่ายทีละ section
+- Editor ใน local ใช้ `wait_until: domcontentloaded` (admin ยิงไป wordpress.org ไม่จบ networkidle)
+- วันที่บทความใน local เป็นภาษาอังกฤษเพราะไม่มี language pack ไทยของ core (บนโฮสต์จริงติดตั้ง ภาษาไทย แล้วจะเป็นเดือนไทย)
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
+
+### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
+
+- Header desktop: ลิงก์เมนูสูง 25px, ปุ่มภาษา (summary) สูง 34px, รายการใน dropdown ภาษา 43px · ปุ่มแฮมเบอร์เกอร์ (<1100px) 24×24 — ต่ำกว่าเกณฑ์ 44px (ผ่าน WCAG 2.5.8 AA 24px แต่ไม่ผ่าน 44px ที่ตั้งไว้)
+- Footer: ลิงก์เมนูสูง 43px ที่จอ 375 (ปัดเศษ) และคำสั้น (Blog/About) กว้าง <44px
 
 ## 9. วิธีทำงานที่ประหยัด usage
 

@@ -3,8 +3,8 @@
  * Sample English and Japanese translations for previews and local testing. Safe to run repeatedly.
  *
  * Run after seed.php and after the Polylang setup (hri_polylang_setup() / `wp hri languages`).
- * Creates an EN and a JA translation of every Thai course and of the In-house, Public Training
- * and Style Guide pages. Texts are machine-made samples (JA needs a native review).
+ * Creates an EN and a JA translation of every Thai course, of the home, In-house, Public Training
+ * and Style Guide pages and of the sample blog posts. Texts are machine-made samples (JA needs a native review).
  *
  * Polylang (free) needs a different slug per language, so the samples use "-en" / "-ja" suffixes:
  * /en/courses/negotiation-mastery-en/. Real content can use any slug.
@@ -181,6 +181,63 @@ foreach ( $pages as $slug => $languages ) {
 				'post_content' => wp_slash( strtr( $source->post_content, $page['replace'] ) ),
 			)
 		);
+	}
+}
+
+// Home page: the same patterns rendered with the EN / JA theme translations.
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
+$home = get_posts( array( 'post_type' => 'page', 'name' => 'home', 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
+if ( $home ) {
+	$titles = array( 'en' => 'Home', 'ja' => 'ホーム' );
+	foreach ( $targets as $lang ) {
+		$locale = PLL()->model->get_language( $lang )->locale ?? '';
+		$translate(
+			$home[0]->ID,
+			$lang,
+			array(
+				'post_title'   => $titles[ $lang ],
+				'post_content' => wp_slash( hri_seed_home_content( $locale ) ),
+			)
+		);
+	}
+}
+
+// Blog posts (home page "Knowledge" section). Machine-made titles: JA needs a review.
+$post_titles = array(
+	'hri-deone-launch-event-develop-leaders'        => array(
+		'en' => 'HRI DeOne officially launches with “Develop Leaders, Transform the Future”',
+		'ja' => 'HRI DeOne、「Develop Leaders, Transform the Future」で正式始動',
+	),
+	'why-leadership-remains-human-in-the-age-of-ai' => array(
+		'en' => 'When AI runs the world, why does the captain’s chair still belong to people?',
+		'ja' => 'AIが世界を動かす時代に、なぜ「船長の椅子」は人間のものなのか',
+	),
+	'why-success-ompanies-fail-in-15-years'         => array(
+		'en' => 'Why once-strong organizations disappear within 15 years',
+		'ja' => 'かつて強かった組織が15年で消えていく理由',
+	),
+);
+foreach ( $post_titles as $slug => $titles ) {
+	$source = get_posts( array( 'post_type' => 'post', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
+	if ( ! $source ) {
+		continue;
+	}
+	foreach ( $targets as $lang ) {
+		$id = $translate(
+			$source[0]->ID,
+			$lang,
+			array(
+				'post_title'   => $titles[ $lang ],
+				'post_date'    => $source[0]->post_date,
+				'post_content' => 'en' === $lang
+					? '<!-- wp:paragraph --><p>Sample text. The full article is on the current website.</p><!-- /wp:paragraph -->'
+					: '<!-- wp:paragraph --><p>サンプル文です。記事の全文は現在のウェブサイトに掲載されています。</p><!-- /wp:paragraph -->',
+			)
+		);
+		$thumb = get_post_thumbnail_id( $source[0]->ID );
+		if ( $id && $thumb ) {
+			set_post_thumbnail( $id, $thumb );
+		}
 	}
 }
 

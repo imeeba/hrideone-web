@@ -102,6 +102,10 @@ add_action(
 		register_block_style( 'core/paragraph', array( 'name' => 'eyebrow', 'label' => __( 'Eyebrow', 'hri-theme' ) ) );
 		register_block_style( 'core/group', array( 'name' => 'card', 'label' => __( 'Card', 'hri-theme' ) ) );
 		register_block_style( 'core/heading', array( 'name' => 'section-title', 'label' => __( 'Section title', 'hri-theme' ) ) );
+		register_block_style( 'core/button', array( 'name' => 'outline-light', 'label' => __( 'Outline light (on dark)', 'hri-theme' ) ) );
+		register_block_style( 'core/cover', array( 'name' => 'hero', 'label' => __( 'Hero (video ≤ 10 s)', 'hri-theme' ) ) );
+		register_block_style( 'core/gallery', array( 'name' => 'slider', 'label' => __( 'Slider', 'hri-theme' ) ) );
+		register_block_style( 'core/gallery', array( 'name' => 'logos', 'label' => __( 'Logos', 'hri-theme' ) ) );
 
 		register_block_pattern_category( 'hri', array( 'label' => __( 'HRI DeOne', 'hri-theme' ) ) );
 	}
@@ -127,5 +131,72 @@ add_filter(
 		return $tags->get_updated_html();
 	},
 	10,
+	2
+);
+
+/**
+ * Home page sections, in order (patterns/home-{slug}.php). Used by the "Home page" pattern.
+ *
+ * @return string[]
+ */
+function hri_home_sections(): array {
+	return array( 'hero', 'intro', 'highlight', 'services', 'stats', 'clients', 'message', 'gallery', 'knowledge' );
+}
+
+/**
+ * Small scripts, loaded only on pages that use them:
+ * - Hero cover with a video: plays at most the first 10 seconds in a loop, pause button,
+ *   no autoplay for visitors who prefer reduced motion.
+ * - Gallery "Slider": previous / next buttons and dots on a scroll-snap strip (works without JS).
+ */
+add_filter(
+	'render_block',
+	static function ( $content, $block ) {
+		$name  = $block['blockName'] ?? '';
+		$class = (string) ( $block['attrs']['className'] ?? '' );
+		if ( 'core/cover' === $name && str_contains( $class, 'is-style-hero' ) && 'video' === ( $block['attrs']['backgroundType'] ?? '' ) ) {
+			hri_enqueue_script( 'hero' );
+		} elseif ( 'core/gallery' === $name && str_contains( $class, 'is-style-slider' ) ) {
+			hri_enqueue_script( 'slider' );
+		}
+		return $content;
+	},
+	10,
+	2
+);
+
+/**
+ * Enqueue assets/js/{name}.js with its translated UI labels.
+ */
+function hri_enqueue_script( string $name ): void {
+	$handle = "hri-{$name}";
+	if ( wp_script_is( $handle ) ) {
+		return;
+	}
+	wp_enqueue_script( $handle, get_theme_file_uri( "assets/js/{$name}.js" ), array(), HRI_THEME_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
+	$labels = 'hero' === $name
+		? array(
+			'pause' => __( 'หยุดวิดีโอ', 'hri-theme' ),
+			'play'  => __( 'เล่นวิดีโอ', 'hri-theme' ),
+		)
+		: array(
+			'prev'  => __( 'รูปก่อนหน้า', 'hri-theme' ),
+			'next'  => __( 'รูปถัดไป', 'hri-theme' ),
+			/* translators: 1: slide number, 2: number of slides */
+			'slide' => __( 'รูปที่ %1$s จาก %2$s', 'hri-theme' ),
+		);
+	wp_add_inline_script( $handle, 'window.hriL10n=Object.assign(window.hriL10n||{},' . wp_json_encode( array( $name => $labels ) ) . ');', 'before' );
+}
+
+/**
+ * Browser icon from the logo mark until a Site Icon is set (Settings → General).
+ */
+add_action(
+	'wp_head',
+	static function () {
+		if ( ! has_site_icon() ) {
+			printf( '<link rel="icon" href="%s" type="image/svg+xml">' . "\n", esc_url( get_theme_file_uri( 'assets/images/logo/mark.svg' ) ) );
+		}
+	},
 	2
 );

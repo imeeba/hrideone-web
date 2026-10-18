@@ -162,3 +162,41 @@ function hri_course_facts( int $post_id ): string {
 	}
 	return $html . '</dl>';
 }
+
+/**
+ * Course IDs for the Course Highlight block (home page).
+ *
+ * @param string $program "public" (open for registration, soonest first) or "inhouse".
+ * @param int    $count   1–12.
+ * @return int[]
+ */
+function hri_course_highlight_ids( string $program, int $count ): array {
+	$program = 'inhouse' === $program ? 'inhouse' : 'public';
+	$count   = max( 1, min( 12, $count ) );
+	$ids     = get_posts(
+		array(
+			'post_type'        => 'course',
+			'post_status'      => 'publish',
+			'numberposts'      => 'public' === $program ? -1 : $count,
+			'fields'           => 'ids',
+			'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			'no_found_rows'    => true,
+			'suppress_filters' => false, // Lets Polylang limit the list to the current language.
+			'tax_query'        => array( array( 'taxonomy' => 'hri_program', 'field' => 'slug', 'terms' => $program ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+			'meta_query'       => 'public' === $program ? array( array( 'key' => 'hri_reg_status', 'value' => 'open' ) ) : array(), // phpcs:ignore WordPress.DB.SlowDBQuery
+		)
+	);
+	$ids = array_map( 'intval', $ids );
+
+	if ( 'public' === $program ) {
+		// Soonest start date first; courses without a date keep their order, after the dated ones.
+		$dates = array();
+		foreach ( $ids as $position => $id ) {
+			$date          = (string) get_post_meta( $id, 'hri_start_date', true );
+			$dates[ $id ] = array( '' === $date ? '9999-12-31' : $date, $position );
+		}
+		usort( $ids, static fn( $a, $b ) => $dates[ $a ] <=> $dates[ $b ] );
+		$ids = array_slice( $ids, 0, $count );
+	}
+	return $ids;
+}

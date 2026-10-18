@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="t"><title id="t">Transformation Solutions</title>
+<rect width="480" height="320" fill="#E8F8F9"/>
+<circle cx="90" cy="60" r="110" fill="#C9F0F3"/>
+<circle cx="420" cy="290" r="100" fill="#C8EAD6" opacity=".7"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M150 160a90 90 0 0 1 154-64" stroke="#0F7070" stroke-width="10"/>
+<path d="M290 70l18 30-34 4" stroke="#0F7070" stroke-width="10"/>
+<path d="M330 160a90 90 0 0 1-154 64" stroke="#00A070" stroke-width="10"/>
+<path d="M190 250l-18-30 34-4" stroke="#00A070" stroke-width="10"/>
+</g>
+<g transform="translate(240 160)">
+<rect x="-46" y="-46" width="92" height="92" rx="14" fill="#FFFFFF" stroke="#0F7070" stroke-width="4"/>
+<rect x="-30" y="-28" width="60" height="12" rx="4" fill="#00B0BD"/>
+<rect x="-30" y="-6" width="44" height="12" rx="4" fill="#3AD2DD"/>
+<rect x="-30" y="16" width="28" height="12" rx="4" fill="#00A070"/>
+</g>
+<g fill="#00B0BD"><circle cx="372" cy="96" r="8"/><circle cx="108" cy="226" r="8"/></g>
+<g fill="none" stroke="#073D3D" stroke-width="3" stroke-linecap="round"><path d="M392 60v20M382 70h20"/><path d="M84 254v20M74 264h20"/></g>
+</svg>
