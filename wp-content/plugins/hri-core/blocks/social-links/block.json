@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/social-links",
+	"title": "Social Links",
+	"category": "widgets",
+	"icon": "share",
+	"description": "LINE, Facebook, YouTube and LinkedIn from Settings → ข้อมูลบริษัท. Empty links are hidden.",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true,
+		"color": {
+			"text": true,
+			"background": false,
+			"link": true
+		}
+	},
+	"render": "file:./render.php",
+	"attributes": {},
+	"style": "hri-company"
+}

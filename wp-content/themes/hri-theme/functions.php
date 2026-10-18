@@ -106,3 +106,26 @@ add_action(
 		register_block_pattern_category( 'hri', array( 'label' => __( 'HRI DeOne', 'hri-theme' ) ) );
 	}
 );
+
+/**
+ * Navigation blocks without a menu name get an empty or numbered aria-label (" 2") from core.
+ * Give them a real one: main menu in the header, footer menu below.
+ */
+add_filter(
+	'render_block_core/navigation',
+	static function ( $content, $block ) {
+		$tags = new WP_HTML_Tag_Processor( $content );
+		if ( ! $tags->next_tag( 'nav' ) ) {
+			return $content;
+		}
+		$label = trim( (string) $tags->get_attribute( 'aria-label' ) );
+		if ( '' !== $label && ! preg_match( '/^\d+$/', $label ) ) {
+			return $content;
+		}
+		$is_footer = str_contains( (string) ( $block['attrs']['className'] ?? '' ), 'hri-footer__nav' );
+		$tags->set_attribute( 'aria-label', $is_footer ? __( 'เมนูท้ายเว็บ', 'hri-theme' ) : __( 'เมนูหลัก', 'hri-theme' ) );
+		return $tags->get_updated_html();
+	},
+	10,
+	2
+);

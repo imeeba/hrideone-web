@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/copyright",
+	"title": "Copyright",
+	"category": "widgets",
+	"icon": "editor-code",
+	"description": "© current year and company name.",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true,
+		"color": {
+			"text": true,
+			"background": false,
+			"link": true
+		}
+	},
+	"render": "file:./render.php",
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": "HRI DeOne Co., Ltd."
+		}
+	}
+}

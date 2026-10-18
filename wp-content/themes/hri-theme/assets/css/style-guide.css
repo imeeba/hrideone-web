@@ -189,3 +189,47 @@
 	.sg-ramp__steps { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); }
 	.sg-scale__row, .sg-space__row { grid-template-columns: 1fr; }
 }
+
+/* Logo variants */
+.sg-logos {
+	display: grid;
+	gap: var(--wp--preset--spacing--40);
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+}
+
+.sg-logo {
+	margin: 0;
+}
+
+.sg-logo__art {
+	align-items: center;
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	display: flex;
+	height: 140px;
+	justify-content: center;
+	padding: var(--wp--preset--spacing--40);
+}
+
+.sg-logo.is-dark .sg-logo__art {
+	background: var(--wp--preset--color--primary-deep);
+	border-color: var(--wp--preset--color--primary-deep);
+}
+
+.sg-logo__art img {
+	display: block;
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.sg-logo.is-mark .sg-logo__art img {
+	height: 100%;
+	width: auto;
+}
+
+.sg-logo figcaption {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--x-small);
+	margin-top: var(--wp--preset--spacing--20);
+}

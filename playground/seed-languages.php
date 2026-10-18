@@ -184,6 +184,33 @@ foreach ( $pages as $slug => $languages ) {
 	}
 }
 
+// Header / footer texts (Polylang strings, Languages → Translations). Thai menu labels stay English.
+$part_strings = array(
+	'In-house'         => array( 'en' => 'In-house', 'ja' => '企業内研修' ),
+	'Public Training'  => array( 'en' => 'Public Training', 'ja' => '公開講座' ),
+	'Transformation'   => array( 'en' => 'Transformation', 'ja' => '変革ソリューション' ),
+	'Japanese Concept' => array( 'en' => 'Japanese Concept', 'ja' => 'ジャパニーズ・コンセプト' ),
+	'Blog'             => array( 'en' => 'Blog', 'ja' => 'ブログ' ),
+	'About'            => array( 'en' => 'About', 'ja' => '会社概要' ),
+	'Contact'          => array( 'en' => 'Contact', 'ja' => 'お問い合わせ' ),
+	'หลักสูตรทั้งหมด'      => array( 'en' => 'All courses', 'ja' => 'すべての講座' ),
+	'หลักสูตรและบริการ'    => array( 'en' => 'Programs & services', 'ja' => 'プログラム・サービス' ),
+	'บริษัท'             => array( 'en' => 'Company', 'ja' => '会社情報' ),
+	'ติดต่อเรา'           => array( 'en' => 'Contact us', 'ja' => 'お問い合わせ' ),
+);
+foreach ( $targets as $lang ) {
+	$language = PLL()->model->get_language( $lang );
+	if ( ! $language ) {
+		continue;
+	}
+	$mo = new PLL_MO();
+	$mo->import_from_db( $language );
+	foreach ( $part_strings as $source => $translations ) {
+		$mo->add_entry( $mo->make_entry( $source, $translations[ $lang ] ) );
+	}
+	$mo->export_to_db( $language );
+}
+
 // Languages cache the ID of their front page translation: rebuild it.
 PLL()->model->clean_languages_cache();
 flush_rewrite_rules();

@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/company-text",
+	"title": "Company Text",
+	"category": "widgets",
+	"icon": "editor-paragraph",
+	"description": "A text from Settings → ข้อมูลบริษัท in the visitor’s language (e.g. the footer tagline).",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true,
+		"color": {
+			"text": true,
+			"background": false,
+			"link": true
+		}
+	},
+	"render": "file:./render.php",
+	"attributes": {
+		"field": {
+			"type": "string",
+			"enum": [
+				"tagline",
+				"address",
+				"cta_title",
+				"cta_text"
+			],
+			"default": "tagline"
+		}
+	}
+}

@@ -59,6 +59,41 @@ $white = '#FFFFFF';
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--40)">
 <!-- wp:paragraph {"className":"is-style-eyebrow"} -->
+<p class="is-style-eyebrow">00 · Logo</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"className":"is-style-section-title"} -->
+<h2 class="wp-block-heading is-style-section-title">Logo</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>ไฟล์ SVG อยู่ที่ <code>hri-theme/assets/images/logo/</code> ใช้แบบสีบนพื้นสว่าง แบบขาวบนพื้นเข้มหรือรูป แบบ mark (ไม่มีตัวอักษร) สำหรับพื้นที่เล็ก เช่น favicon หรือ avatar โซเชียล</p>
+<!-- /wp:paragraph -->
+<!-- wp:html -->
+<div class="sg-logos">
+<?php
+$hri_logo_dir = get_theme_file_uri( 'assets/images/logo/' );
+foreach ( array(
+	array( 'logo.svg', 'logo.svg — สี (พื้นสว่าง)', '' ),
+	array( 'logo-white.svg', 'logo-white.svg — ขาว (พื้นเข้ม)', 'is-dark' ),
+	array( 'logo-black.svg', 'logo-black.svg — ขาวดำ (เอกสาร/พิมพ์)', '' ),
+	array( 'mark.svg', 'mark.svg — สัญลักษณ์', 'is-mark' ),
+	array( 'mark-white.svg', 'mark-white.svg — สัญลักษณ์ขาว', 'is-mark is-dark' ),
+) as $hri_logo ) {
+	printf(
+		'<figure class="sg-logo %3$s"><div class="sg-logo__art"><img src="%1$s" alt="HRI DeOne" loading="lazy"></div><figcaption>%2$s</figcaption></figure>',
+		esc_url( $hri_logo_dir . $hri_logo[0] ),
+		esc_html( $hri_logo[1] ),
+		esc_attr( $hri_logo[2] )
+	);
+}
+?>
+</div>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--40)">
+<!-- wp:paragraph {"className":"is-style-eyebrow"} -->
 <p class="is-style-eyebrow">01 · Color</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading {"className":"is-style-section-title"} -->

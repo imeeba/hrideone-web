@@ -6,8 +6,9 @@
  * - pages, posts and courses: one post per language, linked as translations (Polylang)
  * - course taxonomies: NOT translated — shared by all languages, names per language in term
  *   meta (see languages.php)
- * - header menu: links point to the translation of the linked page; labels are Polylang strings
- *   (Languages → Translations, group "HRI header menu")
+ * - header / footer: internal links point to the translation of the linked page; menu labels,
+ *   headings, paragraphs and buttons typed in those parts are Polylang strings
+ *   (Languages → Translations, group "HRI header & footer")
  * - interface text in code: gettext files in hri-core/languages and hri-theme/languages
  *
  * Setup (languages, URL settings, sync) is done by hri_polylang_setup(): from WP-CLI
@@ -164,36 +165,97 @@ add_filter(
 );
 
 /**
- * Register the header menu labels as Polylang strings, so the marketing team can translate them
- * in Languages → Translations. Read from the header template part (edited copy if any).
+ * Texts typed into the header and footer template parts (menu labels, headings, paragraphs,
+ * buttons) in the default language. They are Polylang strings, so the marketing team edits
+ * the Thai text in the Site Editor and translates it in Languages → Translations
+ * (group "HRI header & footer").
+ *
+ * @return string[] Unique texts (plain text for labels, inner HTML for the other blocks).
  */
+function hri_part_strings(): array {
+	static $strings = null;
+	if ( null !== $strings ) {
+		return $strings;
+	}
+	$strings = array();
+	$walk    = static function ( array $blocks ) use ( &$walk, &$strings ): void {
+		foreach ( $blocks as $block ) {
+			$name = (string) $block['blockName'];
+			if ( 'core/navigation-link' === $name && ! empty( $block['attrs']['label'] ) ) {
+				$strings[] = wp_strip_all_tags( (string) $block['attrs']['label'] );
+			} elseif ( in_array( $name, array( 'core/heading', 'core/paragraph', 'core/button' ), true ) ) {
+				$text = hri_block_text( (string) ( $block['innerHTML'] ?? '' ) );
+				if ( '' !== $text ) {
+					$strings[] = $text;
+				}
+			}
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$walk( $block['innerBlocks'] );
+			}
+		}
+	};
+	foreach ( array( 'header', 'footer' ) as $slug ) {
+		$part = get_block_template( get_stylesheet() . '//' . $slug, 'wp_template_part' );
+		if ( $part && ! empty( $part->content ) ) {
+			$walk( parse_blocks( $part->content ) );
+		}
+	}
+	$strings = array_values( array_unique( $strings ) );
+	return $strings;
+}
+
+/**
+ * Inner HTML of a heading / paragraph / button (the text between its outer tags).
+ */
+function hri_block_text( string $html ): string {
+	$html = trim( $html );
+	// Buttons wrap the text in <div><a>…</a></div>: take the innermost element.
+	while ( preg_match( '#^<([a-z0-9]+)\b[^>]*>(.*)</\1>$#is', $html, $m ) ) {
+		$inner = trim( $m[2] );
+		if ( $inner === $html ) {
+			break;
+		}
+		$html = $inner;
+		if ( ! preg_match( '#^<(a|div|span)\b#i', $html ) ) {
+			break;
+		}
+	}
+	return trim( $html );
+}
+
 add_action(
 	'admin_init',
 	static function () {
 		if ( ! function_exists( 'pll_register_string' ) ) {
 			return;
 		}
-		$part = get_block_template( get_stylesheet() . '//header', 'wp_template_part' );
-		if ( ! $part || empty( $part->content ) ) {
-			return;
-		}
-		$labels = array();
-		$walk   = static function ( array $blocks ) use ( &$walk, &$labels ): void {
-			foreach ( $blocks as $block ) {
-				if ( 'core/navigation-link' === $block['blockName'] && ! empty( $block['attrs']['label'] ) ) {
-					$labels[] = wp_strip_all_tags( (string) $block['attrs']['label'] );
-				}
-				if ( ! empty( $block['innerBlocks'] ) ) {
-					$walk( $block['innerBlocks'] );
-				}
-			}
-		};
-		$walk( parse_blocks( $part->content ) );
-
-		foreach ( array_unique( $labels ) as $label ) {
-			pll_register_string( 'menu: ' . $label, $label, 'HRI header menu' );
+		foreach ( hri_part_strings() as $text ) {
+			pll_register_string( 'part: ' . wp_trim_words( wp_strip_all_tags( $text ), 6, '…' ), $text, 'HRI header & footer', strlen( $text ) > 80 );
 		}
 	}
+);
+
+/**
+ * Replace those texts with their translation when the page is not in the default language.
+ */
+add_filter(
+	'render_block',
+	static function ( $content, $block ) {
+		if ( ! in_array( $block['blockName'] ?? '', array( 'core/heading', 'core/paragraph', 'core/button' ), true ) ) {
+			return $content;
+		}
+		if ( is_admin() || ! hri_has_polylang() || ! function_exists( 'pll__' ) || pll_current_language() === pll_default_language() ) {
+			return $content;
+		}
+		$text = hri_block_text( (string) ( $block['innerHTML'] ?? '' ) );
+		if ( '' === $text || ! in_array( $text, hri_part_strings(), true ) ) {
+			return $content;
+		}
+		$translated = pll__( $text );
+		return $translated && $translated !== $text ? str_replace( $text, wp_kses_post( $translated ), $content ) : $content;
+	},
+	10,
+	2
 );
 
 /* -------------------------------------------------------------------------

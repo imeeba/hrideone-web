@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/cta-band",
+	"title": "Contact CTA Band",
+	"category": "widgets",
+	"icon": "megaphone",
+	"description": "Call-to-action band (texts from Settings → ข้อมูลบริษัท): quote request and LINE. Hidden on the Contact page.",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true,
+		"align": [
+			"full",
+			"wide"
+		]
+	},
+	"render": "file:./render.php",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		}
+	},
+	"style": "hri-company"
+}

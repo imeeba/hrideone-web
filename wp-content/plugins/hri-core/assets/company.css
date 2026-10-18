@@ -1,0 +1,194 @@
+/* Company blocks: logo, contact info, social links, CTA band.
+   Colours inherit from the surrounding block (footer = light text on primary-deep). */
+
+/* ---------- Logo ---------- */
+.hri-logo {
+	line-height: 0;
+}
+
+.hri-logo a {
+	display: inline-block;
+	border-radius: var(--wp--custom--radius--sm);
+}
+
+.hri-logo a:focus-visible {
+	box-shadow: var(--hri-ring);
+	outline: none;
+}
+
+.hri-logo img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+.hri-logo__text {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+/* ---------- Contact info ---------- */
+.hri-contact {
+	display: grid;
+	gap: var(--wp--preset--spacing--30);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.hri-contact__item {
+	display: grid;
+	gap: 2px;
+	margin: 0;
+}
+
+.hri-contact__label {
+	font-size: var(--wp--preset--font-size--x-small);
+	letter-spacing: 0.04em;
+	opacity: 0.85;
+	text-transform: uppercase;
+}
+
+.hri-contact a {
+	display: inline-block;
+	padding-block: 0.35rem; /* ≥ 44px tap target with the line height */
+	text-decoration: none;
+	text-underline-offset: 0.2em;
+}
+
+.hri-contact a:hover {
+	text-decoration: underline;
+}
+
+.hri-contact address {
+	font-size: var(--wp--preset--font-size--small);
+	font-style: normal;
+	line-height: 1.6;
+}
+
+/* ---------- Social links ---------- */
+.hri-social {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.hri-social li {
+	margin: 0;
+}
+
+.hri-social a {
+	align-items: center;
+	border: 1px solid currentColor;
+	border-radius: var(--wp--custom--radius--pill);
+	color: inherit;
+	display: inline-flex;
+	height: 44px;
+	justify-content: center;
+	transition: background-color var(--wp--custom--motion--fast) var(--wp--custom--motion--easing);
+	width: 44px;
+}
+
+.hri-social a:hover {
+	background-color: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+.hri-social a:focus-visible {
+	box-shadow: var(--hri-ring);
+	outline: none;
+}
+
+.hri-social svg {
+	fill: currentColor;
+	height: 20px;
+	width: 20px;
+}
+
+/* ---------- CTA band ---------- */
+.hri-cta {
+	background: var(--wp--preset--color--surface-brand);
+	color: var(--wp--preset--color--contrast);
+	padding: var(--wp--preset--spacing--60) var(--wp--preset--spacing--40);
+}
+
+.hri-cta__inner {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--40) var(--wp--preset--spacing--60);
+	justify-content: space-between;
+	margin-inline: auto;
+	max-width: 1200px;
+}
+
+.hri-cta__copy {
+	flex: 1 1 28rem;
+	min-width: 0;
+}
+
+.hri-cta__title {
+	font-size: var(--wp--preset--font-size--x-large);
+	margin: 0 0 var(--wp--preset--spacing--20);
+}
+
+.hri-cta__text {
+	color: var(--wp--preset--color--contrast-muted);
+	margin: 0;
+}
+
+.hri-cta__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
+}
+
+.hri-cta__button {
+	align-items: center;
+	border: 2px solid var(--wp--preset--color--primary-strong);
+	border-radius: var(--wp--custom--radius--pill);
+	display: inline-flex;
+	font-weight: 500;
+	justify-content: center;
+	min-height: 48px;
+	padding: 0.6rem 1.5rem;
+	text-decoration: none;
+	transition: background-color var(--wp--custom--motion--fast) var(--wp--custom--motion--easing), color var(--wp--custom--motion--fast) var(--wp--custom--motion--easing);
+	white-space: nowrap;
+}
+
+.hri-cta__button--primary {
+	background: var(--wp--preset--color--primary-strong);
+	color: var(--wp--preset--color--base);
+}
+
+.hri-cta__button--primary:hover {
+	background: var(--wp--preset--color--primary-deep);
+	border-color: var(--wp--preset--color--primary-deep);
+}
+
+.hri-cta__button--line {
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--primary-strong);
+}
+
+.hri-cta__button--line:hover {
+	background: var(--wp--preset--color--primary-strong);
+	color: var(--wp--preset--color--base);
+}
+
+.hri-cta__button:focus-visible {
+	box-shadow: var(--hri-ring);
+	outline: none;
+}
+
+@media (max-width: 599px) {
+	.hri-cta__actions,
+	.hri-cta__button {
+		width: 100%;
+	}
+}

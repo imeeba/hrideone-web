@@ -1,42 +1,55 @@
-<!-- wp:group {"tagName":"footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}},"heading":{"color":{"text":"var:preset|color|accent"}}}},"backgroundColor":"primary-deep","textColor":"base","layout":{"type":"constrained"}} -->
-<footer class="wp-block-group has-base-color has-primary-deep-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
-<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
-<div class="wp-block-columns">
-<!-- wp:column {"width":"40%"} -->
-<div class="wp-block-column" style="flex-basis:40%">
-<!-- wp:site-title {"level":0,"style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}}} /-->
-<!-- wp:paragraph {"fontSize":"large"} -->
-<p class="has-large-font-size">A trusted partner in shaping organizations that thrive across generations.</p>
-<!-- /wp:paragraph -->
+<!-- wp:hri/cta-band {"align":"full"} /-->
+<!-- wp:group {"className":"hri-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"primary-deep","textColor":"base","layout":{"type":"constrained","contentSize":"1366px"}} -->
+<div class="wp-block-group hri-footer has-base-color has-primary-deep-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:group {"className":"hri-footer__cols","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-footer__cols">
+<!-- wp:group {"className":"hri-footer__brand","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-footer__brand">
+<!-- wp:hri/logo {"variant":"white","width":200} /-->
+<!-- wp:hri/company-text {"field":"tagline"} /-->
+<!-- wp:hri/social-links /-->
 </div>
-<!-- /wp:column -->
-<!-- wp:column -->
-<div class="wp-block-column">
-<!-- wp:heading {"level":2,"fontSize":"medium"} -->
-<h2 class="wp-block-heading has-medium-font-size">Telephone</h2>
+<!-- /wp:group -->
+<!-- wp:group {"className":"hri-footer__col","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-footer__col">
+<!-- wp:heading {"level":2,"className":"hri-footer__title"} -->
+<h2 class="wp-block-heading hri-footer__title">หลักสูตรและบริการ</h2>
 <!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p><a href="tel:+66650979444">065-097-9444</a><br><a href="mailto:info@hrideone.com">info@hrideone.com</a></p>
-<!-- /wp:paragraph -->
+<!-- wp:navigation {"overlayMenu":"never","className":"hri-footer__nav","layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:navigation-link {"label":"In-house","url":"/in-house/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Public Training","url":"/public-training/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Transformation","url":"/transformation-solutions/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Japanese Concept","url":"/japanese-concept/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"หลักสูตรทั้งหมด","url":"/courses/","kind":"custom"} /-->
+<!-- /wp:navigation -->
 </div>
-<!-- /wp:column -->
-<!-- wp:column -->
-<div class="wp-block-column">
-<!-- wp:heading {"level":2,"fontSize":"medium"} -->
-<h2 class="wp-block-heading has-medium-font-size">Address</h2>
+<!-- /wp:group -->
+<!-- wp:group {"className":"hri-footer__col","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-footer__col">
+<!-- wp:heading {"level":2,"className":"hri-footer__title"} -->
+<h2 class="wp-block-heading hri-footer__title">บริษัท</h2>
 <!-- /wp:heading -->
-<!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">HRI DEONE CO., LTD.<br>118 BLOCK 28X, 4th Floor, Unit X406, Soi Chula 5, Wangmai, Pathumwan, Bangkok 10330</p>
-<!-- /wp:paragraph -->
+<!-- wp:navigation {"overlayMenu":"never","className":"hri-footer__nav","layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:navigation-link {"label":"About","url":"/about/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Blog","url":"/blog/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Contact","url":"/contact-us/","kind":"custom"} /-->
+<!-- /wp:navigation -->
 </div>
-<!-- /wp:column -->
+<!-- /wp:group -->
+<!-- wp:group {"className":"hri-footer__col","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-footer__col">
+<!-- wp:heading {"level":2,"className":"hri-footer__title"} -->
+<h2 class="wp-block-heading hri-footer__title">ติดต่อเรา</h2>
+<!-- /wp:heading -->
+<!-- wp:hri/contact-info /-->
 </div>
-<!-- /wp:columns -->
-<!-- wp:separator {"style":{"color":{"text":"var:preset|color|primary-strong"}}} -->
-<hr class="wp-block-separator has-text-color has-alpha-channel-opacity" style="color:var(--wp--preset--color--primary-strong)"/>
-<!-- /wp:separator -->
-<!-- wp:paragraph {"fontSize":"x-small"} -->
-<p class="has-x-small-font-size">© HRI DeOne Co., Ltd.</p>
-<!-- /wp:paragraph -->
-</footer>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"hri-footer__bottom","layout":{"type":"default"}} -->
+<div class="wp-block-group hri-footer__bottom">
+<!-- wp:hri/copyright /-->
+</div>
+<!-- /wp:group -->
+</div>
 <!-- /wp:group -->

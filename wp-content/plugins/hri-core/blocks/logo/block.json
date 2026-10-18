@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/logo",
+	"title": "HRI Logo",
+	"category": "widgets",
+	"icon": "format-image",
+	"description": "HRI DeOne logo (SVG), linked to the home page in the visitor’s language.",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true,
+		"color": {
+			"text": true,
+			"background": false,
+			"link": true
+		}
+	},
+	"render": "file:./render.php",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"enum": [
+				"color",
+				"white",
+				"black",
+				"mark",
+				"mark-white"
+			],
+			"default": "color"
+		},
+		"width": {
+			"type": "number",
+			"default": 200
+		},
+		"link": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"style": "hri-company"
+}
