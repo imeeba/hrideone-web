@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-18 (Polylang)
+> อัปเดตล่าสุด: 2026-10-18 (Footer)
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -56,7 +56,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - palette ล็อกไว้ (ปิด custom color) ทีมการตลาดเลือกได้แค่สีใน token
 - ฟอนต์ self-hosted: Kanit (TH/Latin), Montserrat (display), M PLUS 1 (JA, โหลดเฉพาะ locale ja หรือหน้า style guide)
 
-**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `blocks`
+**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `blocks`
 
 **Content model**
 - CPT `course` (archive `/courses/`)
@@ -81,6 +81,16 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - แก้ข้อความ: แก้ .po → `wp i18n make-mo <dir>` + `wp i18n make-php <dir>`; เพิ่มข้อความใหม่ → `wp i18n make-pot . languages/hri-core.pot --skip-js --skip-block-json` แล้ว `wp i18n update-po`
 - Polylang ฟรีไม่ให้ slug ซ้ำข้ามภาษา → ข้อมูลตัวอย่างใช้ `-en` / `-ja` ต่อท้าย ของจริงตั้ง slug เองได้ (slug ซ้ำได้ = Polylang Pro)
 
+**ข้อมูลบริษัท** (`inc/company.php`) — Settings → ข้อมูลบริษัท (option `hri_company`): เบอร์, อีเมล, LINE/Facebook/YouTube/LinkedIn URL, และแยกภาษา TH/EN/JA: ที่อยู่, tagline ใต้โลโก้, หัวข้อ/ข้อความแถบ CTA · อ่านด้วย `hri_company( 'phone' )` (ฟิลด์แยกภาษาคืนภาษาปัจจุบัน ว่าง = ใช้ไทย) · ค่าเริ่มต้นใน `hri_company_defaults()` (จากเว็บเดิม) · ช่องลิงก์ว่าง = ไม่แสดง · `hri_contact_url()` / `hri_is_contact_page()`
+
+**Blocks ของ footer** (server-rendered): `hri/logo` (`variant: color|white|black|mark|mark-white`, `width`, `link` → หน้าแรกของภาษา) · `hri/company-text` (`field`) · `hri/contact-info` (`items`) · `hri/social-links` (ไอคอน FB/YT/LinkedIn จาก core, LINE จาก Simple Icons CC0) · `hri/copyright` (ปีอัตโนมัติ) · `hri/cta-band` (ขอใบเสนอราคา → Contact + แอด LINE; ไม่แสดงในหน้า Contact ทุกภาษา) · CSS ใน `hri-core/assets/company.css`
+
+**Logo** — `hri-theme/assets/images/logo/`: `logo.svg` (สี, พื้นสว่าง), `logo-white.svg` (พื้นเข้ม/รูป), `logo-black.svg`, `mark.svg`, `mark-white.svg` · trace จากไฟล์ JPG ที่ Jimmi ส่งมา (สี #097A76 / #13B4BC / #0B6E73, ตัวอักษร #272322) · แสดงใน Style Guide หัวข้อ 00 · ถ้าได้ไฟล์ต้นฉบับ vector (AI/EPS/PDF) ควรแทนที่
+
+**Footer** (`parts/footer.html`): แถบ CTA → 4 คอลัมน์ (แบรนด์: โลโก้ขาว+tagline+โซเชียล · หลักสูตรและบริการ · บริษัท · ติดต่อเรา) → แถบล่าง © ปี · 4/2/1 คอลัมน์ที่ ≥1100 / ≥600 / มือถือ (CSS `base.css` ส่วน Footer) · ไม่แสดงเลขผู้เสียภาษี, ไม่มี Privacy Policy, ไม่มีแผนที่ (Jimmi ตัดสินแล้ว) · contrast วัดแล้ว: หัวข้อ accent 6.6:1, ข้อความ 12:1, ปุ่ม 5.9:1
+- ข้อความที่พิมพ์ใน header/footer (label เมนู, heading, paragraph, button) = Polylang strings กลุ่ม "HRI header & footer" แปลที่ Languages → Translations (`hri_part_strings()` ใน `polylang.php` แทนที่ตอน render) ทีมการตลาดแก้ข้อความไทยใน Site Editor ได้ แต่แก้แล้วต้องแปลใหม่ (ข้อความเปลี่ยน = string ใหม่)
+- navigation ที่ไม่มีชื่อได้ aria-label "เมนูหลัก" / "เมนูท้ายเว็บ" (`functions.php`)
+
 **Header** (`parts/header.html`): ชื่อเว็บ · navigation 7 รายการ (+ language-switcher list อยู่ใน nav) · language-switcher dropdown
 - CSS ใน `base.css` บังคับเมนูแฮมเบอร์เกอร์ที่ <1100px (core ทำแค่ <600px)
 
@@ -92,6 +102,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้า `/in-house/` และ `/public-training/` (block เดียวกัน ล็อกประเภท)
 - [x] Thumbnail 3:2 + รูปตัวอย่าง
 - [x] Header ใหม่ + ปุ่มภาษา (ตรวจที่ 1280/1100/1024/768/375 ผ่านการจำลองจอ)
+- [x] Footer ใหม่ + โลโก้ SVG 5 แบบ + หน้าข้อมูลบริษัท + แถบ CTA (ทดสอบ 1280/768/375, TH/EN/JA ใน Playground)
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
@@ -99,12 +110,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `playground/seed.php`: ชื่อ/slug คอร์สมาจากเว็บจริง แต่ **ระดับผู้เรียน ระยะเวลา รูปแบบ หัวข้อ** และสถานะ "เปิดรับสมัคร" ของ Public เป็นค่าสมมติ เนื้อหาคอร์สเป็นข้อความตัวอย่าง
 - ข้อความแนะนำหน้า In-house / Public Training มีวงเล็บ "(ข้อความตัวอย่าง)"
 - รูปคอร์สเป็นภาพนามธรรมที่สร้างเอง (`playground/sample/`)
+- ที่อยู่ภาษาไทยใน `hri_company_defaults()` เรียบเรียงเองจากที่อยู่ภาษาอังกฤษ (ชื่อบริษัทคงเป็นอังกฤษ) ต้องให้ Jimmi ตรวจ · ข้อความแถบ CTA มี "(ข้อความตัวอย่าง)" · LinkedIn ยังไม่มี URL (ช่องว่าง = ไม่แสดง)
 - คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
 - เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
-1. **Footer + หน้าแรก** — patterns: Hero, Stats, Logo wall, Knowledge/บทความ; footer ตอนนี้เป็นของเดิม (ข้อความใน footer/pattern ใหม่ต้องแปลได้: gettext ใน pattern PHP หรือ Polylang strings)
+1. **หน้าแรก** — patterns: Hero, Stats, Logo wall, Knowledge/บทความ (ข้อความต้องแปลได้: ใช้ block ที่อ่าน `hri_company()`/gettext หรือ Polylang strings) · พิจารณาเปลี่ยนชื่อเว็บใน header เป็น `hri/logo` (ต้องถาม Jimmi เพราะ header รับไปแล้ว) · ตั้ง Site Icon จาก `mark.svg`
+   - หน้า Contact / About ยังไม่มี: CTA และเมนูชี้ไป `/contact-us/` `/about/` ซึ่งยัง 404
 2. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
 3. **ฟอร์ม Lead → Google Sheet** — REST endpoint ใน hri-core + Google Apps Script, honeypot/Turnstile, checkbox PDPA, ห้ามใช้ nonce ในหน้าที่ถูก cache
 4. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi เรื่องค่าใช้จ่ายก่อน
@@ -126,6 +139,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Polylang: หลังลิงก์คำแปลของหน้าแรกต้อง `PLL()->model->clean_languages_cache()` ไม่งั้นภาษาจำ page_on_front เดิม; `redirect_lang` ต้องเปิดไม่งั้นหน้าแรก EN เป็น `/en/style-guide-en/`
 - Polylang สร้างภาษาใน runPHP ได้เฉพาะเมื่อ `PLL_ADMIN` true (ไม่มีภาษา = ไม่มี `PLL()` ฝั่ง front)
 - Theme pattern list ถูก cache ตาม version theme → เพิ่ม pattern ใหม่ให้ bump `Version` ใน style.css (local: `wp eval 'wp_get_theme()->delete_pattern_cache();'`)
+- ทั้ง theme ไม่มี `box-sizing: border-box` global → element ที่ตั้ง `min-height`/padding ให้ใส่ `box-sizing: border-box` เอง
+- Playground ที่เปิดด้วย `#<blueprint>` เปลี่ยนแค่ hash จะไม่โหลดใหม่ ให้เปลี่ยน query (`?v=2#...`)
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
 
 ## 9. วิธีทำงานที่ประหยัด usage

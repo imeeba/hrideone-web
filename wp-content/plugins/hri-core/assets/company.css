@@ -52,6 +52,7 @@
 }
 
 .hri-contact a {
+	box-sizing: border-box;
 	display: inline-block;
 	min-height: 44px; /* tap target */
 	padding-block: 0.5rem;
@@ -151,6 +152,7 @@
 
 .hri-cta__button {
 	align-items: center;
+	box-sizing: border-box;
 	border: 2px solid var(--wp--preset--color--primary-strong);
 	border-radius: var(--wp--custom--radius--pill);
 	display: inline-flex;

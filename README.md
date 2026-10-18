@@ -34,7 +34,7 @@ wp-content/
     assets/fonts/        Kanit, Montserrat, M PLUS 1 (self-hosted, OFL)
     assets/css/          base.css, fonts-ja.css, style-guide.css
     parts/ templates/ patterns/
-  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter), ปุ่มภาษา
+  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter), ภาษา (Polylang), ข้อมูลบริษัท + blocks ของ footer
 playground/
   blueprint.json         ตั้งค่า Playground preview
   seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, หน้า In-house / Public Training)
