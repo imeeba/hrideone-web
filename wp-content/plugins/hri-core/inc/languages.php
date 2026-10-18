@@ -42,10 +42,10 @@ function hri_language_list(): array {
 		}
 	}
 
-	$current = strtolower( substr( determine_locale(), 0, 2 ) );
-	$out     = array();
+	// Fallback: the site's own language is Thai, whatever the admin locale is.
+	$out = array();
 	foreach ( $labels as $code => $label ) {
-		$is_current = $code === ( isset( $labels[ $current ] ) ? $current : 'th' );
+		$is_current = 'th' === $code;
 		$out[]      = array(
 			'code'    => $code,
 			'label'   => $label[0],
