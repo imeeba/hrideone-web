@@ -172,3 +172,15 @@ video {
 		display: flex;
 	}
 }
+
+/* Menu overlay: left aligned, larger tap targets. */
+.hri-header .is-menu-open .wp-block-navigation__container,
+.hri-header .is-menu-open .wp-block-navigation__responsive-container-content {
+	align-items: flex-start;
+	gap: var(--wp--preset--spacing--40);
+}
+
+.hri-header .is-menu-open .wp-block-navigation-item__content {
+	font-size: var(--wp--preset--font-size--large);
+	padding-block: 0.25rem;
+}
