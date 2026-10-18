@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-18
+> อัปเดตล่าสุด: 2026-10-18 (Polylang)
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -33,9 +33,11 @@
 - Preview (Playground, ดึงจาก `main` ทุกครั้ง): <https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json>
   - เติม `&v=<เลขใหม่>` ถ้าเห็นเวอร์ชันเก่า (cache)
   - เปิดมาที่ `/in-house/` · หน้าแรก = Style Guide (`/style-guide/`) · รวมคอร์ส `/courses/` · `/public-training/`
+  - ภาษาอื่น: `/en/` `/ja/` · `/en/in-house-en/` · `/ja/public-training-ja/` · `/en/courses/negotiation-mastery-en/`
+  - ทดสอบ branch อื่น: เอา blueprint มาแทน `main` เป็นชื่อ branch แล้วเปิดแบบ `https://playground.wordpress.net/#<blueprint JSON ที่ encode แล้ว>`
 - Local test site: `scripts/local-setup.sh [dir] [port]` → `http://127.0.0.1:8899/wp/` (admin/admin)
   - WordPress 7.1.3 จาก GitHub + SQLite + WP-CLI, symlink theme/plugin จาก repo
-  - ใน cloud workspace เข้า wordpress.org ไม่ได้ → ติดตั้งปลั๊กอินจาก wordpress.org ใน local ไม่ได้ (ต้องทดสอบใน Playground)
+  - ใน cloud workspace เข้า wordpress.org/packagist ไม่ได้ → Polylang ใน local ใช้ source จาก GitHub (`git clone --branch <tag> https://github.com/polylang/polylang` + `composer dump-autoload --no-dev`) ไม่มี flags/JS build ฝั่ง admin แต่ PHP ทำงานครบ แล้ว `wp hri languages` + `wp eval-file playground/seed-languages.php`
 - Playground: ใช้ built-in browser ได้ เมนู iframe ซ้อนสองชั้น (`document.querySelector('iframe').contentWindow.document.querySelector('iframe')`) ปุ่ม Back/Forward ใน Playground ทดสอบไม่ได้
 
 ## 4. สถาปัตยกรรม
@@ -64,7 +66,20 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 **Blocks** (server-rendered, `block.json` + `render.php`, `autoRegister`, ไม่มี build step)
 - `hri/course-filter` — ค้นหา + checkbox filter; state อยู่ใน URL (`program[] pillar[] topic[] level[] format[] duration[] q pg`), AND ข้ามกลุ่ม OR ในกลุ่ม; ทำงานได้โดยไม่มี JS, `view.js` แค่ fetch แล้วสลับ `[data-hri-results]`; attribute `program` ล็อกประเภท (ซ่อนกลุ่มประเภท, นับเฉพาะประเภทนั้น); ระยะเวลาแสดงเฉพาะช่วงที่มีคอร์ส; 12 ต่อหน้า
 - `hri/course-facts` — ตารางข้อมูลในหน้าคอร์สเดี่ยว
-- `hri/language-switcher` — `variant: dropdown|list`; ใช้ `pll_the_languages()` ถ้ามี Polylang ไม่งั้น fallback แสดง TH เป็นปัจจุบัน และ EN/JA จาง กดไม่ได้
+- `hri/language-switcher` — `variant: dropdown|list`; ใช้ `pll_the_languages()` (ลิงก์ไปหน้าแปลของหน้านั้น ถ้าไม่มีคำแปลไปหน้าแรกของภาษานั้น; หน้าที่มี filter จะพก query string ไปด้วย) ถ้าไม่มี Polylang fallback แสดง TH เป็นปัจจุบัน และ EN/JA จาง กดไม่ได้
+
+**ภาษา (Polylang ฟรี)** — `inc/languages.php` + `inc/polylang.php`
+- ภาษา: TH (default, `th`) · EN (`en_US`) · JA (`ja`) — นิยามใน `hri_languages()`
+- URL: TH ไม่มี prefix · `/en/…` · `/ja/…` · หน้าแรก `/` `/en/` `/ja/` · ไม่ redirect ตามภาษาเบราว์เซอร์ (cache-friendly)
+- ตั้งค่าด้วย `hri_polylang_setup()` (idempotent): `wp hri languages` / ปุ่มในแจ้งเตือน wp-admin (โฮสต์ไม่มี WP-CLI) / blueprint (runPHP ต้อง `define('PLL_ADMIN', true)` ก่อน wp-load เพราะถ้ายังไม่มีภาษา Polylang ไม่ start ฝั่ง front)
+- แปลได้: page, post, `course` (บังคับด้วย filter `pll_get_post_types` ไม่ต้องติ๊กใน settings)
+- **Taxonomy คอร์สไม่แปลด้วย Polylang** — ใช้ term ชุดเดียว slug เดียวทุกภาษา (filter URL, lock In-house/Public, CSS ใช้ได้เหมือนกัน) ชื่อ EN/JA เก็บใน term meta `hri_name_en` / `hri_name_ja` (ช่องในหน้าแก้ term) แสดงตามภาษาที่ front end เท่านั้น; Polylang copy/sync term ให้คอร์สแปล (`pll_copy_taxonomies`)
+- ⇒ ตัวนับในตัวกรองนับจากรายการคอร์สของภาษาปัจจุบันเสมอ (`hri_program_course_ids()`) ห้ามใช้ `$term->count` (รวมทุกภาษา)
+- Sync ระหว่างคำแปล: ระยะเวลา, รุ่น, สถานะ, วันเริ่ม/สิ้นสุด, รูป, menu_order · copy ครั้งแรกแล้วแปลเอง: กลุ่มเป้าหมาย, สถานที่, ราคา
+- เมนู header: ลิงก์ภายใน (`/in-house/`) แปลงเป็นหน้าแปลของภาษาปัจจุบันตอน render (`hri_localize_url()`), label เป็น Polylang string กลุ่ม "HRI header menu" (Languages → Translations)
+- ข้อความใน code: gettext ภาษาต้นทางเป็นไทย → `hri-core/languages/hri-core-{en_US,ja}.po/.mo/.l10n.php`, `hri-theme/languages/{en_US,ja}.*` (ของ theme ชื่อไฟล์เป็น locale อย่างเดียว) ข้อความไทยใน template ย้ายไปเป็น pattern PHP (`archive-course-header`, `single-course-back`, `single-course-cta`, `not-found`, `no-results`)
+- แก้ข้อความ: แก้ .po → `wp i18n make-mo <dir>` + `wp i18n make-php <dir>`; เพิ่มข้อความใหม่ → `wp i18n make-pot . languages/hri-core.pot --skip-js --skip-block-json` แล้ว `wp i18n update-po`
+- Polylang ฟรีไม่ให้ slug ซ้ำข้ามภาษา → ข้อมูลตัวอย่างใช้ `-en` / `-ja` ต่อท้าย ของจริงตั้ง slug เองได้ (slug ซ้ำได้ = Polylang Pro)
 
 **Header** (`parts/header.html`): ชื่อเว็บ · navigation 7 รายการ (+ language-switcher list อยู่ใน nav) · language-switcher dropdown
 - CSS ใน `base.css` บังคับเมนูแฮมเบอร์เกอร์ที่ <1100px (core ทำแค่ <600px)
@@ -77,25 +92,27 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้า `/in-house/` และ `/public-training/` (block เดียวกัน ล็อกประเภท)
 - [x] Thumbnail 3:2 + รูปตัวอย่าง
 - [x] Header ใหม่ + ปุ่มภาษา (ตรวจที่ 1280/1100/1024/768/375 ผ่านการจำลองจอ)
+- [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
 
 - `playground/seed.php`: ชื่อ/slug คอร์สมาจากเว็บจริง แต่ **ระดับผู้เรียน ระยะเวลา รูปแบบ หัวข้อ** และสถานะ "เปิดรับสมัคร" ของ Public เป็นค่าสมมติ เนื้อหาคอร์สเป็นข้อความตัวอย่าง
 - ข้อความแนะนำหน้า In-house / Public Training มีวงเล็บ "(ข้อความตัวอย่าง)"
 - รูปคอร์สเป็นภาพนามธรรมที่สร้างเอง (`playground/sample/`)
+- คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
 - เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
-1. **Polylang ใน Playground** — ติดตั้ง Polylang (ฟรี) ผ่าน blueprint, สร้างภาษา TH/EN/JA, ตั้ง TH เป็น default, ทำให้ language-switcher สลับได้จริง, คอร์ส/taxonomy แปลได้; ทดสอบใน Playground (local ติดตั้งไม่ได้)
-2. **Footer + หน้าแรก** — patterns: Hero, Stats, Logo wall, Knowledge/บทความ; footer ตอนนี้เป็นของเดิม
-3. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
-4. **ฟอร์ม Lead → Google Sheet** — REST endpoint ใน hri-core + Google Apps Script, honeypot/Turnstile, checkbox PDPA, ห้ามใช้ nonce ในหน้าที่ถูก cache
-5. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi เรื่องค่าใช้จ่ายก่อน
-6. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance, FAQPage, Article, BreadcrumbList), hreflang, robots/llms.txt
-7. **ย้ายเนื้อหา + 301 redirects** จากเว็บเดิม (`/public-training/*`, `/courses/*`)
-8. **คำถามที่ต้องถาม Ruk-com**: เวอร์ชัน PHP, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (สำคัญกับ filter), memory limit, outbound HTTPS ไป Google
-9. Cloud staging (เช่น `new.hrideone.com`) ทีหลัง
+1. **Footer + หน้าแรก** — patterns: Hero, Stats, Logo wall, Knowledge/บทความ; footer ตอนนี้เป็นของเดิม (ข้อความใน footer/pattern ใหม่ต้องแปลได้: gettext ใน pattern PHP หรือ Polylang strings)
+2. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
+3. **ฟอร์ม Lead → Google Sheet** — REST endpoint ใน hri-core + Google Apps Script, honeypot/Turnstile, checkbox PDPA, ห้ามใช้ nonce ในหน้าที่ถูก cache
+4. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi เรื่องค่าใช้จ่ายก่อน
+5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance, FAQPage, Article, BreadcrumbList), hreflang (Polylang ใส่ให้แล้ว ตรวจกับ SEO plugin), robots/llms.txt
+6. **ย้ายเนื้อหา + 301 redirects** จากเว็บเดิม (`/public-training/*`, `/courses/*`)
+7. **คำถามที่ต้องถาม Ruk-com**: เวอร์ชัน PHP, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (สำคัญกับ filter), memory limit, outbound HTTPS ไป Google
+8. Cloud staging (เช่น `new.hrideone.com`) ทีหลัง
+9. (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug ภาษาต่างๆ เหมือนกัน (`/en/in-house/`) — เสียเงิน
 
 ## 8. ข้อควรระวัง / สิ่งที่เคยพลาด
 
@@ -106,6 +123,10 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `curl` กับ URL ที่มี `[]` ต้องใช้ `-g`
 - blueprint ใช้ `post_name__in` (ไม่ใช่ `name__in`)
 - ไม่มีข้อมูลลับใน repo (API key, Sheet URL)
+- Polylang: หลังลิงก์คำแปลของหน้าแรกต้อง `PLL()->model->clean_languages_cache()` ไม่งั้นภาษาจำ page_on_front เดิม; `redirect_lang` ต้องเปิดไม่งั้นหน้าแรก EN เป็น `/en/style-guide-en/`
+- Polylang สร้างภาษาใน runPHP ได้เฉพาะเมื่อ `PLL_ADMIN` true (ไม่มีภาษา = ไม่มี `PLL()` ฝั่ง front)
+- Theme pattern list ถูก cache ตาม version theme → เพิ่ม pattern ใหม่ให้ bump `Version` ใน style.css (local: `wp eval 'wp_get_theme()->delete_pattern_cache();'`)
+- Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
 
 ## 9. วิธีทำงานที่ประหยัด usage
 
