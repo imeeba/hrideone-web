@@ -7,8 +7,19 @@ Rebuild ของเว็บไซต์ [hrideone.com](https://hrideone.com) (
 
 [▶ เปิด Preview ล่าสุดจาก branch `main`](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json)
 
-เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร หน้าแรกคือ Style Guide และล็อกอินหลังบ้านให้อัตโนมัติ
+เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้า In-house (`/in-house/`) หน้าแรกคือ Style Guide
+มี `/courses/` และ `/public-training/` พร้อมข้อมูลตัวอย่าง และล็อกอินหลังบ้านให้อัตโนมัติ
 ข้อมูลที่แก้ใน Playground อยู่แค่ในเบราว์เซอร์นั้นและหายเมื่อปิดแท็บ
+
+> **สถานะงาน การตัดสินใจ และงานถัดไป: [`docs/HANDOFF.md`](docs/HANDOFF.md)** — อ่านก่อนเริ่มงาน
+
+## ทดสอบในเครื่อง
+
+```
+scripts/local-setup.sh [โฟลเดอร์] [พอร์ต]   # ค่าเริ่มต้น ../hri-local, 8899
+```
+
+ได้ WordPress + SQLite + WP-CLI ที่ symlink theme/plugin จาก repo นี้ เปิด `http://127.0.0.1:8899/wp/` (admin / admin)
 
 ## โครงสร้าง
 
@@ -23,9 +34,12 @@ wp-content/
     assets/fonts/        Kanit, Montserrat, M PLUS 1 (self-hosted, OFL)
     assets/css/          base.css, fonts-ja.css, style-guide.css
     parts/ templates/ patterns/
-  plugins/hri-core/      Features ที่ไม่ผูกกับธีม (cleanup, images, ... )
+  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter), ปุ่มภาษา
 playground/
   blueprint.json         ตั้งค่า Playground preview
+  seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, หน้า In-house / Public Training)
+scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
+docs/HANDOFF.md          สถานะงานและบริบท
 ```
 
 ## แก้ Design Token
@@ -36,10 +50,11 @@ playground/
 
 ## Plugin stack เป้าหมาย
 
-- Polylang (TH / EN / JA)
-- The SEO Framework
-- Secure Custom Fields / ACF
+- Polylang (TH / EN / JA) — ฟรี
+- The SEO Framework — ฟรี
 - Rcache (ของ Ruk-com, ใช้เฉพาะบนโฮสต์)
+
+Custom fields ของหลักสูตรเขียนเองใน `hri-core` (ไม่ใช้ ACF)
 
 ## หลักการ
 
