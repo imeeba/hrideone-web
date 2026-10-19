@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/blog-filter",
+	"title": "Blog Category Filter",
+	"category": "widgets",
+	"icon": "filter",
+	"description": "Row of category buttons for the blog (All + each category that has posts in this language). Shows nothing when there are no categories.",
+	"keywords": [ "blog", "category", "หมวดหมู่", "บทความ" ],
+	"textdomain": "hri-core",
+	"supports": { "align": [ "wide", "full" ], "html": false, "autoRegister": true },
+	"render": "file:./render.php"
+}

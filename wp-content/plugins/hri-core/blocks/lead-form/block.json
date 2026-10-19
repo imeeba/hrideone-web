@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/lead-form",
+	"title": "Lead Form",
+	"category": "widgets",
+	"icon": "email",
+	"description": "Enquiry form (name, company, phone, e-mail, interest, message, PDPA consent). Leads are saved in wp-admin, e-mailed and sent to Google Sheet. Inside a course page it pre-selects that course.",
+	"keywords": [ "form", "contact", "lead", "ติดต่อ", "สมัคร" ],
+	"textdomain": "hri-core",
+	"usesContext": [ "postId", "postType" ],
+	"attributes": {
+		"interest": {
+			"type": "string",
+			"default": "",
+			"label": "เลือกหัวข้อไว้ล่วงหน้า (inhouse, public, transformation, japanese, other)"
+		},
+		"submitLabel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [ "wide" ],
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-lead",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

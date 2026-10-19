@@ -82,6 +82,28 @@ $translate = static function ( int $source_id, string $lang, array $fields ): in
 	return (int) $post_id;
 };
 
+require_once is_readable( __DIR__ . '/seed-course-data.php' ) ? __DIR__ . '/seed-course-data.php' : __DIR__ . '/hri-seed-course-data.php';
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
+$course_data = hri_seed_public_courses();
+$inhouse     = hri_seed_inhouse_courses();
+
+// Trainers: name, position and bio per language.
+foreach ( hri_seed_trainers() as $key => $t ) {
+	$found = get_posts( array( 'post_type' => 'trainer', 'name' => 'trainer-' . $key, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
+	if ( ! $found ) {
+		continue;
+	}
+	foreach ( $targets as $lang ) {
+		$id = $translate( (int) $found[0], $lang, array( 'post_title' => $t[ $lang ][0], 'post_excerpt' => $t[ $lang ][1], 'post_content' => $t[ $lang ][2] ) );
+		if ( $id ) {
+			$thumb = get_post_thumbnail_id( $found[0] );
+			if ( $thumb ) {
+				set_post_thumbnail( $id, $thumb );
+			}
+		}
+	}
+}
+
 // Courses: same terms, fields and image as the Thai course.
 $courses = get_posts(
 	array(
@@ -122,6 +144,29 @@ foreach ( $courses as $course ) {
 		if ( $thumb ) {
 			set_post_thumbnail( $id, $thumb );
 		}
+		// Real texts of the Public Training courses in this language.
+		if ( isset( $course_data[ $course->post_name ][ $lang ] ) ) {
+			$d      = $course_data[ $course->post_name ][ $lang ];
+			$update = array( 'ID' => $id, 'post_excerpt' => $d['excerpt'] );
+			foreach ( $d['text'] as $k => $v ) {
+				update_post_meta( $id, $k, $v );
+			}
+			if ( ! empty( $d['page'] ) ) {
+				$update['post_content'] = wp_slash( hri_seed_course_body( $d['page'], 'public', 'en' === $lang ? 'en_US' : 'ja' ) );
+			}
+			wp_update_post( $update );
+		}
+		// In-house course: real content (Coaching Mastery) or the placeholder sections.
+		if ( has_term( 'inhouse', 'hri_program', $course->ID ) ) {
+			$d = $inhouse[ $course->post_name ][ $lang ] ?? null;
+			wp_update_post(
+				array(
+					'ID'           => $id,
+					'post_excerpt' => $d ? $d['excerpt'] : '',
+					'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse', 'en' === $lang ? 'en_US' : 'ja' ) ),
+				)
+			);
+		}
 		++$count;
 	}
 }
@@ -133,6 +178,8 @@ $pages = array(
 	'public-training'          => array( 'en' => 'Public Training', 'ja' => '公開講座' ),
 	'transformation-solutions' => array( 'en' => 'Transformation Solutions', 'ja' => 'トランスフォーメーション・ソリューション' ),
 	'japanese-concept'         => array( 'en' => 'Japanese Concept', 'ja' => 'ジャパニーズ・コンセプト' ),
+	'contact-us'               => array( 'en' => 'Contact Us', 'ja' => 'お問い合わせ' ),
+	'about'                    => array( 'en' => 'About Us', 'ja' => '会社概要' ),
 );
 foreach ( $pages as $slug => $titles ) {
 	$source = get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
@@ -241,6 +288,14 @@ foreach ( $targets as $lang ) {
 		$mo->add_entry( $mo->make_entry( $source, $translations[ $lang ] ) );
 	}
 	$mo->export_to_db( $language );
+}
+
+// Blog page of each language (the posts page). Posts exist in Thai only: EN / JA show a notice.
+$blog_th = get_page_by_path( 'blog' );
+if ( $blog_th ) {
+	foreach ( array( 'en' => 'Blog', 'ja' => 'ブログ' ) as $lang => $title ) {
+		$translate( $blog_th->ID, $lang, array( 'post_title' => $title, 'post_content' => '' ) );
+	}
 }
 
 // Languages cache the ID of their front page translation: rebuild it.

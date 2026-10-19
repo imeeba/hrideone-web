@@ -261,6 +261,9 @@ function hri_bm_cards( array $cards, int $columns = 3, string $class = '' ): str
 		if ( ! empty( $card['text'] ) ) {
 			$out .= hri_bm_p( esc_html( $card['text'] ), array( 'className' => 'hri-card__text' ) );
 		}
+		if ( ! empty( $card['help'] ) ) {
+			$out .= hri_bm_p( '<strong>' . esc_html__( 'คอร์สนี้ช่วยอย่างไร', 'hri-theme' ) . '</strong> ' . esc_html( $card['help'] ), array( 'className' => 'hri-card__help' ) );
+		}
 		if ( ! empty( $card['list'] ) ) {
 			$out .= hri_bm_list( array_map( 'esc_html', $card['list'] ), 'hri-checklist' );
 		}
@@ -395,4 +398,67 @@ function hri_bm_service( string $anchor, string $background, string $tagline, st
 		/* translators: %s: service name, e.g. Business Strategy */
 		. hri_bm_buttons( array( array( sprintf( __( 'ปรึกษาเรื่อง %s', 'hri-theme' ), $name ), hri_bm_contact() ) ), 'center' )
 		. hri_bm_section_end();
+}
+
+/**
+ * Plain page banner (no photo): eyebrow, H1, lead and key-fact chips on the light brand surface.
+ *
+ * @param array $banner eyebrow, title, lead, chips (string[]).
+ */
+function hri_bm_banner( array $banner ): string {
+	$out  = hri_bm_group(
+		array(
+			'align'           => 'full',
+			'className'       => 'hri-section hri-banner',
+			'style'           => array( 'spacing' => array( 'padding' => array( 'top' => 'var:preset|spacing|70', 'bottom' => 'var:preset|spacing|60' ) ) ),
+			'backgroundColor' => 'surface-brand',
+			'layout'          => array( 'type' => 'constrained', 'contentSize' => '1200px' ),
+		)
+	);
+	$out .= hri_bm_group( array( 'className' => 'hri-banner__text' ) );
+	$out .= hri_bm_eyebrow( $banner['eyebrow'], false );
+	$out .= hri_bm_heading( $banner['title'], array( 'level' => 1, 'className' => 'hri-pagehero__title' ) );
+	if ( ! empty( $banner['lead'] ) ) {
+		$out .= hri_bm_p( esc_html( $banner['lead'] ), array( 'className' => 'hri-pagehero__lead', 'fontSize' => 'large' ) );
+	}
+	if ( ! empty( $banner['chips'] ) ) {
+		$out .= hri_bm_list( array_map( 'esc_html', $banner['chips'] ), 'hri-chips' );
+	}
+	$out .= hri_bm_group_end();
+	return $out . hri_bm_group_end();
+}
+
+/**
+ * Lead form block (hri-core). $interest: inhouse, public, transformation, japanese, other or ''.
+ */
+function hri_bm_leadform( string $interest = '' ): string {
+	return '<!-- wp:hri/lead-form' . hri_bm_attrs( $interest ? array( 'interest' => $interest ) : array() ) . " /-->\n";
+}
+
+/**
+ * Contact details block (hri-core).
+ *
+ * @param string[] $items phone, email, line, address, legal.
+ */
+function hri_bm_contactinfo( array $items = array( 'phone', 'email', 'line', 'address' ) ): string {
+	return '<!-- wp:hri/contact-info' . hri_bm_attrs( array( 'items' => $items ) ) . " /-->\n";
+}
+
+/**
+ * Enquiry section: text and contact details on one side, the lead form on the other.
+ */
+function hri_bm_enquiry( string $anchor, string $eyebrow, string $title, string $lead, string $interest = '', string $background = 'base-alt' ): string {
+	$out  = hri_bm_section( 'hri-enquiry', $background, $anchor );
+	$out .= hri_bm_group( array( 'className' => 'hri-enquiry__grid' ) );
+	$out .= hri_bm_group( array( 'className' => 'hri-enquiry__text' ) );
+	$out .= hri_bm_eyebrow( $eyebrow, false );
+	$out .= hri_bm_title( $title, false, '', 'hri-title-sentence' );
+	$out .= hri_bm_p( esc_html( $lead ), array( 'className' => 'hri-lead', 'fontSize' => 'large' ) );
+	$out .= hri_bm_contactinfo( array( 'phone', 'line', 'email' ) );
+	$out .= hri_bm_group_end();
+	$out .= hri_bm_group( array( 'className' => 'is-style-card hri-enquiry__form' ) );
+	$out .= hri_bm_leadform( $interest );
+	$out .= hri_bm_group_end();
+	$out .= hri_bm_group_end();
+	return $out . hri_bm_section_end();
 }

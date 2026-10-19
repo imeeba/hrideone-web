@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'HRI_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 
 require_once __DIR__ . '/inc/markup.php';
+require_once __DIR__ . '/inc/course-page.php';
 
 /**
  * Theme supports and translations (languages/hri-theme-{locale}).
@@ -154,9 +155,11 @@ function hri_home_sections(): array {
 function hri_page_sections(): array {
 	return array(
 		'home'                     => array_map( static fn( $s ) => "home-{$s}", hri_home_sections() ),
-		'in-house'                 => array( 'inhouse-hero', 'inhouse-pillars', 'inhouse-why', 'inhouse-process', 'inhouse-courses', 'home-clients', 'inhouse-faq' ),
+		'in-house'                 => array( 'inhouse-hero', 'inhouse-pillars', 'inhouse-why', 'inhouse-process', 'inhouse-courses', 'home-clients', 'inhouse-faq', 'inhouse-enquiry' ),
 		'public-training'          => array( 'public-hero', 'public-courses', 'public-why', 'public-steps', 'public-inhouse', 'public-faq' ),
 		'transformation-solutions' => array( 'transformation-hero', 'transformation-scope', 'transformation-business', 'transformation-technology', 'transformation-people', 'transformation-culture', 'transformation-partners' ),
+		'about'                    => array( 'about-hero', 'about-mission', 'about-values', 'about-message', 'about-timeline', 'home-stats', 'home-clients', 'about-impact', 'contact-group', 'home-knowledge', 'about-cta' ),
+		'contact-us'               => array( 'contact-hero', 'contact-main', 'contact-map', 'contact-group' ),
 		'japanese-concept'         => array( 'japanese-hero', 'japanese-programs', 'japanese-dowakei', 'japanese-challenges', 'japanese-journey', 'japanese-outcomes', 'japanese-cta' ),
 	);
 }

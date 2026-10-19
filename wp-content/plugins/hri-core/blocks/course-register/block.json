@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/course-register",
+	"title": "Course Register Button",
+	"category": "widgets",
+	"icon": "button",
+	"description": "The course's main button (register link set in the course details; falls back to the contact page with this course pre-selected) and an optional enquiry button. Use it wherever the page says \"สมัครเลย\" so a new batch only needs the link changed once.",
+	"keywords": [ "register", "สมัคร", "course", "button" ],
+	"textdomain": "hri-core",
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"enum": [ "default", "light" ],
+			"default": "default",
+			"label": "สีปุ่ม (light = บนพื้นเข้ม)"
+		},
+		"secondary": {
+			"type": "boolean",
+			"default": true,
+			"label": "แสดงปุ่มรอง (สอบถาม)"
+		},
+		"center": {
+			"type": "boolean",
+			"default": false,
+			"label": "จัดกึ่งกลาง"
+		}
+	},
+	"supports": {
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-courses",
+	"render": "file:./render.php"
+}

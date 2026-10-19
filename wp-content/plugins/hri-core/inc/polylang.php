@@ -23,12 +23,12 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Course fields that are the same in every language: Polylang copies them when a translation is
  * created and keeps them in sync afterwards. The other fields (audience, location, price) are
- * copied once and then translated.
+ * copied once and then translated (audience, location, prices, schedule text).
  *
  * @return string[]
  */
 function hri_synced_course_meta(): array {
-	return array( 'hri_duration_days', 'hri_batch_no', 'hri_reg_status', 'hri_start_date', 'hri_end_date' );
+	return array( 'hri_duration_days', 'hri_batch_no', 'hri_reg_status', 'hri_start_date', 'hri_end_date', 'hri_early_deadline', 'hri_certificate', 'hri_register_url', 'hri_external_url', 'hri_trainers' );
 }
 
 /**

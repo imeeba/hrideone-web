@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-19 (หน้าบริการ: In-house, Public, Transformation, Japanese Concept)
+> อัปเดตล่าสุด: 2026-10-19 (รอบที่ 3: Lead form + Contact, โมเดลคอร์ส/หน้าคอร์ส Public + In-house, About, Blog) · theme 0.8.0 / plugin 0.7.0
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -121,6 +121,20 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `hri_localize_url()` เก็บ query string และ `#anchor` ไว้ตอนแปลงลิงก์ภายในเป็นภาษาอื่น (เดิมตัดทิ้ง)
 - Seed: `hri_seed_page_content( $slug, $locale )` (`seed-home.php`) render patterns ตามภาษา แทนที่รูป placeholder ด้วยรูปตัวอย่าง (คง alt) — ใช้ทั้งหน้าแรกและ 4 หน้าบริการ
 
+### 4.x เพิ่มในรอบที่ 3 (19 ต.ค. 2569)
+
+**Lead form + Contact** — block `hri/lead-form` + `inc/leads.php` (hri-core) · CPT `hri_lead` (เห็นใน admin "ผู้สนใจ (Lead)", สร้างเองไม่ได้) · ส่งด้วย `admin-post.php` (`hri_ajax=1` = JSON, ไม่มี JS = redirect กลับ `?hri_lead=ok|error#hri-lead`) ไม่ใช้ REST/nonce (หน้าถูก cache) · honeypot `hri_website`, rate limit 5 ครั้ง/10 นาที, ต้องติ๊ก PDPA, Turnstile ถ้าตั้งค่า · ตั้งค่าใน wp-config.php (ห้ามใส่ใน repo): `HRI_LEAD_WEBHOOK_URL`, `HRI_LEAD_WEBHOOK_TOKEN`, `HRI_LEAD_NOTIFY`, `HRI_TURNSTILE_SITE_KEY`, `HRI_TURNSTILE_SECRET` → วิธีทำ Apps Script/Sheet/Turnstile: [`docs/LEAD-SETUP.md`](LEAD-SETUP.md) · เติมคอร์สที่สนใจอัตโนมัติจาก attr `interest`, `?hri_course=<slug>` (อย่าใช้ `?course=` ชนกับ query var ของ CPT `course`), `?interest=`, หรือบริบทหน้าคอร์ส · patterns: `contact-*` (hero, main, map, group), `inhouse-enquiry` · ข้อมูลบริษัท (ชื่อนิติบุคคล, เลขภาษี) ใน Settings → ข้อมูลบริษัท · LINE ใช้ @hrideone ชั่วคราว (แก้ที่เดียวใน Settings)
+
+**โมเดลคอร์สขยาย** (`inc/content-model.php`, `course-card.php`, `trainers.php`) — meta ใหม่: `hri_price_early`, `hri_early_deadline` (เลยวันแล้ว Early Bird ซ่อนเอง), `hri_price_note`, `hri_schedule_text`, `hri_time_text`, `hri_certificate`, `hri_register_url` (ปุ่ม "สมัครเลย" ทุกจุดชี้ที่นี่ รุ่นใหม่ = แก้ช่องเดียว), `hri_external_url` (คอร์สที่มีเว็บแยก เช่น TEN X: การ์ดลิงก์ออก + redirect หน้าเดี่ยว), `hri_trainers` · CPT `trainer` (วิทยากร, แปลได้, ไม่มีหน้า public) · blocks: `hri/course-register`, `hri/course-summary`, `hri/course-trainers`, `hri/lead-form` · `hri_course_cta()` เลือกปุ่มตามประเภท/สถานะ · การ์ดคอร์สแสดง "รุ่นที่ N · วันที่"
+
+**หน้าคอร์ส** — `templates/single-course.html` (hero + `post-content` + pattern `single-course-enrol`: ตารางข้อมูล, ปุ่มสมัคร, ฟอร์ม) · เนื้อหาในตัวคอร์สสร้างจาก `hri_course_page_markup( $data, 'public'|'inhouse' )` (`inc/course-page.php`) = core blocks ล้วน แก้ใน editor ได้ · patterns `course-public` / `course-inhouse` เป็นต้นแบบ (ข้อความตัวอย่าง) สำหรับคอร์สใหม่ · section: intro, pain points (+ "คอร์สนี้ช่วยอย่างไร"), outcomes, audience, quote, program, why-HRI (In-house), trainers, gallery, reviews, CTA, FAQ
+
+**About** (`/about/`) — `hri_page_sections()['about']` : about-hero, about-mission, about-values, about-message (เต็ม), about-timeline, home-stats, home-clients, about-impact, contact-group, home-knowledge, about-cta
+
+**Blog** — `templates/home.html` (หน้า posts), `archive.html` (หมวด), `single.html` (หมวด, วันที่, รูปปก, เนื้อหา, บทความที่เกี่ยวข้อง, CTA) · patterns `blog-hero`, `blog-loop`, `blog-cta` · blocks `hri/blog-filter` (ปุ่มหมวด, ไม่แสดงถ้าไม่มีหมวด), `hri/related-posts` (3 เรื่อง หมวดเดียวกันก่อน) · EN/JA: บทความมีเฉพาะภาษาไทย → listing แสดงข้อความ + ปุ่มไปบล็อกไทย · หน้า `blog` เป็น `page_for_posts` (แปลด้วย Polylang)
+
+**Seed ข้อมูลตัวอย่าง** — `playground/seed-course-data.php` (วิทยากร 4 คน, เนื้อหา Public 5 คอร์ส + TEN X, Coaching Mastery ของ In-house; TH/EN/JA) · `seed-home.php`: `hri_seed_course_body( $data|'sample', $program, $locale )` · คอร์ส In-house อื่นอีก 14 คอร์สได้โครงตัวอย่าง (`'sample'` = ข้อความ placeholder ที่แปลแล้ว) รอการตลาดใส่เนื้อหาจริง
+
 ## 5. เสร็จแล้ว
 
 - [x] Design tokens + Style Guide (Jimmi รับแล้ว)
@@ -133,37 +147,49 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 3 (19 ต.ค. 2569, branch `feature/content-pages`): Lead form + Contact · โมเดลคอร์ส + หน้าคอร์ส Public 5 คอร์ส + TEN X + วิทยากร · หน้าคอร์ส In-house (Coaching Mastery จริง + โครงตัวอย่าง 14 คอร์ส) · About · Blog (listing/หมวด/บทความ + ตัวอย่าง 15 เรื่อง) · ตรวจ 18 หน้า × TH/EN/JA × 1280/768/375: ไม่ล้นจอ, ไม่มี PHP notice, ไม่มี freeform block · ฟอร์ม: prefill/ส่งสำเร็จ(JS และไม่มี JS)/ข้อมูลผิด/honeypot ผ่าน
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
 
 - `playground/seed.php`: ชื่อ/slug คอร์สมาจากเว็บจริง แต่ **ระดับผู้เรียน ระยะเวลา รูปแบบ หัวข้อ** และสถานะ "เปิดรับสมัคร" ของ Public เป็นค่าสมมติ เนื้อหาคอร์สเป็นข้อความตัวอย่าง
 - หน้าบริการ: เนื้อหาเรียบเรียง/ย่อจากเว็บเดิม (ดึงข้อความเต็มไม่ได้ ใช้สรุปจากหน้าเว็บ) ต้องให้ Jimmi/การตลาดตรวจ · ส่วนที่ผมเขียนเพิ่มเอง (ไม่มีในเว็บเดิม): หัวข้อ/lead ของ hero บางหน้า, chips จุดเด่น, ขั้นตอน In-house 4 ข้อ (สรุปจาก FAQ เดิม), ขั้นตอนสมัคร Public 3 ข้อ, FAQ ของ Public ทั้งหมด (ส่งหลายคน/รุ่นเต็ม), ข้อ "เหมาะกับการส่งพนักงานบางส่วน…", แถบชวนจัด In-house, คำอธิบาย Japanese Working Philosophy และ Cross-cultural Communication (เว็บเดิมไม่มีหน้า), "3 วัน · ประเทศญี่ปุ่น" ของ Part 3 (เว็บเดิมแบ่งเป็น Day 1–3), กล่อง "สัญญาณที่องค์กรควรทบทวนกลยุทธ์"
 - หน้าบริการ: รูป hero/รูปประกอบเป็นรูปตัวอย่าง · รูปจริงจากเว็บเดิม: In-house `/wp-content/uploads/2026/09/782.webp`, Public `/wp-content/uploads/2026/09/1920x1080-01-1024x576.webp`, โลโก้พาร์ทเนอร์ `/wp-content/uploads/2026/09/logo-partner-01…08.png` (Transformation) · DO·WA·KEI เว็บเดิมมีวิดีโอใน section Business Outcomes (ยังไม่ได้ใส่)
-- ลิงก์ "สมัคร/ขอใบเสนอราคา" ทุกปุ่มไป `/contact-us/` ซึ่งยังไม่มี (รอทำหน้า Contact + ฟอร์ม Lead) · ยังไม่มีปุ่ม "สมัคร" แยกต่อคอร์ส Public
+- ปุ่มสมัคร Public ไปลิงก์ใน `hri_register_url` (Google Form เดิมของแต่ละรุ่น) ส่วนปุ่มขอใบเสนอราคา/สอบถามไป `/contact-us/` พร้อมเติมคอร์สให้
 - คำแปล EN/JA ของหน้าบริการเป็น machine translation (ใน `hri-theme/languages/*.po`) — JA ต้องให้คนตรวจ
 - รูปคอร์สเป็นภาพนามธรรมที่สร้างเอง (`playground/sample/`)
 - ที่อยู่ภาษาไทยใน `hri_company_defaults()` เรียบเรียงเองจากที่อยู่ภาษาอังกฤษ (ชื่อบริษัทคงเป็นอังกฤษ) ต้องให้ Jimmi ตรวจ · ข้อความแถบ CTA มี "(ข้อความตัวอย่าง)" · LinkedIn ยังไม่มี URL (ช่องว่าง = ไม่แสดง)
 - คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
-- เมนูยังเป็นของเว็บเดิม หน้า Blog, About, Contact ยังไม่มี (ปุ่มชี้ไป `/blog/` `/contact-us/` ซึ่งยัง 404)
+- เมนูชี้ `/blog/` `/about/` `/contact-us/` ที่มีแล้ว (ตัวอย่างใน seed)
 - หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ
 - หน้าแรก: บรรทัดเล็กเหนือ "Our Services" ใช้ "What We Do" (Jimmi สั่งให้หัวข้อใน section นี้เป็นอังกฤษล้วน ไม่แปล; คำนี้ผมตั้งเอง รอยืนยัน) · ข้อความ 01–03 ในหลอดไฟมาจากรูป reference ของ Jimmi
 - หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
 
+### ข้อมูลที่ต้องตัดสินใจ/ยืนยัน (จากรอบที่ 3) — ค่าชั่วคราวอยู่ใน seed ย้อนกลับได้
+- **ข้อมูลรุ่น/วันที่/ราคา/ลิงก์ Google Form ของ Public 5 คอร์ส** มาจากเว็บเดิม ณ 19 ต.ค. 2569 ต้องให้ทีมงานยืนยัน: New Manager "รุ่น 21 หรือ 22" (ใช้ 22 ตามเมนูเว็บเดิม) และ "7 สัปดาห์ หรือ 7 ครั้งใน 8 สัปดาห์" (ใช้วันที่ 5 ครั้ง/ตัวอย่าง ต้องตรวจ); Lean "รุ่น 2 หรือ 3" (ใช้ 3) และวันที่เก่าในเนื้อหาเว็บเดิม; Early Bird ของ Negotiation / Next Director / New Manager เลยกำหนดแล้ว (ซ่อนอัตโนมัติ), Oxygen ยังใช้ได้
+- **รีวิว**: ใส่เฉพาะ Negotiation (3 รายการ เรียบเรียงใหม่ ต้องยืนยันกับชื่อจริง) · Oxygen เว็บเดิมคัดลอกรีวิวของ Negotiation มา → **ไม่ใส่**
+- Next Director: Pain point ข้อ 3 เนื้อหาเว็บเดิมไม่ตรงหัวข้อ → เขียนใหม่ ต้องให้การตลาดตรวจ
+- LINE OA: `@hrideone` vs `@deoneacademy` (เว็บเดิมมีทั้งสอง) · เบอร์โทรหลายรูปแบบ · สะกดชื่อ ดร.ชัยพัชร์ (Chaipat Lertlucktaweekul)
+- หน้าย่อยเว็บเดิมรวมเป็นหน้าเดียวแล้ว → ต้อง 301 ตอนย้ายเว็บ · DO·WA·KEI ยังเป็น section (ถ้าจะเป็นคอร์สแยกต้องถาม)
+- Team Simulation / Japanese Working Philosophy / Cross-cultural Communication: ข้อความสั้นที่ผมเขียนเอง (มีป้ายตัวอย่าง)
+- About: พันธกิจ/วิสัยทัศน์/สาส์น/ไทม์ไลน์ เรียบเรียงจาก CONTENT-GAP ไม่ใช่ข้อความเต็มต้นฉบับ · ปีในไทม์ไลน์ยกเว้น 1993 ยังไม่ระบุ · Social Impact เป็น placeholder
+- Blog: บทความตัวอย่าง 12 เรื่องใหม่ตั้งชื่อจาก slug จริง (หมวดเดาเอา) — ของจริงนำเข้าจากเว็บเดิม
+- คำแปล EN/JA ทั้งหมดเป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
+
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
-0. **ส่วนที่ยังขาดเทียบกับเว็บเดิม + ลำดับงานที่เสนอ: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md)** (หน้าคอร์ส, Contact, About, Blog, หน้าย่อย, คำถามที่ต้องถาม Jimmi)
-0. **สถานะล่าสุด (19 ต.ค. 2569 บ่าย):** หน้าบริการ 4 หน้าเสร็จ merge เข้า `main` (theme 0.5.0 / plugin 0.4.1) รอ Jimmi ตรวจเนื้อหา ข้อ 6 · งานที่น่าทำต่อ: หน้า Contact + ฟอร์ม Lead (ทุก CTA ชี้ไปที่นั่น), ใส่รูปจริง
-0. (ก่อนหน้า) หน้าแรกเสร็จและ merge เข้า `main` แล้ว (theme/plugin 0.4.x; รอบล่าสุด: ลบการ์ดบริการ ย้ายปุ่ม CTA ไปใต้ข้อ 01–03 ของหลอดไฟ, โลโก้มือถือแถวละ 5 = 8 แถว) · Jimmi ยังไม่ได้ระบุว่างานถัดไปคืออะไร → ให้ถามว่าจะเริ่มข้อไหนก่อน (ข้อเสนอที่ยังไม่อนุมัติ: แก้ tap target header/footer ให้ ≥44px ตามหัวข้อ "ปัญหานอกขอบเขต" และสร้างหน้า Transformation Solutions / Japanese Concept ที่ปุ่ม CTA ชี้ไปแต่ยัง 404)
-1. **ใส่รูปจริงหน้าแรก** — โลโก้ลูกค้า 40 รายการ (เว็บเดิม `/wp-content/uploads/2026/03/Website-Customer-logo-01…40.webp`), รูปผู้บริหาร, รูป Gallery, รูป/วิดีโอ Hero (ทำในหน้าแรกแต่ละภาษา หรือให้ Jimmi แนบไฟล์มา)
-   - หน้า Contact / About / Blog / Transformation / Japanese Concept ยังไม่มี: CTA, เมนู และปุ่มหน้าแรกชี้ไปหน้าที่ยัง 404
-2. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
-3. **ฟอร์ม Lead → Google Sheet** — REST endpoint ใน hri-core + Google Apps Script, honeypot/Turnstile, checkbox PDPA, ห้ามใช้ nonce ในหน้าที่ถูก cache
-4. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi เรื่องค่าใช้จ่ายก่อน
-5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance, FAQPage, Article, BreadcrumbList), hreflang (Polylang ใส่ให้แล้ว ตรวจกับ SEO plugin), robots/llms.txt
-6. **ย้ายเนื้อหา + 301 redirects** จากเว็บเดิม (`/public-training/*`, `/courses/*`)
-7. **คำถามที่ต้องถาม Ruk-com**: เวอร์ชัน PHP, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (สำคัญกับ filter), memory limit, outbound HTTPS ไป Google
-8. Cloud staging (เช่น `new.hrideone.com`) ทีหลัง
-9. (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug ภาษาต่างๆ เหมือนกัน (`/en/in-house/`) — เสียเงิน
+ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
+
+0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้)
+1. **เนื้อหา In-house อีก 14 คอร์ส** — ตอนนี้เป็นโครงตัวอย่าง ดึงทีละหน้าจาก `https://hrideone.com/courses/<slug>/` ใส่ใน `playground/seed-course-data.php` (`hri_seed_inhouse_courses()`) หรือให้การตลาดกรอกใน editor โดยใช้ pattern "Course page — In-house"
+2. **รูป/วิดีโอจริง**: โลโก้ลูกค้า 40, รูปผู้บริหาร, Gallery ต่อคอร์ส (บรรยากาศรุ่นก่อน), รูปวิทยากร, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), วิดีโอแนวตั้งใน Outcomes ของคอร์ส In-house
+3. **นำเข้าบทความ ~150 เรื่อง** (WordPress Export/Import คง slug) + ตัดสินใจว่าจะแปลบทความ EN/JA บางเรื่องไหม + แปลชื่อหมวด EN/JA
+4. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
+5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, Article, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots/llms.txt
+6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, เว็บเดิมมี `/blog/page/N`)
+7. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi ค่าใช้จ่ายก่อน · และให้คนตรวจ JA
+8. **แก้ tap target ≥44px** (header/footer/course filter ดูหัวข้อ "ปัญหานอกขอบเขต") + ชื่อคอร์สตัดกลางคำในการ์ดแคบ
+9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม)
+10. Cloud staging (`new.hrideone.com`) · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
 
 ## 8. ข้อควรระวัง / สิ่งที่เคยพลาด
 
@@ -189,6 +215,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - อย่าตั้ง className ของ section ซ้ำกับ class ของ block ใน hri-core (เช่น `hri-courses` = layout ของ course filter ทำให้หน้าเพี้ยน) ใช้ `hri-courses-section`
 - Hook ทดสอบหลังแก้: `python3 measure.py` (overflow/tap/contrast/PHP/JS ที่ 1280/768/375 × `/`,`/en/`,`/ja/`) — สคริปต์อยู่ใน scratchpad ของแชทเก่า ไม่อยู่ใน repo ให้เขียนใหม่ด้วย Playwright (Chromium อยู่ที่ /opt/pw-browsers)
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
+- `wp eval-file` ต้องใช้ path แบบ absolute · seed ใหม่ต้อง `wp eval 'wp_get_theme()->delete_pattern_cache();'` (หรือ bump Version) ก่อน แล้ว `seed.php` → `seed-languages.php`
+- Pattern PHP ที่ใช้ helper `hri_bm_*` ต้องส่ง array ตามรูปแบบที่ helper คาด (`hri_bm_cards` รับ associative: title/text/help/kicker/num) ส่งแบบ indexed จะ fatal
+- Block ที่ render ด้วย PHP แล้วออก HTML เอง ต้องใส่ class `is-layout-flex wp-block-buttons-is-layout-flex` ให้ `wp-block-buttons` ไม่งั้นปุ่มซ้อนกัน (core ใส่ให้เฉพาะ block ที่ผ่าน parser)
+- Constrained layout ของ core ตั้ง `margin-inline:auto` ทับ CSS ของเรา → ถ้าอยากชิดซ้ายต้อง `!important` หรือ selector เจาะจงกว่า (`.hri-banner > .hri-banner__text`)
+- `wp_set_post_categories` ในรอบ seed ซ้ำอาจคง Uncategorized ไว้ → ใช้ `wp_set_object_terms( $id, [term_id], 'category' )`
+- `wp i18n make-pot` ของ plugin ต้องใส่ `--skip-block-json` (ไม่งั้นยิงไป svn.wordpress.org) และ `update-po` ต้องใช้ path absolute
+- Screenshot ใน local: php -S รับทีละ request รูปบางรูปโหลดไม่ทัน (เห็นเป็นกล่องว่าง) ไม่ใช่บั๊ก — ตรวจด้วย `naturalWidth`
+- `?course=` ชนกับ query var ของ CPT `course` ทำให้หน้าเพี้ยน → ใช้ `?hri_course=`
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
 
@@ -204,13 +238,70 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - จบงานแล้วอัปเดตไฟล์นี้ (ข้อ 5–8) แล้ว push
 - Commit message ปิดท้ายด้วยบรรทัด attribution ตามที่ระบบกำหนด
 
-## 10. Prompt เริ่มแชทใหม่ (copy ไปวางได้เลย)
+## 10. Prompt เริ่มแชทใหม่ (copy ไปวางได้เลย — 1 งาน = 1 แชท)
+
+**A. เนื้อหา In-house 14 คอร์ส**
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
-อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 7–8 งานถัดไป/ข้อควรระวัง) แล้วทำงานนี้: <ใส่งาน>
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ดึงเนื้อหาจริงของคอร์ส In-house ที่เหลือ 14 คอร์สจาก https://hrideone.com/courses/<slug>/ (slug ดูใน playground/seed.php) เรียบเรียงใหม่ ไม่คัดลอกยาว ใส่ใน hri_seed_inhouse_courses() ทั้ง TH/EN/JA (ใช้โครง Coaching Mastery) แล้ว seed ตรวจหน้า ข้อมูลไหนไม่แน่ใจให้ flag ใน HANDOFF ข้อ 6
 
 กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
-ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub, Playground ด้วย branch + blueprint · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
-ปิดงาน: อัปเดต HANDOFF ข้อ 4–8 (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, ลิงก์ preview, อะไรให้ผมตรวจ/ตัดสินใจ)
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**B. นำเข้าบทความจากเว็บเดิม**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: วางแผนและทำเครื่องมือ/ขั้นตอนนำเข้าบทความ ~150 เรื่องจาก hrideone.com (WordPress Export/Import คง slug รวม slug พิมพ์ผิดเดิม) ตรวจรูปปก หมวด Business/Sales/Coaching เปลี่ยน 'ไม่มีหมวดหมู่' เป็นชื่อจริง ทำ pagination /blog/page/N ให้ตรงเดิม และเสนอวิธีแปล EN/JA บางเรื่อง + ชื่อหมวด EN/JA (ถามผมก่อนถ้าต้องเสียเงิน)
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**C. ค้นหาทั้งเว็บ**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ทำค้นหาทั้งเว็บภาษาไทย (หน้าผลลัพธ์ search.html, ค้นทั้งคอร์ส/บทความ/หน้า, synonym map แก้ได้จากหลังบ้าน, ไม่ใช้ปลั๊กอินเสียเงิน) ใช้ Polylang กรองภาษา
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**D. SEO / AI-SEO**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ตั้งค่า SEO ด้วย The SEO Framework (ฟรี) + ทำ schema เองใน hri-core: EducationalOrganization, Course/CourseInstance (รวมราคา Early Bird จาก meta), FAQPage (จาก block details), Article, BreadcrumbList, Person (วิทยากร) · ตรวจ hreflang จาก Polylang · robots.txt และ llms.txt · ทดสอบด้วย Rich Results/validator ถ้าเข้าถึงได้
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**E. ย้ายเนื้อหา + 301**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ทำรายการ 301 redirects จากโครงสร้าง URL เว็บเดิม (/public-training/*, /courses/*, หน้าย่อยบริการเช่น /transformation-solutions/business-strategy/ → anchor ของหน้าหลัก, /blog/page/N) เป็นไฟล์/โมดูลใน hri-core ที่แก้ได้จากหลังบ้านแบบไม่ต้องเขียนโค้ด พร้อมเช็คลิสต์ย้ายเว็บ
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**F. แก้ tap target + การ์ดคอร์ส**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: แก้ปัญหาใน HANDOFF หัวข้อ 'ปัญหานอกขอบเขต': tap target ≥44px ของ header/footer/course filter และชื่อคอร์สตัดกลางคำในการ์ดแคบ ตรวจ 1280/768/375 × TH/EN/JA
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
