@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-19 (รอบที่ 3: Lead form + Contact, โมเดลคอร์ส/หน้าคอร์ส Public + In-house, About, Blog) · theme 0.8.0 / plugin 0.7.0
+> อัปเดตล่าสุด: 2026-10-19 (รอบที่ 4: เนื้อหาจริงคอร์ส In-house ครบ 15 คอร์ส TH/EN/JA) · theme 0.8.1 / plugin 0.7.1
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -133,7 +133,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 **Blog** — `templates/home.html` (หน้า posts), `archive.html` (หมวด), `single.html` (หมวด, วันที่, รูปปก, เนื้อหา, บทความที่เกี่ยวข้อง, CTA) · patterns `blog-hero`, `blog-loop`, `blog-cta` · blocks `hri/blog-filter` (ปุ่มหมวด, ไม่แสดงถ้าไม่มีหมวด), `hri/related-posts` (3 เรื่อง หมวดเดียวกันก่อน) · EN/JA: บทความมีเฉพาะภาษาไทย → listing แสดงข้อความ + ปุ่มไปบล็อกไทย · หน้า `blog` เป็น `page_for_posts` (แปลด้วย Polylang)
 
-**Seed ข้อมูลตัวอย่าง** — `playground/seed-course-data.php` (วิทยากร 4 คน, เนื้อหา Public 5 คอร์ส + TEN X, Coaching Mastery ของ In-house; TH/EN/JA) · `seed-home.php`: `hri_seed_course_body( $data|'sample', $program, $locale )` · คอร์ส In-house อื่นอีก 14 คอร์สได้โครงตัวอย่าง (`'sample'` = ข้อความ placeholder ที่แปลแล้ว) รอการตลาดใส่เนื้อหาจริง
+**Seed ข้อมูลตัวอย่าง** — `playground/seed-course-data.php` (วิทยากร 4 คน, เนื้อหา Public 5 คอร์ส + TEN X, In-house ครบ 15 คอร์ส; TH/EN/JA) · `seed-home.php`: `hri_seed_course_body( $data|'sample', $program, $locale )` · `hri_seed_inhouse_courses()` มีเนื้อหาจริง (เรียบเรียงใหม่) ของทั้ง 15 คอร์ส In-house: `excerpt` + `page` = `intro` (หัวข้อ, ย่อหน้า), `problems` 4 ข้อ (ชื่อ, ปัญหา, "คอร์สนี้ช่วยอย่างไร"), `outcomes` 5 ข้อ (ชื่อ, คำอธิบาย) · ชื่อหัวข้อ problems/outcomes เป็นอังกฤษเหมือนกันทุกภาษา · `'sample'` (ข้อความ placeholder ที่แปลแล้ว) ใช้เป็น fallback ถ้าคอร์สไหนไม่มีข้อมูลใน `hri_seed_inhouse_courses()` และเป็นต้นแบบใน pattern "Course page — In-house" สำหรับคอร์สใหม่
 
 ## 5. เสร็จแล้ว
 
@@ -147,6 +147,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 4 (19 ต.ค. 2569): เนื้อหาจริงคอร์ส In-house อีก 14 คอร์ส (รวม Coaching Mastery = ครบ 15) ดึงจาก `hrideone.com/courses/<slug>/` ได้ครบทุกหน้า เรียบเรียงใหม่ ใส่ใน `hri_seed_inhouse_courses()` TH/EN/JA ตามโครง Coaching Mastery · seed (local + Polylang 3.9 จาก GitHub): 21 คอร์ส + 42 คำแปล · ตรวจ 15 คอร์ส × TH/EN/JA × 1280/768/375 (135 โหลด): ไม่ล้นจอ, contrast AA ผ่านในเนื้อหาใหม่, ไม่มี tap target <44px ในเนื้อหาใหม่, ไม่มี JS error, ไม่มี PHP notice, ไม่มีข้อความ placeholder เหลือ, ไม่มีตัวอักษรไทยหลุดในหน้า EN/JA · ไม่แตะ theme/plugin code (bump Version เป็น 0.8.1 / 0.7.1 เท่านั้น)
 - [x] รอบที่ 3 (19 ต.ค. 2569, branch `feature/content-pages`): Lead form + Contact · โมเดลคอร์ส + หน้าคอร์ส Public 5 คอร์ส + TEN X + วิทยากร · หน้าคอร์ส In-house (Coaching Mastery จริง + โครงตัวอย่าง 14 คอร์ส) · About · Blog (listing/หมวด/บทความ + ตัวอย่าง 15 เรื่อง) · ตรวจ 18 หน้า × TH/EN/JA × 1280/768/375: ไม่ล้นจอ, ไม่มี PHP notice, ไม่มี freeform block · ฟอร์ม: prefill/ส่งสำเร็จ(JS และไม่มี JS)/ข้อมูลผิด/honeypot ผ่าน
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
@@ -175,12 +176,22 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Blog: บทความตัวอย่าง 12 เรื่องใหม่ตั้งชื่อจาก slug จริง (หมวดเดาเอา) — ของจริงนำเข้าจากเว็บเดิม
 - คำแปล EN/JA ทั้งหมดเป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
 
+### ข้อมูลที่ต้องตรวจ (จากรอบที่ 4: เนื้อหา In-house 15 คอร์ส) — ค่าชั่วคราวอยู่ใน `hri_seed_inhouse_courses()` แก้/ย้อนกลับได้
+- **ที่มาของข้อความ**: ดึงจากหน้าเว็บเดิมทุกคอร์ส (14 หน้าดึงได้ครบ ไม่มีหน้าไหนดึงไม่ได้) แต่ผ่านเครื่องมืออ่านหน้าเว็บที่สรุปข้อความให้ ไม่ใช่ HTML ต้นฉบับ → ถ้อยคำอาจคลาดเคลื่อนจากต้นฉบับ และผมเรียบเรียงใหม่อีกชั้น (ไม่คัดลอกยาว) ต้องให้การตลาดเทียบกับหน้าเว็บเดิมก่อนใช้จริง
+- **ข้อความ "คอร์สนี้ช่วยอย่างไร"** (บรรทัดใต้ปัญหาแต่ละข้อ, 4 ข้อ × 15 คอร์ส) **ผมเขียนเองทั้งหมด** เว็บเดิมไม่มี (เหมือนที่ทำไว้ใน Coaching Mastery) · **หัวข้อนำของ intro** (ประโยคตัวหนาเหนือย่อหน้าแรก) ผมตั้งเองเช่นกัน ไม่ใช่ H1 เดิม
+- **ชื่อภาษาไทยของคอร์ส (H1 เดิม) ยังไม่ได้ใช้** ชื่อคอร์สในระบบยังเป็นอังกฤษตาม seed.php ถ้าจะใช้ชื่อไทยเต็มต้องตัดสินใจเรื่องแสดงผล (การ์ด/หน้าเดี่ยว) ก่อน — H1 เดิมของแต่ละคอร์ส: high-performance-leadership: ยกระดับภาวะผู้นำเพื่อสร้างผลลัพธ์ที่เหนือกว่า · proactive-leadership: ยกระดับ DNA ผู้นำเชิงรุก · time-and-priority: บริหารเวลาและจัดลำดับความสำคัญ · growth-mindset: ปรับวิธีคิด พลิกวิกฤติเป็นโอกาส · communication: ทักษะการสื่อสารเพื่อกลยุทธ์และผลลัพธ์ · conflict-management: จัดการความขัดแย้ง เปลี่ยนความเห็นต่างให้เป็นพลัง · change-transformation: ผู้นำการเปลี่ยนแปลงและทรานฟอร์มอย่างมืออาชีพ · b2b-selling: พลิกเกมขายองค์กร ด้วยกลยุทธ์ปิดดีลระดับสูง · negotiation-masterclass: เจรจาอย่างเหนือชั้น ปิดดีลแบบ Win-Win · strategic-selling: ยกระดับงานขายสู่ระดับกลยุทธ์ · consultative-selling: อัปเกรดทักษะการขายเชิงที่ปรึกษา · essential-sales: ติดอาวุธขั้นตอนการขาย วางแผนกลยุทธ์อย่างมือโปร · service-excellence: ยกระดับงานบริการ สู่กลยุทธ์มัดใจลูกค้า · complaint-handling: รับมือข้อติชม กู้คืนความเชื่อมั่นอย่างมืออาชีพ (ทุกชื่อขึ้นต้น "หลักสูตร…") · ในข้อความผมสะกด "ทรานส์ฟอร์ม" แต่เว็บเดิมสะกด "ทรานฟอร์ม"
+- **High-Performance Leadership**: เว็บเดิมอ้างตัวเลขผลลัพธ์ (เพิ่มได้ถึง 200%, ต้นทุนแรงงานสูญเปล่า 30–40%+, พนักงานเก่ง 20% สร้างกำไร 80%) **ไม่ได้ใส่** เพราะยืนยันที่มาไม่ได้ ถ้าการตลาดมีหลักฐานให้เพิ่มเอง
+- **Negotiation Masterclass ปัญหาข้อ 4 "No Preparation Plan"**: เว็บเดิมข้อความใต้หัวข้อนี้ไม่ตรงกัน (พูดเรื่องความเชื่อที่จำกัด ดูเหมือนคัดลอกมาจากคอร์สอื่น) → ผมเขียนใหม่ให้ตรงหัวข้อ (เข้าห้องเจรจาโดยไม่มีแผนเตรียม) ต้องให้การตลาดตรวจ/ยืนยัน
+- รายละเอียดเฉพาะที่คงไว้ตามเว็บเดิม ควรยืนยัน: Essential Sales "กระบวนการ 7 ขั้นตอน" + FAB · Negotiation "8 ขั้นตอน" และ "คู่เจรจา 4 รูปแบบ" · Conflict Management "TKI Model" · Change & Transformation "VUCA"
+- วิดีโอแนวตั้งในส่วน Outcomes ที่เว็บเดิมมี (เช่น High-Performance, Strategic Selling) **ยังไม่ได้ใส่** (รอไฟล์จริง ดูข้อ 7 รายการที่ 2)
+- EN/JA ของ 14 คอร์สนี้เป็น machine translation ชุดเดียวกับที่ระบุไว้ข้างบน — JA ต้องให้คนญี่ปุ่นตรวจ
+
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้)
-1. **เนื้อหา In-house อีก 14 คอร์ส** — ตอนนี้เป็นโครงตัวอย่าง ดึงทีละหน้าจาก `https://hrideone.com/courses/<slug>/` ใส่ใน `playground/seed-course-data.php` (`hri_seed_inhouse_courses()`) หรือให้การตลาดกรอกใน editor โดยใช้ pattern "Course page — In-house"
+1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
 2. **รูป/วิดีโอจริง**: โลโก้ลูกค้า 40, รูปผู้บริหาร, Gallery ต่อคอร์ส (บรรยากาศรุ่นก่อน), รูปวิทยากร, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), วิดีโอแนวตั้งใน Outcomes ของคอร์ส In-house
 3. **นำเข้าบทความ ~150 เรื่อง** (WordPress Export/Import คง slug) + ตัดสินใจว่าจะแปลบทความ EN/JA บางเรื่องไหม + แปลชื่อหมวด EN/JA
 4. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
@@ -223,12 +234,16 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `wp i18n make-pot` ของ plugin ต้องใส่ `--skip-block-json` (ไม่งั้นยิงไป svn.wordpress.org) และ `update-po` ต้องใช้ path absolute
 - Screenshot ใน local: php -S รับทีละ request รูปบางรูปโหลดไม่ทัน (เห็นเป็นกล่องว่าง) ไม่ใช่บั๊ก — ตรวจด้วย `naturalWidth`
 - `?course=` ชนกับ query var ของ CPT `course` ทำให้หน้าเพี้ยน → ใช้ `?hri_course=`
+- วัด overflow ด้วย JS ต้องข้ามช่อง honeypot `.hri-lead__hp` (ซ่อนนอกจอโดยตั้งใจ) ไม่งั้นทุกหน้าที่มีฟอร์มโดน flag ผิด
+- `scripts/local-setup.sh` เมื่อรันผ่าน pipe (`| tail`) ในเครื่องมือที่มี timeout อาจค้างหลังติดตั้ง+seed เสร็จแล้ว (เซิร์ฟเวอร์ `php -S` ที่สคริปต์เปิดไว้ยังเป็น child) → รันแบบ background หรือเปลี่ยนเป็น `> log 2>&1` แล้วเช็กว่าเสร็จด้วย `curl -sI http://127.0.0.1:8899/wp/` และ `wp post list --post_type=course --format=count` (ได้ 21 หลัง seed)
+- Polylang จาก GitHub ใช้ tag `3.9` (ตัว `3.9.0-rc1`/beta ก็มี → เลือก tag ที่ไม่มี rc/beta) · seed ภาษา: `wp hri languages` → `wp eval-file <absolute>/playground/seed.php` → `seed-languages.php` ตามลำดับ (ตอนรัน `seed.php` ครั้งแรกใน local-setup ยังไม่มี Polylang เป็นปกติ)
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
 
 - Header desktop: ลิงก์เมนูสูง 25px, ปุ่มภาษา (summary) สูง 34px, รายการใน dropdown ภาษา 43px · ปุ่มแฮมเบอร์เกอร์ (<1100px) 24×24 — ต่ำกว่าเกณฑ์ 44px (ผ่าน WCAG 2.5.8 AA 24px แต่ไม่ผ่าน 44px ที่ตั้งไว้)
 - Footer: ลิงก์เมนูสูง 43px ที่จอ 375 (ปัดเศษ) และคำสั้น (Blog/About) กว้าง <44px
 - Course filter (`hri/course-filter`): label checkbox สูง 34–35px, ปุ่ม "ตัวกรอง" บนมือถือ 43px — ต่ำกว่า 44px
+- หน้าคอร์สเดี่ยว (พบรอบที่ 4, ทุกคอร์ส/ทุกภาษา ที่ 375 และ 768): ลิงก์ "← หลักสูตรทั้งหมด" (pattern `single-course-back`) สูง 25–27px · ช่องติ๊ก PDPA ในฟอร์ม `hri/lead-form` 20×20px · ลิงก์ในย่อหน้า PDPA ของฟอร์มสูง 24px — ต่ำกว่า 44px (เนื้อหาใหม่ของรอบที่ 4 ผ่าน ไม่มีส่วนที่ต่ำกว่าเกณฑ์) · ใส่รวมกับ prompt F
 - การ์ดคอร์ส: ชื่อคอร์สยาวตัดกลางคำ ("Transformatio-n Mastery") ในการ์ดแคบ 3 คอลัมน์ เพราะ `overflow-wrap` ของ `[lang|="th"]` — ควรใช้ `hyphens`/ลดขนาดหัวข้อในการ์ด
 
 ## 9. วิธีทำงานที่ประหยัด usage
@@ -240,7 +255,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ## 10. Prompt เริ่มแชทใหม่ (copy ไปวางได้เลย — 1 งาน = 1 แชท)
 
-**A. เนื้อหา In-house 14 คอร์ส**
+**A. เนื้อหา In-house 14 คอร์ส — ทำแล้ว (รอบที่ 4) ไม่ต้องใช้ prompt นี้อีก เก็บไว้เป็นตัวอย่างรูปแบบ**
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
