@@ -121,7 +121,7 @@ function hri_course_page_markup( array $d, string $program = 'public' ): string 
 		foreach ( $d['outcomes'] as $i => $o ) {
 			$cards[] = array( 'num' => sprintf( '%02d', $i + 1 ), 'title' => $o[0], 'text' => $o[1] ?? '' );
 		}
-		$columns = count( $cards ) >= 4 ? 4 : count( $cards );
+		$columns = 4 === count( $cards ) ? 4 : min( 3, count( $cards ) );
 		$out    .= hri_bm_section( 'hri-outcomes-section', '', 'outcomes', '', '70', '70' )
 			. hri_bm_head( 'Business Outcomes', __( 'สิ่งที่จะเปลี่ยนไปหลังเรียนหลักสูตรนี้', 'hri-theme' ), $d['outcomes_lead'] ?? '', '', true )
 			. hri_bm_cards( $cards, $columns, 'hri-outcomes' )

@@ -60,12 +60,15 @@ if ( ! function_exists( 'hri_seed_swap_photos' ) ) {
  * already in that language, the fixed headings come from the theme translations.
  */
 if ( ! function_exists( 'hri_seed_course_body' ) ) {
-	function hri_seed_course_body( array $data, string $program, string $locale = '' ): string {
+	function hri_seed_course_body( $data, string $program, string $locale = '' ): string {
 		unload_textdomain( 'hri-theme' );
 		if ( $locale ) {
 			load_textdomain( 'hri-theme', get_template_directory() . "/languages/{$locale}.mo", $locale );
 		} else {
 			$GLOBALS['l10n']['hri-theme'] = new NOOP_Translations(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		}
+		if ( 'sample' === $data ) {
+			$data = hri_course_page_sample( $program ); // Placeholder texts, translated by the theme.
 		}
 		$content = hri_course_page_markup( $data, $program );
 		unload_textdomain( 'hri-theme', true );

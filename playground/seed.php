@@ -238,6 +238,21 @@ foreach ( hri_seed_public_courses() as $slug => $c ) {
 	wp_update_post( $update );
 }
 
+// In-house courses: Coaching Mastery has real content, the others get the placeholder sections.
+$inhouse_data = hri_seed_inhouse_courses();
+$inhouse_ids  = get_posts( array( 'post_type' => 'course', 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids', 'lang' => '', 'tax_query' => array( array( 'taxonomy' => 'hri_program', 'field' => 'slug', 'terms' => 'inhouse' ) ) ) );
+foreach ( $inhouse_ids as $cid ) {
+	$slug = get_post_field( 'post_name', $cid );
+	$d    = $inhouse_data[ $slug ]['th'] ?? null;
+	wp_update_post(
+		array(
+			'ID'           => $cid,
+			'post_excerpt' => $d ? $d['excerpt'] : get_post_field( 'post_excerpt', $cid ),
+			'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse' ) ),
+		)
+	);
+}
+
 // Service pages built from the theme's section patterns (hri_page_sections()). In-house and
 // Public Training include the Course Filter block locked to their program.
 require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
@@ -247,6 +262,7 @@ $pages = array(
 	'transformation-solutions' => 'Transformation Solutions',
 	'japanese-concept'         => 'Japanese Concept',
 	'contact-us'               => 'ติดต่อเรา',
+	'about'                    => 'เกี่ยวกับเรา',
 );
 foreach ( $pages as $slug => $title ) {
 	$existing = get_page_by_path( $slug );

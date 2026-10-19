@@ -156,24 +156,24 @@ msgstr ""
 msgid "Logos"
 msgstr ""
 
-#: functions.php:208
+#: functions.php:209
 msgid "หยุดวิดีโอ"
 msgstr "動画を一時停止"
 
-#: functions.php:209
+#: functions.php:210
 msgid "เล่นวิดีโอ"
 msgstr "動画を再生"
 
-#: functions.php:212
+#: functions.php:213
 msgid "รูปก่อนหน้า"
 msgstr "前の写真"
 
-#: functions.php:213
+#: functions.php:214
 msgid "รูปถัดไป"
 msgstr "次の写真"
 
 #. translators: 1: slide number, 2: number of slides
-#: functions.php:215
+#: functions.php:216
 #, php-format
 msgid "รูปที่ %1$s จาก %2$s"
 msgstr "写真 %1$s / %2$s"
@@ -304,6 +304,7 @@ msgstr "HRI DeOneの設立は、単に二つの会社が一つになることで
 msgid "HRI DeOne มุ่งหวังที่จะเป็นสะพานเชื่อมระหว่างญี่ปุ่น ไทย และภูมิภาคเอเชียตะวันออกเฉียงใต้ พร้อมเป็นพันธมิตรที่ร่วมสร้างการเติบโตในอนาคตไปพร้อมกับทุกท่าน"
 msgstr "HRI DeOneは、日本・タイ・東南アジアをつなぐ架け橋となり、皆さまとともに未来の成長を築くパートナーを目指します。"
 
+#: patterns/about-message.php:22
 #: patterns/home-message.php:28
 msgid "สาส์นจากผู้บริหาร"
 msgstr "経営陣からのメッセージ"
@@ -1578,6 +1579,8 @@ msgctxt "Pattern description"
 msgid "Page title with a short promise (reply within 24 hours)."
 msgstr ""
 
+#: patterns/about-cta.php:17
+#: patterns/about-hero.php:19
 #: patterns/contact-hero.php:15
 msgid "ติดต่อเรา"
 msgstr "お問い合わせ"
@@ -1715,3 +1718,203 @@ msgstr "コース情報"
 #: patterns/single-course-enrol.php:22
 msgid "ฝากข้อมูลให้ทีมงานติดต่อกลับ"
 msgstr "ご連絡先をお知らせください"
+
+#: patterns/about-cta.php
+msgctxt "Pattern title"
+msgid "About — Closing call to action"
+msgstr ""
+
+#: patterns/about-cta.php
+msgctxt "Pattern description"
+msgid "Dark band with buttons to the three services and the contact page."
+msgstr ""
+
+#: patterns/about-cta.php:13
+msgid "มาสร้างผู้นำและองค์กรที่เติบโตไปด้วยกัน"
+msgstr "共に成長するリーダーと組織をつくりましょう"
+
+#: patterns/about-cta.php:14
+msgid "เล่าโจทย์ให้เราฟัง แล้วเราจะช่วยเลือกบริการที่เหมาะกับองค์กรของคุณ"
+msgstr "課題をお聞かせください。貴社に合ったサービスの選定をお手伝いします。"
+
+#: patterns/about-cta.php:16
+msgid "ดูบริการ"
+msgstr "サービスを見る"
+
+#: patterns/about-hero.php
+msgctxt "Pattern title"
+msgid "About — Hero"
+msgstr ""
+
+#: patterns/about-hero.php
+msgctxt "Pattern description"
+msgid "Page introduction: headline, mission line, buttons to services and contact, and a photo."
+msgstr ""
+
+#: patterns/about-hero.php:16
+msgid "HRI DeOne คือพันธมิตรด้านการพัฒนาภาวะผู้นำและการเปลี่ยนแปลงองค์กร เกิดจากการรวมกันของ HR Institute และ DeOne Academy เพื่อเชื่อมญี่ปุ่น ไทย และอาเซียนเข้าด้วยกัน"
+msgstr "HRI DeOneは、リーダーシップ開発と組織変革のパートナーです。HR InstituteとDeOne Academyが一つになり、日本・タイ・ASEANをつなぎます。"
+
+#: patterns/about-hero.php:18
+msgid "ดูบริการของเรา"
+msgstr "サービス紹介"
+
+#: patterns/about-hero.php:21
+msgid "ก่อตั้งงานกับองค์กรญี่ปุ่นตั้งแต่ปี 1993"
+msgstr "1993年から日系企業とともに"
+
+#: patterns/about-hero.php:21
+msgid "มากกว่า 30 ปีร่วมกับบริษัทญี่ปุ่น"
+msgstr "30年以上の日系企業との実績"
+
+#: patterns/about-hero.php:22
+msgid "ทีมงาน HRI DeOne"
+msgstr "HRI DeOneのチーム"
+
+#: patterns/about-impact.php
+msgctxt "Pattern title"
+msgid "About — Social impact"
+msgstr ""
+
+#: patterns/about-impact.php
+msgctxt "Pattern description"
+msgid "Community activities of HRI Group (photo slider, placeholders)."
+msgstr ""
+
+#: patterns/about-impact.php:13
+msgid "มุ่งพัฒนาสังคมให้น่าอยู่"
+msgstr "より良い社会づくりへ"
+
+#: patterns/about-impact.php:13
+msgid "HRI Group ร่วมทำกิจกรรมเพื่อชุมชนและสังคมอย่างต่อเนื่อง เพราะองค์กรที่ยั่งยืนเติบโตไปพร้อมกับสังคมรอบตัว"
+msgstr "HRIグループは、持続可能な組織は周囲の社会とともに成長するという考えから、地域・社会貢献活動を続けています。"
+
+#: patterns/about-impact.php:14
+msgid "กิจกรรมเพื่อสังคมของ HRI Group"
+msgstr "HRIグループの社会貢献活動"
+
+#: patterns/about-message.php
+msgctxt "Pattern title"
+msgid "About — Message from the executives (full)"
+msgstr ""
+
+#: patterns/about-message.php
+msgctxt "Pattern description"
+msgid "Full message from the CEO and the Chairman with their photos (placeholders). The home page keeps a short version."
+msgstr ""
+
+#: patterns/about-message.php:13
+msgid "HR Institute ได้รับความไว้วางใจจากองค์กรญี่ปุ่นมาตั้งแต่ปี 1993 และ DeOne Academy เชี่ยวชาญด้านการพัฒนาภาวะผู้นำและการเปลี่ยนแปลงองค์กร การรวมกันเป็น HRI DeOne คือการยกระดับสู่มาตรฐานสากลที่ผสานจุดแข็งของทั้งสองฝ่าย"
+msgstr "HR Instituteは1993年から日系企業の信頼を得て、DeOne Academyはリーダーシップ開発と組織変革を専門としてきました。HRI DeOneへの統合は、両者の強みを合わせた国際水準への進化です。"
+
+#: patterns/about-message.php:14
+msgid "ในยุคที่ AI เปลี่ยนวิธีทำงาน องค์กรไม่ได้ต้องการแค่ความรู้ แต่ต้องการพันธมิตรที่ช่วยสร้างผลลัพธ์จริง เราจึงออกแบบทุกหลักสูตรและโครงการให้เชื่อมกับเป้าหมายทางธุรกิจ"
+msgstr "AIが働き方を変える今、組織に必要なのは知識だけでなく、成果を生み出すパートナーです。私たちはすべてのコースとプロジェクトを事業目標に結びつけて設計します。"
+
+#: patterns/about-message.php:15
+msgid "HRI DeOne มุ่งหวังที่จะเป็นสะพานเชื่อมระหว่างญี่ปุ่น ไทย และภูมิภาคเอเชียตะวันออกเฉียงใต้ ด้วยประสบการณ์กว่า 30 ปีกับบริษัทญี่ปุ่น พร้อมร่วมสร้างการเติบโตในอนาคตไปพร้อมกับทุกท่าน"
+msgstr "HRI DeOneは、日系企業との30年以上の経験を活かし、日本・タイ・東南アジアの架け橋となり、皆様とともに未来の成長を築いていきます。"
+
+#: patterns/about-mission.php
+msgctxt "Pattern title"
+msgid "About — Mission and vision"
+msgstr ""
+
+#: patterns/about-mission.php
+msgctxt "Pattern description"
+msgid "Mission and vision as two large cards. Edit the texts directly."
+msgstr ""
+
+#: patterns/about-mission.php:13
+msgid "เราเชื่อในอะไร"
+msgstr "私たちの信条"
+
+#: patterns/about-mission.php:16
+msgid "พันธกิจ"
+msgstr "ミッション"
+
+#: patterns/about-mission.php:16
+msgid "พัฒนาผู้นำและองค์กรด้วยความรู้ เครื่องมือ และการลงมือทำจริง เพื่อสร้างผลลัพธ์ที่ยั่งยืน"
+msgstr "知識・ツール・実践を通じてリーダーと組織を育て、持続的な成果を生み出す。"
+
+#: patterns/about-mission.php:17
+msgid "วิสัยทัศน์"
+msgstr "ビジョン"
+
+#: patterns/about-mission.php:17
+msgid "เป็นพันธมิตรที่องค์กรไว้วางใจ ในการสร้างองค์กรที่เติบโตได้ข้ามรุ่นข้ามยุค"
+msgstr "世代を超えて成長する組織づくりで、信頼されるパートナーであること。"
+
+#: patterns/about-timeline.php
+msgctxt "Pattern title"
+msgid "About — Our journey"
+msgstr ""
+
+#: patterns/about-timeline.php
+msgctxt "Pattern description"
+msgid "Four milestones as numbered cards. Years and events are placeholders to confirm with the company."
+msgstr ""
+
+#: patterns/about-timeline.php:13
+msgid "เส้นทางของเรา"
+msgstr "私たちの歩み"
+
+#: patterns/about-timeline.php:16
+msgid "เริ่มงานพัฒนาบุคลากรร่วมกับองค์กรญี่ปุ่นในประเทศไทย"
+msgstr "タイの日系企業とともに人材育成を開始。"
+
+#: patterns/about-timeline.php:17
+msgid "สร้างหลักสูตรภาวะผู้นำและการเปลี่ยนแปลงองค์กรสำหรับองค์กรไทยและข้ามชาติ"
+msgstr "タイ企業・多国籍企業向けのリーダーシップ・組織変革プログラムを開発。"
+
+#: patterns/about-timeline.php:18
+msgid "รวมสองจุดแข็งเป็นหนึ่งเดียว"
+msgstr "二つの強みを一つに"
+
+#: patterns/about-timeline.php:18
+msgid "ควบรวมเป็น HRI DeOne เพื่อให้บริการครบทั้งการเรียนรู้ ที่ปรึกษา และการเปลี่ยนแปลง"
+msgstr "HRI DeOneとして統合し、学習・コンサルティング・変革をワンストップで提供。"
+
+#: patterns/about-timeline.php:19
+msgid "เปิดตัวอย่างเป็นทางการด้วยงานเปิดตัวร่วมกับลูกค้าและพันธมิตร"
+msgstr "顧客・パートナーとともに、正式ローンチイベントを開催。"
+
+#: patterns/about-values.php
+msgctxt "Pattern title"
+msgid "About — Core values"
+msgstr ""
+
+#: patterns/about-values.php
+msgctxt "Pattern description"
+msgid "Where Differences Become Strength: the two organizations behind HRI DeOne and what they bring."
+msgstr ""
+
+#: patterns/about-values.php:13
+msgid "คุณค่าหลัก"
+msgstr "コアバリュー"
+
+#: patterns/about-values.php:13
+msgid "HRI DeOne ไม่ใช่เพียงการรวมกันของสองบริษัท แต่เป็นการรวมสองจุดแข็ง สองวัฒนธรรม และวิสัยทัศน์เดียวกัน"
+msgstr "HRI DeOneは単なる二社の統合ではなく、二つの強み、二つの文化、そして一つのビジョンの結合です。"
+
+#: patterns/about-values.php:16
+msgid "ได้รับความไว้วางใจจากองค์กรญี่ปุ่นตั้งแต่ปี 1993 ด้วยมาตรฐานและความละเอียดแบบญี่ปุ่น"
+msgstr "1993年以来、日本品質と細やかさで日系企業の信頼を獲得。"
+
+#: patterns/about-values.php:17
+msgid "เชี่ยวชาญด้าน Leadership และ Transformation พร้อมเครือข่ายวิทยากรและผู้บริหารพาร์ทเนอร์"
+msgstr "リーダーシップと変革の専門性に加え、講師・経営層パートナーのネットワークを持つ。"
+
+#: patterns/about-values.php:18
+msgid "ยกระดับสู่มาตรฐานสากล เป็นสะพานเชื่อมญี่ปุ่น ไทย และอาเซียน เพื่อสร้างผลลัพธ์จริงในยุค AI"
+msgstr "国際水準へ。日本・タイ・ASEANをつなぎ、AI時代に本物の成果を生み出す。"
+
+#: patterns/about.php
+msgctxt "Pattern title"
+msgid "About page (all sections)"
+msgstr ""
+
+#: patterns/about.php
+msgctxt "Pattern description"
+msgid "Every About page section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""

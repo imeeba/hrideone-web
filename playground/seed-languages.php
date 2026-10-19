@@ -85,6 +85,7 @@ $translate = static function ( int $source_id, string $lang, array $fields ): in
 require_once is_readable( __DIR__ . '/seed-course-data.php' ) ? __DIR__ . '/seed-course-data.php' : __DIR__ . '/hri-seed-course-data.php';
 require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
 $course_data = hri_seed_public_courses();
+$inhouse     = hri_seed_inhouse_courses();
 
 // Trainers: name, position and bio per language.
 foreach ( hri_seed_trainers() as $key => $t ) {
@@ -155,6 +156,17 @@ foreach ( $courses as $course ) {
 			}
 			wp_update_post( $update );
 		}
+		// In-house course: real content (Coaching Mastery) or the placeholder sections.
+		if ( has_term( 'inhouse', 'hri_program', $course->ID ) ) {
+			$d = $inhouse[ $course->post_name ][ $lang ] ?? null;
+			wp_update_post(
+				array(
+					'ID'           => $id,
+					'post_excerpt' => $d ? $d['excerpt'] : '',
+					'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse', 'en' === $lang ? 'en_US' : 'ja' ) ),
+				)
+			);
+		}
 		++$count;
 	}
 }
@@ -167,6 +179,7 @@ $pages = array(
 	'transformation-solutions' => array( 'en' => 'Transformation Solutions', 'ja' => 'トランスフォーメーション・ソリューション' ),
 	'japanese-concept'         => array( 'en' => 'Japanese Concept', 'ja' => 'ジャパニーズ・コンセプト' ),
 	'contact-us'               => array( 'en' => 'Contact Us', 'ja' => 'お問い合わせ' ),
+	'about'                    => array( 'en' => 'About Us', 'ja' => '会社概要' ),
 );
 foreach ( $pages as $slug => $titles ) {
 	$source = get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );

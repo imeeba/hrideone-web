@@ -678,3 +678,72 @@ function hri_seed_public_courses(): array {
 		),
 	);
 }
+
+/**
+ * In-house courses with real (re-written) content: slug => array( 'th' | 'en' | 'ja' => array( excerpt, page ) ).
+ * Every other In-house course gets the placeholder sections from hri_course_page_sample( 'inhouse' ).
+ * Source: hrideone.com/courses/coaching-mastery (checked 19 Oct 2026); texts need marketing review.
+ */
+function hri_seed_inhouse_courses(): array {
+	return array(
+		'coaching-mastery' => array(
+			'th' => array(
+				'excerpt' => 'หลักสูตรยกระดับทักษะการโค้ชสู่ความเป็นมืออาชีพ เปลี่ยนผู้จัดการจากคนสั่งงานเป็นผู้พัฒนาคน',
+				'page'    => array(
+					'intro'    => array( 'จากผู้สั่งงาน สู่โค้ชที่ปลดล็อกศักยภาพทีม', 'ผู้จัดการจำนวนมากถูกพัฒนาให้เก่งงาน แต่ไม่ได้ถูกสอนให้พัฒนาคน ผลคือทีมพึ่งพาหัวหน้า ศักยภาพถูกใช้ไม่เต็มที่ และการสื่อสารสะดุด หลักสูตรนี้พาผู้จัดการฝึกทักษะการโค้ชอย่างเป็นระบบ ด้วยกรอบ G.R.O.W. เพื่อให้ทีมคิดและแก้ปัญหาเองได้ และสร้างผลลัพธ์ทางธุรกิจที่ยั่งยืน' ),
+					'problems' => array(
+						array( 'The Directive Trap', 'ผู้จัดการสั่งและแก้ปัญหาแทนทีมจนกลายเป็นคอขวดของงาน', 'ฝึกถามเพื่อให้ทีมคิดเอง แทนการให้คำตอบ' ),
+						array( 'Underutilized Talent', 'คนเก่งในทีมไม่ได้ใช้ศักยภาพเต็มที่ เพราะไม่มีใครช่วยดึงออกมา', 'เรียนรู้การค้นหาและปลดล็อกศักยภาพรายบุคคล' ),
+						array( 'Ineffective Development', 'การพัฒนาคนทำเป็นครั้งคราว ไม่ผูกกับเป้าหมายงานจริง', 'ใช้ G.R.O.W. เชื่อมการพัฒนากับผลลัพธ์ของงาน' ),
+						array( 'Communication Gap', 'ฟีดแบ็กไม่ตรงจุด ทำให้ความเข้าใจคลาดเคลื่อนและความสัมพันธ์ในทีมตึงเครียด', 'ฝึกการฟังอย่างลึกและการให้ฟีดแบ็กเชิงสร้างสรรค์' ),
+					),
+					'outcomes' => array(
+						array( 'Strategic Productivity Enhancement', 'ทีมโฟกัสงานที่สำคัญและทำงานได้เองมากขึ้น ผู้จัดการมีเวลาคิดเชิงกลยุทธ์' ),
+						array( 'Agile Problem-Solving Culture', 'ใช้ G.R.O.W. สร้างวัฒนธรรมที่ทีมแก้ปัญหาเองได้อย่างคล่องตัว' ),
+						array( 'High-Performance Communication', 'สื่อสารและให้ฟีดแบ็กที่ทำให้เกิดการเปลี่ยนแปลงจริง' ),
+						array( 'Sustainable Talent Pipeline', 'พัฒนาผู้สืบทอดและคนเก่งอย่างต่อเนื่องภายในองค์กร' ),
+						array( 'Measurable Business Growth', 'เชื่อมการโค้ชกับตัวชี้วัดของธุรกิจ เพื่อเห็นผลที่วัดได้' ),
+					),
+				),
+			),
+			'en' => array(
+				'excerpt' => 'Take your coaching skills to a professional level and turn managers from task-givers into people developers.',
+				'page'    => array(
+					'intro'    => array( 'From giving orders to coaching your team’s potential', 'Many managers are developed to be good at the work, not at developing people. The result: teams depend on the boss, potential goes unused and communication stalls. This course trains managers in systematic coaching with the G.R.O.W. model, so teams think and solve problems themselves and deliver lasting business results.' ),
+					'problems' => array(
+						array( 'The Directive Trap', 'Managers instruct and solve problems for the team until they become the bottleneck.', 'Practise asking questions that make the team think, instead of giving answers.' ),
+						array( 'Underutilized Talent', 'Capable people do not reach their full potential because nobody helps draw it out.', 'Learn to find and unlock each person’s potential.' ),
+						array( 'Ineffective Development', 'People development happens now and then and is not tied to real work goals.', 'Use G.R.O.W. to link development to work outcomes.' ),
+						array( 'Communication Gap', 'Feedback misses the point, so understanding slips and team relationships strain.', 'Practise deep listening and constructive feedback.' ),
+					),
+					'outcomes' => array(
+						array( 'Strategic Productivity Enhancement', 'Teams focus on what matters and work more independently, leaving managers time for strategy.' ),
+						array( 'Agile Problem-Solving Culture', 'Use G.R.O.W. to build a culture where the team solves problems on its own.' ),
+						array( 'High-Performance Communication', 'Communicate and give feedback that creates real change.' ),
+						array( 'Sustainable Talent Pipeline', 'Keep developing successors and high performers inside the organization.' ),
+						array( 'Measurable Business Growth', 'Tie coaching to business metrics so results can be measured.' ),
+					),
+				),
+			),
+			'ja' => array(
+				'excerpt' => 'コーチングスキルをプロレベルへ。マネージャーを「指示する人」から「人を育てる人」へ。',
+				'page'    => array(
+					'intro'    => array( '指示する人から、チームの可能性を引き出すコーチへ', '多くのマネージャーは仕事ができるように育てられますが、人を育てる方法は教わっていません。その結果、チームは上司に依存し、可能性が活かされず、コミュニケーションも滞ります。このコースでは、G.R.O.W.モデルによる体系的なコーチングを実践し、チームが自ら考え解決し、持続的な成果を生む状態をつくります。' ),
+					'problems' => array(
+						array( 'The Directive Trap', 'マネージャーが指示と問題解決を抱え込み、ボトルネックになる。', '答えを与えるのではなく、チームが考える問いかけを練習する。' ),
+						array( 'Underutilized Talent', '力のある人材が、引き出す人がいないために能力を発揮できない。', '一人ひとりの可能性を見つけ、引き出す方法を学ぶ。' ),
+						array( 'Ineffective Development', '人材育成が単発で、実際の仕事の目標と結びついていない。', 'G.R.O.W.で育成を仕事の成果に結びつける。' ),
+						array( 'Communication Gap', 'フィードバックが的外れで、認識のずれやチームの緊張を生む。', '深い傾聴と建設的なフィードバックを練習する。' ),
+					),
+					'outcomes' => array(
+						array( 'Strategic Productivity Enhancement', 'チームが重要な仕事に集中し自走することで、マネージャーが戦略に時間を使える。' ),
+						array( 'Agile Problem-Solving Culture', 'G.R.O.W.で、チームが自ら課題を解決する俊敏な文化をつくる。' ),
+						array( 'High-Performance Communication', '本当の変化を生むコミュニケーションとフィードバック。' ),
+						array( 'Sustainable Talent Pipeline', '後継者とハイパフォーマーを組織内で継続的に育成する。' ),
+						array( 'Measurable Business Growth', 'コーチングを事業指標と結びつけ、成果を測定できるようにする。' ),
+					),
+				),
+			),
+		),
+	);
+}
