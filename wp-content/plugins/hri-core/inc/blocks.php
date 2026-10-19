@@ -16,7 +16,9 @@ add_action(
 
 		wp_register_style( 'hri-company', plugins_url( 'assets/company.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
 
-		foreach ( array( 'course-filter', 'course-facts', 'language-switcher', 'logo', 'company-text', 'contact-info', 'social-links', 'copyright', 'cta-band', 'course-highlight' ) as $block ) {
+		wp_register_style( 'hri-lead', plugins_url( 'assets/lead.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+
+		foreach ( array( 'course-filter', 'course-facts', 'language-switcher', 'logo', 'company-text', 'contact-info', 'social-links', 'copyright', 'cta-band', 'course-highlight', 'lead-form' ) as $block ) {
 			register_block_type( HRI_CORE_DIR . 'blocks/' . $block );
 		}
 	},

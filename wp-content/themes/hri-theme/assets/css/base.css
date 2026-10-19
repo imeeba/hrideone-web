@@ -1292,3 +1292,113 @@ video {
 .is-style-section-title.hri-title-sentence {
 	text-transform: none;
 }
+
+/* =====================================================================
+ * Contact, enquiry forms, banner (patterns/contact-*.php, inhouse-enquiry.php)
+ * ===================================================================== */
+
+/* Plain banner (no photo) */
+.wp-site-blocks > main:has(> .wp-block-post-content > .hri-banner:first-child) {
+	margin-block-start: 0;
+}
+
+.hri-banner > .hri-banner__text {
+	margin-inline: 0;
+	max-width: 48rem;
+}
+
+.hri-banner__text > * {
+	margin-block: 0;
+}
+
+/* Form next to text / contact details */
+.hri-enquiry__grid {
+	align-items: start;
+	display: grid;
+	gap: var(--wp--preset--spacing--60);
+}
+
+@media (min-width: 900px) {
+	.hri-enquiry__grid {
+		grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+	}
+
+	/* Enquiry section: text first (narrower), form second. */
+	.hri-enquiry > .hri-enquiry__grid {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+	}
+}
+
+.hri-enquiry__grid > * {
+	margin-block: 0;
+}
+
+.hri-enquiry__text > * {
+	margin-block: 0;
+}
+
+.hri-enquiry__text > .hri-lead {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.hri-enquiry__text > .hri-contact {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+.hri-enquiry__form,
+.hri-contactcard {
+	padding: var(--wp--preset--spacing--50);
+}
+
+@media (min-width: 640px) {
+	.hri-enquiry__form,
+	.hri-contactcard {
+		padding: var(--wp--preset--spacing--60);
+	}
+}
+
+.hri-contact-section__title {
+	font-size: var(--wp--preset--font-size--x-large);
+	margin-block: 0 var(--wp--preset--spacing--40);
+}
+
+.hri-contactcard__lead {
+	color: var(--wp--preset--color--contrast-muted);
+	margin-block: 0 var(--wp--preset--spacing--40);
+}
+
+.hri-contactcard .hri-contact {
+	gap: var(--wp--preset--spacing--40);
+}
+
+.hri-contactcard .hri-contact__item {
+	border-top: 1px solid var(--wp--preset--color--border);
+	padding-top: var(--wp--preset--spacing--30);
+}
+
+.hri-contactcard .hri-contact__label {
+	opacity: 1;
+}
+
+/* Map */
+.hri-map {
+	aspect-ratio: 16 / 9;
+	background: var(--wp--preset--color--base);
+	border-radius: var(--wp--custom--radius--lg);
+	box-shadow: var(--wp--preset--shadow--md);
+	margin-block-end: var(--wp--preset--spacing--50);
+	overflow: hidden;
+}
+
+@media (max-width: 599px) {
+	.hri-map {
+		aspect-ratio: 4 / 5;
+	}
+}
+
+.hri-map iframe {
+	border: 0;
+	display: block;
+	height: 100%;
+	width: 100%;
+}

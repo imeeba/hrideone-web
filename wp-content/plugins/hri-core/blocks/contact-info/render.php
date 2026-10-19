@@ -30,6 +30,13 @@ foreach ( $items as $item ) {
 				$rows .= sprintf( '<li class="hri-contact__item"><span class="hri-contact__label">LINE</span><a href="%1$s" rel="noopener" target="_blank">%2$s<span class="screen-reader-text"> %3$s</span></a></li>', esc_url( $line ), esc_html__( 'แอด LINE', 'hri-core' ), esc_html__( '(เปิดในแท็บใหม่)', 'hri-core' ) );
 			}
 			break;
+		case 'legal':
+			$legal  = hri_company( 'legal_name' );
+			$tax_id = hri_company( 'tax_id' );
+			if ( $legal ) {
+				$rows .= sprintf( '<li class="hri-contact__item"><span class="hri-contact__label">%1$s</span><span>%2$s%3$s</span></li>', esc_html__( 'บริษัท', 'hri-core' ), esc_html( $legal ), $tax_id ? '<br>' . esc_html( sprintf( /* translators: %s: company registration number */ __( 'เลขทะเบียนนิติบุคคล %s', 'hri-core' ), $tax_id ) ) : '' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above.
+			}
+			break;
 		case 'address':
 			$address = hri_company( 'address' );
 			if ( $address ) {

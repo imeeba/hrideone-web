@@ -200,6 +200,7 @@ $pages = array(
 	'public-training'          => 'Public Training',
 	'transformation-solutions' => 'Transformation Solutions',
 	'japanese-concept'         => 'Japanese Concept',
+	'contact-us'               => 'ติดต่อเรา',
 );
 foreach ( $pages as $slug => $title ) {
 	$existing = get_page_by_path( $slug );

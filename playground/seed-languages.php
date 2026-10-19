@@ -133,6 +133,7 @@ $pages = array(
 	'public-training'          => array( 'en' => 'Public Training', 'ja' => '公開講座' ),
 	'transformation-solutions' => array( 'en' => 'Transformation Solutions', 'ja' => 'トランスフォーメーション・ソリューション' ),
 	'japanese-concept'         => array( 'en' => 'Japanese Concept', 'ja' => 'ジャパニーズ・コンセプト' ),
+	'contact-us'               => array( 'en' => 'Contact Us', 'ja' => 'お問い合わせ' ),
 );
 foreach ( $pages as $slug => $titles ) {
 	$source = get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
