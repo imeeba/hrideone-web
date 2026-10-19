@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/course-trainers",
+	"title": "Course Trainers",
+	"category": "widgets",
+	"icon": "groups",
+	"description": "Cards of the trainers ticked in the course details (photo, name, position, bio). Add or edit people under วิทยากร. Shows nothing when the course has no trainer.",
+	"keywords": [ "trainer", "speaker", "วิทยากร" ],
+	"textdomain": "hri-core",
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "",
+			"label": "ข้อความเล็กเหนือหัวข้อ (เว้นว่าง = ค่าเริ่มต้น)"
+		},
+		"title": {
+			"type": "string",
+			"default": "",
+			"label": "หัวข้อ (เว้นว่าง = ค่าเริ่มต้น)"
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-courses",
+	"render": "file:./render.php"
+}

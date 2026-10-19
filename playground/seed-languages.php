@@ -82,6 +82,27 @@ $translate = static function ( int $source_id, string $lang, array $fields ): in
 	return (int) $post_id;
 };
 
+require_once is_readable( __DIR__ . '/seed-course-data.php' ) ? __DIR__ . '/seed-course-data.php' : __DIR__ . '/hri-seed-course-data.php';
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
+$course_data = hri_seed_public_courses();
+
+// Trainers: name, position and bio per language.
+foreach ( hri_seed_trainers() as $key => $t ) {
+	$found = get_posts( array( 'post_type' => 'trainer', 'name' => 'trainer-' . $key, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
+	if ( ! $found ) {
+		continue;
+	}
+	foreach ( $targets as $lang ) {
+		$id = $translate( (int) $found[0], $lang, array( 'post_title' => $t[ $lang ][0], 'post_excerpt' => $t[ $lang ][1], 'post_content' => $t[ $lang ][2] ) );
+		if ( $id ) {
+			$thumb = get_post_thumbnail_id( $found[0] );
+			if ( $thumb ) {
+				set_post_thumbnail( $id, $thumb );
+			}
+		}
+	}
+}
+
 // Courses: same terms, fields and image as the Thai course.
 $courses = get_posts(
 	array(
@@ -121,6 +142,18 @@ foreach ( $courses as $course ) {
 		$thumb = get_post_thumbnail_id( $course->ID );
 		if ( $thumb ) {
 			set_post_thumbnail( $id, $thumb );
+		}
+		// Real texts of the Public Training courses in this language.
+		if ( isset( $course_data[ $course->post_name ][ $lang ] ) ) {
+			$d      = $course_data[ $course->post_name ][ $lang ];
+			$update = array( 'ID' => $id, 'post_excerpt' => $d['excerpt'] );
+			foreach ( $d['text'] as $k => $v ) {
+				update_post_meta( $id, $k, $v );
+			}
+			if ( ! empty( $d['page'] ) ) {
+				$update['post_content'] = wp_slash( hri_seed_course_body( $d['page'], 'public', 'en' === $lang ? 'en_US' : 'ja' ) );
+			}
+			wp_update_post( $update );
 		}
 		++$count;
 	}

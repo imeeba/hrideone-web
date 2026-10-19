@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/course-summary",
+	"title": "Course Summary",
+	"category": "widgets",
+	"icon": "info-outline",
+	"description": "Key facts of the course (batch and status, dates, venue, price) as chips, with the register / enquiry buttons. Built from the course details, so it never needs retyping.",
+	"textdomain": "hri-core",
+	"usesContext": [ "postId" ],
+	"supports": {
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-courses",
+	"render": "file:./render.php"
+}

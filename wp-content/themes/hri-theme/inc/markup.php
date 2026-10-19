@@ -261,6 +261,9 @@ function hri_bm_cards( array $cards, int $columns = 3, string $class = '' ): str
 		if ( ! empty( $card['text'] ) ) {
 			$out .= hri_bm_p( esc_html( $card['text'] ), array( 'className' => 'hri-card__text' ) );
 		}
+		if ( ! empty( $card['help'] ) ) {
+			$out .= hri_bm_p( '<strong>' . esc_html__( 'คอร์สนี้ช่วยอย่างไร', 'hri-theme' ) . '</strong> ' . esc_html( $card['help'] ), array( 'className' => 'hri-card__help' ) );
+		}
 		if ( ! empty( $card['list'] ) ) {
 			$out .= hri_bm_list( array_map( 'esc_html', $card['list'] ), 'hri-checklist' );
 		}

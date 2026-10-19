@@ -70,6 +70,15 @@ function hri_course_meta_schema(): array {
 		'hri_end_date'      => array( 'type' => 'string', 'sanitize' => $date ),
 		'hri_location'      => array( 'type' => 'string', 'sanitize' => 'sanitize_text_field' ),
 		'hri_price'         => array( 'type' => 'string', 'sanitize' => 'sanitize_text_field' ),
+		'hri_price_early'   => array( 'type' => 'string', 'sanitize' => 'sanitize_text_field' ),
+		'hri_early_deadline' => array( 'type' => 'string', 'sanitize' => $date ),
+		'hri_price_note'    => array( 'type' => 'string', 'sanitize' => 'sanitize_text_field' ),
+		'hri_schedule_text' => array( 'type' => 'string', 'sanitize' => 'sanitize_text_field' ),
+		'hri_time_text'     => array( 'type' => 'string', 'sanitize' => 'sanitize_text_field' ),
+		'hri_certificate'   => array( 'type' => 'string', 'sanitize' => static fn( $value ): string => '1' === (string) $value ? '1' : '' ),
+		'hri_register_url'  => array( 'type' => 'string', 'sanitize' => static fn( $value ): string => is_string( $value ) ? esc_url_raw( trim( $value ), array( 'https', 'http' ) ) : '' ),
+		'hri_external_url'  => array( 'type' => 'string', 'sanitize' => static fn( $value ): string => is_string( $value ) ? esc_url_raw( trim( $value ), array( 'https', 'http' ) ) : '' ),
+		'hri_trainers'      => array( 'type' => 'string', 'sanitize' => static fn( $value ): string => is_string( $value ) ? trim( (string) preg_replace( '/[^0-9,]/', '', $value ), ',' ) : '' ),
 	);
 }
 
@@ -190,8 +199,27 @@ function hri_course_metabox( WP_Post $post ): void {
 
 	hri_metabox_row( 'hri_start_date', __( 'วันเริ่ม', 'hri-core' ), $input( 'hri_start_date', 'date' ) );
 	hri_metabox_row( 'hri_end_date', __( 'วันสิ้นสุด', 'hri-core' ), $input( 'hri_end_date', 'date' ) );
+	hri_metabox_row( 'hri_schedule_text', __( 'วันที่อบรม (ข้อความ)', 'hri-core' ), $input( 'hri_schedule_text' ), __( 'ใช้เมื่ออบรมหลายวันไม่ต่อเนื่อง เช่น 12, 19, 26 ม.ค. 2570 · เว้นว่าง = แสดงจากวันเริ่ม–วันสิ้นสุด', 'hri-core' ) );
+	hri_metabox_row( 'hri_time_text', __( 'เวลาอบรม', 'hri-core' ), $input( 'hri_time_text' ), __( 'เช่น 09:00–16:00', 'hri-core' ) );
 	hri_metabox_row( 'hri_location', __( 'สถานที่', 'hri-core' ), $input( 'hri_location' ) );
-	hri_metabox_row( 'hri_price', __( 'ราคา', 'hri-core' ), $input( 'hri_price' ), __( 'พิมพ์เป็นข้อความได้ เช่น 12,900 บาท/ท่าน', 'hri-core' ) );
+	hri_metabox_row( 'hri_price', __( 'ราคาปกติ', 'hri-core' ), $input( 'hri_price' ), __( 'พิมพ์เป็นข้อความได้ เช่น 25,000 บาท/ท่าน', 'hri-core' ) );
+	hri_metabox_row( 'hri_price_early', __( 'ราคา Early Bird', 'hri-core' ), $input( 'hri_price_early' ), __( 'เว้นว่างถ้าไม่มี', 'hri-core' ) );
+	hri_metabox_row( 'hri_early_deadline', __( 'Early Bird สมัครก่อนวันที่', 'hri-core' ), $input( 'hri_early_deadline', 'date' ), __( 'เลยวันนี้แล้ว เว็บจะซ่อนราคา Early Bird เอง', 'hri-core' ) );
+	hri_metabox_row( 'hri_price_note', __( 'เงื่อนไขราคา', 'hri-core' ), $input( 'hri_price_note' ), __( 'เช่น ต่อองค์กร 2 ท่าน เพิ่มท่านละ 30,000 บาท', 'hri-core' ) );
+	hri_metabox_row( 'hri_certificate', __( 'ใบประกาศนียบัตร', 'hri-core' ), sprintf( '<label><input type="checkbox" id="hri_certificate" name="hri_certificate" value="1"%s> %s</label>', checked( '1', (string) $get( 'hri_certificate' ), false ), esc_html__( 'มีใบประกาศนียบัตรเมื่อจบหลักสูตร', 'hri-core' ) ) );
+	hri_metabox_row( 'hri_register_url', __( 'ลิงก์สมัคร', 'hri-core' ), $input( 'hri_register_url', 'url' ), __( 'ปุ่ม "สมัครเลย" ทุกจุดในหน้าจะไปที่นี่ (เช่น Google Form) · เว้นว่าง = ไปหน้าติดต่อเรา', 'hri-core' ) );
+	hri_metabox_row( 'hri_external_url', __( 'ลิงก์ไปเว็บอื่น', 'hri-core' ), $input( 'hri_external_url', 'url' ), __( 'สำหรับหลักสูตรที่มีเว็บแยก (เช่น TEN X): การ์ดจะลิงก์ออกไปที่นี่ และไม่มีหน้าหลักสูตรในเว็บนี้', 'hri-core' ) );
+
+	// Trainers (reused across courses): tick the ones who teach this course.
+	$trainers = hri_trainer_choices();
+	$chosen   = array_map( 'intval', array_filter( explode( ',', (string) $get( 'hri_trainers' ) ) ) );
+	if ( $trainers ) {
+		$boxes = '';
+		foreach ( $trainers as $id => $name ) {
+			$boxes .= sprintf( '<label style="display:block;margin:2px 0"><input type="checkbox" name="hri_trainers[]" value="%1$d"%2$s> %3$s</label>', $id, checked( in_array( $id, $chosen, true ), true, false ), esc_html( $name ) );
+		}
+		hri_metabox_row( 'hri_trainers', __( 'วิทยากร', 'hri-core' ), $boxes, __( 'เพิ่ม/แก้ไขวิทยากรที่เมนู "วิทยากร" · แสดงในส่วนวิทยากรของหน้าหลักสูตร', 'hri-core' ) );
+	}
 	echo '</tbody></table>';
 }
 
@@ -207,6 +235,9 @@ add_action(
 
 		foreach ( hri_course_meta_schema() as $key => $field ) {
 			$raw   = isset( $_POST[ $key ] ) ? wp_unslash( $_POST[ $key ] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- sanitized next line.
+			if ( is_array( $raw ) ) {
+				$raw = implode( ',', array_map( 'absint', $raw ) ); // Checkbox list (trainers).
+			}
 			$value = is_string( $raw ) ? call_user_func( $field['sanitize'], $raw ) : '';
 
 			if ( '' === $value || 0 === $value ) {
@@ -233,3 +264,19 @@ function hri_course_meta( int $post_id ): array {
 	}
 	return $out;
 }
+
+/**
+ * A course with its own website (meta `hri_external_url`, e.g. TEN X) has no page here: send visitors there.
+ */
+add_action(
+	'template_redirect',
+	static function () {
+		if ( is_singular( 'course' ) ) {
+			$url = (string) get_post_meta( get_queried_object_id(), 'hri_external_url', true );
+			if ( $url ) {
+				wp_redirect( esc_url_raw( $url ), 302, 'HRI DeOne' ); // phpcs:ignore WordPress.Security.SafeRedirect -- an editor-set external link on purpose.
+				exit;
+			}
+		}
+	}
+);

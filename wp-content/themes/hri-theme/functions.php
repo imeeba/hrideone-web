@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'HRI_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 
 require_once __DIR__ . '/inc/markup.php';
+require_once __DIR__ . '/inc/course-page.php';
 
 /**
  * Theme supports and translations (languages/hri-theme-{locale}).

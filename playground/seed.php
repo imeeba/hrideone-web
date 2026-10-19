@@ -112,6 +112,7 @@ $courses = array(
 	array( 'the-next-director', 'The Next Director', 'public', 'leadership', 'self-improvement', array( 'director' ), array( 'on-site' ), 0, 3, 'พร้อมก้าวข้ามขีดจำกัด สู่บทบาท Director ที่องค์กรต้องการ' ),
 	array( 'oxygen-leadership', 'Oxygen Leadership', 'public', 'leadership', 'self-improvement', array( 'manager', 'director' ), array( 'on-site' ), 0, 2, 'พลิกบทบาทผู้นำ สร้างบรรยากาศให้ทีมเติบโตอย่างยั่งยืน' ),
 	array( 'the-new-manager', 'The New Manager', 'public', 'leadership', 'team-communication', array( 'manager' ), array( 'on-site' ), 0, 22, '' ),
+	array( 'ten-x', 'TEN X', 'public', 'business', 'strategy', array( 'executive' ), array( 'on-site' ), 0, 6, 'หลักสูตรผู้บริหารระดับสูงเพื่อการเติบโตแบบก้าวกระโดด จัดร่วมกับ UTCC' ),
 	array( 'lean-transformation-in-7-weeks', 'Lean Transformation in 7 weeks', 'public', 'business', 'strategy', array( 'manager', 'director' ), array( 'hybrid' ), 0, 3, 'ปลดล็อกศักยภาพธุรกิจ ด้วยแก่นแท้ระบบการผลิตระดับโลกจาก TOYOTA' ),
 );
 
@@ -190,6 +191,51 @@ foreach ( $courses as $c ) {
 	}
 	++$index;
 	++$created;
+}
+
+// Trainers, course details and course pages of the Public Training courses (seed-course-data.php).
+require_once is_readable( __DIR__ . '/seed-course-data.php' ) ? __DIR__ . '/seed-course-data.php' : __DIR__ . '/hri-seed-course-data.php';
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
+
+$trainer_ids = array();
+$order       = 0;
+foreach ( hri_seed_trainers() as $key => $t ) {
+	$existing = get_posts( array( 'post_type' => 'trainer', 'name' => 'trainer-' . $key, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
+	$id       = wp_insert_post(
+		array(
+			'ID'           => $existing ? $existing[0] : 0,
+			'post_type'    => 'trainer',
+			'post_status'  => 'publish',
+			'post_name'    => 'trainer-' . $key,
+			'post_title'   => $t['th'][0],
+			'post_excerpt' => $t['th'][1],
+			'post_content' => $t['th'][2],
+			'menu_order'   => $order++,
+		)
+	);
+	if ( $id && ! is_wp_error( $id ) ) {
+		$trainer_ids[ $key ] = (int) $id;
+	}
+}
+
+foreach ( hri_seed_public_courses() as $slug => $c ) {
+	$found = get_posts( array( 'post_type' => 'course', 'name' => $slug, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
+	if ( ! $found ) {
+		continue;
+	}
+	$cid = (int) $found[0];
+	foreach ( $c['meta'] as $k => $v ) {
+		update_post_meta( $cid, $k, $v );
+	}
+	foreach ( $c['th']['text'] as $k => $v ) {
+		update_post_meta( $cid, $k, $v );
+	}
+	update_post_meta( $cid, 'hri_trainers', implode( ',', array_filter( array_map( static fn( $k ) => $trainer_ids[ $k ] ?? 0, $c['trainers'] ) ) ) );
+	$update = array( 'ID' => $cid, 'post_excerpt' => $c['th']['excerpt'] );
+	if ( ! empty( $c['th']['page'] ) ) {
+		$update['post_content'] = wp_slash( hri_seed_course_body( $c['th']['page'], 'public' ) );
+	}
+	wp_update_post( $update );
 }
 
 // Service pages built from the theme's section patterns (hri_page_sections()). In-house and

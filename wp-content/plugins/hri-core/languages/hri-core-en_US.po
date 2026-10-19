@@ -38,31 +38,31 @@ msgid "ภาษา / Language"
 msgstr "Language"
 
 #: inc/content-model.php:20
-#: inc/course-card.php:137
+#: inc/course-card.php:224
 #: inc/course-filter.php:22
 msgid "ประเภท"
 msgstr "Type"
 
 #: inc/content-model.php:21
-#: inc/course-card.php:138
+#: inc/course-card.php:225
 #: inc/course-filter.php:23
 msgid "หมวด"
 msgstr "Category"
 
 #: inc/content-model.php:22
-#: inc/course-card.php:139
+#: inc/course-card.php:226
 #: inc/course-filter.php:24
 msgid "หัวข้อ"
 msgstr "Topic"
 
 #: inc/content-model.php:23
-#: inc/course-card.php:140
+#: inc/course-card.php:227
 #: inc/course-filter.php:25
 msgid "ระดับผู้เรียน"
 msgstr "Learner level"
 
 #: inc/content-model.php:24
-#: inc/course-card.php:143
+#: inc/course-card.php:230
 #: inc/course-filter.php:26
 msgid "รูปแบบ"
 msgstr "Format"
@@ -79,92 +79,83 @@ msgstr "Full"
 msgid "ปิดรับสมัคร"
 msgstr "Registration closed"
 
-#: inc/content-model.php:83
-#: inc/content-model.php:84
-#: inc/content-model.php:85
+#: inc/content-model.php:92
+#: inc/content-model.php:93
+#: inc/content-model.php:94
 msgid "หลักสูตร"
 msgstr "Courses"
 
-#: inc/content-model.php:86
+#: inc/content-model.php:95
 msgid "หลักสูตรทั้งหมด"
 msgstr "All courses"
 
-#: inc/content-model.php:87
+#: inc/content-model.php:96
 msgid "เพิ่มหลักสูตร"
 msgstr "Add course"
 
-#: inc/content-model.php:88
+#: inc/content-model.php:97
 msgid "แก้ไขหลักสูตร"
 msgstr "Edit course"
 
-#: inc/content-model.php:89
+#: inc/content-model.php:98
 #: inc/course-filter.php:330
 msgid "ค้นหาหลักสูตร"
 msgstr "Search courses"
 
-#: inc/content-model.php:90
+#: inc/content-model.php:99
 msgid "ไม่พบหลักสูตร"
 msgstr "No courses found"
 
-#: inc/content-model.php:145
+#: inc/content-model.php:154
 msgid "รายละเอียดหลักสูตร"
 msgstr "Course details"
 
-#: inc/content-model.php:175
+#: inc/content-model.php:184
 msgid "ระยะเวลา (วัน)"
 msgstr "Duration (days)"
 
-#: inc/content-model.php:175
+#: inc/content-model.php:184
 msgid "ใช้กับตัวกรองระยะเวลา"
 msgstr "Used by the duration filter"
 
-#: inc/content-model.php:176
-#: inc/course-card.php:141
+#: inc/content-model.php:185
+#: inc/course-card.php:228
 msgid "กลุ่มเป้าหมาย"
 msgstr "Audience"
 
-#: inc/content-model.php:179
+#: inc/content-model.php:188
 msgid "เฉพาะ Public Training (เว้นว่างถ้าเป็น In-house)"
 msgstr "Public Training only (leave empty for In-house)"
 
-#: inc/content-model.php:180
+#: inc/content-model.php:189
 msgid "เก็บเฉพาะรุ่นที่เปิดอยู่ล่าสุด เมื่อเปิดรุ่นใหม่ให้แก้ตัวเลขที่นี่ ไม่ต้องสร้างหน้าใหม่"
 msgstr "Only the latest open batch is kept. When a new batch opens, update the numbers here instead of creating a new page."
 
-#: inc/content-model.php:183
+#: inc/content-model.php:192
+#: inc/course-card.php:233
 msgid "รุ่นที่"
 msgstr "Batch no."
 
-#: inc/content-model.php:185
+#: inc/content-model.php:194
 msgid "— ไม่ระบุ —"
 msgstr "— Not set —"
 
-#: inc/content-model.php:189
+#: inc/content-model.php:198
 msgid "สถานะการรับสมัคร"
 msgstr "Registration status"
 
-#: inc/content-model.php:191
+#: inc/content-model.php:200
 msgid "วันเริ่ม"
 msgstr "Start date"
 
-#: inc/content-model.php:192
-#: inc/course-card.php:148
+#: inc/content-model.php:201
 msgid "วันสิ้นสุด"
 msgstr "End date"
 
-#: inc/content-model.php:193
-#: inc/course-card.php:149
+#: inc/content-model.php:204
+#: inc/course-card.php:236
 msgid "สถานที่"
 msgstr "Venue"
-
-#: inc/content-model.php:194
-#: inc/course-card.php:150
-msgid "ราคา"
-msgstr "Price"
-
-#: inc/content-model.php:194
-msgid "พิมพ์เป็นข้อความได้ เช่น 12,900 บาท/ท่าน"
-msgstr "Free text, e.g. 12,900 THB per person"
 
 #. translators: %d: number of days
 #: inc/course-card.php:34
@@ -175,21 +166,17 @@ msgstr[0] "%d day"
 msgstr[1] "%d days"
 
 #. translators: %d: batch number
-#: inc/course-card.php:53
+#: inc/course-card.php:77
 #, php-format
 msgid "รุ่นที่ %d"
 msgstr "Batch %d"
 
-#: inc/course-card.php:142
+#: inc/course-card.php:229
 #: inc/course-filter.php:28
 msgid "ระยะเวลา"
 msgstr "Duration"
 
-#: inc/course-card.php:146
-msgid "รุ่นที่เปิด"
-msgstr "Open batch"
-
-#: inc/course-card.php:152
+#: inc/course-card.php:243
 msgid "สถานะ"
 msgstr "Status"
 
@@ -252,15 +239,15 @@ msgstr "Japanese name (JA)"
 msgid "เว้นว่างได้ ถ้าว่างจะแสดงชื่อหลัก"
 msgstr "Optional. When empty, the main name is shown."
 
-#: inc/polylang.php:409
+#: inc/polylang.php:448
 msgid "ยังไม่ได้ตั้งค่าภาษา TH / EN / JA ใน Polylang"
 msgstr "The TH / EN / JA languages are not set up in Polylang yet."
 
-#: inc/polylang.php:412
+#: inc/polylang.php:451
 msgid "ตั้งค่าภาษาตามมาตรฐานเว็บ"
 msgstr "Set up the site languages"
 
-#: inc/polylang.php:422
+#: inc/polylang.php:461
 msgid "ไม่มีสิทธิ์"
 msgstr "You are not allowed to do this."
 
@@ -269,7 +256,10 @@ msgid "โทร"
 msgstr "Phone"
 
 #: blocks/contact-info/render.php:24
+#: blocks/lead-form/render.php:128
 #: inc/company.php:25
+#: inc/leads.php:142
+#: inc/leads.php:182
 msgid "อีเมล"
 msgstr "Email"
 
@@ -280,11 +270,13 @@ msgstr "Add us on LINE"
 
 #: blocks/contact-info/render.php:30
 #: blocks/cta-band/render.php:22
+#: inc/course-card.php:189
+#: inc/course-card.php:315
 msgid "(เปิดในแท็บใหม่)"
 msgstr "(opens in a new tab)"
 
-#: blocks/contact-info/render.php:36
-#: inc/company.php:30
+#: blocks/contact-info/render.php:43
+#: inc/company.php:32
 msgid "ที่อยู่"
 msgstr "Address"
 
@@ -298,27 +290,391 @@ msgstr "Request a quote"
 msgid "%s (เปิดในแท็บใหม่)"
 msgstr "%s (opens in a new tab)"
 
+#: blocks/lead-form/render.php:125
 #: inc/company.php:24
+#: inc/leads.php:141
+#: inc/leads.php:181
 msgid "เบอร์โทร"
 msgstr "Phone number"
 
-#: inc/company.php:31
+#: inc/company.php:33
 msgid "ข้อความใต้โลโก้ (footer)"
 msgstr "Text under the logo (footer)"
 
-#: inc/company.php:32
+#: inc/company.php:34
 msgid "หัวข้อแถบชวนติดต่อ"
 msgstr "CTA band title"
 
-#: inc/company.php:33
+#: inc/company.php:35
 msgid "ข้อความแถบชวนติดต่อ"
 msgstr "CTA band text"
 
-#: inc/company.php:170
-#: inc/company.php:182
+#: inc/company.php:176
+#: inc/company.php:188
 msgid "ข้อมูลบริษัท"
 msgstr "Company info"
 
-#: inc/company.php:183
+#: inc/company.php:189
 msgid "ใช้ใน footer และส่วนอื่นของเว็บ แก้ที่นี่ที่เดียว ช่องลิงก์ที่เว้นว่างจะไม่แสดงบนเว็บ ข้อความภาษา EN / JA ที่เว้นว่างจะใช้ภาษาไทยแทน"
 msgstr "Used in the footer and elsewhere on the site: edit it here only. Empty links are not shown. Empty EN / JA texts fall back to Thai."
+
+#: blocks/contact-info/render.php:37
+msgid "บริษัท"
+msgstr "Company"
+
+#. translators: %s: company registration number
+#: blocks/contact-info/render.php:37
+#, php-format
+msgid "เลขทะเบียนนิติบุคคล %s"
+msgstr "Company registration no. %s"
+
+#: blocks/course-trainers/render.php:32
+#: inc/content-model.php:221
+#: inc/trainers.php:21
+#: inc/trainers.php:22
+#: inc/trainers.php:23
+msgid "วิทยากร"
+msgstr "Trainers"
+
+#: blocks/lead-form/render.php:43
+#: blocks/lead-form/render.php:116
+msgid "ขอบคุณ ได้รับข้อมูลของคุณแล้ว"
+msgstr "Thank you, we have received your details"
+
+#: blocks/lead-form/render.php:44
+#: blocks/lead-form/render.php:117
+msgid "ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง (ในวันทำการ) หากต้องการด่วน โทรหาเราได้ทันที"
+msgstr "Our team will reply within 24 hours (business days). If it is urgent, please call us."
+
+#: blocks/lead-form/render.php:56
+msgid "(ไม่บังคับ)"
+msgstr "(optional)"
+
+#: blocks/lead-form/render.php:60
+msgid "กรุณากรอกช่องนี้ให้ถูกต้อง"
+msgstr "Please fill in this field correctly"
+
+#: blocks/lead-form/render.php:79
+msgid "— เลือกหัวข้อ —"
+msgstr "— Select a topic —"
+
+#: blocks/lead-form/render.php:80
+msgid "บริการ"
+msgstr "Services"
+
+#: blocks/lead-form/render.php:85
+msgid "Public Training — หลักสูตร"
+msgstr "Public Training — courses"
+
+#: blocks/lead-form/render.php:85
+msgid "In-house — หลักสูตร"
+msgstr "In-house — courses"
+
+#: blocks/lead-form/render.php:101
+msgid "ส่งข้อมูล"
+msgstr "Submit"
+
+#: blocks/lead-form/render.php:110
+msgid "ส่งข้อมูลไม่สำเร็จ กรุณาตรวจช่องที่ทำเครื่องหมายไว้แล้วลองอีกครั้ง"
+msgstr "Could not send. Please check the highlighted fields and try again."
+
+#: blocks/lead-form/render.php:114
+msgid "กำลังส่ง…"
+msgstr "Sending…"
+
+#: blocks/lead-form/render.php:115
+msgid "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่ หรือโทรหาเราโดยตรง"
+msgstr "Could not send. Please try again or call us directly."
+
+#: blocks/lead-form/render.php:124
+#: inc/leads.php:138
+msgid "ชื่อ-นามสกุล"
+msgstr "Full name"
+
+#: blocks/lead-form/render.php:126
+#: inc/leads.php:139
+msgid "บริษัท / องค์กร"
+msgstr "Company / organization"
+
+#: blocks/lead-form/render.php:127
+#: inc/leads.php:140
+msgid "ตำแหน่ง"
+msgstr "Position"
+
+#: blocks/lead-form/render.php:129
+#: inc/leads.php:143
+#: inc/leads.php:183
+msgid "สนใจเรื่อง"
+msgstr "Interested in"
+
+#: blocks/lead-form/render.php:130
+#: inc/leads.php:163
+msgid "ข้อความ"
+msgstr "Message"
+
+#: blocks/lead-form/render.php:139
+msgid "ฉันยินยอมให้ HRI DeOne เก็บและใช้ข้อมูลนี้เพื่อติดต่อกลับเกี่ยวกับหลักสูตรและบริการ"
+msgstr "I agree that HRI DeOne may store and use this information to contact me about courses and services."
+
+#: blocks/lead-form/render.php:144
+msgid "ตอบกลับภายใน 24 ชั่วโมง (ในวันทำการ)"
+msgstr "We reply within 24 hours (business days)"
+
+#: inc/company.php:30
+msgid "ชื่อนิติบุคคล"
+msgstr "Legal name"
+
+#: inc/company.php:31
+msgid "เลขทะเบียนนิติบุคคล"
+msgstr "Company registration no."
+
+#: inc/content-model.php:202
+msgid "วันที่อบรม (ข้อความ)"
+msgstr ""
+
+#: inc/content-model.php:202
+msgid "ใช้เมื่ออบรมหลายวันไม่ต่อเนื่อง เช่น 12, 19, 26 ม.ค. 2570 · เว้นว่าง = แสดงจากวันเริ่ม–วันสิ้นสุด"
+msgstr ""
+
+#: inc/content-model.php:203
+msgid "เวลาอบรม"
+msgstr ""
+
+#: inc/content-model.php:203
+msgid "เช่น 09:00–16:00"
+msgstr ""
+
+#: inc/content-model.php:205
+msgid "ราคาปกติ"
+msgstr ""
+
+#: inc/content-model.php:205
+msgid "พิมพ์เป็นข้อความได้ เช่น 25,000 บาท/ท่าน"
+msgstr ""
+
+#: inc/content-model.php:206
+msgid "ราคา Early Bird"
+msgstr ""
+
+#: inc/content-model.php:206
+msgid "เว้นว่างถ้าไม่มี"
+msgstr ""
+
+#: inc/content-model.php:207
+msgid "Early Bird สมัครก่อนวันที่"
+msgstr ""
+
+#: inc/content-model.php:207
+msgid "เลยวันนี้แล้ว เว็บจะซ่อนราคา Early Bird เอง"
+msgstr ""
+
+#: inc/content-model.php:208
+msgid "เงื่อนไขราคา"
+msgstr ""
+
+#: inc/content-model.php:208
+msgid "เช่น ต่อองค์กร 2 ท่าน เพิ่มท่านละ 30,000 บาท"
+msgstr ""
+
+#: inc/content-model.php:209
+#: inc/course-card.php:241
+#: inc/course-card.php:245
+msgid "ใบประกาศนียบัตร"
+msgstr ""
+
+#: inc/content-model.php:209
+msgid "มีใบประกาศนียบัตรเมื่อจบหลักสูตร"
+msgstr ""
+
+#: inc/content-model.php:210
+msgid "ลิงก์สมัคร"
+msgstr ""
+
+#: inc/content-model.php:210
+msgid "ปุ่ม \"สมัครเลย\" ทุกจุดในหน้าจะไปที่นี่ (เช่น Google Form) · เว้นว่าง = ไปหน้าติดต่อเรา"
+msgstr ""
+
+#: inc/content-model.php:211
+msgid "ลิงก์ไปเว็บอื่น"
+msgstr ""
+
+#: inc/content-model.php:211
+msgid "สำหรับหลักสูตรที่มีเว็บแยก (เช่น TEN X): การ์ดจะลิงก์ออกไปที่นี่ และไม่มีหน้าหลักสูตรในเว็บนี้"
+msgstr ""
+
+#: inc/content-model.php:221
+msgid "เพิ่ม/แก้ไขวิทยากรที่เมนู \"วิทยากร\" · แสดงในส่วนวิทยากรของหน้าหลักสูตร"
+msgstr ""
+
+#. translators: 1: early bird price, 2: last day to register at that price
+#: inc/course-card.php:103
+#, php-format
+msgid "Early Bird %s"
+msgstr "Early bird %s"
+
+#. translators: 1: early bird price, 2: last day to register at that price
+#: inc/course-card.php:103
+#, php-format
+msgid "Early Bird %1$s (สมัครก่อน %2$s)"
+msgstr "Early bird %1$s (register by %2$s)"
+
+#. translators: %s: regular price
+#: inc/course-card.php:106
+#, php-format
+msgid "ราคาปกติ %s"
+msgstr "Regular price %s"
+
+#: inc/course-card.php:130
+msgid "ดูรายละเอียดและสมัคร"
+msgstr "View details and register"
+
+#: inc/course-card.php:133
+msgid "ขอใบเสนอราคาหลักสูตรนี้"
+msgstr "Request a quote for this course"
+
+#: inc/course-card.php:137
+msgid "สอบถามรอบถัดไป"
+msgstr "Ask about the next batch"
+
+#: inc/course-card.php:140
+msgid "สมัครเลย"
+msgstr "Register now"
+
+#: inc/course-card.php:142
+msgid "สมัคร / สอบถามหลักสูตรนี้"
+msgstr "Register / ask about this course"
+
+#: inc/course-card.php:234
+msgid "วันที่อบรม"
+msgstr "Dates"
+
+#: inc/course-card.php:235
+msgid "เวลา"
+msgstr "Time"
+
+#: inc/course-card.php:239
+msgid "ค่าลงทะเบียน"
+msgstr "Fee"
+
+#: inc/course-card.php:241
+#: inc/course-card.php:245
+msgid "มี"
+msgstr "Yes"
+
+#: inc/course-card.php:321
+msgid "สอบถามหลักสูตรนี้"
+msgstr "Ask about this course"
+
+#: inc/course-card.php:345
+msgid "มีใบประกาศนียบัตร"
+msgstr "Certificate provided"
+
+#: inc/leads.php:47
+msgid "หลักสูตร In-house (จัดอบรมในองค์กร)"
+msgstr "In-house courses (training at your organization)"
+
+#: inc/leads.php:48
+msgid "Public Training (เปิดรับสมัครทั่วไป)"
+msgstr "Public Training (open enrolment)"
+
+#: inc/leads.php:49
+msgid "Transformation Solutions"
+msgstr ""
+
+#: inc/leads.php:50
+msgid "Japanese Concept"
+msgstr ""
+
+#: inc/leads.php:51
+msgid "เรื่องอื่น ๆ"
+msgstr "Something else"
+
+#: inc/leads.php:107
+#: inc/leads.php:109
+msgid "ผู้สนใจ (Lead)"
+msgstr ""
+
+#: inc/leads.php:108
+#: inc/leads.php:180
+msgid "ผู้สนใจ"
+msgstr ""
+
+#: inc/leads.php:110
+msgid "ผู้สนใจทั้งหมด"
+msgstr ""
+
+#: inc/leads.php:111
+msgid "ข้อมูลผู้สนใจ"
+msgstr ""
+
+#: inc/leads.php:112
+msgid "ค้นหาผู้สนใจ"
+msgstr ""
+
+#: inc/leads.php:113
+msgid "ยังไม่มีผู้สนใจ"
+msgstr ""
+
+#: inc/leads.php:144
+msgid "ภาษา"
+msgstr ""
+
+#: inc/leads.php:145
+msgid "หน้าที่ส่งฟอร์ม"
+msgstr ""
+
+#: inc/leads.php:146
+msgid "ยินยอม PDPA เมื่อ"
+msgstr ""
+
+#: inc/leads.php:147
+msgid "ส่งเข้า Google Sheet"
+msgstr ""
+
+#: inc/leads.php:156
+msgid "ข้อมูลที่ผู้สนใจกรอก"
+msgstr ""
+
+#: inc/leads.php:171
+msgid "จัดการ"
+msgstr ""
+
+#: inc/leads.php:184
+msgid "วันที่"
+msgstr ""
+
+#: inc/leads.php:261
+msgid "กรุณากรอกข้อมูลที่จำเป็นให้ครบ"
+msgstr "Please fill in all required fields"
+
+#: inc/leads.php:268
+msgid "ส่งข้อมูลบ่อยเกินไป กรุณารอสักครู่แล้วลองใหม่ หรือโทรหาเราได้ทันที"
+msgstr "Too many submissions. Please wait a moment and try again, or call us."
+
+#: inc/leads.php:280
+msgid "ตรวจสอบไม่ผ่าน กรุณาลองใหม่อีกครั้ง"
+msgstr "Verification failed. Please try again."
+
+#: inc/leads.php:306
+msgid "ระบบขัดข้อง กรุณาโทรหาเราหรือลองใหม่อีกครั้ง"
+msgstr "Something went wrong. Please call us or try again."
+
+#: inc/trainers.php:24
+msgid "วิทยากรทั้งหมด"
+msgstr ""
+
+#: inc/trainers.php:25
+msgid "เพิ่มวิทยากร"
+msgstr ""
+
+#: inc/trainers.php:26
+msgid "แก้ไขวิทยากร"
+msgstr ""
+
+#: inc/trainers.php:27
+msgid "ค้นหาวิทยากร"
+msgstr ""
+
+#: inc/trainers.php:28
+msgid "ยังไม่มีวิทยากร"
+msgstr ""

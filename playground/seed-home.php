@@ -29,6 +29,15 @@ if ( ! function_exists( 'hri_seed_page_content' ) ) {
 		$content = (string) ob_get_clean();
 		unload_textdomain( 'hri-theme', true );
 
+		return hri_seed_swap_photos( $content );
+	}
+}
+
+/**
+ * Placeholder photos in $content become the sample images.
+ */
+if ( ! function_exists( 'hri_seed_swap_photos' ) ) {
+	function hri_seed_swap_photos( string $content ): string {
 		$photos = get_posts( array( 'post_type' => 'attachment', 'post_mime_type' => 'image/jpeg', 'numberposts' => 4, 'fields' => 'ids', 'orderby' => 'ID', 'order' => 'ASC' ) );
 		$i      = 0;
 		return (string) preg_replace_callback(
@@ -43,6 +52,24 @@ if ( ! function_exists( 'hri_seed_page_content' ) ) {
 			},
 			$content
 		);
+	}
+}
+
+/**
+ * Body of a course page (hri_course_page_markup()) written in one language: $data holds the texts
+ * already in that language, the fixed headings come from the theme translations.
+ */
+if ( ! function_exists( 'hri_seed_course_body' ) ) {
+	function hri_seed_course_body( array $data, string $program, string $locale = '' ): string {
+		unload_textdomain( 'hri-theme' );
+		if ( $locale ) {
+			load_textdomain( 'hri-theme', get_template_directory() . "/languages/{$locale}.mo", $locale );
+		} else {
+			$GLOBALS['l10n']['hri-theme'] = new NOOP_Translations(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+		}
+		$content = hri_course_page_markup( $data, $program );
+		unload_textdomain( 'hri-theme', true );
+		return hri_seed_swap_photos( $content );
 	}
 }
 

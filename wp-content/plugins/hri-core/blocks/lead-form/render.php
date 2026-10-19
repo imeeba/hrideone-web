@@ -21,8 +21,10 @@ if ( $wanted ) {
 if ( ! $selected && $service && isset( hri_lead_service_options()[ $service ] ) ) {
 	$selected = 'service:' . $service;
 }
-if ( ! $selected && 'course' === ( $block->context['postType'] ?? '' ) ) {
-	$selected = hri_lead_course_value( (string) (int) ( $block->context['postId'] ?? 0 ) );
+// Context is missing when the form comes from a pattern block in the template: fall back to the queried post.
+$context_type = (string) ( $block->context['postType'] ?? get_post_type() );
+if ( ! $selected && 'course' === $context_type ) {
+	$selected = hri_lead_course_value( (string) (int) ( $block->context['postId'] ?? get_the_ID() ) );
 }
 if ( ! $selected && ! empty( $attributes['interest'] ) && isset( hri_lead_service_options()[ $attributes['interest'] ] ) ) {
 	$selected = 'service:' . $attributes['interest'];
