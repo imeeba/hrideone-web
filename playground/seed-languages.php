@@ -126,66 +126,41 @@ foreach ( $courses as $course ) {
 	}
 }
 
-// Pages: the Thai content with the visible Thai text replaced.
+// Pages built from patterns: the same patterns rendered with the EN / JA theme translations.
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
 $pages = array(
-	'in-house'        => array(
-		'en' => array(
-			'title'   => 'In-house Training',
-			'replace' => array(
-				'หลักสูตร In-house' => 'In-house Courses',
-				'หลักสูตรอบรมภายในองค์กร ปรับเนื้อหาให้ตรงกับเป้าหมายและบริบทของทีมคุณ (ข้อความตัวอย่าง)' => 'Training delivered inside your organization, tailored to your team’s goals and context. (sample text)',
-			),
-		),
-		'ja' => array(
-			'title'   => '企業内研修',
-			'replace' => array(
-				'หลักสูตร In-house' => '企業内研修プログラム',
-				'หลักสูตรอบรมภายในองค์กร ปรับเนื้อหาให้ตรงกับเป้าหมายและบริบทของทีมคุณ (ข้อความตัวอย่าง)' => '貴社の目標と状況に合わせて内容を設計する企業内研修です。（サンプル文）',
-			),
-		),
-	),
-	'public-training' => array(
-		'en' => array(
-			'title'   => 'Public Training',
-			'replace' => array(
-				'หลักสูตร Public Training' => 'Public Training Courses',
-				'หลักสูตรเปิดรับสมัครทั่วไป แสดงเฉพาะรุ่นที่เปิดอยู่ล่าสุด (ข้อความตัวอย่าง)' => 'Open-enrollment courses. Only the latest open batch of each course is shown. (sample text)',
-			),
-		),
-		'ja' => array(
-			'title'   => '公開講座',
-			'replace' => array(
-				'หลักสูตร Public Training' => '公開講座一覧',
-				'หลักสูตรเปิดรับสมัครทั่วไป แสดงเฉพาะรุ่นที่เปิดอยู่ล่าสุด (ข้อความตัวอย่าง)' => 'どなたでもお申し込みいただける講座です。各講座の最新の開講回のみ表示しています。（サンプル文）',
-			),
-		),
-	),
-	'style-guide'     => array(
-		'en' => array( 'title' => 'Style Guide', 'replace' => array() ),
-		'ja' => array( 'title' => 'スタイルガイド', 'replace' => array() ),
-	),
+	'in-house'                 => array( 'en' => 'In-house Training', 'ja' => '企業内研修' ),
+	'public-training'          => array( 'en' => 'Public Training', 'ja' => '公開講座' ),
+	'transformation-solutions' => array( 'en' => 'Transformation Solutions', 'ja' => 'トランスフォーメーション・ソリューション' ),
+	'japanese-concept'         => array( 'en' => 'Japanese Concept', 'ja' => 'ジャパニーズ・コンセプト' ),
 );
-
-foreach ( $pages as $slug => $languages ) {
+foreach ( $pages as $slug => $titles ) {
 	$source = get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
 	if ( ! $source ) {
 		continue;
 	}
-	$source = $source[0];
-	foreach ( $languages as $lang => $page ) {
+	foreach ( $targets as $lang ) {
+		$locale = PLL()->model->get_language( $lang )->locale ?? '';
 		$translate(
-			$source->ID,
+			$source[0]->ID,
 			$lang,
 			array(
-				'post_title'   => $page['title'],
-				'post_content' => wp_slash( strtr( $source->post_content, $page['replace'] ) ),
+				'post_title'   => $titles[ $lang ],
+				'post_content' => wp_slash( hri_seed_page_content( $slug, $locale ) ),
 			)
 		);
 	}
 }
 
+// Style Guide: same content, translated title.
+$style_guide = get_posts( array( 'post_type' => 'page', 'name' => 'style-guide', 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
+if ( $style_guide ) {
+	foreach ( array( 'en' => 'Style Guide', 'ja' => 'スタイルガイド' ) as $lang => $title ) {
+		$translate( $style_guide[0]->ID, $lang, array( 'post_title' => $title, 'post_content' => wp_slash( $style_guide[0]->post_content ) ) );
+	}
+}
+
 // Home page: the same patterns rendered with the EN / JA theme translations.
-require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
 $home = get_posts( array( 'post_type' => 'page', 'name' => 'home', 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
 if ( $home ) {
 	$titles = array( 'en' => 'Home', 'ja' => 'ホーム' );

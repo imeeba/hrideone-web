@@ -7,7 +7,7 @@ Rebuild ของเว็บไซต์ [hrideone.com](https://hrideone.com) (
 
 [▶ เปิด Preview ล่าสุดจาก branch `main`](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json)
 
-เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้าแรก มี `/in-house/`, `/public-training/`, `/courses/` และ Style Guide (`/style-guide/`)
+เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้าแรก มี `/in-house/`, `/public-training/`, `/transformation-solutions/`, `/japanese-concept/`, `/courses/` และ Style Guide (`/style-guide/`)
 พร้อมข้อมูลตัวอย่าง ภาษาอังกฤษ `/en/` ญี่ปุ่น `/ja/` (Polylang) และล็อกอินหลังบ้านให้อัตโนมัติ
 ข้อมูลที่แก้ใน Playground อยู่แค่ในเบราว์เซอร์นั้นและหายเมื่อปิดแท็บ
 
@@ -36,12 +36,13 @@ wp-content/
     assets/images/logo/  โลโก้ SVG (สี / ขาว / ดำ / mark)
     assets/images/home/  ภาพประกอบหน้าแรก (SVG) · placeholder/ รูปชั่วคราว
     assets/js/           hero.js (วิดีโอ hero ≤10 วินาที), slider.js (Gallery แบบสไลด์)
-    parts/ templates/ patterns/   (หน้าแรก: patterns/home*.php)
+    inc/markup.php       ตัวช่วยพิมพ์ block markup ให้ patterns (hri_bm_*)
+    parts/ templates/ patterns/   (หน้าแรก: home-*.php · บริการ: inhouse-*, public-*, transformation-*, japanese-*)
   plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter), ภาษา (Polylang), ข้อมูลบริษัท + blocks ของ footer
 playground/
   blueprint.json         ตั้งค่า Playground preview
-  seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, บทความ 3 เรื่อง, หน้าแรก, In-house / Public Training, Style Guide)
-  seed-home.php          สร้างเนื้อหาหน้าแรกจาก patterns ตามภาษา (ใช้ร่วมกันสองไฟล์)
+  seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, บทความ 3 เรื่อง, หน้าแรก, In-house / Public Training / Transformation / Japanese Concept, Style Guide)
+  seed-home.php          สร้างเนื้อหาหน้าจาก patterns ตามภาษา (hri_seed_page_content(), ใช้ร่วมกันสองไฟล์)
   seed-languages.php     คำแปลตัวอย่าง EN / JA (หลังตั้งค่า Polylang)
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
 docs/HANDOFF.md          สถานะงานและบริบท

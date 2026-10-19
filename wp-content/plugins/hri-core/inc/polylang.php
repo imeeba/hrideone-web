@@ -126,21 +126,28 @@ function hri_localize_url( string $url ): string {
 		return $url; // External, anchor, mailto, tel…
 	}
 
+	// Keep a query string (filter links such as /in-house/?pillar[]=leadership) and an #anchor.
+	$suffix = '';
+	if ( preg_match( '/[?#].*$/s', $path, $m ) ) {
+		$suffix = $m[0];
+		$path   = substr( $path, 0, -strlen( $suffix ) );
+	}
+
 	// A relative path is relative to the default-language home (works in a sub-folder install too).
 	$absolute = untrailingslashit( home_url() ) . $path;
 	$post_id  = url_to_postid( $absolute );
 	if ( $post_id ) {
 		$translated = pll_get_post( $post_id );
 		if ( $translated ) {
-			return (string) get_permalink( $translated );
+			return get_permalink( $translated ) . $suffix;
 		}
 	}
 
-	if ( preg_match( '#^/courses/?$#', (string) strtok( $path, '?#' ) ) ) {
-		return (string) get_post_type_archive_link( 'course' );
+	if ( preg_match( '#^/courses/?$#', $path ) ) {
+		return get_post_type_archive_link( 'course' ) . $suffix;
 	}
 
-	return trailingslashit( pll_home_url() ) . ltrim( $path, '/' );
+	return trailingslashit( pll_home_url() ) . ltrim( $path, '/' ) . $suffix;
 }
 
 /**

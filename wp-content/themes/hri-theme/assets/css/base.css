@@ -734,3 +734,561 @@ video {
 .hri-post .wp-block-post-title a:hover {
 	text-decoration: underline;
 }
+
+/* =====================================================================
+ * Service pages (In-house, Public Training, Transformation, Japanese Concept)
+ * Section patterns: patterns/{inhouse,public,transformation,japanese}-*.php
+ * ===================================================================== */
+
+/* Section head: lead paragraph under the title, then the content. */
+.hri-section > .is-style-section-title + .hri-lead {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.hri-lead {
+	color: var(--wp--preset--color--contrast-muted);
+	max-width: 48rem;
+}
+
+.hri-section > .hri-lead + * {
+	margin-block-start: var(--wp--preset--spacing--60);
+}
+
+.hri-faq-section,
+.hri-partners-section {
+	border-top: 1px solid var(--wp--preset--color--border);
+}
+
+/* Anchored sections (#courses, #scope …): leave a little room above when jumped to. */
+.hri-section[id] {
+	scroll-margin-top: var(--wp--preset--spacing--40);
+}
+
+/* ---------- Page hero: text next to a photo ---------- */
+.wp-site-blocks > main:has(> .wp-block-post-content > .hri-pagehero:first-child) {
+	margin-block-start: 0;
+}
+
+.hri-pagehero__grid {
+	align-items: center;
+	display: grid;
+	gap: var(--wp--preset--spacing--60);
+}
+
+@media (min-width: 900px) {
+	.hri-pagehero__grid {
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+	}
+}
+
+.hri-pagehero__text > * {
+	margin-block: 0;
+}
+
+.hri-pagehero__title {
+	font-size: var(--wp--preset--font-size--xx-large);
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+}
+
+@media (min-width: 900px) {
+	.hri-pagehero__title {
+		font-size: var(--wp--preset--font-size--xxx-large);
+	}
+}
+
+.hri-pagehero__lead {
+	color: var(--wp--preset--color--contrast-muted);
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+}
+
+.hri-pagehero__text > .wp-block-buttons {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+.hri-pagehero__grid > .wp-block-image,
+.hri-split > .wp-block-image {
+	border-radius: var(--wp--custom--radius--lg);
+	box-shadow: var(--wp--preset--shadow--md);
+	margin: 0;
+	overflow: hidden;
+}
+
+.hri-pagehero__grid > .wp-block-image img,
+.hri-split > .wp-block-image img {
+	aspect-ratio: 4 / 3;
+	display: block;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Key facts under the hero buttons. */
+.hri-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
+	list-style: none;
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+	padding: 0;
+}
+
+.hri-chips li {
+	align-items: center;
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--pill);
+	display: inline-flex;
+	font-size: var(--wp--preset--font-size--small);
+	gap: var(--wp--preset--spacing--20);
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--40);
+}
+
+/* Check mark (two borders, rotated), used by chips and checklists. */
+.hri-chips li::before,
+.hri-checklist li::before {
+	border-bottom: 2px solid var(--wp--preset--color--secondary);
+	border-right: 2px solid var(--wp--preset--color--secondary);
+	box-sizing: border-box;
+	content: "";
+	flex: none;
+	height: 0.8em;
+	transform: rotate(45deg) translate(-0.1em, -0.1em);
+	width: 0.45em;
+}
+
+.hri-checklist {
+	list-style: none;
+	padding: 0;
+}
+
+.hri-checklist li {
+	display: flex;
+	gap: var(--wp--preset--spacing--30);
+}
+
+.hri-checklist li::before {
+	margin-block-start: 0.35em;
+}
+
+.hri-checklist li + li {
+	margin-block-start: var(--wp--preset--spacing--20);
+}
+
+/* ---------- Cards grid ---------- */
+.hri-cards {
+	gap: var(--wp--preset--spacing--50);
+}
+
+.hri-card {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--30);
+	padding: var(--wp--preset--spacing--50);
+}
+
+.hri-card > * {
+	margin-block: 0 !important;
+}
+
+.hri-card:not(:has(a)):hover {
+	box-shadow: var(--wp--preset--shadow--sm);
+	transform: none;
+}
+
+.hri-card__num {
+	color: var(--wp--preset--color--primary-strong);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--x-large);
+	font-weight: var(--wp--custom--font-weight--semibold);
+	line-height: var(--wp--custom--line-height--tight);
+}
+
+.hri-card__kicker {
+	color: var(--wp--preset--color--primary-strong);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight--medium);
+	letter-spacing: 0.02em;
+}
+
+.hri-card__title {
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.hri-cards--4 .hri-card__title,
+.hri-challenges .hri-card__title {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+.hri-card__text {
+	color: var(--wp--preset--color--contrast-muted);
+}
+
+.hri-card .hri-checklist {
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.hri-card__link {
+	margin-block-start: auto !important;
+	padding-block-start: var(--wp--preset--spacing--20);
+}
+
+.hri-card__link a {
+	align-items: center;
+	display: inline-flex;
+	font-weight: var(--wp--custom--font-weight--medium);
+	gap: var(--wp--preset--spacing--20);
+	min-height: 44px;
+	text-decoration: none;
+}
+
+.hri-card__link a::after {
+	content: "→";
+	transition: transform var(--wp--custom--motion--fast) var(--hri-ease);
+}
+
+.hri-card__link a:hover {
+	text-decoration: underline;
+}
+
+.hri-card__link a:hover::after {
+	transform: translateX(3px);
+}
+
+/* Leadership / Business pillar cards: a coloured top edge. */
+.hri-pillars .hri-card {
+	border-top: 4px solid var(--wp--preset--color--primary);
+}
+
+.hri-pillars .hri-card + .hri-card {
+	border-top-color: var(--wp--preset--color--secondary-light);
+}
+
+.hri-pillars .hri-checklist {
+	columns: 2 10rem;
+	column-gap: var(--wp--preset--spacing--50);
+}
+
+.hri-pillars .hri-checklist li {
+	break-inside: avoid;
+	margin-block: 0 var(--wp--preset--spacing--20);
+}
+
+/* ---------- Numbered steps ---------- */
+.hri-steps {
+	display: grid;
+	gap: var(--wp--preset--spacing--50);
+}
+
+@media (min-width: 600px) {
+	.hri-steps {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 782px) {
+	.hri-steps--3,
+	.hri-steps--5 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1100px) {
+	.hri-steps--4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.hri-steps--5 {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+}
+
+.hri-step {
+	border-top: 3px solid var(--wp--preset--color--primary);
+	padding-top: var(--wp--preset--spacing--40);
+}
+
+.hri-step > * {
+	margin-block: 0 !important;
+}
+
+.hri-step__num {
+	color: var(--wp--preset--color--primary-strong);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--xx-large);
+	font-weight: var(--wp--custom--font-weight--semibold);
+	line-height: var(--wp--custom--line-height--tight);
+}
+
+.hri-step__title {
+	font-size: var(--wp--preset--font-size--large);
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+}
+
+.hri-step__text {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--small);
+	margin-block-start: var(--wp--preset--spacing--20) !important;
+}
+
+.hri-subtitle {
+	font-size: var(--wp--preset--font-size--x-large);
+	margin-block-end: var(--wp--preset--spacing--50) !important;
+}
+
+/* ---------- Photo + text ---------- */
+.hri-split {
+	align-items: center;
+	display: grid;
+	gap: var(--wp--preset--spacing--60);
+}
+
+@media (min-width: 900px) {
+	.hri-split {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.hri-split__text > * {
+	margin-block: 0;
+}
+
+.hri-split__text > * + * {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.hri-split__text > .is-style-section-title {
+	font-size: var(--wp--preset--font-size--x-large);
+	text-transform: none;
+}
+
+/* ---------- Pain points box ---------- */
+.hri-problems {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-left: 4px solid var(--wp--preset--color--primary);
+	border-radius: var(--wp--custom--radius--md);
+	box-sizing: border-box;
+	padding: var(--wp--preset--spacing--50);
+}
+
+.hri-problems > * {
+	margin-block: 0;
+}
+
+.hri-problems__title {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+.hri-problems__list {
+	display: grid;
+	gap: var(--wp--preset--spacing--20) var(--wp--preset--spacing--50);
+	list-style: none;
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+	padding: 0;
+}
+
+@media (min-width: 782px) {
+	.hri-section > .hri-problems .hri-problems__list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.hri-problems__list li {
+	display: flex;
+	gap: var(--wp--preset--spacing--30);
+}
+
+.hri-problems__list li::before {
+	background: var(--wp--preset--color--primary);
+	border-radius: 50%;
+	content: "";
+	flex: none;
+	height: 0.5em;
+	margin-block-start: 0.6em;
+	width: 0.5em;
+}
+
+.hri-section > .hri-problems + .hri-cards {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* People Strategy: problems next to the approach. */
+.hri-duo {
+	display: grid;
+	gap: var(--wp--preset--spacing--50);
+}
+
+@media (min-width: 900px) {
+	.hri-duo {
+		align-items: start;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+	}
+}
+
+.hri-duo .hri-cards {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---------- FAQ (Details blocks) ---------- */
+.hri-faq {
+	margin-inline: auto;
+	max-width: 860px;
+}
+
+.hri-faq__item {
+	border-bottom: 1px solid var(--wp--preset--color--border);
+	margin: 0;
+}
+
+.hri-faq__item:first-child {
+	border-top: 1px solid var(--wp--preset--color--border);
+}
+
+.hri-faq__item summary {
+	align-items: center;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: var(--wp--custom--font-weight--medium);
+	gap: var(--wp--preset--spacing--40);
+	justify-content: space-between;
+	list-style: none;
+	min-height: 44px;
+	padding-block: var(--wp--preset--spacing--40);
+}
+
+.hri-faq__item summary::-webkit-details-marker {
+	display: none;
+}
+
+.hri-faq__item summary::after {
+	color: var(--wp--preset--color--primary-strong);
+	content: "+";
+	flex: none;
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: 1;
+	transition: transform var(--wp--custom--motion--base) var(--hri-ease);
+}
+
+.hri-faq__item[open] summary::after {
+	transform: rotate(45deg);
+}
+
+.hri-faq__item summary:focus-visible {
+	box-shadow: var(--hri-ring);
+	outline: none;
+}
+
+.hri-faq__item > p {
+	color: var(--wp--preset--color--contrast-muted);
+	margin-block: 0 var(--wp--preset--spacing--40);
+}
+
+/* ---------- Call-to-action band inside a page ---------- */
+.hri-pagecta > * {
+	margin-inline: auto;
+	max-width: 48rem;
+}
+
+.hri-pagecta__title {
+	font-size: var(--wp--preset--font-size--xx-large);
+}
+
+.hri-pagecta__text {
+	margin-block-start: var(--wp--preset--spacing--30);
+}
+
+.hri-pagecta .wp-block-buttons {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* ---------- Partner logos: 2 per row on mobile, 4 from tablet up ---------- */
+.wp-block-gallery.is-style-logos.hri-logos--4 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-inline: auto;
+	max-width: 960px;
+}
+
+@media (min-width: 600px) {
+	.wp-block-gallery.is-style-logos.hri-logos--4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.wp-block-gallery.has-nested-images.is-style-logos.hri-logos--4 figure.wp-block-image:not(#individual-image) {
+	padding: var(--wp--preset--spacing--40);
+}
+
+/* ---------- Japanese Concept: DO·WA·KEI ---------- */
+.hri-dowakei__title {
+	font-size: var(--wp--preset--font-size--xx-large);
+	margin-inline: auto;
+	max-width: 48rem;
+}
+
+.hri-kanji {
+	display: grid;
+	gap: var(--wp--preset--spacing--40);
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-block-start: var(--wp--preset--spacing--60) !important;
+	text-align: center;
+}
+
+.hri-kanji__item > * {
+	margin-block: 0;
+}
+
+.hri-kanji__char {
+	color: var(--wp--preset--color--accent);
+	font-size: calc(var(--wp--preset--font-size--display) * 1.4);
+	line-height: 1;
+}
+
+.hri-kanji__label {
+	font-size: var(--wp--preset--font-size--small);
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+}
+
+.hri-kanji__label strong {
+	color: var(--wp--preset--color--accent);
+	display: block;
+	letter-spacing: 0.08em;
+}
+
+.hri-dowakei__quote {
+	margin-block-start: var(--wp--preset--spacing--60) !important;
+}
+
+.hri-dowakei__quote,
+.hri-dowakei__text {
+	margin-inline: auto;
+	max-width: 48rem;
+}
+
+.hri-journey .hri-card__num {
+	font-size: var(--wp--preset--font-size--display);
+	line-height: 1;
+}
+
+.hri-journey .hri-card__title {
+	font-family: var(--wp--preset--font-family--display);
+}
+
+.hri-challenges .hri-card {
+	border-left: 4px solid var(--wp--preset--color--primary);
+}
+
+/* Grid children never get the flow layout's top margin (keeps items aligned). */
+.hri-steps > *,
+.hri-pagehero__grid > *,
+.hri-split > *,
+.hri-duo > *,
+.hri-kanji > * {
+	margin-block: 0;
+}
+
+/* Section titles that are sentences (translated) keep their letter case. */
+.is-style-section-title.hri-title-sentence {
+	text-transform: none;
+}

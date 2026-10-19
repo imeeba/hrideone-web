@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-18 (หน้าแรก)
+> อัปเดตล่าสุด: 2026-10-19 (หน้าบริการ: In-house, Public, Transformation, Japanese Concept)
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -32,8 +32,8 @@
 
 - Preview (Playground, ดึงจาก `main` ทุกครั้ง): <https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json>
   - เติม `&v=<เลขใหม่>` ถ้าเห็นเวอร์ชันเก่า (cache)
-  - เปิดมาที่หน้าแรก `/` · Style Guide `/style-guide/` · รวมคอร์ส `/courses/` · `/in-house/` · `/public-training/`
-  - ภาษาอื่น: `/en/` `/ja/` (หน้าแรก) · `/en/in-house-en/` · `/ja/public-training-ja/` · `/en/courses/negotiation-mastery-en/`
+  - เปิดมาที่หน้าแรก `/` · Style Guide `/style-guide/` · รวมคอร์ส `/courses/` · `/in-house/` · `/public-training/` · `/transformation-solutions/` · `/japanese-concept/`
+  - ภาษาอื่น: `/en/` `/ja/` (หน้าแรก) · `/en/in-house-en/` · `/ja/public-training-ja/` · `/en/transformation-solutions-en/` · `/ja/japanese-concept-ja/` · `/en/courses/negotiation-mastery-en/`
   - ทดสอบ branch อื่น: เอา blueprint มาแทน `main` เป็นชื่อ branch แล้วเปิดแบบ `https://playground.wordpress.net/#<blueprint JSON ที่ encode แล้ว>`
 - Local test site: `scripts/local-setup.sh [dir] [port]` → `http://127.0.0.1:8899/wp/` (admin/admin)
   - WordPress 7.1.3 จาก GitHub + SQLite + WP-CLI, symlink theme/plugin จาก repo
@@ -109,6 +109,18 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Favicon: `<link rel="icon">` จาก `mark.svg` เมื่อยังไม่ได้ตั้ง Site Icon (Settings → General ต้องเป็นรูป PNG ≥512px)
 - CSS ทั้งหมดอยู่ใน `base.css` ส่วน "Home" · script โหลดเฉพาะหน้าที่มี block นั้น (`render_block` ใน `functions.php`)
 
+**หน้าบริการ** (In-house, Public Training, Transformation Solutions, Japanese Concept) — สร้างแบบเดียวกับหน้าแรก: เนื้อหาเป็น block ธรรมดาในหน้า (แก้ใน editor ได้ทุกภาษา) ประกอบจาก section patterns
+- ลำดับ section ของทุกหน้าอยู่ใน `hri_page_sections()` (`functions.php`, key = slug หน้าไทย) · pattern รวม `hri/inhouse`, `hri/public`, `hri/transformation`, `hri/japanese` (ใส่ในหน้าว่าง) + pattern ย่อยทีละ section (`hri/inhouse-hero` ฯลฯ)
+- `inc/markup.php` = ตัวช่วยพิมพ์ block markup มาตรฐานของ core (`hri_bm_*`: section, head, pagehero, cards, steps, details/FAQ, problems, ctaband, service) → pattern สั้นและ markup valid ใน editor (ตรวจแล้วทั้ง 12 หน้า)
+- Component ใหม่ (CSS `base.css` ส่วน "Service pages"): page hero ข้อความ+รูป (`hri-pagehero`, chips จุดเด่น), การ์ด (`hri-cards`/`hri-card`: เลข, kicker, หัวข้อ, ข้อความ, checklist, ลิงก์ →), ขั้นตอน (`hri-steps--3/4/5`), รูปคู่ข้อความ (`hri-split`), กล่องปัญหา (`hri-problems`), FAQ = Details block (`hri-faq__item`, เปิด/ปิดได้ไม่ใช้ JS), แถบ CTA เข้มกลางหน้า (`hri-pagecta`), โลโก้พาร์ทเนอร์ 4 ต่อแถว (`hri-logos--4`), DO·WA·KEI อักษร 道 和 敬 (`hri-kanji`, ใส่ `<span lang="ja">`)
+- หัวข้อ section ที่เป็นประโยค (แปลแล้วยาว) ใส่ class `hri-title-sentence` = ไม่บังคับตัวพิมพ์ใหญ่
+- Conversion: ทุกหน้ามีปุ่มหลักใน hero (ขอใบเสนอราคา / นัดคุย / สมัคร → `/contact-us/`) + ปุ่มรองเลื่อนไปเนื้อหา (`#courses`, `#scope`, `#do-wa-kei`), จุดเด่นสั้นใต้ปุ่ม, CTA ท้ายแต่ละ section, FAQ ตอบข้อกังวล, In-house: ลิงก์ Leadership/Business ไปรายการคอร์สที่กรองแล้ว (`/in-house/?pillar%5B%5D=leadership#courses`), Public: แถบชวนจัด In-house, Technology Strategy ลิงก์ไปคอร์ส Lean
+- In-house: hero → Leadership+Business → Why HRI DeOne → How it works → รายการคอร์ส (`#courses`) → โลโก้ลูกค้า (ใช้ `home-clients`) → FAQ · Public: hero → คอร์สที่เปิด (`#courses`) → ทำไมต้อง Public → ขั้นตอนสมัคร → แถบ In-house → FAQ
+- Transformation: hero → 4 Scope (การ์ดลิงก์ anchor) → Business (`#business-strategy`) / Technology / People / Culture Strategy → พาร์ทเนอร์ 8 โลโก้ · Japanese Concept: hero → 3 โปรแกรม → DO·WA·KEI (`#do-wa-kei`) → ความท้าทาย 4 ข้อ → Journey 3 ขั้น (`#journey`) → Business Outcomes → แถบปิด "Build something that outlasts you." (+ปุ่ม LINE จาก `hri_company('line_url')`)
+- ไม่ได้ทำหน้าย่อยของเว็บเดิม (`/transformation-solutions/business-strategy/` ฯลฯ, `/japanese-concept/do-wa-kei/`, `/in-house/leadership-development/` ฯลฯ) เนื้อหาย่อลงมาอยู่ใน section ของหน้าหลักแล้ว → ตอนย้ายเว็บให้ 301 หน้าย่อยไป anchor ของหน้าหลัก หรือสร้างหน้าย่อยทีหลัง
+- `hri_localize_url()` เก็บ query string และ `#anchor` ไว้ตอนแปลงลิงก์ภายในเป็นภาษาอื่น (เดิมตัดทิ้ง)
+- Seed: `hri_seed_page_content( $slug, $locale )` (`seed-home.php`) render patterns ตามภาษา แทนที่รูป placeholder ด้วยรูปตัวอย่าง (คง alt) — ใช้ทั้งหน้าแรกและ 4 หน้าบริการ
+
 ## 5. เสร็จแล้ว
 
 - [x] Design tokens + Style Guide (Jimmi รับแล้ว)
@@ -119,23 +131,28 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] Header ใหม่ + ปุ่มภาษา (ตรวจที่ 1280/1100/1024/768/375 ผ่านการจำลองจอ)
 - [x] Footer ใหม่ + โลโก้ SVG 5 แบบ + หน้าข้อมูลบริษัท + แถบ CTA (ทดสอบ 1280/768/375, TH/EN/JA ใน Playground)
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
+- [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
 
 - `playground/seed.php`: ชื่อ/slug คอร์สมาจากเว็บจริง แต่ **ระดับผู้เรียน ระยะเวลา รูปแบบ หัวข้อ** และสถานะ "เปิดรับสมัคร" ของ Public เป็นค่าสมมติ เนื้อหาคอร์สเป็นข้อความตัวอย่าง
-- ข้อความแนะนำหน้า In-house / Public Training มีวงเล็บ "(ข้อความตัวอย่าง)"
+- หน้าบริการ: เนื้อหาเรียบเรียง/ย่อจากเว็บเดิม (ดึงข้อความเต็มไม่ได้ ใช้สรุปจากหน้าเว็บ) ต้องให้ Jimmi/การตลาดตรวจ · ส่วนที่ผมเขียนเพิ่มเอง (ไม่มีในเว็บเดิม): หัวข้อ/lead ของ hero บางหน้า, chips จุดเด่น, ขั้นตอน In-house 4 ข้อ (สรุปจาก FAQ เดิม), ขั้นตอนสมัคร Public 3 ข้อ, FAQ ของ Public ทั้งหมด (ส่งหลายคน/รุ่นเต็ม), ข้อ "เหมาะกับการส่งพนักงานบางส่วน…", แถบชวนจัด In-house, คำอธิบาย Japanese Working Philosophy และ Cross-cultural Communication (เว็บเดิมไม่มีหน้า), "3 วัน · ประเทศญี่ปุ่น" ของ Part 3 (เว็บเดิมแบ่งเป็น Day 1–3), กล่อง "สัญญาณที่องค์กรควรทบทวนกลยุทธ์"
+- หน้าบริการ: รูป hero/รูปประกอบเป็นรูปตัวอย่าง · รูปจริงจากเว็บเดิม: In-house `/wp-content/uploads/2026/09/782.webp`, Public `/wp-content/uploads/2026/09/1920x1080-01-1024x576.webp`, โลโก้พาร์ทเนอร์ `/wp-content/uploads/2026/09/logo-partner-01…08.png` (Transformation) · DO·WA·KEI เว็บเดิมมีวิดีโอใน section Business Outcomes (ยังไม่ได้ใส่)
+- ลิงก์ "สมัคร/ขอใบเสนอราคา" ทุกปุ่มไป `/contact-us/` ซึ่งยังไม่มี (รอทำหน้า Contact + ฟอร์ม Lead) · ยังไม่มีปุ่ม "สมัคร" แยกต่อคอร์ส Public
+- คำแปล EN/JA ของหน้าบริการเป็น machine translation (ใน `hri-theme/languages/*.po`) — JA ต้องให้คนตรวจ
 - รูปคอร์สเป็นภาพนามธรรมที่สร้างเอง (`playground/sample/`)
 - ที่อยู่ภาษาไทยใน `hri_company_defaults()` เรียบเรียงเองจากที่อยู่ภาษาอังกฤษ (ชื่อบริษัทคงเป็นอังกฤษ) ต้องให้ Jimmi ตรวจ · ข้อความแถบ CTA มี "(ข้อความตัวอย่าง)" · LinkedIn ยังไม่มี URL (ช่องว่าง = ไม่แสดง)
 - คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
-- เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี (ปุ่มในหน้าแรกชี้ไป `/transformation-solutions/` `/japanese-concept/` `/blog/` ซึ่งยัง 404)
+- เมนูยังเป็นของเว็บเดิม หน้า Blog, About, Contact ยังไม่มี (ปุ่มชี้ไป `/blog/` `/contact-us/` ซึ่งยัง 404)
 - หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ
 - หน้าแรก: บรรทัดเล็กเหนือ "Our Services" ใช้ "What We Do" (Jimmi สั่งให้หัวข้อใน section นี้เป็นอังกฤษล้วน ไม่แปล; คำนี้ผมตั้งเอง รอยืนยัน) · ข้อความ 01–03 ในหลอดไฟมาจากรูป reference ของ Jimmi
 - หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
-0. **สถานะล่าสุด (19 ต.ค. 2569):** หน้าแรกเสร็จและ merge เข้า `main` แล้ว (theme/plugin 0.4.x; รอบล่าสุด: ลบการ์ดบริการ ย้ายปุ่ม CTA ไปใต้ข้อ 01–03 ของหลอดไฟ, โลโก้มือถือแถวละ 5 = 8 แถว) · Jimmi ยังไม่ได้ระบุว่างานถัดไปคืออะไร → ให้ถามว่าจะเริ่มข้อไหนก่อน (ข้อเสนอที่ยังไม่อนุมัติ: แก้ tap target header/footer ให้ ≥44px ตามหัวข้อ "ปัญหานอกขอบเขต" และสร้างหน้า Transformation Solutions / Japanese Concept ที่ปุ่ม CTA ชี้ไปแต่ยัง 404)
+0. **สถานะล่าสุด (19 ต.ค. 2569 บ่าย):** หน้าบริการ 4 หน้าเสร็จ merge เข้า `main` (theme 0.5.0 / plugin 0.4.1) รอ Jimmi ตรวจเนื้อหา ข้อ 6 · งานที่น่าทำต่อ: หน้า Contact + ฟอร์ม Lead (ทุก CTA ชี้ไปที่นั่น), ใส่รูปจริง
+0. (ก่อนหน้า) หน้าแรกเสร็จและ merge เข้า `main` แล้ว (theme/plugin 0.4.x; รอบล่าสุด: ลบการ์ดบริการ ย้ายปุ่ม CTA ไปใต้ข้อ 01–03 ของหลอดไฟ, โลโก้มือถือแถวละ 5 = 8 แถว) · Jimmi ยังไม่ได้ระบุว่างานถัดไปคืออะไร → ให้ถามว่าจะเริ่มข้อไหนก่อน (ข้อเสนอที่ยังไม่อนุมัติ: แก้ tap target header/footer ให้ ≥44px ตามหัวข้อ "ปัญหานอกขอบเขต" และสร้างหน้า Transformation Solutions / Japanese Concept ที่ปุ่ม CTA ชี้ไปแต่ยัง 404)
 1. **ใส่รูปจริงหน้าแรก** — โลโก้ลูกค้า 40 รายการ (เว็บเดิม `/wp-content/uploads/2026/03/Website-Customer-logo-01…40.webp`), รูปผู้บริหาร, รูป Gallery, รูป/วิดีโอ Hero (ทำในหน้าแรกแต่ละภาษา หรือให้ Jimmi แนบไฟล์มา)
    - หน้า Contact / About / Blog / Transformation / Japanese Concept ยังไม่มี: CTA, เมนู และปุ่มหน้าแรกชี้ไปหน้าที่ยัง 404
 2. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
@@ -167,6 +184,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Editor ใน local ใช้ `wait_until: domcontentloaded` (admin ยิงไป wordpress.org ไม่จบ networkidle)
 - วันที่บทความใน local เป็นภาษาอังกฤษเพราะไม่มี language pack ไทยของ core (บนโฮสต์จริงติดตั้ง ภาษาไทย แล้วจะเป็นเดือนไทย)
 - ลบ/ย้าย component ใน pattern แล้วต้อง seed หน้าใหม่ (page content เก็บใน DB): local ใช้ `wp eval-file playground/seed.php` แล้ว `seed-languages.php` · ระวังตอนลบ CSS ทั้งบล็อก — กฎ selector ที่ใช้ร่วมกัน (เช่น `.hri-post`) อยู่ปนกับของที่ลบ
+- เพิ่ม/แก้ข้อความใน pattern ของ theme: `wp i18n make-pot . languages/hri-theme.pot --skip-js --skip-theme-json --skip-block-json` → `wp i18n update-po` → ใส่ msgstr (อย่าให้ polib เขียนไฟล์ใหม่ทั้งไฟล์ diff จะบวม) → `make-mo` + `make-php`
+- อย่าตั้ง className ของ section ซ้ำกับ class ของ block ใน hri-core (เช่น `hri-courses` = layout ของ course filter ทำให้หน้าเพี้ยน) ใช้ `hri-courses-section`
 - Hook ทดสอบหลังแก้: `python3 measure.py` (overflow/tap/contrast/PHP/JS ที่ 1280/768/375 × `/`,`/en/`,`/ja/`) — สคริปต์อยู่ใน scratchpad ของแชทเก่า ไม่อยู่ใน repo ให้เขียนใหม่ด้วย Playwright (Chromium อยู่ที่ /opt/pw-browsers)
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
 
@@ -174,6 +193,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 - Header desktop: ลิงก์เมนูสูง 25px, ปุ่มภาษา (summary) สูง 34px, รายการใน dropdown ภาษา 43px · ปุ่มแฮมเบอร์เกอร์ (<1100px) 24×24 — ต่ำกว่าเกณฑ์ 44px (ผ่าน WCAG 2.5.8 AA 24px แต่ไม่ผ่าน 44px ที่ตั้งไว้)
 - Footer: ลิงก์เมนูสูง 43px ที่จอ 375 (ปัดเศษ) และคำสั้น (Blog/About) กว้าง <44px
+- Course filter (`hri/course-filter`): label checkbox สูง 34–35px, ปุ่ม "ตัวกรอง" บนมือถือ 43px — ต่ำกว่า 44px
+- การ์ดคอร์ส: ชื่อคอร์สยาวตัดกลางคำ ("Transformatio-n Mastery") ในการ์ดแคบ 3 คอลัมน์ เพราะ `overflow-wrap` ของ `[lang|="th"]` — ควรใช้ `hyphens`/ลดขนาดหัวข้อในการ์ด
 
 ## 9. วิธีทำงานที่ประหยัด usage
 

@@ -11,6 +11,8 @@ defined( 'ABSPATH' ) || exit;
 
 define( 'HRI_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 
+require_once __DIR__ . '/inc/markup.php';
+
 /**
  * Theme supports and translations (languages/hri-theme-{locale}).
  */
@@ -141,6 +143,31 @@ add_filter(
  */
 function hri_home_sections(): array {
 	return array( 'hero', 'intro', 'highlight', 'services', 'stats', 'clients', 'message', 'gallery', 'knowledge' );
+}
+
+/**
+ * Sections (pattern files in patterns/, without .php) of each page built from patterns,
+ * keyed by the Thai page slug. Used by the "… (all sections)" patterns and the sample content.
+ *
+ * @return array<string, string[]>
+ */
+function hri_page_sections(): array {
+	return array(
+		'home'                     => array_map( static fn( $s ) => "home-{$s}", hri_home_sections() ),
+		'in-house'                 => array( 'inhouse-hero', 'inhouse-pillars', 'inhouse-why', 'inhouse-process', 'inhouse-courses', 'home-clients', 'inhouse-faq' ),
+		'public-training'          => array( 'public-hero', 'public-courses', 'public-why', 'public-steps', 'public-inhouse', 'public-faq' ),
+		'transformation-solutions' => array( 'transformation-hero', 'transformation-scope', 'transformation-business', 'transformation-technology', 'transformation-people', 'transformation-culture', 'transformation-partners' ),
+		'japanese-concept'         => array( 'japanese-hero', 'japanese-programs', 'japanese-dowakei', 'japanese-challenges', 'japanese-journey', 'japanese-outcomes', 'japanese-cta' ),
+	);
+}
+
+/**
+ * Print every section pattern of a page (for the "… (all sections)" patterns).
+ */
+function hri_include_page_sections( string $page ): void {
+	foreach ( hri_page_sections()[ $page ] ?? array() as $hri_section ) {
+		include get_template_directory() . "/patterns/{$hri_section}.php";
+	}
 }
 
 /**

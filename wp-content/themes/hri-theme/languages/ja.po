@@ -17,7 +17,7 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 #: style.css
-#: functions.php:110
+#: functions.php:112
 msgid "HRI DeOne"
 msgstr ""
 
@@ -31,19 +31,19 @@ msgstr ""
 msgid "Lightweight block theme for HRI DeOne. Design tokens live in tokens/tokens.json and are compiled into theme.json."
 msgstr ""
 
-#: functions.php:101
+#: functions.php:103
 msgid "Light (on dark)"
 msgstr ""
 
-#: functions.php:102
+#: functions.php:104
 msgid "Eyebrow"
 msgstr ""
 
-#: functions.php:103
+#: functions.php:105
 msgid "Card"
 msgstr ""
 
-#: functions.php:104
+#: functions.php:106
 msgid "Section title"
 msgstr ""
 
@@ -132,48 +132,48 @@ msgctxt "Pattern description"
 msgid "Living style guide. Colors, type, spacing and components are read from theme.json, so this page always matches the tokens."
 msgstr ""
 
-#: functions.php:130
+#: functions.php:132
 msgid "เมนูท้ายเว็บ"
 msgstr "フッターメニュー"
 
-#: functions.php:130
+#: functions.php:132
 msgid "เมนูหลัก"
 msgstr "メインメニュー"
 
-#: functions.php:105
+#: functions.php:107
 msgid "Outline light (on dark)"
 msgstr ""
 
-#: functions.php:106
+#: functions.php:108
 msgid "Hero (video ≤ 10 s)"
 msgstr ""
 
-#: functions.php:107
+#: functions.php:109
 msgid "Slider"
 msgstr ""
 
-#: functions.php:108
+#: functions.php:110
 msgid "Logos"
 msgstr ""
 
-#: functions.php:179
+#: functions.php:206
 msgid "หยุดวิดีโอ"
 msgstr "動画を一時停止"
 
-#: functions.php:180
+#: functions.php:207
 msgid "เล่นวิดีโอ"
 msgstr "動画を再生"
 
-#: functions.php:183
+#: functions.php:210
 msgid "รูปก่อนหน้า"
 msgstr "前の写真"
 
-#: functions.php:184
+#: functions.php:211
 msgid "รูปถัดไป"
 msgstr "次の写真"
 
 #. translators: 1: slide number, 2: number of slides
-#: functions.php:186
+#: functions.php:213
 #, php-format
 msgid "รูปที่ %1$s จาก %2$s"
 msgstr "写真 %1$s / %2$s"
@@ -220,6 +220,7 @@ msgid "หลักสูตรพัฒนาผู้นำและองค�
 msgstr "日本流の仕事の考え方を取り入れたリーダー育成・組織開発プログラムで、世代を超えて成長し続ける組織づくりを支援します。"
 
 #: patterns/home-hero.php:29
+#: patterns/public-courses.php:13
 msgid "หลักสูตรที่เปิดรับสมัคร"
 msgstr "募集中の講座"
 
@@ -312,23 +313,7 @@ msgctxt "Pattern title"
 msgid "Home — Our services"
 msgstr ""
 
-#: patterns/home-services.php:22
-msgid "พัฒนาผู้นำและทีมงานให้เติบโตได้จริง ตั้งแต่การรู้จักตัวเอง การนำทีม สู่การบริหารธุรกิจในทุกมิติ"
-msgstr "自己理解からチームの率い方、そしてあらゆる面での事業運営まで、リーダーとチームの確かな成長を支援します。"
-
-#: patterns/home-services.php:29
-msgid "โซลูชันสำหรับองค์กรที่ต้องการเปลี่ยนแปลงอย่างเป็นระบบ ครอบคลุมกลยุทธ์ธุรกิจ เทคโนโลยี คน และวัฒนธรรมองค์กร"
-msgstr "事業戦略、テクノロジー、人材、組織文化までを網羅し、体系的な変革を目指す組織のためのソリューションです。"
-
-#: patterns/home-services.php:36
-msgid "แนวคิดการทำงานแบบญี่ปุ่นที่เสริมทักษะการสื่อสารและการทำงานร่วมกันข้ามวัฒนธรรม"
-msgstr "日本流の仕事の考え方で、コミュニケーションと異文化間の協働の力を高めます。"
-
-#: patterns/home-services.php:43
-msgid "บริการของเรา"
-msgstr "サービス"
-
-#: patterns/home-services.php:95
+#: patterns/home-services.php:47
 msgid "ดูรายละเอียด"
 msgstr "詳しく見る"
 
@@ -373,11 +358,6 @@ msgctxt "Pattern description"
 msgid "Logo wall (Gallery, style \"Logos\"): all logos at once, 10 per row on desktop. Replace the placeholders with client logos and give each one the company name as alt text."
 msgstr ""
 
-#: patterns/home-services.php
-msgctxt "Pattern description"
-msgid "Light-bulb infographic (01–03) with the three services around it, then three service cards (Future Leader, Transformation Solutions, Japanese Concept) with SVG illustrations."
-msgstr ""
-
 #: patterns/home-services.php:13
 msgid "สร้างผู้นำยุคใหม่ที่แข็งแกร่งทั้งด้าน Leadership และ Business เพราะผู้นำที่แท้จริงต้องนำคนเป็นและเข้าใจธุรกิจอย่างลึกซึ้ง"
 msgstr "リーダーシップとビジネスの両面に強い次世代のリーダーを育成します。真のリーダーには、人を導く力と事業への深い理解が欠かせないからです。"
@@ -389,3 +369,1054 @@ msgstr "Business Strategy、Technology Strategy、People Strategy、Culture Stra
 #: patterns/home-services.php:15
 msgid "นำปรัชญาและแนวปฏิบัติการทำงานแบบญี่ปุ่นที่พิสูจน์แล้วว่าสร้างองค์กรยั่งยืน มาประยุกต์ใช้ในบริบทไทยอย่างเป็นระบบ"
 msgstr "持続する組織づくりで実証された日本の仕事の哲学と実践を、タイの環境に合わせて体系的に取り入れます。"
+
+#. translators: 1: link to the contact page, 2: phone number link
+#: inc/markup.php:368
+#, php-format
+msgid "กรอกแบบฟอร์มใน%1$s โทร %2$s หรือทักทาง LINE ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง"
+msgstr "%1$sのフォームにご記入いただくか、%2$sへお電話、またはLINEでご連絡ください。24時間以内に担当者よりご連絡いたします。"
+
+#: inc/markup.php:369
+msgid "หน้าติดต่อเรา"
+msgstr "お問い合わせページ"
+
+#. translators: %s: service name, e.g. Business Strategy
+#: inc/markup.php:395
+#, php-format
+msgid "ปรึกษาเรื่อง %s"
+msgstr "%sについて相談する"
+
+#: patterns/home-services.php
+msgctxt "Pattern description"
+msgid "Light-bulb infographic (01–03) with the three services around it; each has a CTA button to its full service page."
+msgstr ""
+
+#: patterns/inhouse-courses.php
+msgctxt "Pattern title"
+msgid "In-house — Course list"
+msgstr ""
+
+#: patterns/inhouse-courses.php
+msgctxt "Pattern description"
+msgid "Search and filters, locked to In-house courses. Anchor #courses (the hero button links here)."
+msgstr ""
+
+#: patterns/inhouse-courses.php:13
+msgid "หลักสูตร In-house"
+msgstr "企業内研修プログラム"
+
+#: patterns/inhouse-courses.php:13
+msgid "เลือกดูตามหมวด หัวข้อ ระดับผู้เรียน หรือรูปแบบการอบรม ทุกหลักสูตรปรับเนื้อหาให้ตรงกับองค์กรของคุณได้"
+msgstr "分野・テーマ・対象者・形式で絞り込めます。すべての講座は貴社に合わせて内容を調整できます。"
+
+#: patterns/inhouse-faq.php
+msgctxt "Pattern title"
+msgid "In-house — FAQ"
+msgstr ""
+
+#: patterns/inhouse-faq.php
+#: patterns/public-faq.php
+msgctxt "Pattern description"
+msgid "Frequently asked questions (Details blocks: click to open)."
+msgstr ""
+
+#: patterns/inhouse-faq.php:13
+msgid "หลักสูตร In-house ของ HRI DeOne ต่างจากการอบรมทั่วไปอย่างไร?"
+msgstr "HRI DeOneの企業内研修は一般的な研修と何が違いますか？"
+
+#: patterns/inhouse-faq.php:13
+msgid "เราเน้น Tailor-made Solution ไม่ใช่การสอนตามสไลด์สำเร็จรูป ทีมงานจะทำความเข้าใจบริบทขององค์กรคุณก่อนเริ่มออกแบบทุกครั้ง"
+msgstr "既製のスライドによる講義ではなく、テーラーメイドのソリューションを重視しています。設計の前に必ず貴社の状況を理解するところから始めます。"
+
+#: patterns/inhouse-faq.php:14
+msgid "ปรับเนื้อหาให้เข้ากับวัฒนธรรมองค์กรได้ไหม?"
+msgstr "社風に合わせて内容を調整できますか？"
+
+#: patterns/inhouse-faq.php:14
+msgid "ได้ เราปรับกรณีศึกษาและแบบฝึกหัดร่วมกับ HRD หรือหัวหน้าหน่วยงาน ให้สะท้อนสถานการณ์จริงที่ทีมเจอ"
+msgstr "はい。人材開発部門や部門長と一緒にケーススタディや演習を調整し、チームが実際に直面する状況を反映させます。"
+
+#: patterns/inhouse-faq.php:15
+msgid "ใช้เวลาอบรมนานเท่าไร และจัดรูปแบบไหนได้บ้าง?"
+msgstr "研修期間はどのくらいで、どのような形式に対応していますか？"
+
+#: patterns/inhouse-faq.php:15
+msgid "โดยทั่วไป 1–2 วัน ปรับตารางได้ยืดหยุ่น จัดได้ทั้ง Onsite, Online หรือ Hybrid และออกแบบเป็นโปรแกรมระยะยาวแบบ Journey ได้"
+msgstr "通常は1〜2日で、日程は柔軟に調整できます。対面・オンライン・ハイブリッドに対応し、長期のジャーニー型プログラムとして設計することも可能です。"
+
+#: patterns/inhouse-faq.php:16
+msgid "มีการประเมินผลหลังอบรมไหม?"
+msgstr "研修後の評価はありますか？"
+
+#: patterns/inhouse-faq.php:16
+msgid "มี เราสรุปผลและข้อเสนอแนะหลังอบรม เพื่อให้ HRD ประเมินและติดตามพัฒนาการของผู้เรียนได้"
+msgstr "はい。研修後に結果のまとめと提言をお渡しし、人材開発部門が受講者の成長を評価・フォローできるようにします。"
+
+#: patterns/inhouse-faq.php:17
+msgid "เริ่มต้นอย่างไร?"
+msgstr "どのように始めればよいですか？"
+
+#: patterns/inhouse-faq.php:21
+#: patterns/public-faq.php:20
+msgid "คำถามที่พบบ่อย"
+msgstr "よくあるご質問"
+
+#: patterns/inhouse-hero.php
+msgctxt "Pattern title"
+msgid "In-house — Hero"
+msgstr ""
+
+#: patterns/inhouse-hero.php
+msgctxt "Pattern description"
+msgid "Page introduction: headline, value statement, quote / courses buttons, key facts and a photo."
+msgstr ""
+
+#: patterns/inhouse-hero.php:15
+msgid "เปลี่ยน “ทักษะพนักงาน” ให้เป็น “ขีดความสามารถในการแข่งขัน” อย่างยั่งยืน"
+msgstr "「社員のスキル」を持続的な「競争力」へ"
+
+#: patterns/inhouse-hero.php:16
+msgid "หลักสูตรอบรมภายในองค์กรที่ออกแบบจากโจทย์จริงและเป้าหมายของแต่ละองค์กร ผสานประสบการณ์กว่า 20 ปีเข้ากับเครื่องมือการเรียนรู้สมัยใหม่ เพื่อให้ทีมนำไปใช้ได้ตั้งแต่วันแรก"
+msgstr "各企業の実際の課題と目標から設計する企業内研修。20年以上の経験と最新の学習ツールを組み合わせ、初日から現場で活かせる学びを提供します。"
+
+#: patterns/inhouse-hero.php:18
+#: patterns/public-inhouse.php:17
+msgid "ขอใบเสนอราคา"
+msgstr "お見積りを依頼"
+
+#: patterns/inhouse-hero.php:19
+msgid "ดูหลักสูตรทั้งหมด"
+msgstr "すべての講座を見る"
+
+#: patterns/inhouse-hero.php:22
+msgid "ประสบการณ์กว่า 20 ปี"
+msgstr "20年以上の実績"
+
+#: patterns/inhouse-hero.php:23
+msgid "หลักสูตรด้านผู้นำกว่า 100 หลักสูตร"
+msgstr "100以上のリーダーシップ講座"
+
+#: patterns/inhouse-hero.php:25
+msgid "ตอบกลับภายใน 24 ชั่วโมง"
+msgstr "24時間以内にご返信"
+
+#: patterns/inhouse-hero.php:27
+msgid "บรรยากาศการอบรม In-house"
+msgstr "企業内研修の様子"
+
+#: patterns/inhouse-pillars.php
+msgctxt "Pattern title"
+msgid "In-house — Leadership + Business"
+msgstr ""
+
+#: patterns/inhouse-pillars.php
+msgctxt "Pattern description"
+msgid "The two course pillars, each with its topics and a link to its filtered course list."
+msgstr ""
+
+#: patterns/inhouse-pillars.php:15
+msgid "ผู้นำยุคใหม่ ต้องเก่งทั้งคนและธุรกิจ"
+msgstr "これからのリーダーには、人とビジネスの両方の力が必要です"
+
+#: patterns/inhouse-pillars.php:16
+msgid "การพัฒนาผู้นำแห่งอนาคตต้องสร้างสมดุลระหว่างสองเสาหลัก คือการนำคน (Leadership) และความเข้าใจธุรกิจ (Business) หลักสูตรของเราจึงครอบคลุมทั้งสองด้าน"
+msgstr "次世代リーダーの育成には、人を導く力（リーダーシップ）とビジネスを理解する力（ビジネス）の2本柱のバランスが欠かせません。私たちの講座は両方をカバーしています。"
+
+#: patterns/inhouse-pillars.php:23
+msgid "พัฒนาผู้นำตั้งแต่การรู้จักและบริหารตัวเอง วิธีคิด การสื่อสาร ไปจนถึงการโค้ชและการนำทีม"
+msgstr "自己理解と自己管理から、思考力、コミュニケーション、そしてコーチングとチームを率いる力まで、リーダーを段階的に育てます。"
+
+#: patterns/inhouse-pillars.php:25
+msgid "ดูหลักสูตร Leadership"
+msgstr "リーダーシップ講座を見る"
+
+#: patterns/inhouse-pillars.php:30
+msgid "ผู้นำที่ไม่เข้าใจธุรกิจ ไม่สามารถพาองค์กรไปในทิศทางที่ถูกต้องได้ หลักสูตรด้านธุรกิจจึงครอบคลุมทุกฟังก์ชันสำคัญขององค์กร"
+msgstr "ビジネスを理解していないリーダーは、組織を正しい方向へ導けません。ビジネス講座は組織の主要な機能をすべてカバーしています。"
+
+#: patterns/inhouse-pillars.php:32
+msgid "ดูหลักสูตร Business"
+msgstr "ビジネス講座を見る"
+
+#: patterns/inhouse-process.php
+msgctxt "Pattern title"
+msgid "In-house — How it works"
+msgstr ""
+
+#: patterns/inhouse-process.php
+msgctxt "Pattern description"
+msgid "Four steps from the first talk to the follow-up, with a CTA button."
+msgstr ""
+
+#: patterns/inhouse-process.php:13
+msgid "ขั้นตอนการทำงาน"
+msgstr "進め方"
+
+#: patterns/inhouse-process.php:13
+msgid "จากโจทย์ขององค์กรคุณ สู่หลักสูตรที่ใช่ใน 4 ขั้นตอน"
+msgstr "貴社の課題から最適な講座まで、4つのステップ"
+
+#: patterns/inhouse-process.php:16
+msgid "คุยโจทย์และเป้าหมาย"
+msgstr "課題と目標のヒアリング"
+
+#: patterns/inhouse-process.php:16
+msgid "ทำความเข้าใจปัญหา เป้าหมาย และกลุ่มผู้เรียน ร่วมกับ HRD หรือหัวหน้าหน่วยงาน"
+msgstr "人材開発部門や部門長と一緒に、課題・目標・受講者像を把握します。"
+
+#: patterns/inhouse-process.php:17
+msgid "ออกแบบหลักสูตรและเสนอราคา"
+msgstr "プログラム設計とお見積り"
+
+#: patterns/inhouse-process.php:17
+msgid "ปรับกรณีศึกษาและแบบฝึกหัดให้ตรงกับสถานการณ์จริงขององค์กร พร้อมใบเสนอราคา"
+msgstr "ケーススタディや演習を貴社の実情に合わせて調整し、お見積りをお送りします。"
+
+#: patterns/inhouse-process.php:18
+msgid "จัดอบรม"
+msgstr "研修の実施"
+
+#: patterns/inhouse-process.php:18
+msgid "โดยทั่วไป 1–2 วัน ปรับตารางได้ ทั้ง Onsite, Online หรือ Hybrid และจัดเป็น Journey ระยะยาวได้"
+msgstr "通常1〜2日、日程は柔軟に調整可能。対面・オンライン・ハイブリッド、または長期のジャーニー型でも実施できます。"
+
+#: patterns/inhouse-process.php:19
+msgid "ประเมินผลและติดตาม"
+msgstr "評価とフォローアップ"
+
+#: patterns/inhouse-process.php:19
+msgid "สรุปผลการอบรมพร้อมข้อเสนอแนะ ให้ HRD ติดตามพัฒนาการของผู้เรียนต่อได้"
+msgstr "提言付きの結果報告により、人材開発部門が受講者の成長を継続的にフォローできます。"
+
+#: patterns/inhouse-process.php:22
+msgid "เริ่มคุยโจทย์กับเรา"
+msgstr "課題を相談する"
+
+#: patterns/inhouse-why.php
+msgctxt "Pattern title"
+msgid "In-house — Why HRI DeOne"
+msgstr ""
+
+#: patterns/inhouse-why.php
+msgctxt "Pattern description"
+msgid "Four reasons to train with HRI DeOne (numbered cards)."
+msgstr ""
+
+#: patterns/inhouse-why.php:13
+msgid "ทำไมต้อง HRI DeOne"
+msgstr "選ばれる理由"
+
+#: patterns/inhouse-why.php:19
+msgid "วิเคราะห์บริบทและวัฒนธรรมองค์กรก่อน แล้วออกแบบเนื้อหาและเวิร์กชอปให้พนักงานรู้สึกว่า “นี่คือเรื่องของเรา”"
+msgstr "まず組織の状況と文化を分析し、社員が「これは自分たちのことだ」と感じられる内容とワークショップを設計します。"
+
+#: patterns/inhouse-why.php:24
+msgid "เรียนรู้ผ่านประสบการณ์และกิจกรรม ไม่ใช่การบรรยายทางเดียว ผู้เรียนกล้ามีส่วนร่วมและแลกเปลี่ยนในบรรยากาศที่ปลอดภัย"
+msgstr "一方通行の講義ではなく、体験とアクティビティを通じて学びます。受講者が安心して参加し、意見を交わせる場をつくります。"
+
+#: patterns/inhouse-why.php:29
+msgid "เลือกเครื่องมือที่ใช้ง่าย ใช้ได้จริง และวัดผลได้ ทีมนำไปใช้กับงานได้ตั้งแต่วันแรกหลังอบรม"
+msgstr "使いやすく実践的で効果を測定できるツールを選び、研修翌日から業務で活用できるようにします。"
+
+#: patterns/inhouse-why.php:34
+msgid "มีเครื่องมือประเมินผลหลังอบรมและที่ปรึกษาติดตามต่อเนื่อง ช่วยให้ฝ่าย HR แสดง ROI ของการพัฒนาคนได้ชัดเจน"
+msgstr "研修後の評価ツールと継続的なアドバイザリーにより、人事部門が人材開発のROIを明確に示せるよう支援します。"
+
+#: patterns/inhouse.php
+msgctxt "Pattern title"
+msgid "In-house page (all sections)"
+msgstr ""
+
+#: patterns/inhouse.php
+msgctxt "Pattern description"
+msgid "Every In-house page section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""
+
+#: patterns/japanese-challenges.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Leadership challenges"
+msgstr ""
+
+#: patterns/japanese-challenges.php
+msgctxt "Pattern description"
+msgid "Four executive challenges, each with the Japanese concept that answers it."
+msgstr ""
+
+#: patterns/japanese-challenges.php:13
+msgid "ความท้าทายของผู้บริหาร"
+msgstr "経営者が直面する課題"
+
+#: patterns/japanese-challenges.php:13
+msgid "คุณกำลังนำองค์กร “ไปได้ไกล” หรือแค่ “ไปได้เร็ว”?"
+msgstr "あなたは組織を「遠くへ」導いていますか？それとも「速く」だけですか？"
+
+#: patterns/japanese-challenges.php:18
+msgid "เก่งขึ้น แต่หมดไฟเร็วขึ้นทุกปี"
+msgstr "成長しているのに、年々燃え尽きが早くなる"
+
+#: patterns/japanese-challenges.php:19
+msgid "เมื่อผู้นำขาดเป้าหมายที่มีความหมาย พลังในการนำจะค่อย ๆ หมดลง และทีมก็หมดไฟตาม ทางออกคือการค้นหา Ikigai ของการเป็นผู้นำ"
+msgstr "意味のある目的を持たないリーダーは、率いるエネルギーが徐々に失われ、チームも疲弊していきます。答えは、リーダーとしての「生きがい」を見つけることです。"
+
+#: patterns/japanese-challenges.php:23
+msgid "สั่งงานได้ แต่ซื้อใจคนไม่ได้"
+msgstr "指示には従うが、心はつかめない"
+
+#: patterns/japanese-challenges.php:24
+msgid "ทีมทำตามเพราะจำเป็น ไม่ใช่เพราะเชื่อ ทางออกคือการนำด้วยหัวใจแบบ Omotenashi"
+msgstr "チームは信じているからではなく、仕方なく従っています。答えは「おもてなし」の心で導くことです。"
+
+#: patterns/japanese-challenges.php:28
+msgid "เข้าห้องประชุมเมื่อไหร่ ก็เจอแรงต้านเมื่อนั้น"
+msgstr "会議のたびに反発に遭う"
+
+#: patterns/japanese-challenges.php:29
+msgid "ข้อเสนอถูกปฏิเสธเพราะผู้เกี่ยวข้องไม่ได้ร่วมคิดตั้งแต่ต้น ทางออกคือการสร้างความเห็นพ้องล่วงหน้าแบบ Nemawashi"
+msgstr "関係者が最初から関わっていないため、提案が却下されてしまいます。答えは「根回し」で事前に合意を形成することです。"
+
+#: patterns/japanese-challenges.php:33
+msgid "โตเร็ว แต่ไม่รู้ว่าจะยืนได้นานแค่ไหน"
+msgstr "急成長しているが、いつまで続くかわからない"
+
+#: patterns/japanese-challenges.php:34
+msgid "องค์กรเติบโตได้ในยุคผู้ก่อตั้ง แต่สั่นคลอนเมื่อส่งต่อให้รุ่นถัดไป ทางออกคือเรียนรู้จากบริษัทร้อยปีในญี่ปุ่น เพื่อวาง “เข็มทิศ 100 ปี” ขององค์กร"
+msgstr "創業者の時代には成長しても、次の世代に引き継ぐと揺らいでしまう。答えは、日本の百年企業から学び、組織の「100年の羅針盤」を定めることです。"
+
+#: patterns/japanese-cta.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Closing call to action"
+msgstr ""
+
+#: patterns/japanese-cta.php
+msgctxt "Pattern description"
+msgid "Dark band with the closing line and apply / LINE buttons."
+msgstr ""
+
+#: patterns/japanese-cta.php:12
+#: patterns/japanese-dowakei.php:33
+msgid "สมัครเลย"
+msgstr "今すぐ申し込む"
+
+#: patterns/japanese-cta.php:15
+msgid "สอบถามทาง LINE"
+msgstr "LINEで問い合わせる"
+
+#: patterns/japanese-cta.php:20
+msgid "สร้างสิ่งที่ยังคงยืนหยัดอยู่ได้ แม้ในวันที่คุณไม่ได้อยู่ตรงนั้นแล้ว"
+msgstr "あなたがいなくなった後も、揺るがずに残るものを築く。"
+
+#: patterns/japanese-dowakei.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — DO·WA·KEI introduction"
+msgstr ""
+
+#: patterns/japanese-dowakei.php
+msgctxt "Pattern description"
+msgid "Dark band introducing DO·WA·KEI with its three parts (道 和 敬) and an apply button. Anchor #do-wa-kei."
+msgstr ""
+
+#: patterns/japanese-dowakei.php:20
+msgid "เรียนรู้การนำจากองค์กรร้อยปีของญี่ปุ่น สู่การสร้างองค์กรที่ยืนหยัดข้ามรุ่น"
+msgstr "日本の百年企業からリーダーシップを学び、世代を超えて続く組織をつくる"
+
+#: patterns/japanese-dowakei.php:29
+msgid "ผู้นำที่เก่งสร้างผลงาน แต่ผู้นำที่ยิ่งใหญ่สร้างสิ่งที่อยู่ยาวนานกว่าตัวเอง"
+msgstr "優れたリーダーは成果を生み、偉大なリーダーは自分よりも長く残るものを築く。"
+
+#: patterns/japanese-dowakei.php:30
+msgid "องค์กรไทยกำลังขยายสู่ภูมิภาค ความได้เปรียบในอนาคตจึงไม่ใช่ความเร็วหรือขนาด แต่คือผู้นำที่คนไว้วางใจ DO·WA·KEI ถ่ายทอดผ่านปรัชญาญี่ปุ่นและการเรียนรู้จากประเทศญี่ปุ่นจริง"
+msgstr "タイの企業が地域へ展開する今、これからの優位性はスピードや規模ではなく、人から信頼されるリーダーにあります。DO·WA·KEIは日本の哲学と日本での実地学習を通じて学ぶプログラムです。"
+
+#: patterns/japanese-dowakei.php:34
+msgid "ดูเส้นทาง 3 ขั้น"
+msgstr "3つのステップを見る"
+
+#: patterns/japanese-hero.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Hero"
+msgstr ""
+
+#: patterns/japanese-hero.php
+msgctxt "Pattern description"
+msgid "Page introduction: headline, the HR Institute (Japan) network, DO·WA·KEI / contact buttons, key facts and a photo."
+msgstr ""
+
+#: patterns/japanese-hero.php:15
+msgid "ยกระดับการทำงานอย่างมืออาชีพแบบ “ญี่ปุ่น” ตัวจริง"
+msgstr "本物の「日本流」でプロフェッショナルな働き方へ"
+
+#: patterns/japanese-hero.php:16
+msgid "แนวคิดการทำงานแบบญี่ปุ่นที่เสริมทักษะการสื่อสารและการทำงานร่วมกันข้ามวัฒนธรรม ถ่ายทอดผ่านเครือข่าย HR Institute ประเทศญี่ปุ่นที่สั่งสมมากว่า 30 ปี และประยุกต์ใช้ในบริบทไทยอย่างเป็นระบบ"
+msgstr "コミュニケーション力と異文化間の協働を高める日本流の仕事の考え方を、30年以上にわたるHRインスティテュート（日本）のネットワークを通じて伝え、タイの文脈に体系的に応用します。"
+
+#: patterns/japanese-hero.php:18
+msgid "ดูหลักสูตร DO·WA·KEI"
+msgstr "DO·WA·KEIを見る"
+
+#: patterns/japanese-hero.php:19
+msgid "สอบถามรายละเอียด"
+msgstr "詳細を問い合わせる"
+
+#: patterns/japanese-hero.php:22
+msgid "เครือข่าย HR Institute ประเทศญี่ปุ่นกว่า 30 ปี"
+msgstr "HRインスティテュート（日本）30年以上のネットワーク"
+
+#: patterns/japanese-hero.php:23
+msgid "เรียนรู้จากองค์กรร้อยปีในญี่ปุ่น"
+msgstr "日本の百年企業から学ぶ"
+
+#: patterns/japanese-hero.php:24
+msgid "ประยุกต์ใช้ในบริบทไทย"
+msgstr "タイの現場に応用"
+
+#: patterns/japanese-hero.php:26
+msgid "ผู้บริหารเรียนรู้แนวคิดการทำงานแบบญี่ปุ่น"
+msgstr "日本流の仕事の考え方を学ぶ経営者"
+
+#: patterns/japanese-journey.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — DO·WA·KEI Journey"
+msgstr ""
+
+#: patterns/japanese-journey.php
+msgctxt "Pattern description"
+msgid "The three parts of DO·WA·KEI with their modules. Anchor #journey."
+msgstr ""
+
+#: patterns/japanese-journey.php:13
+msgid "เส้นทาง 3 ขั้น สู่ Legacy Leader"
+msgstr "レガシー・リーダーへの3つのステップ"
+
+#: patterns/japanese-journey.php:13
+msgid "หลักสูตรที่เปลี่ยนปรัชญาญี่ปุ่นให้เป็นวิธีการนำที่ใช้ได้จริง"
+msgstr "日本の哲学を実践的なリーダーシップへと変えるプログラム"
+
+#: patterns/japanese-journey.php:19
+msgid "Part 1 · DO · 1 วัน · ประเทศไทย"
+msgstr "Part 1 · DO · 1日 · タイ"
+
+#: patterns/japanese-journey.php:21
+msgid "เปลี่ยนระบบภายในของผู้นำ ก่อนนำผู้อื่น"
+msgstr "他者を導く前に、リーダー自身の内面を変える"
+
+#: patterns/japanese-journey.php:23
+msgid "IKIGAI Spark — ค้นหาเหตุผลในการนำ และกลั่นเป็น Ikigai Statement"
+msgstr "IKIGAI Spark — リーダーである理由を見つけ、生きがいステートメントにまとめる"
+
+#: patterns/japanese-journey.php:24
+msgid "Kintsugi Mindset — เปลี่ยนความผิดพลาดให้เป็นความแข็งแกร่ง"
+msgstr "Kintsugi Mindset（金継ぎ） — 失敗を強さに変える"
+
+#: patterns/japanese-journey.php:25
+msgid "Shoshin Reset — ละทิ้งสมมติฐานเดิม มองโจทย์ด้วยสายตาใหม่"
+msgstr "Shoshin Reset（初心） — 思い込みを手放し、新しい目で課題を見る"
+
+#: patterns/japanese-journey.php:33
+msgid "เปลี่ยนคนเก่งให้เป็นผู้นำที่คนไว้วางใจ"
+msgstr "優秀な人材を、信頼されるリーダーへ"
+
+#: patterns/japanese-journey.php:35
+msgid "Sanpo-Yoshi Harmony — ใช้หลักการค้าของพ่อค้าโอมิกับการตัดสินใจจริง"
+msgstr "Sanpo-Yoshi Harmony（三方よし） — 近江商人の商いの理念を実際の意思決定に活かす"
+
+#: patterns/japanese-journey.php:36
+msgid "Omotenashi Design — อ่านความต้องการของทีมก่อนที่จะถูกพูดออกมา"
+msgstr "Omotenashi Design（おもてなし） — 言葉になる前にチームのニーズを汲み取る"
+
+#: patterns/japanese-journey.php:37
+msgid "Nemawashi Magic — สร้างความเห็นพ้องก่อนประชุม พร้อมวาด Stakeholder Map"
+msgstr "Nemawashi Magic（根回し） — 会議前に合意を形成し、ステークホルダーマップを描く"
+
+#: patterns/japanese-journey.php:43
+msgid "Part 3 · KEI · 3 วัน · ประเทศญี่ปุ่น"
+msgstr "Part 3 · KEI · 3日間 · 日本"
+
+#: patterns/japanese-journey.php:45
+msgid "จุดสูงสุดของเส้นทาง เรียนรู้จากองค์กรที่ยืนหยัดข้ามศตวรรษในญี่ปุ่น"
+msgstr "旅の頂点。世紀を超えて続く日本の組織から学ぶ"
+
+#: patterns/japanese-journey.php:47
+msgid "Day 1 · 100-Year Vision — เยี่ยมชมบริษัทอายุกว่า 100 ปี และร่างเข็มทิศ 100 ปีขององค์กรตนเอง"
+msgstr "Day 1 · 100-Year Vision — 創業100年を超える企業を訪問し、自社の「100年の羅針盤」を描く"
+
+#: patterns/japanese-journey.php:48
+msgid "Day 2 · Noren Value — เยี่ยมชมโรงงานช่างฝีมือ ค้นหาคุณค่าที่มองไม่เห็นขององค์กร"
+msgstr "Day 2 · Noren Value（暖簾） — 職人の工房を訪ね、組織の目に見えない価値を見出す"
+
+#: patterns/japanese-journey.php:49
+msgid "Day 3 · Kizuna Ecosystem — ศึกษาระบบนิเวศระหว่างบริษัทกับชุมชน ปิดท้ายด้วย Legacy Commitment ของผู้นำแต่ละคน"
+msgstr "Day 3 · Kizuna Ecosystem（絆） — 企業と地域の共生のしくみを学び、各リーダーのレガシー・コミットメントで締めくくる"
+
+#: patterns/japanese-outcomes.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Business outcomes"
+msgstr ""
+
+#: patterns/japanese-outcomes.php
+msgctxt "Pattern description"
+msgid "The four dimensions of a Legacy Leader (numbered cards)."
+msgstr ""
+
+#: patterns/japanese-outcomes.php:13
+msgid "จากผู้บริหารที่สร้างผลงาน สู่ Legacy Leader"
+msgstr "成果を出す経営者から、レガシー・リーダーへ"
+
+#: patterns/japanese-outcomes.php:19
+msgid "ผู้นำที่รู้ว่านำไปเพื่ออะไร ได้ Ikigai Statement ที่เชื่อมสิ่งที่รัก ความถนัด พันธกิจ และคุณค่าทางธุรกิจเข้าด้วยกัน"
+msgstr "何のために導くのかを知るリーダー。好きなこと・得意なこと・使命・ビジネス価値をつなぐ生きがいステートメントを手にします"
+
+#: patterns/japanese-outcomes.php:24
+msgid "ผู้นำที่เปลี่ยนความล้มเหลวให้เป็นความแข็งแกร่ง ด้วยแนวคิด Kintsugi และ Shoshin"
+msgstr "金継ぎと初心の考え方で、失敗を強さに変えるリーダー"
+
+#: patterns/japanese-outcomes.php:29
+msgid "ผู้นำที่ขับเคลื่อนคนด้วยความกลมกลืน ใช้ Sanpo-Yoshi สร้างประโยชน์ทั้งผู้ขาย ผู้ซื้อ และสังคม และใช้ Nemawashi สร้างความเห็นพ้อง"
+msgstr "調和によって人を動かすリーダー。三方よしで売り手・買い手・社会に価値を生み、根回しで合意を築きます"
+
+#: patterns/japanese-outcomes.php:34
+msgid "ผู้นำที่สร้างสิ่งที่อยู่เกินตัวเอง ได้ Legacy Blueprint ประกอบด้วยวิสัยทัศน์ 100 ปี สินทรัพย์ Noren และเครือข่าย Kizuna"
+msgstr "自分を超えて残るものを築くリーダー。100年ビジョン、暖簾という資産、絆のネットワークからなるレガシー・ブループリントを手にします"
+
+#: patterns/japanese-programs.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Programs"
+msgstr ""
+
+#: patterns/japanese-programs.php
+msgctxt "Pattern description"
+msgid "The three Japanese Concept programs as cards."
+msgstr ""
+
+#: patterns/japanese-programs.php:13
+msgid "หลักสูตรและบริการ"
+msgstr "プログラムとサービス"
+
+#: patterns/japanese-programs.php:20
+msgid "เส้นทางพัฒนาผู้บริหาร 3 ขั้น จากการเข้าใจตนเอง สู่การนำคนอย่างกลมกลืน และการวางรากฐานองค์กรให้ยืนได้ข้ามรุ่น"
+msgstr "自己理解から、調和をもって人を導く力、そして世代を超えて続く組織の土台づくりまでを学ぶ、3段階の経営者育成プログラム。"
+
+#: patterns/japanese-programs.php:21
+msgid "ดูรายละเอียด DO·WA·KEI"
+msgstr "DO·WA·KEIの詳細"
+
+#: patterns/japanese-programs.php:26
+msgid "หลักคิดและวิธีทำงานแบบญี่ปุ่นที่สร้างองค์กรยั่งยืน นำมาประยุกต์ใช้กับการทำงานประจำวันในบริบทไทย"
+msgstr "持続する組織をつくる日本の考え方と働き方を、タイの日常業務に応用します。"
+
+#: patterns/japanese-programs.php:27
+#: patterns/japanese-programs.php:33
+msgid "สอบถามหลักสูตรนี้"
+msgstr "このプログラムについて問い合わせる"
+
+#: patterns/japanese-programs.php:32
+msgid "เสริมทักษะการสื่อสารและการทำงานร่วมกันระหว่างทีมไทยและญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจข้ามวัฒนธรรม"
+msgstr "タイと日本のチーム間のコミュニケーションと協働を強化し、誤解を減らして、文化を超えた信頼関係を築きます。"
+
+#: patterns/japanese.php
+msgctxt "Pattern title"
+msgid "Japanese Concept page (all sections)"
+msgstr ""
+
+#: patterns/japanese.php
+msgctxt "Pattern description"
+msgid "Every Japanese Concept section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""
+
+#: patterns/public-courses.php
+msgctxt "Pattern title"
+msgid "Public Training — Course list"
+msgstr ""
+
+#: patterns/public-courses.php
+msgctxt "Pattern description"
+msgid "Search and filters, locked to Public Training (latest open batch of each course). Anchor #courses."
+msgstr ""
+
+#: patterns/public-courses.php:13
+msgid "แต่ละหลักสูตรแสดงรุ่นล่าสุดที่เปิดอยู่ พร้อมวันที่และสถานะการรับสมัคร"
+msgstr "各講座の最新の開講回を、日程と募集状況とともに表示しています。"
+
+#: patterns/public-faq.php
+msgctxt "Pattern title"
+msgid "Public Training — FAQ"
+msgstr ""
+
+#: patterns/public-faq.php:13
+msgid "Public Training ต่างจาก In-house อย่างไร?"
+msgstr "公開講座と企業内研修の違いは何ですか？"
+
+#: patterns/public-faq.php:13
+msgid "Public Training เปิดรับสมัครทั่วไป ผู้เข้าอบรมมาจากหลายองค์กรตามวันและสถานที่ที่กำหนด ส่วน In-house จัดเฉพาะพนักงานขององค์กรคุณ ปรับเนื้อหาและตารางได้ตามโจทย์"
+msgstr "公開講座はどなたでも参加でき、さまざまな企業の方が決められた日程・会場で受講します。企業内研修は貴社の社員のみを対象とし、内容と日程をご要望に合わせて調整します。"
+
+#: patterns/public-faq.php:14
+msgid "สมัครอบรมอย่างไร?"
+msgstr "申し込み方法を教えてください。"
+
+#: patterns/public-faq.php:15
+msgid "ส่งพนักงานหลายคนพร้อมกันได้ไหม?"
+msgstr "複数の社員をまとめて申し込めますか？"
+
+#: patterns/public-faq.php:15
+msgid "ได้ แจ้งจำนวนผู้เข้าอบรมตอนสมัคร ทีมงานจะแจ้งเงื่อนไขและรายละเอียดให้"
+msgstr "はい。お申し込みの際に参加人数をお知らせください。担当者より条件と詳細をご案内します。"
+
+#: patterns/public-faq.php:16
+msgid "ถ้ารุ่นที่สนใจเต็มแล้ว ทำอย่างไร?"
+msgstr "希望する回が満席の場合は？"
+
+#: patterns/public-faq.php:16
+msgid "แจ้งความสนใจกับทีมงานไว้ได้ เราจะติดต่อกลับเมื่อเปิดรับสมัครรุ่นถัดไป"
+msgstr "ご関心をお知らせください。次回の募集開始時にご連絡いたします。"
+
+#: patterns/public-hero.php
+msgctxt "Pattern title"
+msgid "Public Training — Hero"
+msgstr ""
+
+#: patterns/public-hero.php
+msgctxt "Pattern description"
+msgid "Page introduction: headline, why public training, open courses / contact buttons, key facts and a photo."
+msgstr ""
+
+#: patterns/public-hero.php:15
+msgid "หลักสูตรอบรม Public Training สำหรับพนักงานในองค์กรทุกระดับ"
+msgstr "あらゆる階層の社員のための公開講座"
+
+#: patterns/public-hero.php:16
+msgid "เรียนรู้จากผู้เชี่ยวชาญตัวจริง พร้อมแลกเปลี่ยนกับผู้บริหารและผู้เข้าอบรมจากหลากหลายอุตสาหกรรม เปิดโลกทัศน์ ขยายมุมมอง และเพิ่มศักยภาพในการทำงาน"
+msgstr "第一線の専門家から学び、さまざまな業界の経営者や受講者と意見を交わすことで、視野を広げ、仕事における可能性を高めます。"
+
+#: patterns/public-hero.php:18
+msgid "ดูหลักสูตรที่เปิดรับสมัคร"
+msgstr "募集中の講座を見る"
+
+#: patterns/public-hero.php:19
+msgid "สอบถาม / สมัครอบรม"
+msgstr "問い合わせ・申し込み"
+
+#: patterns/public-hero.php:22
+msgid "เปิดรับสมัครรุ่นใหม่ต่อเนื่อง"
+msgstr "新しい開講回を随時募集"
+
+#: patterns/public-hero.php:23
+msgid "ผู้เข้าอบรมจากหลากหลายอุตสาหกรรม"
+msgstr "さまざまな業界からの受講者"
+
+#: patterns/public-hero.php:24
+msgid "ตั้งแต่พนักงานถึงผู้บริหารระดับสูง"
+msgstr "一般社員から経営層まで"
+
+#: patterns/public-hero.php:26
+msgid "บรรยากาศการอบรม Public Training"
+msgstr "公開講座の様子"
+
+#: patterns/public-inhouse.php
+msgctxt "Pattern title"
+msgid "Public Training — In-house offer"
+msgstr ""
+
+#: patterns/public-inhouse.php
+msgctxt "Pattern description"
+msgid "Dark band: run a course for your own team (links to In-house and the quote form)."
+msgstr ""
+
+#: patterns/public-inhouse.php:13
+msgid "อยากจัดหลักสูตรให้ทีมของคุณโดยเฉพาะ?"
+msgstr "自社チームだけの研修をご希望ですか？"
+
+#: patterns/public-inhouse.php:14
+msgid "ให้เราออกแบบหลักสูตร In-house ที่ปรับเนื้อหา กรณีศึกษา และตารางเวลาให้ตรงกับองค์กรของคุณ"
+msgstr "内容・ケーススタディ・日程を貴社に合わせた企業内研修を設計いたします。"
+
+#: patterns/public-inhouse.php:16
+msgid "ดูบริการ In-house"
+msgstr "企業内研修を見る"
+
+#: patterns/public-steps.php
+msgctxt "Pattern title"
+msgid "Public Training — How to register"
+msgstr ""
+
+#: patterns/public-steps.php
+msgctxt "Pattern description"
+msgid "Three registration steps with a CTA button."
+msgstr ""
+
+#: patterns/public-steps.php:13
+msgid "ขั้นตอนการสมัคร"
+msgstr "お申し込みの流れ"
+
+#: patterns/public-steps.php:16
+msgid "เลือกหลักสูตรและรุ่น"
+msgstr "講座と開講回を選ぶ"
+
+#: patterns/public-steps.php:16
+msgid "ดูรายละเอียด วันที่ และสถานะการรับสมัครของแต่ละหลักสูตร"
+msgstr "各講座の詳細、日程、募集状況をご確認ください。"
+
+#: patterns/public-steps.php:17
+msgid "ติดต่อสมัคร"
+msgstr "お申し込みのご連絡"
+
+#: patterns/public-steps.php:17
+msgid "กรอกแบบฟอร์ม โทร หรือทักทาง LINE แจ้งชื่อหลักสูตรและจำนวนผู้เข้าอบรม"
+msgstr "フォーム、お電話、またはLINEで、講座名と参加人数をお知らせください。"
+
+#: patterns/public-steps.php:18
+msgid "ยืนยันที่นั่ง"
+msgstr "お席の確定"
+
+#: patterns/public-steps.php:18
+msgid "ทีมงานติดต่อกลับเพื่อยืนยันการสมัครและแจ้งรายละเอียดก่อนวันอบรม"
+msgstr "担当者よりご連絡し、お申し込みを確定のうえ、研修前に詳細をご案内します。"
+
+#: patterns/public-steps.php:21
+msgid "สมัครหรือสอบถามรายละเอียด"
+msgstr "申し込み・詳細の問い合わせ"
+
+#: patterns/public-why.php
+msgctxt "Pattern title"
+msgid "Public Training — Why public training"
+msgstr ""
+
+#: patterns/public-why.php
+msgctxt "Pattern description"
+msgid "Photo next to the reasons to join a public course (checklist)."
+msgstr ""
+
+#: patterns/public-why.php:14
+msgid "ผู้เข้าอบรมแลกเปลี่ยนความคิดเห็นกัน"
+msgstr "意見を交わす受講者たち"
+
+#: patterns/public-why.php:16
+msgid "ทำไมต้องอบรม Public"
+msgstr "公開講座を受講する理由"
+
+#: patterns/public-why.php:17
+msgid "ได้ทั้งความรู้จากผู้เชี่ยวชาญ และมุมมองจากเพื่อนร่วมรุ่น"
+msgstr "専門家の知識と、同期受講者からの多様な視点"
+
+#: patterns/public-why.php:18
+msgid "การอบรมแบบ Public ให้มากกว่าเนื้อหาในห้องเรียน ผู้เข้าอบรมได้เรียนรู้วิธีคิดและประสบการณ์จริงจากผู้บริหารต่างองค์กร ต่างอุตสาหกรรม ซึ่งเป็นการเปิดโลกทัศน์ ขยายมุมมอง และเพิ่มศักยภาพให้ทั้งตนเองและองค์กร"
+msgstr "公開講座で得られるのは教室の中の知識だけではありません。他社・他業界の経営者の考え方や実体験から学ぶことで、視野が広がり、自分自身と組織の可能性を高めることができます。"
+
+#: patterns/public-why.php:21
+msgid "เรียนกับวิทยากรผู้เชี่ยวชาญเฉพาะด้าน"
+msgstr "各分野の専門講師から学べる"
+
+#: patterns/public-why.php:22
+msgid "แลกเปลี่ยนกับผู้บริหารจากหลากหลายอุตสาหกรรม"
+msgstr "多様な業界の経営者と意見交換できる"
+
+#: patterns/public-why.php:23
+msgid "ขยายเครือข่ายทางธุรกิจ"
+msgstr "ビジネスのネットワークが広がる"
+
+#: patterns/public-why.php:24
+msgid "เหมาะกับการส่งพนักงานบางส่วนเข้าอบรม โดยไม่ต้องจัดคลาสเอง"
+msgstr "自社で研修を企画せずに、少人数の社員を派遣できる"
+
+#: patterns/public.php
+msgctxt "Pattern title"
+msgid "Public Training page (all sections)"
+msgstr ""
+
+#: patterns/public.php
+msgctxt "Pattern description"
+msgid "Every Public Training page section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""
+
+#: patterns/transformation-business.php
+msgctxt "Pattern title"
+msgid "Transformation — Business Strategy"
+msgstr ""
+
+#: patterns/transformation-business.php
+msgctxt "Pattern description"
+msgid "Pain points and the three Business Strategy services. Anchor #business-strategy."
+msgstr ""
+
+#: patterns/transformation-business.php:13
+msgid "สัญญาณที่องค์กรควรทบทวนกลยุทธ์"
+msgstr "戦略を見直すべきサイン"
+
+#: patterns/transformation-business.php:15
+msgid "ทิศทางองค์กรไม่ชัดเจน"
+msgstr "組織の方向性が明確でない"
+
+#: patterns/transformation-business.php:16
+msgid "ทีมทำงานแบบแยกส่วน (Silo)"
+msgstr "チームが縦割り（サイロ）で動いている"
+
+#: patterns/transformation-business.php:17
+msgid "เป้าหมายของผู้บริหารและพนักงานไม่ตรงกัน"
+msgstr "経営層と社員の目標がずれている"
+
+#: patterns/transformation-business.php:18
+msgid "วิสัยทัศน์ไม่ถูกแปลงเป็นแผนที่ลงมือทำได้"
+msgstr "ビジョンが実行可能な計画になっていない"
+
+#: patterns/transformation-business.php:24
+msgid "วางรากฐานกลยุทธ์องค์กร"
+msgstr "戦略の土台を築く"
+
+#: patterns/transformation-business.php:26
+msgid "กำหนดวิสัยทัศน์ พันธกิจ และเป้าหมายให้ชัด ออกแบบ Strategic Framework 3 ปี และ House Strategy ที่ทุกทีมเข้าใจตรงกัน พร้อมเตรียม People, Process และ Culture ให้รองรับการเปลี่ยนแปลง"
+msgstr "ビジョン・ミッション・目標を明確にし、3年間の戦略フレームワークと全チームが共通理解できるハウス戦略を設計。変革を支える人・プロセス・文化を整えます。"
+
+#: patterns/transformation-business.php:29
+msgid "แปลงกลยุทธ์สู่การปฏิบัติจริง"
+msgstr "戦略を実行へ"
+
+#: patterns/transformation-business.php:31
+msgid "มีแผนดีแต่ยังไม่ได้ผล? ปัญหามักอยู่ที่การลงมือทำ กระบวนการ 7 ขั้นตอน ตั้งแต่ทบทวน Company Protocol วิเคราะห์ช่องว่าง ปรับกรอบกลยุทธ์ วางแผนปฏิบัติการ จนถึงโค้ชติดตามผลนานสูงสุด 6 เดือน"
+msgstr "良い計画なのに成果が出ない？問題の多くは実行にあります。カンパニープロトコルの見直し、ギャップ分析、戦略フレームワークの調整、実行計画の策定、そして最長6か月のコーチングによるフォローまでの7ステップです。"
+
+#: patterns/transformation-business.php:34
+msgid "เปลี่ยนองค์กรอย่างรวดเร็วและยั่งยืน"
+msgstr "迅速かつ持続的な変革"
+
+#: patterns/transformation-business.php:36
+msgid "สำหรับสถานการณ์เร่งด่วน เช่น วิกฤตหรือการพลิกฟื้นธุรกิจ ด้วย Framework ที่มีผลงานต่อเนื่องกว่า 11 ปี ให้ทีมภายในเป็นผู้ขับเคลื่อนการเปลี่ยนแปลงเอง เพื่อผลลัพธ์ที่จับต้องได้ใน 90 วัน"
+msgstr "危機や事業再生などの緊急時に向けた、11年以上の実績を持つフレームワーク。社内チーム自らが変革を推進し、90日で目に見える成果を目指します。"
+
+#: patterns/transformation-business.php:47
+msgid "นำพาธุรกิจสู่เป้าหมาย ด้วยโครงสร้างที่แข็งแกร่งและยั่งยืน เราช่วยเปลี่ยนเป้าหมายที่ซับซ้อนให้เป็นกลยุทธ์ที่ทำได้จริง และพากลยุทธ์ออกจากกระดาษสู่การปฏิบัติ"
+msgstr "強固で持続可能な構造で、ビジネスを目標へ導きます。複雑な目標を実行可能な戦略に落とし込み、紙の上の戦略を実行へと移します。"
+
+#: patterns/transformation-culture.php
+msgctxt "Pattern title"
+msgid "Transformation — Culture Strategy"
+msgstr ""
+
+#: patterns/transformation-culture.php
+msgctxt "Pattern description"
+msgid "The five-stage Cultural Transformation Framework (Define → Sustain). Anchor #culture-strategy."
+msgstr ""
+
+#: patterns/transformation-culture.php:15
+msgid "ผู้นำร่วมกันกำหนด DNA และค่านิยมขององค์กร แล้วแปลงเป็นพฤติกรรมที่มองเห็นและวัดผลได้"
+msgstr "リーダーが組織のDNAと価値観を共につくり、目に見えて測定できる行動へと落とし込みます。"
+
+#: patterns/transformation-culture.php:16
+msgid "พนักงานเข้าใจว่าวัฒนธรรมใหม่ดีต่อตัวเองอย่างไร และเชื่อมจุดแข็งของตนเข้ากับเป้าหมายองค์กร"
+msgstr "社員が新しい文化の自分にとっての意味を理解し、自らの強みを組織の目標につなげます。"
+
+#: patterns/transformation-culture.php:17
+msgid "ระบบ Peer Feedback และเครื่องมือที่ใช้ได้จริง ทำให้ทุกระดับมั่นใจที่จะลงมือทำตามค่านิยมใหม่"
+msgstr "ピアフィードバックの仕組みと実践的なツールにより、あらゆる階層が新しい価値観に沿って行動する自信を持てるようにします。"
+
+#: patterns/transformation-culture.php:18
+msgid "ฝังวัฒนธรรมไว้ในการสรรหา การประเมินผล และระบบรางวัล โดยผูกกับ Cultural KPIs"
+msgstr "採用・評価・報酬制度に文化を組み込み、カルチャーKPIと連動させます。"
+
+#: patterns/transformation-culture.php:19
+msgid "แต่งตั้ง Culture Ambassador ทุกหน่วยงาน และวัดผล 3 มิติ: ผลทางธุรกิจ ความเข้าใจของพนักงาน และพฤติกรรมที่เปลี่ยนไป"
+msgstr "全部門にカルチャー・アンバサダーを任命し、事業への効果・社員の理解・行動の変化の3つの観点で成果を測定します。"
+
+#: patterns/transformation-culture.php:28
+msgid "วัฒนธรรมองค์กรที่ดีไม่ได้เกิดจากคำคมสวยหรู แต่ต้องถูกออกแบบและฝังรากในทุกระบบขององค์กร เพราะวัฒนธรรมคือสิ่งที่ทุกระบบในองค์กรให้รางวัลและสนับสนุนในทุกวัน"
+msgstr "良い組織文化は美しい標語からは生まれません。組織のあらゆる仕組みに設計し根付かせる必要があります。文化とは、すべての仕組みが日々評価し支えているものだからです。"
+
+#: patterns/transformation-hero.php
+msgctxt "Pattern title"
+msgid "Transformation — Hero"
+msgstr ""
+
+#: patterns/transformation-hero.php
+msgctxt "Pattern description"
+msgid "Page introduction: headline, why transformation, consultation / scope buttons, key facts and a photo."
+msgstr ""
+
+#: patterns/transformation-hero.php:15
+msgid "บริการ Consulting เพื่อการ Transform องค์กรอย่างยั่งยืน"
+msgstr "持続的な組織変革のためのコンサルティング"
+
+#: patterns/transformation-hero.php:16
+msgid "องค์กรที่จะประสบความสำเร็จในทศวรรษหน้า ไม่ใช่องค์กรที่ตามการเปลี่ยนแปลงทัน แต่คือองค์กรที่ถูกออกแบบมาเพื่อการเปลี่ยนแปลงตั้งแต่ต้น"
+msgstr "これからの10年で成功するのは、変化に追いつく組織ではなく、最初から変化に対応できるよう設計された組織です。"
+
+#: patterns/transformation-hero.php:18
+msgid "นัดคุยกับที่ปรึกษา"
+msgstr "コンサルタントに相談する"
+
+#: patterns/transformation-hero.php:19
+msgid "ดู 4 Scope of Transformation"
+msgstr "4つの変革領域を見る"
+
+#: patterns/transformation-hero.php:22
+msgid "ครบ 4 มิติ: กลยุทธ์ เทคโนโลยี คน วัฒนธรรม"
+msgstr "戦略・テクノロジー・人・文化の4領域をカバー"
+
+#: patterns/transformation-hero.php:23
+msgid "เครือข่ายผู้เชี่ยวชาญที่คัดสรร"
+msgstr "厳選された専門家ネットワーク"
+
+#: patterns/transformation-hero.php:24
+msgid "ทีมภายในขับเคลื่อนการเปลี่ยนแปลงได้เอง"
+msgstr "社内チームが自ら変革を推進"
+
+#: patterns/transformation-hero.php:26
+msgid "ทีมที่ปรึกษาวางแผนการเปลี่ยนแปลงองค์กร"
+msgstr "組織変革を計画するコンサルタント"
+
+#: patterns/transformation-partners.php
+msgctxt "Pattern title"
+msgid "Transformation — Consulting partners"
+msgstr ""
+
+#: patterns/transformation-partners.php
+msgctxt "Pattern description"
+msgid "Partner logo wall (Gallery, style \"Logos\", 4 per row). Replace the placeholders and give each logo the company name as alt text."
+msgstr ""
+
+#: patterns/transformation-partners.php:14
+msgid "พาร์ทเนอร์ที่ปรึกษาของเรา"
+msgstr "コンサルティング・パートナー"
+
+#: patterns/transformation-people.php
+msgctxt "Pattern title"
+msgid "Transformation — People Strategy"
+msgstr ""
+
+#: patterns/transformation-people.php
+msgctxt "Pattern description"
+msgid "Team problems next to the Talent Optimization & Team Synergy approach. Anchor #people-strategy."
+msgstr ""
+
+#: patterns/transformation-people.php:14
+msgid "คุณกำลังเจอปัญหาเหล่านี้อยู่ไหม?"
+msgstr "このような課題はありませんか？"
+
+#: patterns/transformation-people.php:16
+msgid "ทีมงานไม่เป็นหนึ่งเดียว"
+msgstr "チームに一体感がない"
+
+#: patterns/transformation-people.php:17
+msgid "พนักงานขาดแรงจูงใจ"
+msgstr "社員のモチベーションが低い"
+
+#: patterns/transformation-people.php:18
+msgid "สื่อสารกันไม่เข้าใจ"
+msgstr "コミュニケーションがかみ合わない"
+
+#: patterns/transformation-people.php:19
+msgid "ผลงานไม่บรรลุเป้าหมาย"
+msgstr "成果が目標に届かない"
+
+#: patterns/transformation-people.php:27
+msgid "ปัญหาเหล่านี้ไม่ได้เกิดจากการขาดทักษะ แต่เกิดจากทีมที่ไม่ได้ถูกออกแบบให้ทำงานร่วมกันได้เต็มศักยภาพ กระบวนการที่ปรึกษาของเราใช้ The Predictive Index (PI) แพลตฟอร์ม Talent Optimization จากสหรัฐอเมริกา ที่มีงานวิจัยด้านวิทยาศาสตร์และจิตวิทยารองรับกว่า 70 ปี"
+msgstr "これらの課題はスキル不足ではなく、チームが力を最大限に発揮できるよう設計されていないことから生じます。私たちのコンサルティングでは、70年以上の科学と心理学の研究に裏付けられた米国のタレント・オプティマイゼーション・プラットフォーム「The Predictive Index（PI）」を活用します。"
+
+#: patterns/transformation-people.php:29
+msgid "เข้าใจแรงขับของแต่ละคน"
+msgstr "一人ひとりの動機を理解する"
+
+#: patterns/transformation-people.php:30
+msgid "ออกแบบทีมให้สมาชิกเสริมจุดแข็งกัน"
+msgstr "互いの強みを補い合うチームを設計する"
+
+#: patterns/transformation-people.php:31
+msgid "เชื่อมกลยุทธ์ด้านคนเข้ากับเป้าหมายธุรกิจ"
+msgstr "人材戦略をビジネス目標と連動させる"
+
+#: patterns/transformation-people.php:44
+msgid "คนคือหัวใจของทุกการเปลี่ยนแปลง แต่ต้องถูกออกแบบให้ทำงานร่วมกันได้อย่างลงตัว แม้คนเก่งก็อาจทำผลงานได้ไม่เต็มที่ หากทีมไม่ได้ถูกออกแบบมาให้ทำงานร่วมกัน"
+msgstr "人はあらゆる変革の中心です。しかし、うまく協働できるよう設計されていなければなりません。優秀な人材でも、チームの設計が不十分だと力を発揮できません。"
+
+#: patterns/transformation-scope.php
+msgctxt "Pattern title"
+msgid "Transformation — 4 scopes"
+msgstr ""
+
+#: patterns/transformation-scope.php
+msgctxt "Pattern description"
+msgid "The four transformation pillars as cards, each linking to its section further down the page. Anchor #scope."
+msgstr ""
+
+#: patterns/transformation-scope.php:13
+msgid "นำพาธุรกิจสู่เป้าหมาย ด้วยโครงสร้างที่แข็งแกร่งและยั่งยืน"
+msgstr "強固で持続可能な構造で、ビジネスを目標へ導く"
+
+#: patterns/transformation-scope.php:14
+msgid "เทคโนโลยีที่ใช่ ในเวลาที่ถูกต้อง เพื่อผลลัพธ์ที่วัดได้จริง"
+msgstr "最適なテクノロジーを最適なタイミングで、測定可能な成果へ"
+
+#: patterns/transformation-scope.php:15
+msgid "คนคือหัวใจของทุกการเปลี่ยนแปลง แต่ต้องถูกออกแบบให้ทำงานร่วมกันได้อย่างลงตัว"
+msgstr "人はあらゆる変革の中心。だからこそ、うまく協働できるよう設計する"
+
+#: patterns/transformation-scope.php:16
+msgid "วัฒนธรรมองค์กรที่ดีไม่ได้เกิดจากคำคมสวยหรู แต่ต้องถูกออกแบบและฝังรากในทุกระบบขององค์กร"
+msgstr "良い組織文化は美しい標語からは生まれない。組織のあらゆる仕組みに設計し、根付かせるもの"
+
+#. translators: %s: pillar name, e.g. Business Strategy
+#: patterns/transformation-scope.php:25
+#, php-format
+msgid "รายละเอียด %s"
+msgstr "%sの詳細"
+
+#: patterns/transformation-scope.php:30
+msgid "ขอบเขตการทำงาน"
+msgstr "支援領域"
+
+#: patterns/transformation-scope.php:30
+msgid "การ Transform ที่ได้ผลจริง ต้องให้กลยุทธ์ เทคโนโลยี คน และวัฒนธรรม ขับเคลื่อนไปในทิศทางเดียวกัน เราให้บริการผ่านเครือข่ายผู้เชี่ยวชาญที่คัดสรรมาใน 4 เสาหลัก"
+msgstr "成果の出る変革には、戦略・テクノロジー・人・文化が同じ方向へ動くことが必要です。4つの柱それぞれで厳選した専門家ネットワークを通じて支援します。"
+
+#: patterns/transformation-technology.php
+msgctxt "Pattern title"
+msgid "Transformation — Technology Strategy"
+msgstr ""
+
+#: patterns/transformation-technology.php
+msgctxt "Pattern description"
+msgid "Lean & Process Excellence and AI Solutions. Anchor #technology-strategy."
+msgstr ""
+
+#: patterns/transformation-technology.php:15
+msgid "ลดความสูญเสีย เพิ่มประสิทธิภาพอย่างยั่งยืน"
+msgstr "ムダを削減し、持続的に効率を高める"
+
+#: patterns/transformation-technology.php:17
+msgid "ต้นทุนสูงขึ้นแต่กำไรไม่ขยับ อาจมีความสูญเสียซ่อนอยู่ในธุรกิจ เราใช้แนวทาง Lean Manufacturing ของ Toyota ปรับปรุงอย่างเป็นระบบ ตั้งแต่การวางมาตรฐานงาน ลดความสูญเสีย จนถึงเพิ่มประสิทธิภาพสายการผลิต"
+msgstr "コストは上がるのに利益が伸びない？ビジネスに隠れたムダがあるかもしれません。トヨタのリーン生産方式を用いて、作業標準の策定からムダの削減、生産ラインの効率化まで体系的に改善します。"
+
+#: patterns/transformation-technology.php:18
+msgid "หลักสูตร Lean Transformation in 7 weeks"
+msgstr "Lean Transformation in 7 weeks 講座"
+
+#: patterns/transformation-technology.php:21
+msgid "เปลี่ยน AI ให้เป็นผลลัพธ์ทางธุรกิจที่จับต้องได้"
+msgstr "AIを目に見えるビジネス成果へ"
+
+#: patterns/transformation-technology.php:23
+msgid "หลายองค์กรมีทั้งข้อมูลและเครื่องมือ แต่ยังไม่เห็นผล เพราะ AI ยังไม่ถูกนำไปใช้กับเป้าหมายที่ถูกต้อง ONE7AI เชื่อม AI เข้ากับการเปลี่ยนแปลงขององค์กร และใช้ AI เป็นเครื่องมือเชิงกลยุทธ์"
+msgstr "多くの組織はデータもツールも持っているのに成果が出ていません。AIが正しい目標に向けられていないからです。ONE7AIはAIを組織の変革と結びつけ、戦略的なツールとして活用します。"
+
+#: patterns/transformation-technology.php:25
+msgid "Operation: บริหารงานหลังบ้านอย่างเป็นเลิศ"
+msgstr "Operation：バックオフィス業務の卓越"
+
+#: patterns/transformation-technology.php:26
+msgid "Customer Mastery: ชนะใจลูกค้าด้วยบริการที่เหนือกว่า"
+msgstr "Customer Mastery：優れたサービスで顧客の心をつかむ"
+
+#: patterns/transformation-technology.php:27
+msgid "Business Growth: เร่งการเติบโตและขยายฐานลูกค้า"
+msgstr "Business Growth：成長を加速し、顧客基盤を拡大する"
+
+#: patterns/transformation-technology.php:39
+msgid "เทคโนโลยีที่ใช่ ในเวลาที่ถูกต้อง เพื่อผลลัพธ์ที่วัดได้จริง เราผสานความเชี่ยวชาญด้าน Lean เข้ากับ AI ให้องค์กรทำงานได้ฉลาดขึ้น เร็วขึ้น และแข่งขันได้อย่างยั่งยืน"
+msgstr "最適なテクノロジーを最適なタイミングで、測定可能な成果へ。リーンの専門知識とAIを組み合わせ、より賢く、より速く、持続的に競争できる組織づくりを支援します。"
+
+#: patterns/transformation.php
+msgctxt "Pattern title"
+msgid "Transformation Solutions page (all sections)"
+msgstr ""
+
+#: patterns/transformation.php
+msgctxt "Pattern description"
+msgid "Every Transformation Solutions section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""

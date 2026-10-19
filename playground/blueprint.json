@@ -2,7 +2,7 @@
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"meta": {
 		"title": "HRI DeOne — rebuild preview",
-		"description": "Installs Polylang, hri-theme and hri-core from GitHub main, adds 20 sample courses and 3 blog posts with EN / JA translations, creates the home page (front page), In-house, Public Training and Style Guide pages and opens the home page (English: /en/, Japanese: /ja/, all courses: /courses/, style guide: /style-guide/).",
+		"description": "Installs Polylang, hri-theme and hri-core from GitHub main, adds 20 sample courses and 3 blog posts with EN / JA translations, creates the home page (front page), In-house, Public Training, Transformation Solutions, Japanese Concept and Style Guide pages and opens the home page (English: /en/, Japanese: /ja/, all courses: /courses/, style guide: /style-guide/).",
 		"author": "imeeba"
 	},
 	"landingPage": "/",

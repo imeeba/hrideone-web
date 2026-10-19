@@ -192,25 +192,16 @@ foreach ( $courses as $c ) {
 	++$created;
 }
 
-// Listing pages: the same Course Filter block, locked to one program.
-$listing = static function ( string $eyebrow, string $title, string $lead, string $program ): string {
-	return '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}},"backgroundColor":"surface-brand","layout":{"type":"constrained","contentSize":"1200px"}} -->'
-		. '<div class="wp-block-group alignfull has-surface-brand-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">'
-		. '<!-- wp:paragraph {"className":"is-style-eyebrow"} --><p class="is-style-eyebrow">' . esc_html( $eyebrow ) . '</p><!-- /wp:paragraph -->'
-		. '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">' . esc_html( $title ) . '</h1><!-- /wp:heading -->'
-		. '<!-- wp:paragraph {"fontSize":"large","textColor":"contrast-muted"} --><p class="has-contrast-muted-color has-text-color has-large-font-size">' . esc_html( $lead ) . '</p><!-- /wp:paragraph -->'
-		. '</div><!-- /wp:group -->'
-		. '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->'
-		. '<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--80)">'
-		. '<!-- wp:hri/course-filter {"program":"' . $program . '"} /-->'
-		. '</div><!-- /wp:group -->';
-};
-
+// Service pages built from the theme's section patterns (hri_page_sections()). In-house and
+// Public Training include the Course Filter block locked to their program.
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
 $pages = array(
-	'in-house'        => array( 'In-house Training', $listing( 'In-house Training', 'หลักสูตร In-house', 'หลักสูตรอบรมภายในองค์กร ปรับเนื้อหาให้ตรงกับเป้าหมายและบริบทของทีมคุณ (ข้อความตัวอย่าง)', 'inhouse' ) ),
-	'public-training' => array( 'Public Training', $listing( 'Public Training', 'หลักสูตร Public Training', 'หลักสูตรเปิดรับสมัครทั่วไป แสดงเฉพาะรุ่นที่เปิดอยู่ล่าสุด (ข้อความตัวอย่าง)', 'public' ) ),
+	'in-house'                 => 'In-house Training',
+	'public-training'          => 'Public Training',
+	'transformation-solutions' => 'Transformation Solutions',
+	'japanese-concept'         => 'Japanese Concept',
 );
-foreach ( $pages as $slug => $page ) {
+foreach ( $pages as $slug => $title ) {
 	$existing = get_page_by_path( $slug );
 	wp_insert_post(
 		array(
@@ -218,8 +209,8 @@ foreach ( $pages as $slug => $page ) {
 			'post_type'    => 'page',
 			'post_status'  => 'publish',
 			'post_name'    => $slug,
-			'post_title'   => $page[0],
-			'post_content' => $page[1],
+			'post_title'   => $title,
+			'post_content' => wp_slash( hri_seed_page_content( $slug ) ),
 		)
 	);
 }
@@ -257,8 +248,6 @@ foreach ( $posts as $p ) {
 		}
 	}
 }
-
-require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
 
 // Home page (front page). EN / JA translations: seed-languages.php.
 $home    = get_page_by_path( 'home' );
