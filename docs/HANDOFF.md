@@ -118,7 +118,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] Thumbnail 3:2 + รูปตัวอย่าง
 - [x] Header ใหม่ + ปุ่มภาษา (ตรวจที่ 1280/1100/1024/768/375 ผ่านการจำลองจอ)
 - [x] Footer ใหม่ + โลโก้ SVG 5 แบบ + หน้าข้อมูลบริษัท + แถบ CTA (ทดสอบ 1280/768/375, TH/EN/JA ใน Playground)
-- [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (SVG), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
+- [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
@@ -129,11 +129,13 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ที่อยู่ภาษาไทยใน `hri_company_defaults()` เรียบเรียงเองจากที่อยู่ภาษาอังกฤษ (ชื่อบริษัทคงเป็นอังกฤษ) ต้องให้ Jimmi ตรวจ · ข้อความแถบ CTA มี "(ข้อความตัวอย่าง)" · LinkedIn ยังไม่มี URL (ช่องว่าง = ไม่แสดง)
 - คำแปล EN/JA ทั้งหมด (ชื่อ term, excerpt, ข้อความ UI ใน .po, `seed-languages.php`) เป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
 - เมนูยังเป็นของเว็บเดิม หน้า Transformation, Japanese Concept, Blog, About, Contact ยังไม่มี (ปุ่มในหน้าแรกชี้ไป `/transformation-solutions/` `/japanese-concept/` `/blog/` ซึ่งยัง 404)
-- หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ · tag ใต้ชื่อบริการ (In-house Training / Organization Transformation / Cross-cultural Collaboration) ตั้งเอง
+- หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ
+- หน้าแรก: บรรทัดเล็กเหนือ "Our Services" ใช้ "What We Do" (Jimmi สั่งให้หัวข้อใน section นี้เป็นอังกฤษล้วน ไม่แปล; คำนี้ผมตั้งเอง รอยืนยัน) · ข้อความ 01–03 ในหลอดไฟมาจากรูป reference ของ Jimmi
 - หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
+0. **สถานะล่าสุด (19 ต.ค. 2569):** หน้าแรกเสร็จและ merge เข้า `main` แล้ว (theme/plugin 0.4.x; รอบล่าสุด: ลบการ์ดบริการ ย้ายปุ่ม CTA ไปใต้ข้อ 01–03 ของหลอดไฟ, โลโก้มือถือแถวละ 5 = 8 แถว) · Jimmi ยังไม่ได้ระบุว่างานถัดไปคืออะไร → ให้ถามว่าจะเริ่มข้อไหนก่อน (ข้อเสนอที่ยังไม่อนุมัติ: แก้ tap target header/footer ให้ ≥44px ตามหัวข้อ "ปัญหานอกขอบเขต" และสร้างหน้า Transformation Solutions / Japanese Concept ที่ปุ่ม CTA ชี้ไปแต่ยัง 404)
 1. **ใส่รูปจริงหน้าแรก** — โลโก้ลูกค้า 40 รายการ (เว็บเดิม `/wp-content/uploads/2026/03/Website-Customer-logo-01…40.webp`), รูปผู้บริหาร, รูป Gallery, รูป/วิดีโอ Hero (ทำในหน้าแรกแต่ละภาษา หรือให้ Jimmi แนบไฟล์มา)
    - หน้า Contact / About / Blog / Transformation / Japanese Concept ยังไม่มี: CTA, เมนู และปุ่มหน้าแรกชี้ไปหน้าที่ยัง 404
 2. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
@@ -164,6 +166,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Screenshot แบบ full page ไม่โหลดรูป `loading="lazy"` → ตั้ง `loading="eager"` ก่อนถ่าย หรือถ่ายทีละ section
 - Editor ใน local ใช้ `wait_until: domcontentloaded` (admin ยิงไป wordpress.org ไม่จบ networkidle)
 - วันที่บทความใน local เป็นภาษาอังกฤษเพราะไม่มี language pack ไทยของ core (บนโฮสต์จริงติดตั้ง ภาษาไทย แล้วจะเป็นเดือนไทย)
+- ลบ/ย้าย component ใน pattern แล้วต้อง seed หน้าใหม่ (page content เก็บใน DB): local ใช้ `wp eval-file playground/seed.php` แล้ว `seed-languages.php` · ระวังตอนลบ CSS ทั้งบล็อก — กฎ selector ที่ใช้ร่วมกัน (เช่น `.hri-post`) อยู่ปนกับของที่ลบ
+- Hook ทดสอบหลังแก้: `python3 measure.py` (overflow/tap/contrast/PHP/JS ที่ 1280/768/375 × `/`,`/en/`,`/ja/`) — สคริปต์อยู่ใน scratchpad ของแชทเก่า ไม่อยู่ใน repo ให้เขียนใหม่ด้วย Playwright (Chromium อยู่ที่ /opt/pw-browsers)
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
@@ -177,3 +181,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ตรวจด้วย JS วัดค่า (ขนาด/overflow/การแสดงผล) ก่อน ใช้ screenshot เท่าที่จำเป็น
 - จบงานแล้วอัปเดตไฟล์นี้ (ข้อ 5–8) แล้ว push
 - Commit message ปิดท้ายด้วยบรรทัด attribution ตามที่ระบบกำหนด
+
+## 10. Prompt เริ่มแชทใหม่ (copy ไปวางได้เลย)
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 7–8 งานถัดไป/ข้อควรระวัง) แล้วทำงานนี้: <ใส่งาน>
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub, Playground ด้วย branch + blueprint · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF ข้อ 4–8 (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, ลิงก์ preview, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
