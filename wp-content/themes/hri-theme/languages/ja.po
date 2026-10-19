@@ -278,6 +278,7 @@ msgstr ""
 msgid "คลังความรู้"
 msgstr "ナレッジ"
 
+#: patterns/blog-loop.php:48
 #: patterns/home-knowledge.php:37
 msgid "ยังไม่มีบทความ"
 msgstr "記事はまだありません"
@@ -486,6 +487,7 @@ msgstr "各企業の実際の課題と目標から設計する企業内研修。
 msgid "ขอใบเสนอราคา"
 msgstr "お見積りを依頼"
 
+#: patterns/blog-cta.php:17
 #: patterns/inhouse-hero.php:19
 msgid "ดูหลักสูตรทั้งหมด"
 msgstr "すべての講座を見る"
@@ -1918,3 +1920,69 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "Every About page section in order. Insert into an empty page, then edit the texts and images."
 msgstr ""
+
+#: patterns/blog-cta.php
+msgctxt "Pattern title"
+msgid "Blog — Closing call to action"
+msgstr ""
+
+#: patterns/blog-cta.php
+msgctxt "Pattern description"
+msgid "Dark band at the end of the blog pages and posts: talk to the team or see the services."
+msgstr ""
+
+#: patterns/blog-cta.php:13
+msgid "อยากนำแนวคิดเหล่านี้ไปใช้ในองค์กรของคุณ?"
+msgstr "これらの考え方を貴社で活かしませんか。"
+
+#: patterns/blog-cta.php:14
+msgid "ปรึกษาทีมงานเพื่อเลือกหลักสูตรหรือโครงการที่เหมาะกับโจทย์ของคุณ"
+msgstr "担当者にご相談ください。課題に合ったコースやプロジェクトをご提案します。"
+
+#: patterns/blog-cta.php:16
+msgid "ปรึกษาทีมงาน"
+msgstr "担当者に相談する"
+
+#: patterns/blog-hero.php
+msgctxt "Pattern title"
+msgid "Blog — Banner"
+msgstr ""
+
+#: patterns/blog-hero.php
+msgctxt "Pattern description"
+msgid "Blog page title with a short line."
+msgstr ""
+
+#: patterns/blog-hero.php:15
+msgid "บทความและองค์ความรู้"
+msgstr "記事・ナレッジ"
+
+#: patterns/blog-hero.php:16
+msgid "มุมมองและเครื่องมือด้านภาวะผู้นำ การขาย การโค้ช และการเปลี่ยนแปลงองค์กร จากทีมที่ทำงานกับองค์กรจริง"
+msgstr "リーダーシップ、営業、コーチング、組織変革に関する視点とツール。現場で組織と向き合うチームからお届けします。"
+
+#: patterns/blog-loop.php
+msgctxt "Pattern title"
+msgid "Blog — Post list"
+msgstr ""
+
+#: patterns/blog-loop.php
+msgctxt "Pattern description"
+msgid "Category buttons, a grid of the posts of this page (image, category, date, title, excerpt) and pagination. Used by the blog and category templates."
+msgstr ""
+
+#: patterns/blog-loop.php:39
+msgid "ก่อนหน้า"
+msgstr "前へ"
+
+#: patterns/blog-loop.php:43
+msgid "ถัดไป"
+msgstr "次へ"
+
+#: patterns/blog-loop.php:48
+msgid "บทความของเรามีเป็นภาษาไทยเป็นหลัก"
+msgstr "記事は主にタイ語で提供しています。"
+
+#: patterns/blog-loop.php:53
+msgid "อ่านบทความภาษาไทย"
+msgstr "タイ語の記事を読む"

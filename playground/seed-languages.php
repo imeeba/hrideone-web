@@ -290,6 +290,14 @@ foreach ( $targets as $lang ) {
 	$mo->export_to_db( $language );
 }
 
+// Blog page of each language (the posts page). Posts exist in Thai only: EN / JA show a notice.
+$blog_th = get_page_by_path( 'blog' );
+if ( $blog_th ) {
+	foreach ( array( 'en' => 'Blog', 'ja' => 'ブログ' ) as $lang => $title ) {
+		$translate( $blog_th->ID, $lang, array( 'post_title' => $title, 'post_content' => '' ) );
+	}
+}
+
 // Languages cache the ID of their front page translation: rebuild it.
 PLL()->model->clean_languages_cache();
 flush_rewrite_rules();

@@ -678,3 +678,15 @@ msgstr ""
 #: inc/trainers.php:28
 msgid "ยังไม่มีวิทยากร"
 msgstr ""
+
+#: blocks/blog-filter/render.php:32
+msgid "ทั้งหมด"
+msgstr "All"
+
+#: blocks/blog-filter/render.php:46
+msgid "หมวดหมู่บทความ"
+msgstr "Article categories"
+
+#: blocks/related-posts/render.php:47
+msgid "บทความที่เกี่ยวข้อง"
+msgstr "Related articles"

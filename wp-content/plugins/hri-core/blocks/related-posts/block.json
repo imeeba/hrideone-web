@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/related-posts",
+	"title": "Related Posts",
+	"category": "widgets",
+	"icon": "admin-post",
+	"description": "Up to three other posts from the same category (latest posts when there is none), in the visitor's language. For the end of a post.",
+	"keywords": [ "related", "posts", "บทความที่เกี่ยวข้อง" ],
+	"textdomain": "hri-core",
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"title": { "type": "string", "default": "", "label": "หัวข้อ (เว้นว่าง = ค่าเริ่มต้น)" }
+	},
+	"supports": { "align": [ "wide", "full" ], "html": false, "autoRegister": true },
+	"render": "file:./render.php"
+}

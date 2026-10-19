@@ -278,6 +278,7 @@ msgstr ""
 msgid "คลังความรู้"
 msgstr "Knowledge"
 
+#: patterns/blog-loop.php:48
 #: patterns/home-knowledge.php:37
 msgid "ยังไม่มีบทความ"
 msgstr "No articles yet"
@@ -486,6 +487,7 @@ msgstr "In-house training designed around each organization’s real challenges 
 msgid "ขอใบเสนอราคา"
 msgstr "Request a quote"
 
+#: patterns/blog-cta.php:17
 #: patterns/inhouse-hero.php:19
 msgid "ดูหลักสูตรทั้งหมด"
 msgstr "See all courses"
@@ -1918,3 +1920,69 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "Every About page section in order. Insert into an empty page, then edit the texts and images."
 msgstr ""
+
+#: patterns/blog-cta.php
+msgctxt "Pattern title"
+msgid "Blog — Closing call to action"
+msgstr ""
+
+#: patterns/blog-cta.php
+msgctxt "Pattern description"
+msgid "Dark band at the end of the blog pages and posts: talk to the team or see the services."
+msgstr ""
+
+#: patterns/blog-cta.php:13
+msgid "อยากนำแนวคิดเหล่านี้ไปใช้ในองค์กรของคุณ?"
+msgstr "Want to apply these ideas in your organization?"
+
+#: patterns/blog-cta.php:14
+msgid "ปรึกษาทีมงานเพื่อเลือกหลักสูตรหรือโครงการที่เหมาะกับโจทย์ของคุณ"
+msgstr "Talk to our team to choose the course or project that fits your challenge."
+
+#: patterns/blog-cta.php:16
+msgid "ปรึกษาทีมงาน"
+msgstr "Talk to the team"
+
+#: patterns/blog-hero.php
+msgctxt "Pattern title"
+msgid "Blog — Banner"
+msgstr ""
+
+#: patterns/blog-hero.php
+msgctxt "Pattern description"
+msgid "Blog page title with a short line."
+msgstr ""
+
+#: patterns/blog-hero.php:15
+msgid "บทความและองค์ความรู้"
+msgstr "Articles & insights"
+
+#: patterns/blog-hero.php:16
+msgid "มุมมองและเครื่องมือด้านภาวะผู้นำ การขาย การโค้ช และการเปลี่ยนแปลงองค์กร จากทีมที่ทำงานกับองค์กรจริง"
+msgstr "Views and tools on leadership, sales, coaching and organizational change, from a team that works with real organizations."
+
+#: patterns/blog-loop.php
+msgctxt "Pattern title"
+msgid "Blog — Post list"
+msgstr ""
+
+#: patterns/blog-loop.php
+msgctxt "Pattern description"
+msgid "Category buttons, a grid of the posts of this page (image, category, date, title, excerpt) and pagination. Used by the blog and category templates."
+msgstr ""
+
+#: patterns/blog-loop.php:39
+msgid "ก่อนหน้า"
+msgstr "Previous"
+
+#: patterns/blog-loop.php:43
+msgid "ถัดไป"
+msgstr "Next"
+
+#: patterns/blog-loop.php:48
+msgid "บทความของเรามีเป็นภาษาไทยเป็นหลัก"
+msgstr "Our articles are mainly written in Thai."
+
+#: patterns/blog-loop.php:53
+msgid "อ่านบทความภาษาไทย"
+msgstr "Read the Thai articles"
