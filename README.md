@@ -7,7 +7,7 @@ Rebuild ของเว็บไซต์ [hrideone.com](https://hrideone.com) (
 
 [▶ เปิด Preview ล่าสุดจาก branch `main`](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json)
 
-เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้าแรก มี `/in-house/`, `/public-training/`, `/transformation-solutions/`, `/japanese-concept/`, `/courses/` และ Style Guide (`/style-guide/`)
+เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้าแรก มี `/in-house/`, `/public-training/`, `/transformation-solutions/`, `/japanese-concept/`, `/about/`, `/contact-us/`, `/blog/`, `/courses/` และ Style Guide (`/style-guide/`)
 พร้อมข้อมูลตัวอย่าง ภาษาอังกฤษ `/en/` ญี่ปุ่น `/ja/` (Polylang) และล็อกอินหลังบ้านให้อัตโนมัติ
 ข้อมูลที่แก้ใน Playground อยู่แค่ในเบราว์เซอร์นั้นและหายเมื่อปิดแท็บ
 
@@ -38,7 +38,7 @@ wp-content/
     assets/js/           hero.js (วิดีโอ hero ≤10 วินาที), slider.js (Gallery แบบสไลด์)
     inc/markup.php       ตัวช่วยพิมพ์ block markup ให้ patterns (hri_bm_*)
     parts/ templates/ patterns/   (หน้าแรก: home-*.php · บริการ: inhouse-*, public-*, transformation-*, japanese-*)
-  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter), ภาษา (Polylang), ข้อมูลบริษัท + blocks ของ footer
+  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter + วิทยากร), ฟอร์ม Lead, ภาษา (Polylang), ข้อมูลบริษัท + blocks ของ footer/บล็อก
 playground/
   blueprint.json         ตั้งค่า Playground preview
   seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, บทความ 3 เรื่อง, หน้าแรก, In-house / Public Training / Transformation / Japanese Concept, Style Guide)

@@ -108,6 +108,14 @@
 		},
 		{
 			"step": "writeFile",
+			"path": "/wordpress/hri-seed-course-data.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/seed-course-data.php"
+			}
+		},
+		{
+			"step": "writeFile",
 			"path": "/wordpress/hri-seed-languages.php",
 			"data": {
 				"resource": "url",
