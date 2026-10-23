@@ -720,6 +720,23 @@ video {
 	display: flex;
 }
 
+/* Many slides on a narrow screen: arrows stay 44px wide, the dots take their own row below. */
+.hri-slider__arrow {
+	flex: none;
+}
+
+.hri-slider__controls {
+	flex-wrap: wrap;
+}
+
+@media (max-width: 520px) {
+	.hri-slider__dots {
+		flex-basis: 100%;
+		justify-content: center;
+		order: 3;
+	}
+}
+
 .hri-slider__dot::before {
 	background: var(--wp--preset--color--contrast-muted);
 	border-radius: var(--wp--custom--radius--pill);

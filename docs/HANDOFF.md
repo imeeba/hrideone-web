@@ -1,9 +1,9 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 8: ไอคอนชุดใหม่ Phosphor Light ทั้งเว็บ + แก้ปุ่ม outline/ระยะป้าย/FAQ/ที่อยู่) · theme 0.10.0 / plugin 0.9.0
+> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 9: **รูปจริงจากเว็บเดิมแทน placeholder ~133 ช่อง** · branch `feature/real-images` ยังไม่ merge เข้า `main` ดูข้อ 5) · theme 0.10.1 / plugin 0.9.1
 >
-> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: H (รูปจริงหน้าอื่น) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
+> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
 >
 > **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
 
@@ -49,6 +49,7 @@
 ## 4. สถาปัตยกรรม
 
 ```
+(รูปหน้าอื่น) scripts/crawl-images.py (workflow Crawl old site images) → playground/data/crawl/pages.json → playground/data/site-media.json (ช่องรูป→รูป, เขียนมือ) ─ scripts/site-media.py (workflow Site media) ─→ playground/site-media/<id>.webp · seed อ่าน site-media.json (`hri_seed_media*` ใน seed-home.php)
 (รูป demo) playground/data/blog-posts.json ─ scripts/demo-media.py (GitHub Actions: demo-media.yml) ─→ playground/media/YYYY/MM/*.webp + manifest.json
 tokens/tokens.json  ─┐
 tokens/theme.base.json ─┴─ node tokens/build.mjs ─→ wp-content/themes/hri-theme/theme.json  (ห้ามแก้ตรง)
@@ -167,6 +168,15 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 9 (24 ต.ค. 2569, branch `feature/real-images` — **ยังไม่ merge**): **รูปจริงจากเว็บเดิมแทน placeholder**
+  - flow: crawl เว็บเดิมด้วย Playwright บน GitHub (35 หน้า, screenshot ติดเลขกรอบรูป) → จับคู่ช่องรูปด้วยตา → `site-media.json` (97 รูป) → `scripts/site-media.py` แปลงตามชนิด: logo ≤240px q85 · cover 3:2 960×640 q76 · square (ครอปรอบหน้า) 640 q80 · photo ≤1000 q76 · hero ≤1600 q70 → **รวม 1.6 MB, ไฟล์ใหญ่สุด 115 KB** · ดูผลจับคู่: `playground/data/site-media-sheet-1…4.jpg`
+  - ใส่แล้ว: hero หน้าแรก (1), โลโก้ลูกค้า 40 (หน้าแรก/About/In-house) + พาร์ทเนอร์ 8 (Transformation) พร้อม alt ชื่อบริษัท, ผู้บริหาร 2 (หน้าแรก+About), Gallery หน้าแรก 4, รูป hero ของ About/In-house/Public/Transformation/Japanese + "ทำไมต้อง Public" (6), ปกคอร์ส 20 จาก 21 (ภาพ hero ของหน้าคอร์สเดิม ครอป 3:2), วิทยากร 4, Gallery ไฮไลต์ของคอร์ส (Oxygen ใช้ของจริง 6 รูป คอร์สอื่นหมุนจากสระรูปอบรมจริงของ HRI 10 รูป)
+  - **วิธีใส่รูป (เพื่อให้เปิดเร็ว)**: ปกคอร์ส/วิทยากร = URL ใน meta `_hri_thumbnail_url` (+`_alt`, `_w`, `_h`) ไม่อัปโหลดเข้าคลังสื่อ → Playground บูตเร็ว, `<img>` มี width/height กัน layout กระโดด (ใช้ filter เดิมใน `blog.php` ขยายให้ทุก post type) · รูปในเนื้อหา = core/image ชี้ URL jsDelivr ตรง (ไม่มี width/height ใน markup เพราะ core เก็บเป็น style แล้ว editor จะ validate ไม่ผ่าน) · **ตอนขึ้นโฮสต์จริง** ให้ดึงรูปเข้าคลังสื่อ (WordPress ทำหลายขนาด/srcset ให้) ด้วยโหมด download ของ importer หรือ sideload ใน seed
+  - **ไม่ได้ใส่ / ยังเป็น placeholder**: About "Social Impact" gallery 4 รูป (เว็บเดิมไม่มีรูปกิจกรรมเพื่อสังคม ต้องขอจาก Jimmi) · ปก TEN X (เว็บแยก ใช้รูปตัวอย่างเดิม) · วิดีโอ (hero, DO·WA·KEI, แนวตั้งใน Outcomes) · รูปประกอบ Pain point/Outcomes ของคอร์ส (เว็บเดิมมี 4 รูปต่อคอร์ส แต่หน้าใหม่ไม่มีช่องรูป) · รูปรีวิว/อวตาร (เว็บเดิมเป็นรูปกลาง)
+  - **ควรให้ Jimmi ตรวจ**: ปกคอร์สบางใบมืด/ซ้ำกัน (เว็บเดิมใช้รูปเดียวกัน: B2B Selling = Complaint Handling, Strategic = Consultative Selling) · Gallery ของคอร์สที่ไม่ใช่ Oxygen ใช้รูปอบรม HRI ทั่วไปไม่ใช่รูปของรุ่นนั้น · hero ของ Public/In-house เป็นภาพ gradient นามธรรมจากเว็บเดิม · alt ของโลโก้ ผมอ่านจากตัวโลโก้เอง (ช่อง 10 = การไฟฟ้าส่วนภูมิภาค ไม่แน่ใจ 100%) · สิทธิ์ใช้รูป: ผู้บริหาร/ผู้เข้าอบรม/โลโก้ลูกค้าเป็นรูปที่เปิดเผยบนเว็บเดิมอยู่แล้ว (ใช้ใน demo ได้) ก่อนขึ้นเว็บจริงควรให้ลูกค้ายืนยัน · รูป stock ต้องเป็น license ของลูกค้า
+  - แก้เพิ่ม: ปุ่มก่อน/ถัดไปของ slider หดเหลือ 28px บนมือถือเมื่อสไลด์ >5 → จุดขึ้นแถวใหม่ที่ ≤520px (`base.css`)
+  - ตรวจ: `measure.py` 63 รอบ (TH/EN/JA) + about/transformation/japanese/oxygen = 0 ปัญหา · ไม่มี placeholder เหลือ (ยกเว้น Social Impact 4) · รูปทุกใบโหลดได้ (naturalWidth>0) บน local WP + Polylang · ทดสอบ local ใช้ `HRI_SITE_MEDIA_BASE` ชี้ไปโฟลเดอร์ `playground/site-media` (ไม่ผ่าน jsDelivr)
+  - **ดู branch นี้ใน Playground**: เปิดลิงก์ในข้อ 3 แต่แทน `main` ด้วย `feature/real-images` ใน blueprint (ทุก URL ใน `playground/blueprint.json` ชี้ `main` — เปลี่ยนก่อน merge ไม่ได้ผ่านลิงก์สั้น) หรือ merge แล้วเปิดลิงก์เดิม
 - [x] รอบที่ 8 (24 ต.ค. 2569, ตรง `main`): Jimmi ส่ง screenshot 3 รูป (hero คอร์ส Lean, FAQ, ที่อยู่ footer) ให้หาจุดแปลก แล้วสั่งแก้ 4 ข้อ + เปลี่ยนไอคอนทั้งเว็บ
   - ปุ่ม "สอบถามหลักสูตรนี้" ใน hero คอร์สเป็นปุ่มทึบเหมือนปุ่มหลัก → ปุ่มขอบ: ปุ่มที่ `hri_course_buttons()` พิมพ์เองไม่ผ่าน parser → core ไม่โหลด CSS ของ Button และ variation outline ของ theme.json · แก้: enqueue `wp-block-button(s)` ในฟังก์ชัน + กฎ `.is-style-outline` ใน `base.css` (ค่าเดียวกับ theme.json, hover เหมือนหน้าแรก)
   - ป้าย (รุ่น/วันที่/ราคา) ชิดปุ่มแค่ ~2px: สาเหตุเดียวกัน (ลิงก์ปุ่มเป็น inline → padding ล้นกล่อง) แก้แล้วห่าง 16px
@@ -205,7 +215,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - เมนูชี้ `/blog/` `/about/` `/contact-us/` ที่มีแล้ว (ตัวอย่างใน seed)
 - หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ
 - หน้าแรก: บรรทัดเล็กเหนือ "Our Services" ใช้ "What We Do" (Jimmi สั่งให้หัวข้อใน section นี้เป็นอังกฤษล้วน ไม่แปล; คำนี้ผมตั้งเอง รอยืนยัน) · ข้อความ 01–03 ในหลอดไฟมาจากรูป reference ของ Jimmi
-- หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) 
+- ~~หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder~~ → ใช้รูปจริงแล้วในรอบที่ 9 (ดูรายการที่ยังขาดในรอบที่ 9)
 
 ### ข้อมูลที่ต้องตัดสินใจ/ยืนยัน (จากรอบที่ 3) — ค่าชั่วคราวอยู่ใน seed ย้อนกลับได้
 - **ข้อมูลรุ่น/วันที่/ราคา/ลิงก์ Google Form ของ Public 5 คอร์ส** มาจากเว็บเดิม ณ 19 ต.ค. 2569 ต้องให้ทีมงานยืนยัน: New Manager "รุ่น 21 หรือ 22" (ใช้ 22 ตามเมนูเว็บเดิม) และ "7 สัปดาห์ หรือ 7 ครั้งใน 8 สัปดาห์" (ใช้วันที่ 5 ครั้ง/ตัวอย่าง ต้องตรวจ); Lean "รุ่น 2 หรือ 3" (ใช้ 3) และวันที่เก่าในเนื้อหาเว็บเดิม; Early Bird ของ Negotiation / Next Director / New Manager เลยกำหนดแล้ว (ซ่อนอัตโนมัติ), Oxygen ยังใช้ได้
@@ -247,7 +257,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
-2. **รูป/วิดีโอจริงของหน้าอื่น (ไม่ใช่บล็อก)** → prompt H · โลโก้ลูกค้า 40, รูปผู้บริหาร 2, Gallery, รูป hero หน้าบริการ, โลโก้พาร์ทเนอร์ 8, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), รูปวิทยากร, วิดีโอแนวตั้งใน Outcomes · **ไฟล์ export มีแต่รูปของบทความ** (1,578 attachment ผูกกับโพสต์ทั้งหมด) → ต้องหา URL รูปจากหน้าเว็บเดิมทีละหน้า แล้วใส่ใน list ให้ `demo-media.py`/workflow ดึง (ขยายสคริปต์ให้รับ list) · ดึงเฉพาะรูปที่หน้าใหม่ใช้จริง
+2. ~~**รูป/วิดีโอจริงของหน้าอื่น (ไม่ใช่บล็อก)** → prompt H~~ — **ทำแล้วในรอบที่ 9 (ยังไม่ merge)** เหลือวิดีโอ + รูป Social Impact · ของเดิม: โลโก้ลูกค้า 40, รูปผู้บริหาร 2, Gallery, รูป hero หน้าบริการ, โลโก้พาร์ทเนอร์ 8, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), รูปวิทยากร, วิดีโอแนวตั้งใน Outcomes · **ไฟล์ export มีแต่รูปของบทความ** (1,578 attachment ผูกกับโพสต์ทั้งหมด) → ต้องหา URL รูปจากหน้าเว็บเดิมทีละหน้า แล้วใส่ใน list ให้ `demo-media.py`/workflow ดึง (ขยายสคริปต์ให้รับ list) · ดึงเฉพาะรูปที่หน้าใหม่ใช้จริง
 2.1 **รูปใน WordPress ให้เล็กสุด** → prompt I (แปลงต้นฉบับเป็น WebP/AVIF ตอนอัปโหลด, ขนาด `hri-card`, ขอบยาวสุด 1600)
 2.2 **PageSpeed** → prompt J (เป้า Lighthouse mobile ≥90 ทุกหน้า) · วัดจริงต้องรอโฮสต์ แต่ทำ/วัดใน local ได้ก่อน
 3. ~~นำเข้าบทความ~~ — **ทำแล้วในรอบที่ 6** (เว็บเดิมมี 115 เรื่อง ไม่ใช่ ~150 และมี EN/JA ครบอยู่แล้ว) · ตอนย้ายจริง: export ใหม่จากเว็บเดิม → `scripts/wxr-to-blog.py` → Tools → นำเข้าบทความ แบบ "คัดลอกรูปเข้าคลังสื่อ" บน staging
@@ -433,7 +443,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ปิดงาน: อัปเดต AUTO-TRANSLATE.md (สถานะ, สิ่งที่ต่างจากสเปก, ข้อ 7 ค่าใช้จ่ายถ้าทดสอบจริง) + HANDOFF (ข้อ 4 สถาปัตยกรรม, ข้อ 5, ข้อ 7) + README · bump Version plugin/theme · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
 
-**H. รูปจริงของหน้าอื่นใน demo (ไม่ใช่บล็อก)**
+**H. รูปจริงของหน้าอื่นใน demo (ไม่ใช่บล็อก)** — ทำแล้วในรอบที่ 9 (เก็บ prompt ไว้อ้างอิง)
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")

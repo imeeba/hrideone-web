@@ -49,6 +49,8 @@ playground/
   seed-languages.php     คำแปลตัวอย่าง EN / JA (หลังตั้งค่า Polylang)
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
 scripts/demo-media.py    ดึงรูปที่บทความใช้จากเว็บเดิม → WebP ใน playground/media/ (รันผ่าน GitHub Actions "Demo media")
+scripts/crawl-images.py  สำรวจรูปในหน้าเว็บเดิม (Playwright) → playground/data/crawl/pages.json (Actions "Crawl old site images")
+scripts/site-media.py    ดึง/แปลงรูปจริงของช่องรูปทั้งเว็บตาม playground/data/site-media.json → playground/site-media/ (Actions "Site media")
 scripts/wxr-to-blog.py   แปลงไฟล์ Export (WXR) ของเว็บเดิมเป็น playground/data/blog-posts.json
 scripts/build-icons.py   สร้างชุดไอคอน (Phosphor Light, MIT) → hri-core/assets/icons/ + icons.css ดู HANDOFF ข้อ 4
 scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
