@@ -169,10 +169,22 @@ def block(name: str, attrs: dict | None, inner: str) -> str:
     return f'<!-- wp:{name}{a} -->\n{inner}\n<!-- /wp:{name} -->'
 
 
+def video_block(shortcode: str) -> str:
+    """[video mp4="…" poster="…"][/video] → core/video block."""
+    attrs = dict(re.findall(r'(\w+)="([^"]*)"', shortcode))
+    src = attrs.get('mp4') or attrs.get('src') or attrs.get('webm') or ''
+    if not src:
+        return ''
+    poster = f' poster="{escape(attrs["poster"])}"' if attrs.get('poster') else ''
+    return block('video', None, f'<figure class="wp-block-video"><video controls{poster} src="{escape(src)}"></video></figure>')
+
+
 def paragraph(html: str, align: str = '') -> str:
     html = tidy(html)
     if not has_text(html):
         return ''
+    if re.fullmatch(r'\[video [^\]]*\](?:\[/video\])?', html):
+        return video_block(html)
     if align in ('center', 'right'):
         return block('paragraph', {'align': align}, f'<p class="has-text-align-{align}">{html}</p>')
     return block('paragraph', None, f'<p>{html}</p>')

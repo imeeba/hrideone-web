@@ -142,7 +142,7 @@ function hri_blog_import_find( array $item, string $lang, int $th_id ): int {
  *
  * @return int Attachment ID, 0 on failure.
  */
-function hri_blog_import_media( string $url, int $post_id, string $alt = '' ): int {
+function hri_blog_import_media( string $url, int $post_id, string $alt = '', int $timeout = 60 ): int {
 	if ( ! $url ) {
 		return 0;
 	}
@@ -163,7 +163,7 @@ function hri_blog_import_media( string $url, int $post_id, string $alt = '' ): i
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 	require_once ABSPATH . 'wp-admin/includes/media.php';
 	require_once ABSPATH . 'wp-admin/includes/image.php';
-	$tmp = download_url( $url, 60 );
+	$tmp = download_url( $url, $timeout );
 	if ( is_wp_error( $tmp ) ) {
 		return 0;
 	}
@@ -181,16 +181,43 @@ function hri_blog_import_media( string $url, int $post_id, string $alt = '' ): i
 }
 
 /**
- * Content images from the old site → media library images (block attributes, class and URL updated).
+ * Is this URL on another site (hrideone.com, or the demo copies in the repo via jsDelivr)?
+ */
+function hri_blog_import_is_remote( string $url ): bool {
+	$host = (string) wp_parse_url( $url, PHP_URL_HOST );
+	return '' !== $host && (string) wp_parse_url( home_url(), PHP_URL_HOST ) !== $host;
+}
+
+/**
+ * Content images and videos from another site → media library (block attributes, class and URL updated).
  */
 function hri_blog_import_content_images( string $content, int $post_id ): string {
+	$content = (string) preg_replace_callback(
+		'#<!-- wp:video -->\n<figure class="wp-block-video"><video controls(?: poster="([^"]*)")? src="([^"]+)"></video></figure>\n<!-- /wp:video -->#',
+		static function ( $m ) use ( $post_id ) {
+			$src = html_entity_decode( $m[2] );
+			if ( ! hri_blog_import_is_remote( $src ) ) {
+				return $m[0];
+			}
+			$id  = hri_blog_import_media( $src, $post_id, '', 300 );
+			$url = $id ? (string) wp_get_attachment_url( $id ) : '';
+			if ( ! $url ) {
+				return $m[0];
+			}
+			$poster = html_entity_decode( $m[1] );
+			if ( $poster && hri_blog_import_is_remote( $poster ) ) {
+				$poster_id = hri_blog_import_media( $poster, $post_id );
+				$poster    = $poster_id ? (string) wp_get_attachment_url( $poster_id ) : $poster;
+			}
+			return '<!-- wp:video {"id":' . $id . '} -->' . "\n" . '<figure class="wp-block-video"><video controls' . ( $poster ? ' poster="' . esc_url( $poster ) . '"' : '' ) . ' src="' . esc_url( $url ) . '"></video></figure>' . "\n<!-- /wp:video -->";
+		},
+		$content
+	);
 	return (string) preg_replace_callback(
 		'#<!-- wp:image -->\n<figure class="wp-block-image"><img src="([^"]+)" alt="([^"]*)"/>(.*?)</figure>\n<!-- /wp:image -->#s',
 		static function ( $m ) use ( $post_id ) {
-			$url  = html_entity_decode( $m[1] );
-			$host = (string) wp_parse_url( $url, PHP_URL_HOST );
-			// Images on another site (hrideone.com, or the demo copies in the repo via jsDelivr).
-			if ( '' === $host || (string) wp_parse_url( home_url(), PHP_URL_HOST ) === $host ) {
+			$url = html_entity_decode( $m[1] );
+			if ( ! hri_blog_import_is_remote( $url ) ) {
 				return $m[0];
 			}
 			$id  = hri_blog_import_media( $url, $post_id, html_entity_decode( $m[2] ) );

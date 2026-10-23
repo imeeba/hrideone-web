@@ -22,6 +22,7 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -90,11 +91,14 @@ def main():
         with open(MANIFEST, encoding='utf-8') as f:
             manifest = json.load(f)
 
-    urls = sorted(set(OLD.findall(text)))
+    # Images only (a video in an article stays where it is: see docs/HANDOFF.md).
+    urls = sorted(u for u in set(OLD.findall(text)) if re.search(r'\.(jpe?g|png|gif|webp)$', u, re.I))
     print(f'{len(urls)} image URLs from the old site in blog-posts.json', flush=True)
     failed, done, before, after = [], 0, 0, 0
     todo = []
     for url in urls:
+        if manifest.get(url, {}).get('missing'):
+            continue
         rel = manifest.get(url, {}).get('file') or local_name(url)
         if not os.path.exists(os.path.join(MEDIA, rel)):
             todo.append((url, rel))
@@ -119,6 +123,10 @@ def main():
                 url, item = fut.result()
                 manifest[url] = item
                 done += 1
+            except urllib.error.HTTPError as e:
+                if e.code in (404, 410):
+                    manifest[url] = {'missing': True}  # broken on the old site too: removed from the demo
+                failed.append(f'{url}: HTTP {e.code}')
             except Exception as e:  # noqa: BLE001 - keep going, report at the end
                 failed.append(f'{url}: {e}')
             if i % 25 == 0 or i == len(todo):
@@ -129,6 +137,8 @@ def main():
                     f.cancel()
                 break
     for item in manifest.values():
+        if item.get('missing'):
+            continue
         before += item.get('source_bytes', 0)
         after += item.get('bytes', 0)
 
@@ -136,15 +146,31 @@ def main():
         json.dump(dict(sorted(manifest.items())), f, ensure_ascii=False, indent=1)
 
     # Point the demo data at the copies (URLs that failed keep pointing at the old site).
+    # Images that are 404 on the old site too: image block removed, cover emptied.
     def swap(m):
         item = manifest.get(m.group(0))
-        return args.base + item['file'] if item else m.group(0)
+        return args.base + item['file'] if item and item.get('file') else m.group(0)
 
+    missing = {u for u, item in manifest.items() if item.get('missing')}
+    data = json.loads(text)
+    removed = 0
+    for group in data['posts']:
+        for item in group['translations'].values():
+            if item.get('thumbnail') in missing:
+                item['thumbnail'], item['thumbnail_alt'] = '', ''
+                removed += 1
+            blocks = item['content'].split('\n\n')
+            keep = [b for b in blocks if not (b.startswith('<!-- wp:image') and any(u in b for u in missing))]
+            removed += len(blocks) - len(keep)
+            item['content'] = '\n\n'.join(keep)
+    text = json.dumps(data, ensure_ascii=False, indent=1)
     text = OLD.sub(swap, text)
     with open(DATA, 'w', encoding='utf-8') as f:
         f.write(text)
     with open(DATA + '.gz', 'wb') as f:
         f.write(gzip.compress(text.encode('utf-8'), mtime=0))
+    if removed:
+        print(f'{removed} broken images (404 on the old site) removed from the articles')
 
     print(f'new files: {done} · total {len(manifest)} · {before / 1e6:.1f} MB on the old site -> {after / 1e6:.1f} MB WebP')
     if failed:
