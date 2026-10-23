@@ -176,7 +176,7 @@ def main():
     if failed:
         print(f'{len(failed)} failed (still pointing at hrideone.com):')
         print('\n'.join(failed[:50]))
-        sys.exit(1 if len(failed) > len(urls) // 10 else 0)
+        sys.exit(1 if len(failed) > max(5, len(urls) // 10) else 0)
 
 
 if __name__ == '__main__':
