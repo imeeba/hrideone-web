@@ -141,6 +141,8 @@ $sample_image = static function ( int $n ) use ( $sample_dirs, $sample_prefix ):
 	return '';
 };
 
+require_once is_readable( __DIR__ . '/seed-home.php' ) ? __DIR__ . '/seed-home.php' : __DIR__ . '/hri-seed-home.php';
+
 $created = 0;
 $index   = 0;
 foreach ( $courses as $c ) {
@@ -177,7 +179,10 @@ foreach ( $courses as $c ) {
 		update_post_meta( $post_id, 'hri_reg_status', 'open' );
 	}
 
-	if ( ! has_post_thumbnail( $post_id ) && ! in_array( $slug, $without_image, true ) ) {
+	// Real cover of the old site (a URL, no upload: small WebP, fast boot); the sample images only fill the gaps.
+	$real_cover = hri_seed_set_remote_thumb( $post_id, hri_seed_media()['use']['covers'][ $slug ] ?? null, $title );
+
+	if ( ! $real_cover && ! has_post_thumbnail( $post_id ) && ! in_array( $slug, $without_image, true ) ) {
 		$source = $sample_image( ( $index % 4 ) + 1 );
 		if ( $source ) {
 			$tmp = wp_tempnam( 'hri-sample.jpg' );
@@ -215,6 +220,7 @@ foreach ( hri_seed_trainers() as $key => $t ) {
 	);
 	if ( $id && ! is_wp_error( $id ) ) {
 		$trainer_ids[ $key ] = (int) $id;
+		hri_seed_set_remote_thumb( (int) $id, hri_seed_media()['use']['trainers'][ $key ] ?? null, $t['th'][0] );
 	}
 }
 
@@ -233,7 +239,7 @@ foreach ( hri_seed_public_courses() as $slug => $c ) {
 	update_post_meta( $cid, 'hri_trainers', implode( ',', array_filter( array_map( static fn( $k ) => $trainer_ids[ $k ] ?? 0, $c['trainers'] ) ) ) );
 	$update = array( 'ID' => $cid, 'post_excerpt' => $c['th']['excerpt'] );
 	if ( ! empty( $c['th']['page'] ) ) {
-		$update['post_content'] = wp_slash( hri_seed_course_body( $c['th']['page'], 'public' ) );
+		$update['post_content'] = wp_slash( hri_seed_course_body( $c['th']['page'], 'public', '', $slug ) );
 	}
 	wp_update_post( $update );
 }
@@ -248,7 +254,7 @@ foreach ( $inhouse_ids as $cid ) {
 		array(
 			'ID'           => $cid,
 			'post_excerpt' => $d ? $d['excerpt'] : get_post_field( 'post_excerpt', $cid ),
-			'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse' ) ),
+			'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse', '', $slug ) ),
 		)
 	);
 }

@@ -100,6 +100,7 @@ foreach ( hri_seed_trainers() as $key => $t ) {
 			if ( $thumb ) {
 				set_post_thumbnail( $id, $thumb );
 			}
+			hri_seed_copy_remote_thumb( (int) $found[0], (int) $id );
 		}
 	}
 }
@@ -144,6 +145,7 @@ foreach ( $courses as $course ) {
 		if ( $thumb ) {
 			set_post_thumbnail( $id, $thumb );
 		}
+		hri_seed_copy_remote_thumb( (int) $course->ID, (int) $id );
 		// Real texts of the Public Training courses in this language.
 		if ( isset( $course_data[ $course->post_name ][ $lang ] ) ) {
 			$d      = $course_data[ $course->post_name ][ $lang ];
@@ -152,7 +154,7 @@ foreach ( $courses as $course ) {
 				update_post_meta( $id, $k, $v );
 			}
 			if ( ! empty( $d['page'] ) ) {
-				$update['post_content'] = wp_slash( hri_seed_course_body( $d['page'], 'public', 'en' === $lang ? 'en_US' : 'ja' ) );
+				$update['post_content'] = wp_slash( hri_seed_course_body( $d['page'], 'public', 'en' === $lang ? 'en_US' : 'ja', $course->post_name ) );
 			}
 			wp_update_post( $update );
 		}
@@ -163,7 +165,7 @@ foreach ( $courses as $course ) {
 				array(
 					'ID'           => $id,
 					'post_excerpt' => $d ? $d['excerpt'] : '',
-					'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse', 'en' === $lang ? 'en_US' : 'ja' ) ),
+					'post_content' => wp_slash( hri_seed_course_body( $d ? $d['page'] : 'sample', 'inhouse', 'en' === $lang ? 'en_US' : 'ja', $course->post_name ) ),
 				)
 			);
 		}

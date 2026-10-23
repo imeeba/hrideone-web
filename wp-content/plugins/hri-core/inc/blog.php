@@ -23,7 +23,8 @@ add_action(
 
 /* -------------------------------------------------------------------------
  * Cover image kept on the old site (import with images=remote, see blog-import.php):
- * meta _hri_thumbnail_url / _hri_thumbnail_alt, used only while the post has no featured image.
+ * meta _hri_thumbnail_url / _hri_thumbnail_alt (+ optional _hri_thumbnail_w / _h), used only while the post has
+ * no featured image. Any post type: articles, and the demo's courses and trainers (playground/seed.php).
  * ---------------------------------------------------------------------- */
 
 /**
@@ -61,6 +62,12 @@ add_filter(
 				'decoding' => 'async',
 			)
 		);
+		// Known size (demo images): the browser reserves the space before the file arrives.
+		$w = (int) get_post_meta( $post_id, '_hri_thumbnail_w', true );
+		$h = (int) get_post_meta( $post_id, '_hri_thumbnail_h', true );
+		if ( $w > 0 && $h > 0 ) {
+			$attr = wp_parse_args( $attr, array( 'width' => $w, 'height' => $h ) );
+		}
 		$attr['class'] = trim( 'attachment-' . ( is_string( $size ) ? $size : 'post-thumbnail' ) . ' size-' . ( is_string( $size ) ? $size : 'post-thumbnail' ) . ' wp-post-image ' . ( $attr['class'] ?? '' ) );
 		$out           = '<img src="' . esc_url( $url ) . '"';
 		foreach ( $attr as $name => $value ) {

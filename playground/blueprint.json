@@ -124,6 +124,14 @@
 		},
 		{
 			"step": "writeFile",
+			"path": "/wordpress/hri-site-media.json",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/data/site-media.json"
+			}
+		},
+		{
+			"step": "writeFile",
 			"path": "/wordpress/hri-seed-languages.php",
 			"data": {
 				"resource": "url",
