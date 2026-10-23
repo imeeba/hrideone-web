@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 5: tap target ≥44px + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`) · theme 0.8.2 / plugin 0.7.2
+> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 6: เก็บตกจากรอบที่ 5 — ตัวกรอง sticky, ระยะเมนู header, Blog UI, Style Guide) · theme 0.8.3 / plugin 0.7.3
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -147,6 +147,12 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 6 (23 ต.ค. 2569, branch `fix/review-items`): เก็บตกจากรอบที่ 5 ตามมาตรฐาน
+  - **ตัวกรองคอร์ส (desktop ≥900px)**: แผง sticky สูงไม่เกินจอ (`max-block-size: 100dvh − 2×spacing-50`, `box-sizing: border-box`) เนื้อหาที่เกินเลื่อนในแผง (`overflow-y: auto`, `overscroll-behavior: contain`, scrollbar บาง) → ทุกกลุ่มกดได้ทุกเมื่อ (เดิมสูง ~1390px บนจอ 900px ส่วนล่างกดไม่ได้)
+  - **เมนู header desktop**: เปลี่ยน gap 16px (blockGap spacing-40) เป็น padding ในแต่ละลิงก์ + margin ติดลบที่ container → พื้นที่กดชนกันพอดี ทุกลิงก์กว้าง ≥44 และ **ตำแหน่งตัวอักษรเหมือนก่อนรอบที่ 5 ทุกพิกเซล** (ตรวจแล้ว: ช่องระหว่างคำ 16px, ขอบขวา Contact ที่เดิม) · ถ้าเปลี่ยน blockGap ใน `parts/header.html` ต้องแก้ค่า spacing-40 ใน `base.css` ส่วนนี้ด้วย
+  - **Blog**: แถบหมวดที่เลือก + ชื่อหมวดในการ์ด เปลี่ยนจาก `primary` (ขาวบน #00B0BD = 2.6:1) เป็น `primary-strong` (6.4:1) ตามกฎ token ข้อ 4 · เพิ่ม focus ring · pagination ของ Query Loop เป็นกล่อง 44×44 แบบเดียวกับ pagination คอร์ส
+  - **Style Guide**: ป้ายบนแถบสี (ramp) เลือกตัวอักษรขาว/ดำตามค่าที่ contrast สูงกว่า · สีกลางที่ไม่มีแบบไหนถึง 4.5:1 (neutral-500 #767C82) แสดงป้ายบนพื้นขาว (`is-label-chip`)
+  - การ์ดของ theme (หน้าบริการ, About) ตรวจคำยาวที่ 320–1440px ไม่พบคำตัดกลางคำ
 - [x] รอบที่ 5 (23 ต.ค. 2569, branch `fix/tap-targets`): tap target ≥44px ทุกจุดที่ค้างไว้ + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`
   - token ใหม่ `custom.tap` = 44px (`tokens.json` → `--wp--custom--tap`)
   - Header: ลิงก์เมนู (25px→44), ปุ่มภาษา (34→44), รายการ dropdown/list ภาษา (43/35→44), ปุ่มเปิด/ปิดเมนู (24×24→44×44 ไอคอนคง 24), ลิงก์ในเมนูเต็มจอ · Footer: ลิงก์เมนู (กว้างขั้นต่ำ 44 ด้วย) · ตัวกรอง: label checkbox (35→44), ปุ่ม "ตัวกรอง" มือถือ (43→44), pagination (39→44) · หน้าคอร์ส: "← หลักสูตรทั้งหมด" (25→44, class `hri-backlink`), PDPA checkbox 20→24px และ label สูง 44
@@ -204,7 +210,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, Article, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots/llms.txt
 6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, เว็บเดิมมี `/blog/page/N`)
 7. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi ค่าใช้จ่ายก่อน · และให้คนตรวจ JA
-8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ, Blog UI (contrast หมวด + pagination) ดูหัวข้อ "ปัญหานอกขอบเขต"
+8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · เก็บตกทำแล้วในรอบที่ 6
 9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม)
 10. Cloud staging (`new.hrideone.com`) · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
 
@@ -238,6 +244,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - **class `.hri-card` / `.hri-card__title` ซ้ำกันระหว่าง theme (การ์ดหน้าบริการ, `base.css`) กับ plugin (การ์ดคอร์ส, `courses.css`)** · theme โหลดทีหลัง จึงทับขนาดหัวข้อของ plugin (การ์ดคอร์สเคยเป็น x-large เพราะเหตุนี้) → ถ้าจะแก้เฉพาะการ์ดคอร์สให้ใช้ `.hri-course-card` (เพิ่ม class นี้ใน `course-card.php` แล้ว) ถ้าแก้ `.hri-card` ตรงๆ จะกระทบการ์ดหน้าบริการด้วย
 - `container-type` ทำให้ element นั้นเป็น containing block ของลูกที่ `position:absolute` → อย่าใส่ที่ `.hri-card__body` (ลิงก์ `::after` คลุมทั้งการ์ดจะถูกตัดแค่ในส่วน body) ใส่ที่ตัวการ์ด `.hri-course-card` เท่านั้น
 - Tap target: ใช้ `var(--wp--custom--tap)` (token `tap` = 44px) เป็น `min-block-size`/`min-inline-size` + `inline-flex` + `align-items:center` + `box-sizing:border-box` · ตัวอักษร/ไอคอนขนาดเดิม แค่พื้นที่กดขยาย
+- Preview branch ก่อน merge: แทน `main` ใน `playground/blueprint.json` (ทั้ง `ref` 2 จุด และ path `/main/` ใน URL raw 8 จุด) ด้วยชื่อ branch แล้วเปิด `https://playground.wordpress.net/?v=<อะไรก็ได้>#<JSON ที่ encodeURIComponent>` (มีตัวอย่างในรอบที่ 6)
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
 - `wp eval-file` ต้องใช้ path แบบ absolute · seed ใหม่ต้อง `wp eval 'wp_get_theme()->delete_pattern_cache();'` (หรือ bump Version) ก่อน แล้ว `seed.php` → `seed-languages.php`
 - Pattern PHP ที่ใช้ helper `hri_bm_*` ต้องส่ง array ตามรูปแบบที่ helper คาด (`hri_bm_cards` รับ associative: title/text/help/kicker/num) ส่งแบบ indexed จะ fatal
@@ -253,12 +260,10 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
 
-> tap target ของ header/footer/ตัวกรอง/หน้าคอร์ส/ฟอร์ม และชื่อคอร์สตัดกลางคำ แก้แล้วในรอบที่ 5 (ข้อ 5)
+> รอบที่ 5–6 แก้ tap target, ชื่อคอร์สตัดกลางคำ, ตัวกรอง sticky, Blog UI, Style Guide แล้ว (ข้อ 5) · `measure.py` ผ่าน 0 ปัญหาใน 108 รอบ (หน้าหลัก 7 + หน้าอื่น 5 × 3 ภาษา × 3/2 ขนาดจอ)
 
-- **ตัวกรองคอร์สบน desktop สูงกว่าหน้าจอ** (`/courses/` ที่ 1280: ~1390px, หลังเพิ่ม tap target 44px; ก่อนหน้า ~1150px ก็สูงกว่า viewport 900px อยู่แล้ว) แต่ `.hri-filter` เป็น `position: sticky` → ส่วนล่างของตัวกรอง (ระยะเวลา, รูปแบบ) เข้าถึงไม่ได้จนกว่าจะเลื่อนไปท้ายรายการคอร์ส · ข้อเสนอ: `max-height: calc(100vh - 2 * <top>)` + `overflow-y: auto` ที่ `.hri-filter` (ระวัง box-shadow ring ที่ `.hri-filter` ถูกตัด) หรือเลิก sticky
-- ผลจาก `measure.py --pages /blog/,/style-guide/` (ยังไม่ได้แก้/ยังไม่ได้ตรวจด้วยตา): `/blog/` แถบหมวด (ทั้งหมด/Business/Sales/Coaching) contrast 2.64:1 (ต้อง 4.5), pagination ของ Query Loop (`a.page-numbers`, `a.wp-block-query-pagination-next`) สูง 24–27px · `/style-guide/` ป้าย `#767C82` 4.47:1 (ต้อง 4.5) · แยกเป็นงานเก็บตก "Blog UI"
-- ลิงก์ inline ในย่อหน้า PDPA ของฟอร์ม (`hri/lead-form`) สูง ~24px **คงไว้ตั้งใจ**: WCAG 2.5.8 ยกเว้นลิงก์ที่อยู่กลางประโยค และถ้าเพิ่ม padding ระยะบรรทัดจะห่างผิดปกติ (ผ่านเกณฑ์ AA 24px ที่ตั้งไว้ ไม่ถึง 44px) · `measure.py` ข้ามลิงก์ประเภทนี้
-- การ์ดบริการ/หัวข้อ (`.hri-card__title` ของ theme) ยังไม่ได้ตรวจเรื่องคำยาวตัดกลางคำ (รอบที่ 5 แก้เฉพาะการ์ดคอร์ส)
+- (ตั้งใจ ไม่แก้) ลิงก์ inline ในย่อหน้า PDPA ของฟอร์ม (`hri/lead-form`) สูง ~24px: WCAG 2.5.8 ยกเว้นลิงก์กลางประโยค ถ้าเพิ่ม padding ระยะบรรทัดจะห่างผิดปกติ · `measure.py` ข้ามลิงก์ประเภทนี้
+- ยังไม่มีอะไรค้างในหมวดนี้ — ถ้าเจอใหม่ให้จดที่นี่
 
 ## 9. วิธีทำงานที่ประหยัด usage
 

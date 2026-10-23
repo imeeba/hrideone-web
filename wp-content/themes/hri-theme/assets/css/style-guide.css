@@ -88,6 +88,18 @@
 	align-content: end;
 }
 
+/* Neither white nor dark text reaches 4.5:1 on mid greys: show the label on a pill. */
+.sg-ramp__step.is-label-chip {
+	color: var(--wp--preset--color--contrast) !important;
+}
+
+.sg-ramp__step.is-label-chip > * {
+	background: var(--wp--preset--color--base);
+	border-radius: var(--wp--custom--radius--sm);
+	justify-self: start;
+	padding-inline: 4px;
+}
+
 .sg-grads {
 	display: grid;
 	gap: var(--wp--preset--spacing--40);

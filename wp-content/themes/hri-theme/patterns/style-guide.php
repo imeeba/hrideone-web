@@ -125,8 +125,14 @@ foreach ( array(
 	<div class="sg-ramp">
 		<span class="sg-ramp__name"><?php echo esc_html( $name ); ?></span>
 		<div class="sg-ramp__steps">
-		<?php foreach ( $steps as $step => $hex ) : $on = $contrast( $hex, $white ) >= 4.5 ? '#FFFFFF' : '#111111'; ?>
-			<div class="sg-ramp__step" style="background:<?php echo esc_attr( $hex ); ?>;color:<?php echo esc_attr( $on ); ?>">
+		<?php
+		foreach ( $steps as $step => $hex ) :
+			$on_white = $contrast( $hex, $white );
+			$on_dark  = $contrast( $hex, '#111111' );
+			$on       = $on_white >= $on_dark ? '#FFFFFF' : '#111111';
+			$chip     = max( $on_white, $on_dark ) < 4.5 ? ' is-label-chip' : '';
+			?>
+			<div class="sg-ramp__step<?php echo esc_attr( $chip ); ?>" style="background:<?php echo esc_attr( $hex ); ?>;color:<?php echo esc_attr( $on ); ?>">
 				<span><?php echo esc_html( $step ); ?></span>
 				<small><?php echo esc_html( strtoupper( $hex ) ); ?></small>
 			</div>

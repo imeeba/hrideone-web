@@ -16,8 +16,17 @@
 		grid-template-columns: 280px minmax(0, 1fr);
 	}
 
+	/* Sticky side panel must fit the screen, otherwise its lower groups can't be reached
+	   until the results end. Taller content scrolls inside the panel. */
 	.hri-filter {
+		box-sizing: border-box;
+		max-block-size: calc(100vh - 2 * var(--wp--preset--spacing--50));
+		max-block-size: calc(100dvh - 2 * var(--wp--preset--spacing--50));
+		overflow-y: auto;
+		overscroll-behavior: contain;
 		position: sticky;
+		scrollbar-gutter: stable;
+		scrollbar-width: thin;
 		top: var(--wp--preset--spacing--50);
 	}
 
