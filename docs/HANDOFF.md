@@ -34,7 +34,7 @@
 
 ## 3. ดูผลงาน
 
-- **ลิงก์ demo แบบสั้น**: <https://imeeba.github.io/hrideone-web/> (เปิดแล้วไป Playground เอง · `?stay` = แสดงรายการหน้า · `?page=/blog/` = เปิดหน้านั้น) — ไฟล์ `demo-site/index.html`, deploy ด้วย `.github/workflows/pages.yml` · ⚠️ ต้องเปิด GitHub Pages ครั้งแรกด้วยมือ: repo Settings → Pages → Build and deployment → Source = **GitHub Actions** แล้ว Actions → "Demo link (GitHub Pages)" → Run workflow (proxy ของ Claude เปิด Pages ผ่าน API ไม่ได้)
+- **ลิงก์ demo แบบสั้น**: <https://imeeba.github.io/hrideone-web/> (เปิดแล้วไป Playground เอง · `?stay` = แสดงรายการหน้า · `?page=/blog/` = เปิดหน้านั้น) — ไฟล์ `demo-site/index.html`, deploy ด้วย `.github/workflows/pages.yml` · GitHub Pages เปิดแล้ว (Source = GitHub Actions, Jimmi เปิด 23 ต.ค.) · deploy ใหม่เองเมื่อแก้ `demo-site/` หรือสั่ง `gh api -X POST repos/imeeba/hrideone-web/actions/workflows/pages.yml/dispatches -f ref=main`
 - Preview (Playground, ดึงจาก `main` ทุกครั้ง): <https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json>
   - เติม `&v=<เลขใหม่>` ถ้าเห็นเวอร์ชันเก่า (cache)
   - เปิดมาที่หน้าแรก `/` · Style Guide `/style-guide/` · รวมคอร์ส `/courses/` · `/in-house/` · `/public-training/` · `/transformation-solutions/` · `/japanese-concept/`
@@ -168,7 +168,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
   - `[video]` shortcode (เรื่องงานเปิดตัว 3 ภาษา) → **Video block** · วิดีโอ MP4 ยังเล่นจาก hrideone.com ใน demo (ไม่ได้ย้ายเข้า repo: ไฟล์ใหญ่) poster มาจาก repo แล้ว · importer โหมด download คัดลอกทั้งวิดีโอและ poster เข้าคลังสื่อ (ทดสอบแล้ว)
   - importer โหมด download รับรูป/วิดีโอจากโดเมนใดก็ได้ที่ไม่ใช่เว็บตัวเอง → ตอนย้ายจริงดึงรูปจาก repo ได้แม้เว็บเดิมปิดแล้ว
   - ตรวจใน **Playground จริง** (built-in browser): บูตจากศูนย์ถึงหน้า `/blog/` ~80–90 วินาที · การ์ด 12 ใบรูปโหลดจาก jsDelivr ครบ · หน้าเรื่องงานเปิดตัว 12/12 รูป + วิดีโอเล่นได้ · block ทั้ง 345 เรื่อง valid ใน editor (9,959 block)
-  - ลิงก์ demo สั้น (GitHub Pages, **รอ Jimmi เปิด Pages** ดูข้อ 3) · `docs/HOSTING.md` (ข้อมูล Ruk-com + คำถาม support 19 ข้อ + วิธีขึ้นเว็บ)
+  - ลิงก์ demo สั้น https://imeeba.github.io/hrideone-web/ (GitHub Pages, ใช้งานได้แล้ว) · `docs/HOSTING.md` (ข้อมูล Ruk-com + คำถาม support 19 ข้อ + วิธีขึ้นเว็บ)
 - [x] รอบที่ 6 (23 ต.ค. 2569, branch `feature/blog-import`): บทความจริงจากเว็บเดิม 115 เรื่อง × TH/EN/JA (ตรงกับ https://hrideone.com/blog/ ทุก slug ทุกลำดับ 8 หน้า × 15 และตรงทุกหมวด) + เครื่องมือนำเข้า + 301 URL เดิมของบล็อก + Blog UI (contrast, tap target, การ์ดกดทั้งใบ, excerpt 3 บรรทัด) · ตรวจ: 345 โพสต์ ผูกคำแปลครบ 115 ชุด ภาษา/หมวด/วันที่ถูกทุกโพสต์, นำเข้าซ้ำไม่สร้างซ้ำ, โหมด download (ทดสอบด้วยรูป local), หน้า Tools ครบทั้งชุด, redirect ทุกแบบ, `measure.py` blog/หมวด/บทความ × 3 ภาษา × 3 จอ + หน้าเดิมทั้งหมด
 - [x] รอบที่ 5 (23 ต.ค. 2569, branch `fix/tap-targets`): tap target ≥44px ทุกจุดที่ค้างไว้ + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`
   - token ใหม่ `custom.tap` = 44px (`tokens.json` → `--wp--custom--tap`)
@@ -225,7 +225,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
-0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ฉ) เปิด GitHub Pages ครั้งเดียว (ข้อ 3) ให้ลิงก์ demo สั้นใช้ได้; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
+0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
 2. **รูป/วิดีโอจริงของหน้าอื่น (ไม่ใช่บล็อก)** → prompt H · โลโก้ลูกค้า 40, รูปผู้บริหาร 2, Gallery, รูป hero หน้าบริการ, โลโก้พาร์ทเนอร์ 8, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), รูปวิทยากร, วิดีโอแนวตั้งใน Outcomes · **ไฟล์ export มีแต่รูปของบทความ** (1,578 attachment ผูกกับโพสต์ทั้งหมด) → ต้องหา URL รูปจากหน้าเว็บเดิมทีละหน้า แล้วใส่ใน list ให้ `demo-media.py`/workflow ดึง (ขยายสคริปต์ให้รับ list) · ดึงเฉพาะรูปที่หน้าใหม่ใช้จริง
 2.1 **รูปใน WordPress ให้เล็กสุด** → prompt I (แปลงต้นฉบับเป็น WebP/AVIF ตอนอัปโหลด, ขนาด `hri-card`, ขอบยาวสุด 1600)
