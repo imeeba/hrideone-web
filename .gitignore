@@ -7,3 +7,4 @@ node_modules/
 /build/
 wp-config.php
 __pycache__/
+playground/data/crawl/shots/

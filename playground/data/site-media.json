@@ -1,0 +1,653 @@
+{
+ "base": "https://cdn.jsdelivr.net/gh/imeeba/hrideone-web@main/playground/site-media/",
+ "assets": {
+  "hero-home": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/kobu-agency-kI1iR7l55FM-unsplash-2.jpg",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/kobu-agency-kI1iR7l55FM-unsplash-2.jpg",
+   "kind": "hero"
+  },
+  "logo-01": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-01.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-01.webp",
+   "kind": "logo"
+  },
+  "logo-02": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-02.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-02.webp",
+   "kind": "logo"
+  },
+  "logo-03": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-03.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-03.webp",
+   "kind": "logo"
+  },
+  "logo-04": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-04.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-04.webp",
+   "kind": "logo"
+  },
+  "logo-05": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-05.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-05.webp",
+   "kind": "logo"
+  },
+  "logo-06": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-06.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-06.webp",
+   "kind": "logo"
+  },
+  "logo-07": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-07.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-07.webp",
+   "kind": "logo"
+  },
+  "logo-08": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-08.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-08.webp",
+   "kind": "logo"
+  },
+  "logo-09": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-09.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-09.webp",
+   "kind": "logo"
+  },
+  "logo-10": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-10.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-10.webp",
+   "kind": "logo"
+  },
+  "logo-11": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-11.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-11.webp",
+   "kind": "logo"
+  },
+  "logo-12": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-12.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-12.webp",
+   "kind": "logo"
+  },
+  "logo-13": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-13.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-13.webp",
+   "kind": "logo"
+  },
+  "logo-14": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-14.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-14.webp",
+   "kind": "logo"
+  },
+  "logo-15": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-15.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-15.webp",
+   "kind": "logo"
+  },
+  "logo-16": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-16.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-16.webp",
+   "kind": "logo"
+  },
+  "logo-17": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-17.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-17.webp",
+   "kind": "logo"
+  },
+  "logo-18": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-18.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-18.webp",
+   "kind": "logo"
+  },
+  "logo-19": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-19.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-19.webp",
+   "kind": "logo"
+  },
+  "logo-20": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-20.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-20.webp",
+   "kind": "logo"
+  },
+  "logo-21": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-21.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-21.webp",
+   "kind": "logo"
+  },
+  "logo-22": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-22.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-22.webp",
+   "kind": "logo"
+  },
+  "logo-23": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-23.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-23.webp",
+   "kind": "logo"
+  },
+  "logo-24": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-24.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-24.webp",
+   "kind": "logo"
+  },
+  "logo-25": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-25.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-25.webp",
+   "kind": "logo"
+  },
+  "logo-26": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-26.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-26.webp",
+   "kind": "logo"
+  },
+  "logo-27": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-27.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-27.webp",
+   "kind": "logo"
+  },
+  "logo-28": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-28.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-28.webp",
+   "kind": "logo"
+  },
+  "logo-29": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-29.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-29.webp",
+   "kind": "logo"
+  },
+  "logo-30": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-30.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-30.webp",
+   "kind": "logo"
+  },
+  "logo-31": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-31.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-31.webp",
+   "kind": "logo"
+  },
+  "logo-32": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-32.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-32.webp",
+   "kind": "logo"
+  },
+  "logo-33": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-33.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-33.webp",
+   "kind": "logo"
+  },
+  "logo-34": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-34.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-34.webp",
+   "kind": "logo"
+  },
+  "logo-35": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-35.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-35.webp",
+   "kind": "logo"
+  },
+  "logo-36": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-36.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-36.webp",
+   "kind": "logo"
+  },
+  "logo-37": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-37.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-37.webp",
+   "kind": "logo"
+  },
+  "logo-38": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-38.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-38.webp",
+   "kind": "logo"
+  },
+  "logo-39": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-39.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-39.webp",
+   "kind": "logo"
+  },
+  "logo-40": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-40.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Website-Customer-logo-40.webp",
+   "kind": "logo"
+  },
+  "partner-01": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-01.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-01.png",
+   "kind": "logo"
+  },
+  "partner-02": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-02.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-02.png",
+   "kind": "logo"
+  },
+  "partner-03": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-03.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-03.png",
+   "kind": "logo"
+  },
+  "partner-04": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-04.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-04.png",
+   "kind": "logo"
+  },
+  "partner-05": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-05.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-05.png",
+   "kind": "logo"
+  },
+  "partner-06": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-06.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-06.png",
+   "kind": "logo"
+  },
+  "partner-07": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-07.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-07.png",
+   "kind": "logo"
+  },
+  "partner-08": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-08.png",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-08.png",
+   "kind": "logo"
+  },
+  "person-chaipat": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/866A4635.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/866A4635.webp",
+   "kind": "square",
+   "alt": "Dr. Chaipat Lertlucktaweekul",
+   "focus": [
+    0.5,
+    0.15
+   ]
+  },
+  "person-ken": {
+   "src": "https://www.hri-japan.co.jp/career/images/message/img03.webp",
+   "fallback": "https://www.hri-japan.co.jp/career/images/message/img03.webp",
+   "kind": "square",
+   "alt": "Mr. Ken Misaka",
+   "focus": [
+    0.55,
+    0.3
+   ]
+  },
+  "home-g1": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/743763225_1543024994503653_9188526305388760265_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/743763225_1543024994503653_9188526305388760265_n.webp",
+   "kind": "photo"
+  },
+  "home-g2": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/740225067_1501079242037102_8669244707343919576_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/740225067_1501079242037102_8669244707343919576_n.webp",
+   "kind": "photo"
+  },
+  "home-g3": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/730140401_1488964989915194_7962549306307887179_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/730140401_1488964989915194_7962549306307887179_n-1229x1536.webp",
+   "kind": "photo"
+  },
+  "home-g4": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/809685094_1604565395016279_2394799576910200479_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/809685094_1604565395016279_2394799576910200479_n.webp",
+   "kind": "photo"
+  },
+  "page-about": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-23-2026-08_15_43-PM-1.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-23-2026-08_15_43-PM-1.webp",
+   "kind": "photo"
+  },
+  "page-inhouse": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/782.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/782.webp",
+   "kind": "photo"
+  },
+  "page-public-hero": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/423921710_4a764b88-b064-4980-b96d-c5bf460e5354-scaled.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/423921710_4a764b88-b064-4980-b96d-c5bf460e5354-scaled.webp",
+   "kind": "photo"
+  },
+  "page-public-why": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/424444.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/424444.webp",
+   "kind": "photo"
+  },
+  "page-transformation": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/8291.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/8291.webp",
+   "kind": "photo"
+  },
+  "page-japanese": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/manuel-cosentino-n-CMLApjfI-unsplash.jpg",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/manuel-cosentino-n-CMLApjfI-unsplash.jpg",
+   "kind": "photo"
+  },
+  "cover-negotiation-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Layer-80.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Layer-80.webp",
+   "kind": "cover"
+  },
+  "cover-the-next-director": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Asset-340.jpg",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Asset-340.jpg",
+   "kind": "cover"
+  },
+  "cover-oxygen-leadership": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Asset-300.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Asset-300.webp",
+   "kind": "cover"
+  },
+  "cover-the-new-manager": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Banner-Template-02.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Banner-Template-02.webp",
+   "kind": "cover"
+  },
+  "cover-lean-transformation-in-7-weeks": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/05/Layer-6-40.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/05/Layer-6-40.webp",
+   "kind": "cover"
+  },
+  "cover-high-performance-leadership-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2022/03/Asset-370.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2022/03/Asset-370.webp",
+   "kind": "cover"
+  },
+  "cover-proactive-leadership-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/12/Asset-360.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/12/Asset-360.webp",
+   "kind": "cover"
+  },
+  "cover-time-and-priority-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/10/Layer-2-20.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/10/Layer-2-20.webp",
+   "kind": "cover"
+  },
+  "cover-growth-mindset-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/12/Asset-340.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/12/Asset-340.webp",
+   "kind": "cover"
+  },
+  "cover-communication-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/10/Asset-310.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/10/Asset-310.webp",
+   "kind": "cover"
+  },
+  "cover-coaching-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/10/Asset-320-1.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/10/Asset-320-1.webp",
+   "kind": "cover"
+  },
+  "cover-conflict-management-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/12/Asset-350.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/12/Asset-350.webp",
+   "kind": "cover"
+  },
+  "cover-change-transformation-mastery": {
+   "src": "https://hrideone.com/wp-content/uploads/2022/01/Asset-330.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2022/01/Asset-330.webp",
+   "kind": "cover"
+  },
+  "cover-b2b-selling-masterclass": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Asset-390.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Asset-390.webp",
+   "kind": "cover"
+  },
+  "cover-negotiation-masterclass": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/12/Layer-130.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/12/Layer-130.webp",
+   "kind": "cover"
+  },
+  "cover-strategic-selling-masterclass": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/10/Asset-380.jpg",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/10/Asset-380.jpg",
+   "kind": "cover"
+  },
+  "cover-consultative-selling-masterclass": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/10/Asset-380.jpg",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/10/Asset-380.jpg",
+   "kind": "cover"
+  },
+  "cover-essential-sales-masterclass": {
+   "src": "https://hrideone.com/wp-content/uploads/2021/10/Layer-110c.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2021/10/Layer-110c.webp",
+   "kind": "cover"
+  },
+  "cover-service-excellence": {
+   "src": "https://hrideone.com/wp-content/uploads/2022/02/Layer-140c.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2022/02/Layer-140c.webp",
+   "kind": "cover"
+  },
+  "cover-complaint-handling-excellence": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/Asset-390.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/Asset-390.webp",
+   "kind": "cover"
+  },
+  "trainer-chaipat": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Layer-250.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Layer-250.webp",
+   "kind": "square",
+   "focus": [
+    0.5,
+    0.25
+   ]
+  },
+  "trainer-martin": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Layer-43-20.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Layer-43-20.webp",
+   "kind": "square",
+   "focus": [
+    0.5,
+    0.25
+   ]
+  },
+  "trainer-kittipat": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Layer-440.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Layer-440.webp",
+   "kind": "square",
+   "focus": [
+    0.5,
+    0.25
+   ]
+  },
+  "trainer-puttipong": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/Layer-26-20.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/Layer-26-20.webp",
+   "kind": "square",
+   "focus": [
+    0.5,
+    0.25
+   ]
+  },
+  "oxy-01": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/749301180_1552248853581267_1705525026349630613_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/749301180_1552248853581267_1705525026349630613_n.webp",
+   "kind": "photo"
+  },
+  "oxy-02": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/749316492_1552248846914601_5530594394630620724_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/749316492_1552248846914601_5530594394630620724_n.webp",
+   "kind": "photo"
+  },
+  "oxy-03": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/752198494_1552248850247934_1599734289678303986_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/752198494_1552248850247934_1599734289678303986_n.webp",
+   "kind": "photo"
+  },
+  "oxy-04": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/732908555_1532464842226335_7049783784669484066_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/732908555_1532464842226335_7049783784669484066_n.webp",
+   "kind": "photo"
+  },
+  "oxy-05": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/733156856_1532464782226341_2099900834622417816_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/733156856_1532464782226341_2099900834622417816_n.webp",
+   "kind": "photo"
+  },
+  "oxy-06": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/733342737_1532464772226342_5826156033034389488_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/733342737_1532464772226342_5826156033034389488_n.webp",
+   "kind": "photo"
+  },
+  "oxy-07": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/734455774_1532464778893008_9162466182849874291_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/734455774_1532464778893008_9162466182849874291_n.webp",
+   "kind": "photo"
+  },
+  "oxy-08": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/741258319_1543024931170326_2538653238325584915_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/741258319_1543024931170326_2538653238325584915_n.webp",
+   "kind": "photo"
+  },
+  "oxy-09": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/741285178_1543024897836996_3886063648824692718_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/741285178_1543024897836996_3886063648824692718_n.webp",
+   "kind": "photo"
+  },
+  "oxy-10": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/743034612_1552248856914600_8308849636541631725_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/743034612_1552248856914600_8308849636541631725_n.webp",
+   "kind": "photo"
+  },
+  "oxy-11": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/743763225_1543024994503653_9188526305388760265_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/743763225_1543024994503653_9188526305388760265_n.webp",
+   "kind": "photo"
+  },
+  "oxy-12": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/07/743817490_1543024901170329_845033849899637426_n.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/07/743817490_1543024901170329_845033849899637426_n.webp",
+   "kind": "photo"
+  }
+ },
+ "use": {
+  "hero": "hero-home",
+  "logos": [
+   "logo-01",
+   "logo-02",
+   "logo-03",
+   "logo-04",
+   "logo-05",
+   "logo-06",
+   "logo-07",
+   "logo-08",
+   "logo-09",
+   "logo-10",
+   "logo-11",
+   "logo-12",
+   "logo-13",
+   "logo-14",
+   "logo-15",
+   "logo-16",
+   "logo-17",
+   "logo-18",
+   "logo-19",
+   "logo-20",
+   "logo-21",
+   "logo-22",
+   "logo-23",
+   "logo-24",
+   "logo-25",
+   "logo-26",
+   "logo-27",
+   "logo-28",
+   "logo-29",
+   "logo-30",
+   "logo-31",
+   "logo-32",
+   "logo-33",
+   "logo-34",
+   "logo-35",
+   "logo-36",
+   "logo-37",
+   "logo-38",
+   "logo-39",
+   "logo-40"
+  ],
+  "partners": [
+   "partner-01",
+   "partner-02",
+   "partner-03",
+   "partner-04",
+   "partner-05",
+   "partner-06",
+   "partner-07",
+   "partner-08"
+  ],
+  "portraits": [
+   "person-chaipat",
+   "person-ken"
+  ],
+  "pages": {
+   "home": [
+    "home-g1",
+    "home-g2",
+    "home-g3",
+    "home-g4"
+   ],
+   "about": [
+    "page-about",
+    null,
+    null,
+    null,
+    null
+   ],
+   "in-house": [
+    "page-inhouse"
+   ],
+   "public-training": [
+    "page-public-hero",
+    "page-public-why"
+   ],
+   "transformation-solutions": [
+    "page-transformation"
+   ],
+   "japanese-concept": [
+    "page-japanese"
+   ]
+  },
+  "covers": {
+   "negotiation-mastery": "cover-negotiation-mastery",
+   "the-next-director": "cover-the-next-director",
+   "oxygen-leadership": "cover-oxygen-leadership",
+   "the-new-manager": "cover-the-new-manager",
+   "lean-transformation-in-7-weeks": "cover-lean-transformation-in-7-weeks",
+   "high-performance-leadership-mastery": "cover-high-performance-leadership-mastery",
+   "proactive-leadership-mastery": "cover-proactive-leadership-mastery",
+   "time-and-priority-mastery": "cover-time-and-priority-mastery",
+   "growth-mindset-mastery": "cover-growth-mindset-mastery",
+   "communication-mastery": "cover-communication-mastery",
+   "coaching-mastery": "cover-coaching-mastery",
+   "conflict-management-mastery": "cover-conflict-management-mastery",
+   "change-transformation-mastery": "cover-change-transformation-mastery",
+   "b2b-selling-masterclass": "cover-b2b-selling-masterclass",
+   "negotiation-masterclass": "cover-negotiation-masterclass",
+   "strategic-selling-masterclass": "cover-strategic-selling-masterclass",
+   "consultative-selling-masterclass": "cover-consultative-selling-masterclass",
+   "essential-sales-masterclass": "cover-essential-sales-masterclass",
+   "service-excellence": "cover-service-excellence",
+   "complaint-handling-excellence": "cover-complaint-handling-excellence"
+  },
+  "gallery_pool": [
+   "home-g1",
+   "home-g2",
+   "home-g3",
+   "home-g4",
+   "oxy-01",
+   "oxy-02",
+   "oxy-03",
+   "oxy-04",
+   "oxy-05",
+   "oxy-06"
+  ],
+  "course_gallery": {
+   "oxygen-leadership": [
+    "oxy-01",
+    "oxy-02",
+    "oxy-03",
+    "oxy-04",
+    "oxy-05",
+    "oxy-06"
+   ]
+  },
+  "trainers": {
+   "chaipat": "trainer-chaipat",
+   "martin": "trainer-martin",
+   "kittipat": "trainer-kittipat",
+   "puttipong": "trainer-puttipong"
+  }
+ }
+}

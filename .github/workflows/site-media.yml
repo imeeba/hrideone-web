@@ -1,0 +1,39 @@
+# Copies the real images that the new site's image slots use (logos, covers, portraits, page photos) from
+# hrideone.com into playground/site-media/ (small WebP files) and writes their sizes into
+# playground/data/site-media.json. See scripts/site-media.py. GitHub's runners can reach hrideone.com;
+# the Claude workspace cannot.
+name: Site media
+
+on:
+  workflow_dispatch:
+  push:
+    paths: [scripts/site-media.py, playground/data/site-media.json, .github/workflows/site-media.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-media
+  cancel-in-progress: false
+
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow==11.0.0
+      - name: Copy and convert images
+        run: python3 -u scripts/site-media.py
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add playground/site-media playground/data
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Site media: real images for the image slots (WebP) + contact sheets"
+          git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
