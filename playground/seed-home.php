@@ -161,7 +161,7 @@ if ( ! function_exists( 'hri_seed_swap_real' ) ) {
 			'#<img src="[^"]*placeholder/logo\.svg" alt=""/>#',
 			static function ( $m ) use ( $logos, &$i ) {
 				$a = hri_seed_media_asset( $logos[ $i++ ] ?? null );
-				return $a ? '<img src="' . esc_url( $a['url'] ) . '" alt="" loading="lazy"/>' : $m[0];
+				return $a ? '<img src="' . esc_url( $a['url'] ) . '" alt="' . esc_attr( $a['alt'] ) . '"/>' : $m[0];
 			},
 			$content
 		);
