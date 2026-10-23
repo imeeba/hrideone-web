@@ -32,7 +32,7 @@ DATA = os.path.join(ROOT, 'playground', 'data', 'blog-posts.json')
 MEDIA = os.path.join(ROOT, 'playground', 'media')
 MANIFEST = os.path.join(MEDIA, 'manifest.json')
 DEFAULT_BASE = 'https://cdn.jsdelivr.net/gh/imeeba/hrideone-web@main/playground/media/'
-OLD = re.compile(r'https?://(?:www\.)?hrideone\.com/wp-content/uploads/[^"\s)]+')
+OLD = re.compile(r'https?://(?:www\.)?hrideone\.com/wp-content/uploads/[^"\\\s)]+')  # in JSON text a URL ends at \" too
 
 
 def local_name(url: str) -> str:
