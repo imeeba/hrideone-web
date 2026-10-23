@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/search-form",
+	"title": "Search Form",
+	"category": "widgets",
+	"icon": "search",
+	"description": "Site search field. Dropdown (search icon) for the desktop header; inline field for the mobile menu; page field for the results page. Works without JavaScript.",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-search",
+	"render": "file:./render.php",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"enum": [
+				"dropdown",
+				"inline",
+				"page"
+			],
+			"default": "dropdown"
+		}
+	},
+	"viewScript": "file:./view.js"
+}

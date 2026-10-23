@@ -204,6 +204,10 @@ video {
 	padding-block: 0.25rem;
 }
 
+.hri-header .wp-block-navigation .is-menu-open .hri-sf--inline {
+	margin-bottom: var(--wp--preset--spacing--30);
+}
+
 .hri-header .wp-block-navigation .is-menu-open .hri-lang--list {
 	border-top: 1px solid var(--wp--preset--color--border);
 	margin-top: var(--wp--preset--spacing--30);

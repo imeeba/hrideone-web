@@ -1,11 +1,11 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 9: **รูปจริงจากเว็บเดิมแทน placeholder ~133 ช่อง** · branch `feature/real-images` ยังไม่ merge เข้า `main` ดูข้อ 5) · theme 0.10.1 / plugin 0.9.1
+> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · branch `feature/search` แตกจาก `feature/real-images` ยังไม่ merge ดูข้อ 5 · รอบที่ 9: **รูปจริงจากเว็บเดิมแทน placeholder ~133 ช่อง** · branch `feature/real-images` ยังไม่ merge เข้า `main` ดูข้อ 5) · theme 0.11.0 / plugin 0.10.0
 >
 > **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
 >
-> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
+> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → ~~C (ค้นหา)~~ ทำแล้วรอบที่ 10 (รอ merge) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
 >
 > **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
 
@@ -136,6 +136,19 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `hri_localize_url()` เก็บ query string และ `#anchor` ไว้ตอนแปลงลิงก์ภายในเป็นภาษาอื่น (เดิมตัดทิ้ง)
 - Seed: `hri_seed_page_content( $slug, $locale )` (`seed-home.php`) render patterns ตามภาษา แทนที่รูป placeholder ด้วยรูปตัวอย่าง (คง alt) — ใช้ทั้งหน้าแรกและ 4 หน้าบริการ
 
+### 4.y ค้นหาทั้งเว็บ (รอบที่ 10)
+
+- **ไฟล์**: `hri-core/inc/search.php` (เครื่องยนต์ + ดัชนี + WP-CLI), `inc/search-admin.php` (Settings → การค้นหา), blocks `hri/search-form` (`variant: dropdown|inline|page`) และ `hri/search-results`, CSS `assets/search.css` + `assets/search-results.css`, theme: `templates/search.html`, pattern `hri/search-hero`, header (ไอคอนค้นหา ≥1100px / ช่องค้นหาใน hamburger <1100px), 404 ใช้ฟอร์มเดียวกัน · ไอคอน `magnifying-glass` เพิ่มผ่าน `scripts/build-icons.py`
+- **ค้นอะไร**: course, post, page ของภาษาปัจจุบัน (Polylang `lang`; ภาษาหลักรวมโพสต์ที่ยังไม่ตั้งภาษา) · ไม่ค้นวิทยากร/Lead/CPT ที่ไม่มีหน้า public · หน้าที่ไม่รวม: หน้า blog, `style-guide`, `sample-page`, `privacy-policy` และคำแปล (filter `hri_search_excluded_slugs`)
+- **ดัชนี = ตารางของเราเอง 2 ตาราง** (สร้างด้วย `CREATE TABLE` ธรรมดา ใช้ได้ทั้ง MySQL และ SQLite): `{prefix}hri_search_docs` (1 แถว/โพสต์: ภาษา, ประเภท, สถานะเปิด/ปิดรับ, menu_order, วันที่, `txt` = ข้อความตัดช่องว่างไว้ตรวจคำต่อเนื่อง) และ `{prefix}hri_search_idx` (โพสต์ × คำ: ตำแหน่ง bitmask 1 ชื่อ/2 ชื่อ term/4 excerpt/8 เนื้อหา + จำนวนครั้ง) · เปลี่ยนโครงสร้าง = แก้ `HRI_SEARCH_DB_VERSION` (drop/create แล้วสร้างใหม่เอง)
+- **ตัดคำไทย**: ถ้ามี ext-intl → ICU `IntlBreakIterator` (ภาษาไทยมีพจนานุกรมในตัว); ไม่มี → n-gram (ไทย = คู่ตัวอักษร, ญี่ปุ่น/จีน = คู่ตัวอักษร + คันจิตัวเดียว) · ดัชนีจำว่าสร้างด้วยโหมดไหน ถ้าโหมดของโฮสต์เปลี่ยนจะสร้างใหม่เองตอนค้นครั้งแรก (บังคับ n-gram: `define('HRI_SEARCH_TOKENIZER','ngram')`) · อังกฤษ: lowercase + ยุบพหูพจน์ · ตัว stopword ไทย/อังกฤษ/ญี่ปุ่นสั้นๆ ("ผู้" ไม่ใช่ stopword)
+- **ค้นยังไง**: ทุกคำต้องตรงก่อน (AND) ถ้าไม่มีหน้าไหนตรงทุกคำ แสดงหน้าที่ตรงมากคำที่สุดพร้อมข้อความบอก · คำพิมพ์ติดกันที่ ICU แยกเป็นหลายท่อนต้องปรากฏติดกันในข้อความ · ถ้าไม่เจอเลยและเป็นไทย/CJK → ลองหาข้อความต่อเนื่องใน `txt` (เจอคำทับศัพท์/ชื่อที่ตัดคำต่างกันในประโยค) · คะแนน: ชื่อ 1000 > ชื่อ term 300 > excerpt 100 > เนื้อหา (≤10) · คอร์ส: จำนวนคำตรง → เปิดรับสมัครก่อน full/closed → คะแนน → menu_order · บทความ/หน้า: คะแนน → ใหม่สุด · synonym ได้คะแนน ×0.9 เทียบคำที่พิมพ์เอง
+- **Synonym**: Settings → การค้นหา · หนึ่งบรรทัดหนึ่งกลุ่ม คั่นด้วย `=` (`เจรจา = negotiation = 交渉`) · ค่าเริ่มต้น 25 กลุ่มจากชื่อคอร์ส/หมวดจริง (`hri_search_default_synonyms()`) · เก็บใน option `hri_search_synonyms` (ว่าง = ใช้ค่าเริ่มต้น; ปุ่ม "คืนค่าเริ่มต้น") · ใช้ตอนค้น ไม่ต้องสร้างดัชนีใหม่
+- **ดัชนีอัปเดตเอง**: บันทึก/เปลี่ยนสถานะ/ลบโพสต์, เปลี่ยน term, เปลี่ยน `hri_reg_status`/`hri_audience` → จัดคิวแล้วทำตอน `shutdown` · สร้างใหม่ทั้งหมด: ปุ่มใน Settings (ทีละ 40 โพสต์ ใช้ meta refresh ไม่ต้องมี JS), `wp hri search reindex [--tokenizer=icu|ngram]`, ค้นครั้งแรกถ้ายังไม่มีดัชนี (ทำในคำขอนั้น ≤25 วินาที มี lock) · Playground: ขั้นสุดท้ายใน `blueprint.json` เรียก `hri_search_rebuild()`
+- **เครื่องมือ**: `wp hri search query "<คำ>" --lang=th|en|ja --limit=5` (แสดงผล + เวลา)
+- **หน้าผลลัพธ์**: `?s=` · สรุปจำนวน · ลิงก์ประเภท (ทั้งหมด/หลักสูตร/บทความ/หน้าเว็บ + จำนวน) · มุมมองรวมแสดงประเภทละ 6 พร้อมลิงก์ "ดูทั้งหมด" → `?type=…` (12 ต่อหน้า, `?pg=`) · คอร์สใช้ `hri_course_card()` (รูปปกตามที่มี) บทความ/หน้าเป็นข้อความล้วน · ไม่เจอเลย → หน้า 200 + หลักสูตรแนะนำ 3 ใบ (เปิดรับสมัครก่อน) + ลิงก์ดูหลักสูตรทั้งหมด/ติดต่อเรา (ไม่ได้ใช้ pattern `no-results` เพราะนั่นเป็นของ query loop) · ไม่มี JS ในหน้าผลลัพธ์ · JS เดียวคือ `search-form/view.js` (โฟกัสช่อง/ปิดด้วย Esc/คลิกนอก ของ dropdown ในเฮดเดอร์ ~1 KB)
+- **ความปลอดภัย**: คำค้นผ่าน `sanitize_text_field` ตัด tag, ตัดเหลือ 100 ตัวอักษร, `?s[]=` ถือว่าว่าง, ทุกที่ที่แสดงใช้ `esc_*`, SQL ใช้ `$wpdb->prepare` + `esc_like`, `?type=` เป็น whitelist
+
 ### 4.x เพิ่มในรอบที่ 3 (19 ต.ค. 2569)
 
 **Lead form + Contact** — block `hri/lead-form` + `inc/leads.php` (hri-core) · CPT `hri_lead` (เห็นใน admin "ผู้สนใจ (Lead)", สร้างเองไม่ได้) · ส่งด้วย `admin-post.php` (`hri_ajax=1` = JSON, ไม่มี JS = redirect กลับ `?hri_lead=ok|error#hri-lead`) ไม่ใช้ REST/nonce (หน้าถูก cache) · honeypot `hri_website`, rate limit 5 ครั้ง/10 นาที, ต้องติ๊ก PDPA, Turnstile ถ้าตั้งค่า · ตั้งค่าใน wp-config.php (ห้ามใส่ใน repo): `HRI_LEAD_WEBHOOK_URL`, `HRI_LEAD_WEBHOOK_TOKEN`, `HRI_LEAD_NOTIFY`, `HRI_TURNSTILE_SITE_KEY`, `HRI_TURNSTILE_SECRET` → วิธีทำ Apps Script/Sheet/Turnstile: [`docs/LEAD-SETUP.md`](LEAD-SETUP.md) · เติมคอร์สที่สนใจอัตโนมัติจาก attr `interest`, `?hri_course=<slug>` (อย่าใช้ `?course=` ชนกับ query var ของ CPT `course`), `?interest=`, หรือบริบทหน้าคอร์ส · patterns: `contact-*` (hero, main, map, group), `inhouse-enquiry` · ข้อมูลบริษัท (ชื่อนิติบุคคล, เลขภาษี) ใน Settings → ข้อมูลบริษัท · LINE ใช้ @hrideone ชั่วคราว (แก้ที่เดียวใน Settings)
@@ -170,6 +183,27 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 10 (24 ต.ค. 2569, branch `feature/search` แตกจาก `feature/real-images` เพราะรอบที่ 9 ยังไม่ merge — **ยังไม่ merge**): **ค้นหาทั้งเว็บ (งาน C)**
+  - ทำ: ดูสถาปัตยกรรมละเอียดที่ข้อ 4.y · เลือกวิธีทำดัชนีเอง (Jimmi อนุญาตให้ตัดสินใจเอง ไม่ถามก่อน) จาก 3 ทาง:
+    - **A. ตารางดัชนีคำของเราเอง (เลือก)** — ข้อดี: ใช้ได้ทั้ง MySQL/SQLite เหมือนกันทุกบรรทัด, ตัดคำไทยจริง (ICU หรือ n-gram), จัดอันดับ ชื่อ > excerpt > เนื้อหา, กรองภาษา/สถานะเปิดรับ, ค้น ~10 ms; ข้อเสีย: โค้ดเยอะ (~1,400 บรรทัด), ต้องดูแลดัชนี (ทำอัตโนมัติ + ปุ่มสร้างใหม่), ดัชนีใหญ่ ~270 คำ/โพสต์ (429 โพสต์ = 114k แถว)
+    - B. เก็บข้อความตัดคำแล้วใน meta/คอลัมน์ + `LIKE` — ข้อดี: ง่ายสุด; ข้อเสีย: ไม่มีอันดับที่ดี, ช้าลงตามจำนวนโพสต์ (full scan), คำที่ตัดคำต่างกันพลาด
+    - C. FULLTEXT ของ MySQL / FTS5 ของ SQLite — ข้อดี: เร็ว มีอันดับในตัว; ข้อเสีย: ต้องเขียนสองชุดตามฐานข้อมูล (Playground/SQLite กับ Ruk-com/MySQL คนละแบบ), parser ภาษาไทยของ MySQL ไม่มี (ต้องตัดคำก่อนอยู่ดี), InnoDB FULLTEXT มี stopword/ความยาวคำขั้นต่ำที่ทำให้คำไทยสั้นหาย
+  - Synonym (Settings → การค้นหา), หน้าไม่เจอ, ฟอร์มใน header (desktop = ไอคอน, มือถือ/แท็บเล็ต = ในเมนู), ฟอร์มใน 404 · คำแปล EN/JA ทุกข้อความใหม่ (machine translation — JA ให้คนญี่ปุ่นตรวจ) · วัดด้วย `measure.py` เพิ่ม 2 หน้า (`/?s=…` ผลลัพธ์ + ไม่เจอ)
+  - **ชุดทดสอบ + ผลที่ควรได้ (demo 21 คอร์ส + บทความ; ICU และ n-gram ได้เท่ากัน ยกเว้นที่ระบุ)** — รันด้วย `wp hri search query "<คำ>" --lang=<ภาษา>`:
+    | คำค้น | ภาษา | คอร์ส | บทความ | หน้า | หมายเหตุ |
+    |---|---|---|---|---|---|
+    | เจรจา | th | 3 | 12 | 0 | Negotiation Mastery, Negotiation Masterclass มาก่อน (Complaint Handling Excellence ตรงในเนื้อหา) |
+    | ผู้นำ | th | 14 | 67 | 5 | Proactive/High-Performance Leadership ฯลฯ |
+    | negotiation | en | 2 | 11 | 0 | Negotiation Mastery, Negotiation Masterclass |
+    | leadership | en | 14 | 66 | 5 | |
+    | コーチング | ja | 2 | 52 | 2 | Coaching Mastery มาก่อน (n-gram ได้คอร์ส 3) |
+    | negotiation | th | 3 | 12 | 0 | synonym ข้ามภาษา → เจอเนื้อหาไทย |
+    | เจรจา | en | 2 | 11 | 0 | EN ไม่เจอผลภาษาไทย (กรองภาษา) |
+    | zzxqvw, ซซซซซซ | th | 0 | 0 | 0 | หน้า 200 + หลักสูตรแนะนำ |
+    ผ่านทั้งหมด · คำที่ ICU ตัดต่างกันในประโยค (เช่น ชื่อทับศัพท์ "โนวา") เจอด้วยตัวสำรองค้นข้อความต่อเนื่อง
+  - **คำค้นแปลก**: `<script>`, `%`, 500 ตัวอักษร, `?s[]=a`, `?s=`, `' " \ OR 1=1`, `&lt;b&gt;`, `?type=zzz&pg=-5`, `?pg` เกินจำนวนหน้า → HTTP 200 ทุกกรณี ไม่มี PHP notice ไม่สะท้อน HTML (แสดงเป็นข้อความ escape) · แก้/ลบ/draft โพสต์แล้วดัชนีตามภายในคำขอเดียวกัน (ทดสอบข้ามโปรเซส)
+  - **เวลา (local, SQLite, 429 โพสต์ ดัชนี 114k แถว, `php -S` ตัวเดียว)**: query ในเครื่องยนต์ 8–15 ms (เกณฑ์ ≤100 ms ผ่าน) · ทั้งหน้าผลลัพธ์ (รวม WordPress + render การ์ด) 110–220 ms · สร้างดัชนีทั้งหมด 16–17 วินาที (ICU) / 37 วินาที (n-gram) บน SQLite (ช้าเพราะ SQLite integration เขียนทีละโพสต์ ~35–40 ms) — MySQL น่าจะเร็วกว่ามากแต่ยังไม่ได้วัด
+  - **ผลวัดรอบที่ 10**: `python3 -I scripts/measure.py` เต็มชุด = 81 รอบ (1280/768/375 × TH/EN/JA × 9 หน้า รวมหน้าค้นหาที่มีผลและไม่มีผล) → **0 ปัญหา** (overflow, tap target ≥44px, contrast AA, PHP notice, JS error) · ช่องค้นหาใน header/เมนูมือถือรวมอยู่ในทุกหน้าที่วัด
 - [x] รอบที่ 9 (24 ต.ค. 2569, branch `feature/real-images` — **ยังไม่ merge**): **รูปจริงจากเว็บเดิมแทน placeholder**
   - flow: crawl เว็บเดิมด้วย Playwright บน GitHub (35 หน้า, screenshot ติดเลขกรอบรูป) → จับคู่ช่องรูปด้วยตา → `site-media.json` (97 รูป) → `scripts/site-media.py` แปลงตามชนิด: logo ≤240px q85 · cover 3:2 960×640 q76 · square (ครอปรอบหน้า) 640 q80 · photo ≤1000 q76 · hero ≤1600 q70 → **รวม 1.6 MB, ไฟล์ใหญ่สุด 115 KB** · ดูผลจับคู่: `playground/data/site-media-sheet-1…4.jpg`
   - ใส่แล้ว: hero หน้าแรก (1), โลโก้ลูกค้า 40 (หน้าแรก/About/In-house) + พาร์ทเนอร์ 8 (Transformation) พร้อม alt ชื่อบริษัท, ผู้บริหาร 2 (หน้าแรก+About), Gallery หน้าแรก 4, รูป hero ของ About/In-house/Public/Transformation/Japanese + "ทำไมต้อง Public" (6), ปกคอร์ส 20 จาก 21 (ภาพ hero ของหน้าคอร์สเดิม ครอป 3:2), วิทยากร 4, Gallery ไฮไลต์ของคอร์ส (Oxygen ใช้ของจริง 6 รูป คอร์สอื่นหมุนจากสระรูปอบรมจริงของ HRI 10 รูป)
@@ -257,6 +291,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
+0.0 **Merge `feature/search` → `main`** (รอบที่ 10) — branch นี้แตกจาก `feature/real-images` → ต้อง merge `feature/real-images` ก่อน (หรือพร้อมกัน) · แก้ `main` ใน `playground/blueprint.json` เป็น `feature/search` เพื่อดูผ่าน Playground
 0.1 **Merge `feature/real-images` → `main`** (รอบที่ 9, รอ Jimmi ดู) · ดูก่อน merge: แก้ทุก `main` ใน `playground/blueprint.json` เป็น `feature/real-images` แล้วเปิดผ่าน `https://playground.wordpress.net/#<blueprint JSON>` (ลิงก์สั้นใช้ `main` เสมอ) · หลัง merge: Actions "Site media" ไม่ต้องรันใหม่ (ไฟล์อยู่ใน repo แล้ว), jsDelivr `@main` เห็นไฟล์ใหม่ทันทีเพราะเป็น path ใหม่
 0.2 **รูปที่ยังขาด (รอบที่ 9)**: Jimmi ส่งรูปกิจกรรม Social Impact (About, 4 รูป) · ยืนยันสิทธิ์ใช้รูปผู้บริหาร/ผู้เข้าอบรม/โลโก้ลูกค้ากับลูกค้าก่อนขึ้นเว็บจริง · ตรวจ alt โลโก้ช่อง 10 · อยากได้ปกคอร์สใหม่แทนรูปที่มืด/ซ้ำไหม · วิดีโอ (hero, DO·WA·KEI, Outcomes) จะใส่เมื่อไร
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
@@ -265,7 +300,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 2.1 **รูปใน WordPress ให้เล็กสุด** → prompt I (แปลงต้นฉบับเป็น WebP/AVIF ตอนอัปโหลด, ขนาด `hri-card`, ขอบยาวสุด 1600)
 2.2 **PageSpeed** → prompt J (เป้า Lighthouse mobile ≥90 ทุกหน้า) · วัดจริงต้องรอโฮสต์ แต่ทำ/วัดใน local ได้ก่อน
 3. ~~นำเข้าบทความ~~ — **ทำแล้วในรอบที่ 6** (เว็บเดิมมี 115 เรื่อง ไม่ใช่ ~150 และมี EN/JA ครบอยู่แล้ว) · ตอนย้ายจริง: export ใหม่จากเว็บเดิม → `scripts/wxr-to-blog.py` → Tools → นำเข้าบทความ แบบ "คัดลอกรูปเข้าคลังสื่อ" บน staging
-4. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
+4. ~~**ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)~~ — **ทำแล้วในรอบที่ 10 (ยังไม่ merge)** ดูข้อ 4.y · เหลือ: ทดสอบบน MySQL จริง (Ruk-com), ขอ Ruk-com เปิด ext-intl (เขียนใน HOSTING.md แล้ว), ให้ Jimmi ตรวจ synonym 25 กลุ่ม
 5. **SEO / AI-SEO** → prompt D (ขยายแล้ว) — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, BlogPosting, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots.txt (AI crawlers), llms.txt, Bing/IndexNow
 6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, ลิงก์เก่าในเนื้อหาบทความ) · ของบล็อกทำแล้วใน `blog.php` (เว็บเดิมใช้ `?e-page-…=N` ไม่ใช่ `/blog/page/N`)
 7. **แปลอัตโนมัติ TH → EN/JA** — สเปกเต็ม: [`docs/AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) (ทำเองใน hri-core ต่อยอด Polylang ฟรี, แปลทีละ block, ไม่ทับ block ที่คนตรวจแก้, สถานะ 🤖/✅/⚠️, JA noindex จนกว่าตรวจ, จ่าย API ตามใช้ + เพดานงบ) · prompt G ในข้อ 10 · ต้องได้คำตอบข้อ 3.3 ก่อน
@@ -357,6 +392,20 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ทดสอบ local: `scripts/local-setup.sh` + Polylang 3.9.1 (`git clone --depth 1 --branch 3.9.1 https://github.com/polylang/polylang` ใน plugins แล้ว `composer dump-autoload --no-dev`) + `wp hri languages` + `wp eval-file playground/seed-languages.php` · รูป site-media ใน local: `ln -s <repo>/playground/site-media <local>/site-media` + `wp config set HRI_SITE_MEDIA_BASE http://127.0.0.1:8899/site-media --type=constant` แล้วรัน seed ซ้ำ · รูปบล็อก (jsDelivr) ใน local จะขึ้นเป็นรูปเสีย = ปกติ
 - slider ที่มีสไลด์ >5 บนจอ 375: ปุ่มลูกศรเคยหดเหลือ 28px (flex shrink) แก้แล้ว ถ้าเพิ่ม control อื่นในแถวนี้ให้เช็ก tap target อีกครั้ง
 
+**จากรอบที่ 10 (ค้นหา)**
+- **ทดสอบกับ MySQL ไม่ได้ใน workspace** (มีแต่ SQLite) → SQL ในดัชนีเขียนแบบมาตรฐาน (`CREATE TABLE`, `IN`, `LIKE` + `esc_like`, ไม่มี FTS/คำสั่งเฉพาะ SQLite) แต่ **ต้องลองบน Ruk-com จริงก่อนเปิดใช้**: `wp hri search reindex` แล้ว `wp hri search query เจรจา` · ถ้าตารางไม่ถูกสร้าง ดู `$wpdb->last_error` · คอลัมน์ `token` เป็น `utf8mb4_bin` (ต้อง MySQL ≥5.5.3)
+- **ถ้าโฮสต์ไม่มี ext-intl** ระบบสลับเป็น n-gram เองและสร้างดัชนีใหม่ (ผลไทยดีพอ ดัชนีใหญ่ขึ้น ~2.5 เท่า) · ถาม Ruk-com ว่าเปิด intl ได้ไหม (`php -m | grep intl`)
+- ความต่างของ SQLite integration: เขียนดัชนีทีละโพสต์ช้า (~35–40 ms ไม่ว่าจะ batch ขนาดไหน) จึงสร้างดัชนีใน Playground ตอน boot ~20 วินาที (ขั้นสุดท้ายใน blueprint) · อย่าเรียก `hri_search()` ในโปรเซสเดียวกับที่เพิ่งบันทึกโพสต์แล้วหวังเห็นผล (ดัชนีอัปเดตตอน `shutdown`)
+- ICU ตัดคำโดยไม่สนบริบทไม่ได้: คำเดียวกันพิมพ์เดี่ยวๆ กับอยู่ในประโยคอาจตัดไม่เหมือนกัน (ชื่อทับศัพท์) → มีตัวสำรอง substring · อย่าลบตัวสำรองนี้
+- pattern ของ theme ถูก cache ตามเลขเวอร์ชัน theme → เพิ่ม pattern ใหม่แล้ว WordPress ไม่เห็นจนกว่าจะ bump `Version` ใน `style.css`
+- `wp i18n update-po` + polib เขียนไฟล์ใหม่ทั้งไฟล์ (diff บวม) → เติม `msgstr` ด้วยสคริปต์แก้ข้อความตรงๆ (plural ของ JA มีฟอร์มเดียว `msgstr[0]`)
+- `curl` กับ `?s[]=a` ต้องใส่ `-g` ไม่งั้น curl ตีความ `[]` เป็น glob
+
+**ปัญหานอกขอบเขตที่เจอในรอบที่ 10 (ยังไม่แก้)**
+- ตัวกรองคอร์ส (`hri/course-filter` ช่อง `q`) ยังค้นด้วย `LIKE` ของ WordPress → คำไทยยาวหรือ synonym ไม่ทำงานเหมือนค้นทั้งเว็บ · ถ้าอยากให้เหมือนกัน ให้เรียก `hri_search( $q, array( 'types' => array( 'course' ) ) )` แทน
+- หน้า 404 ชื่อหน้า (`<title>`) เป็นภาษาอังกฤษ "Page not found" ทุกภาษา (ข้อความของ core)
+- ผลค้นหาไม่แสดงตัวอย่างข้อความที่ตรงคำ (แสดง excerpt/ต้นเนื้อหา) และไม่ไฮไลต์คำ — ตั้งใจให้เบา
+
 ## 9. วิธีทำงานที่ประหยัด usage
 
 - **ใช้ Sonnet**: งานที่ prompt ระบุชัด + มีเกณฑ์ตรวจเป็นตัวเลข ทำได้ใกล้เคียง Opus · งานที่ต้องใช้วิจารณญาณ (จัดหมวด/เขียนเนื้อหา) หรือเจอพฤติกรรมแปลกของ WordPress/Polylang มีโอกาสหยุดที่ "ดูเหมือนใช้ได้" → prompt ในข้อ 10 จึงใส่ **เกณฑ์ผ่าน** ทุกข้อ ห้ามข้าม และให้อ่านข้อ 8 (สิ่งที่เคยพลาด) ก่อนเริ่ม
@@ -390,7 +439,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
 
-**C. ค้นหาทั้งเว็บ**
+**C. ค้นหาทั้งเว็บ** — ทำแล้วในรอบที่ 10 (เก็บ prompt ไว้อ้างอิง)
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web

@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hri/search-results",
+	"title": "Search Results",
+	"category": "widgets",
+	"icon": "search",
+	"description": "Results of the site search, grouped by type (courses, articles, pages). Shows suggested courses when nothing matches.",
+	"textdomain": "hri-core",
+	"supports": {
+		"html": false,
+		"autoRegister": true
+	},
+	"style": "hri-search-results",
+	"render": "file:./render.php"
+}

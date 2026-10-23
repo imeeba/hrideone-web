@@ -149,6 +149,10 @@
 		{
 			"step": "runPHP",
 			"code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; require '/wordpress/hri-seed-languages.php';"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; hri_search_rebuild( 0, 0 ); echo 'Search index built.';"
 		}
 	]
 }

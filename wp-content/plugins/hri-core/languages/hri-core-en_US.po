@@ -79,6 +79,7 @@ msgstr "Full"
 msgid "ปิดรับสมัคร"
 msgstr "Registration closed"
 
+#: blocks/search-results/render.php:20
 #: inc/content-model.php:92
 #: inc/content-model.php:93
 #: inc/content-model.php:94
@@ -222,7 +223,11 @@ msgstr "Search course names"
 msgid "ตัวกรอง"
 msgstr "Filters"
 
+#. translators: %s: what the visitor searched for
+#: blocks/search-form/render.php:29
+#: blocks/search-form/render.php:38
 #: inc/course-filter.php:357
+#: inc/search.php:1169
 msgid "ค้นหา"
 msgstr "Search"
 
@@ -680,6 +685,7 @@ msgid "ยังไม่มีวิทยากร"
 msgstr ""
 
 #: blocks/blog-filter/render.php:32
+#: blocks/search-results/render.php:73
 msgid "ทั้งหมด"
 msgstr "All"
 
@@ -734,7 +740,9 @@ msgstr "All %d articles imported (each in TH / EN / JA)"
 msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
 msgstr "Do not close this page until it is done"
 
+#. translators: 1: done, 2: total
 #: inc/blog-import.php:483
+#: inc/search-admin.php:74
 msgid "ทำต่อ"
 msgstr "Continue"
 
@@ -761,3 +769,164 @@ msgstr "Previous page"
 #: inc/course-filter.php:269
 msgid "หน้าถัดไป"
 msgstr "Next page"
+
+#: blocks/search-form/render.php:24
+msgid "ค้นหาในเว็บไซต์"
+msgstr "Search the website"
+
+#: blocks/search-form/render.php:26
+msgid "ค้นหาหลักสูตร บทความ…"
+msgstr "Search courses, articles…"
+
+#: blocks/search-results/render.php:21
+msgid "บทความ"
+msgstr "Articles"
+
+#: blocks/search-results/render.php:22
+msgid "หน้าเว็บ"
+msgstr "Pages"
+
+#: blocks/search-results/render.php:48
+msgid "พิมพ์คำที่ต้องการค้นหา เช่น เจรจา ผู้นำ โค้ชชิ่ง"
+msgstr "Type what you are looking for, e.g. negotiation, leadership, coaching"
+
+#. translators: %s: the search words
+#: blocks/search-results/render.php:55
+#, php-format
+msgid "ไม่พบผลการค้นหาสำหรับ “%s”"
+msgstr "No results for “%s”"
+
+#. translators: %s: the search words
+#: blocks/search-results/render.php:56
+msgid "ลองใช้คำที่สั้นลง คำที่ใกล้เคียง หรือพิมพ์เป็นภาษาอื่น เช่น negotiation แทน เจรจา"
+msgstr "Try a shorter word, a similar word, or another language, e.g. 交渉 instead of negotiation."
+
+#. translators: 1: number of results, 2: the search words
+#: blocks/search-results/render.php:62
+#, php-format
+msgid "พบ %1$s รายการสำหรับ “%2$s”"
+msgid_plural "พบ %1$s รายการสำหรับ “%2$s”"
+msgstr[0] "%1$s result for “%2$s”"
+msgstr[1] "%1$s results for “%2$s”"
+
+#: blocks/search-results/render.php:64
+msgid "ไม่มีรายการที่ตรงกับทุกคำ จึงแสดงรายการที่ตรงกับบางคำ"
+msgstr "Nothing matches every word, so these match some of them."
+
+#: blocks/search-results/render.php:68
+msgid "ประเภทผลการค้นหา"
+msgstr "Result types"
+
+#. translators: 1: type (courses…), 2: number
+#: blocks/search-results/render.php:122
+#, php-format
+msgid "ดู%1$sทั้งหมด (%2$s)"
+msgstr "See all %1$s (%2$s)"
+
+#: blocks/search-results/render.php:126
+msgid "หน้าผลการค้นหา"
+msgstr "Result pages"
+
+#: inc/search-admin.php:13
+#: inc/search-admin.php:69
+#: inc/search-admin.php:96
+msgid "การค้นหา"
+msgstr "Search"
+
+#. translators: 1: done, 2: total
+#: inc/search-admin.php:73
+#, php-format
+msgid "กำลังสร้างดัชนี… %1$s / %2$s"
+msgstr "Building the index… %1$s / %2$s"
+
+#: inc/search-admin.php:76
+msgid "สร้างดัชนีเสร็จแล้ว"
+msgstr "The index is built"
+
+#: inc/search-admin.php:77
+msgid "กลับ"
+msgstr "Back"
+
+#: inc/search-admin.php:87
+msgid "คืนค่าเริ่มต้นแล้ว"
+msgstr "Defaults restored"
+
+#: inc/search-admin.php:98
+msgid "คำที่มีความหมายเดียวกัน"
+msgstr "Synonyms"
+
+#: inc/search-admin.php:99
+msgid "หนึ่งบรรทัดต่อหนึ่งกลุ่ม คั่นคำด้วยเครื่องหมาย = เช่น เจรจา = negotiation = 交渉 เมื่อผู้เข้าชมค้นหาคำใดคำหนึ่ง จะเจอเนื้อหาที่มีคำอื่นในกลุ่มด้วย (มีผลทันที ไม่ต้องสร้างดัชนีใหม่)"
+msgstr "One group per line, words separated by =, e.g. เจรจา = negotiation = 交渉. A search for any word also finds content with the other words of the group (takes effect at once, no need to rebuild the index)."
+
+#: inc/search-admin.php:103
+msgid "บันทึก"
+msgstr "Save"
+
+#: inc/search-admin.php:107
+msgid "คืนค่าเริ่มต้น"
+msgstr "Restore defaults"
+
+#: inc/search-admin.php:110
+msgid "ดัชนีการค้นหา"
+msgstr "Search index"
+
+#: inc/search-admin.php:112
+msgid "วิธีตัดคำ"
+msgstr "Word segmentation"
+
+#: inc/search-admin.php:113
+msgid "เอกสารในดัชนี"
+msgstr "Documents in the index"
+
+#: inc/search-admin.php:114
+msgid "คำในดัชนี"
+msgstr "Words in the index"
+
+#: inc/search-admin.php:115
+msgid "สร้างล่าสุด"
+msgstr "Last built"
+
+#: inc/search-admin.php:117
+msgid "ดัชนีอัปเดตเองเมื่อบันทึกหลักสูตร บทความ หรือหน้า กดสร้างใหม่เมื่อนำเข้าเนื้อหาจำนวนมาก หรือเมื่อผลค้นหาดูไม่ตรง"
+msgstr "The index updates itself when a course, article or page is saved. Rebuild it after a large import, or when results look wrong."
+
+#: inc/search-admin.php:118
+msgid "สร้างดัชนีใหม่ทั้งหมด"
+msgstr "Rebuild the whole index"
+
+#: inc/search-admin.php:120
+msgid "ทดลองค้นหา"
+msgstr "Try a search"
+
+#: inc/search-admin.php:124
+msgid "ภาษา (th / en / ja)"
+msgstr "Language (th / en / ja)"
+
+#: inc/search-admin.php:125
+msgid "ทดลอง"
+msgstr "Try"
+
+#. translators: 1: results, 2: milliseconds
+#: inc/search-admin.php:130
+#, php-format
+msgid "%1$s รายการ ใน %2$s ms"
+msgstr "%1$s results in %2$s ms"
+
+#. translators: %s: what the visitor searched for
+#: inc/search.php:1169
+#, php-format
+msgid "ผลการค้นหา “%s”"
+msgstr "Search results for “%s”"
+
+#: inc/search.php:1324
+msgid "หลักสูตรแนะนำ"
+msgstr "Suggested courses"
+
+#: inc/search.php:1333
+msgid "ดูหลักสูตรทั้งหมด"
+msgstr "See all courses"
+
+#: inc/search.php:1335
+msgid "ติดต่อเรา"
+msgstr "Contact us"

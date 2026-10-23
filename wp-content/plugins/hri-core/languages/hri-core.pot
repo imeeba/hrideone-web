@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: HRI Core 0.8.0\n"
+"Project-Id-Version: HRI Core 0.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hri-core\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-23T20:38:40+00:00\n"
+"POT-Creation-Date: 2026-10-23T22:07:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: hri-core\n"
@@ -30,6 +30,7 @@ msgid "HRI DeOne"
 msgstr ""
 
 #: blocks/blog-filter/render.php:32
+#: blocks/search-results/render.php:73
 msgid "ทั้งหมด"
 msgstr ""
 
@@ -191,6 +192,78 @@ msgstr ""
 msgid "บทความที่เกี่ยวข้อง"
 msgstr ""
 
+#: blocks/search-form/render.php:24
+msgid "ค้นหาในเว็บไซต์"
+msgstr ""
+
+#: blocks/search-form/render.php:26
+msgid "ค้นหาหลักสูตร บทความ…"
+msgstr ""
+
+#. translators: %s: what the visitor searched for
+#: blocks/search-form/render.php:29
+#: blocks/search-form/render.php:38
+#: inc/course-filter.php:357
+#: inc/search.php:1169
+msgid "ค้นหา"
+msgstr ""
+
+#: blocks/search-results/render.php:20
+#: inc/content-model.php:92
+#: inc/content-model.php:93
+#: inc/content-model.php:94
+msgid "หลักสูตร"
+msgstr ""
+
+#: blocks/search-results/render.php:21
+msgid "บทความ"
+msgstr ""
+
+#: blocks/search-results/render.php:22
+msgid "หน้าเว็บ"
+msgstr ""
+
+#: blocks/search-results/render.php:48
+msgid "พิมพ์คำที่ต้องการค้นหา เช่น เจรจา ผู้นำ โค้ชชิ่ง"
+msgstr ""
+
+#. translators: %s: the search words
+#: blocks/search-results/render.php:55
+#, php-format
+msgid "ไม่พบผลการค้นหาสำหรับ “%s”"
+msgstr ""
+
+#. translators: %s: the search words
+#: blocks/search-results/render.php:56
+msgid "ลองใช้คำที่สั้นลง คำที่ใกล้เคียง หรือพิมพ์เป็นภาษาอื่น เช่น negotiation แทน เจรจา"
+msgstr ""
+
+#. translators: 1: number of results, 2: the search words
+#: blocks/search-results/render.php:62
+#, php-format
+msgid "พบ %1$s รายการสำหรับ “%2$s”"
+msgid_plural "พบ %1$s รายการสำหรับ “%2$s”"
+msgstr[0] ""
+msgstr[1] ""
+
+#: blocks/search-results/render.php:64
+msgid "ไม่มีรายการที่ตรงกับทุกคำ จึงแสดงรายการที่ตรงกับบางคำ"
+msgstr ""
+
+#: blocks/search-results/render.php:68
+msgid "ประเภทผลการค้นหา"
+msgstr ""
+
+#. translators: 1: type (courses…), 2: number
+#: blocks/search-results/render.php:122
+#, php-format
+msgid "ดู%1$sทั้งหมด (%2$s)"
+msgstr ""
+
+#: blocks/search-results/render.php:126
+msgid "หน้าผลการค้นหา"
+msgstr ""
+
 #. translators: %s: social network name
 #: blocks/social-links/render.php:33
 #, php-format
@@ -240,7 +313,9 @@ msgstr ""
 msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
 msgstr ""
 
+#. translators: 1: done, 2: total
 #: inc/blog-import.php:483
+#: inc/search-admin.php:74
 msgid "ทำต่อ"
 msgstr ""
 
@@ -329,12 +404,6 @@ msgstr ""
 
 #: inc/content-model.php:46
 msgid "ปิดรับสมัคร"
-msgstr ""
-
-#: inc/content-model.php:92
-#: inc/content-model.php:93
-#: inc/content-model.php:94
-msgid "หลักสูตร"
 msgstr ""
 
 #: inc/content-model.php:95
@@ -623,10 +692,6 @@ msgstr ""
 msgid "ตัวกรอง"
 msgstr ""
 
-#: inc/course-filter.php:357
-msgid "ค้นหา"
-msgstr ""
-
 #: inc/languages.php:160
 msgid "ชื่อภาษาอังกฤษ (EN)"
 msgstr ""
@@ -740,6 +805,110 @@ msgstr ""
 
 #: inc/polylang.php:461
 msgid "ไม่มีสิทธิ์"
+msgstr ""
+
+#: inc/search-admin.php:13
+#: inc/search-admin.php:69
+#: inc/search-admin.php:96
+msgid "การค้นหา"
+msgstr ""
+
+#. translators: 1: done, 2: total
+#: inc/search-admin.php:73
+#, php-format
+msgid "กำลังสร้างดัชนี… %1$s / %2$s"
+msgstr ""
+
+#: inc/search-admin.php:76
+msgid "สร้างดัชนีเสร็จแล้ว"
+msgstr ""
+
+#: inc/search-admin.php:77
+msgid "กลับ"
+msgstr ""
+
+#: inc/search-admin.php:87
+msgid "คืนค่าเริ่มต้นแล้ว"
+msgstr ""
+
+#: inc/search-admin.php:98
+msgid "คำที่มีความหมายเดียวกัน"
+msgstr ""
+
+#: inc/search-admin.php:99
+msgid "หนึ่งบรรทัดต่อหนึ่งกลุ่ม คั่นคำด้วยเครื่องหมาย = เช่น เจรจา = negotiation = 交渉 เมื่อผู้เข้าชมค้นหาคำใดคำหนึ่ง จะเจอเนื้อหาที่มีคำอื่นในกลุ่มด้วย (มีผลทันที ไม่ต้องสร้างดัชนีใหม่)"
+msgstr ""
+
+#: inc/search-admin.php:103
+msgid "บันทึก"
+msgstr ""
+
+#: inc/search-admin.php:107
+msgid "คืนค่าเริ่มต้น"
+msgstr ""
+
+#: inc/search-admin.php:110
+msgid "ดัชนีการค้นหา"
+msgstr ""
+
+#: inc/search-admin.php:112
+msgid "วิธีตัดคำ"
+msgstr ""
+
+#: inc/search-admin.php:113
+msgid "เอกสารในดัชนี"
+msgstr ""
+
+#: inc/search-admin.php:114
+msgid "คำในดัชนี"
+msgstr ""
+
+#: inc/search-admin.php:115
+msgid "สร้างล่าสุด"
+msgstr ""
+
+#: inc/search-admin.php:117
+msgid "ดัชนีอัปเดตเองเมื่อบันทึกหลักสูตร บทความ หรือหน้า กดสร้างใหม่เมื่อนำเข้าเนื้อหาจำนวนมาก หรือเมื่อผลค้นหาดูไม่ตรง"
+msgstr ""
+
+#: inc/search-admin.php:118
+msgid "สร้างดัชนีใหม่ทั้งหมด"
+msgstr ""
+
+#: inc/search-admin.php:120
+msgid "ทดลองค้นหา"
+msgstr ""
+
+#: inc/search-admin.php:124
+msgid "ภาษา (th / en / ja)"
+msgstr ""
+
+#: inc/search-admin.php:125
+msgid "ทดลอง"
+msgstr ""
+
+#. translators: 1: results, 2: milliseconds
+#: inc/search-admin.php:130
+#, php-format
+msgid "%1$s รายการ ใน %2$s ms"
+msgstr ""
+
+#. translators: %s: what the visitor searched for
+#: inc/search.php:1169
+#, php-format
+msgid "ผลการค้นหา “%s”"
+msgstr ""
+
+#: inc/search.php:1324
+msgid "หลักสูตรแนะนำ"
+msgstr ""
+
+#: inc/search.php:1333
+msgid "ดูหลักสูตรทั้งหมด"
+msgstr ""
+
+#: inc/search.php:1335
+msgid "ติดต่อเรา"
 msgstr ""
 
 #: inc/trainers.php:24

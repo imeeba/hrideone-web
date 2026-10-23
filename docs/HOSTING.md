@@ -23,6 +23,7 @@
 > 5. PHP เวอร์ชันอะไร เลือกเองได้ไหม (ต้องการ 8.3) เปิด OPcache ไหม
 > 6. upload_max_filesize, post_max_size, memory_limit, max_execution_time เท่าไร ปรับเองได้ไหม
 > 7. มี Imagick ไหม รองรับ WebP และ AVIF ไหม
+> 7.1 เปิด PHP extension `intl` ได้ไหม (ใช้ตัดคำไทยในการค้นหา `IntlBreakIterator`; ถ้าไม่มีระบบสลับเป็น n-gram เองได้ แต่ดัชนีใหญ่กว่า) และฐานข้อมูลเป็น MySQL/MariaDB เวอร์ชันอะไร (ต้อง utf8mb4)
 > 8. เว็บดาวน์โหลดไฟล์จากเว็บภายนอกได้ไหม (github.com, cdn.jsdelivr.net, script.google.com)
 > 9. WP-Cron ใช้ cron จริงของเซิร์ฟเวอร์ได้ไหม
 >

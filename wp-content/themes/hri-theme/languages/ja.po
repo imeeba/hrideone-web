@@ -94,7 +94,7 @@ msgstr ""
 msgid "ไม่พบหน้าที่คุณต้องการ"
 msgstr "お探しのページが見つかりません"
 
-#: patterns/not-found.php:19
+#: patterns/search-hero.php:15
 msgid "ค้นหา"
 msgstr "検索"
 
@@ -156,24 +156,24 @@ msgstr ""
 msgid "Logos"
 msgstr ""
 
-#: functions.php:209
+#: functions.php:231
 msgid "หยุดวิดีโอ"
 msgstr "動画を一時停止"
 
-#: functions.php:210
+#: functions.php:232
 msgid "เล่นวิดีโอ"
 msgstr "動画を再生"
 
-#: functions.php:213
+#: functions.php:235
 msgid "รูปก่อนหน้า"
 msgstr "前の写真"
 
-#: functions.php:214
+#: functions.php:236
 msgid "รูปถัดไป"
 msgstr "次の写真"
 
 #. translators: 1: slide number, 2: number of slides
-#: functions.php:216
+#: functions.php:238
 #, php-format
 msgid "รูปที่ %1$s จาก %2$s"
 msgstr "写真 %1$s / %2$s"
@@ -278,7 +278,7 @@ msgstr ""
 msgid "คลังความรู้"
 msgstr "ナレッジ"
 
-#: patterns/blog-loop.php:48
+#: patterns/blog-loop.php:43
 #: patterns/home-knowledge.php:37
 msgid "ยังไม่มีบทความ"
 msgstr "記事はまだありません"
@@ -1971,18 +1971,20 @@ msgctxt "Pattern description"
 msgid "Category buttons, a grid of the posts of this page (image, category, date, title, excerpt) and pagination. Used by the blog and category templates."
 msgstr ""
 
-#: patterns/blog-loop.php:39
+#: patterns/blog-loop.php:34
 msgid "ก่อนหน้า"
 msgstr "前へ"
 
-#: patterns/blog-loop.php:43
+#: patterns/blog-loop.php:38
 msgid "ถัดไป"
 msgstr "次へ"
 
-#: patterns/blog-loop.php:48
-msgid "บทความของเรามีเป็นภาษาไทยเป็นหลัก"
-msgstr "記事は主にタイ語で提供しています。"
+#: patterns/search-hero.php
+msgctxt "Pattern title"
+msgid "Search — Header"
+msgstr ""
 
-#: patterns/blog-loop.php:53
-msgid "อ่านบทความภาษาไทย"
-msgstr "タイ語の記事を読む"
+#: patterns/search-hero.php
+msgctxt "Pattern description"
+msgid "Title and search field at the top of the search results page."
+msgstr ""

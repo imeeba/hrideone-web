@@ -32,6 +32,7 @@ ICONS = {
     "caret-right": ("caret-right", False),
     "caret-down": ("caret-down", False),   # language dropdown
     "globe": ("globe", False),             # language dropdown
+    "magnifying-glass": ("magnifying-glass", False),  # header search (button, results page)
     "list": ("list", False),               # menu open
     "x": ("x", False),                     # menu close
     "play": ("play", False),               # hero video (via hriL10n.hero.icons)

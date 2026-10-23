@@ -1,0 +1,147 @@
+/* Search form.
+   dropdown = header, desktop only (>= 1100px): a search icon that opens a field
+   inline   = inside the menu overlay (mobile and tablet, < 1100px)
+   page     = results page and 404 */
+
+.hri-sf__form {
+	align-items: stretch;
+	display: flex;
+	gap: var(--wp--preset--spacing--20);
+	margin: 0;
+}
+
+.hri-sf__input {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--primary-strong);
+	border-radius: var(--wp--custom--radius--pill);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--contrast);
+	flex: 1 1 auto;
+	font: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: 0;
+	padding: 0.5rem 1rem;
+}
+
+.hri-sf__input:focus-visible,
+.hri-sf__submit:focus-visible,
+.hri-sf__details > summary:focus-visible {
+	box-shadow: var(--hri-ring);
+	outline: none;
+}
+
+.hri-sf__submit {
+	align-items: center;
+	background: var(--wp--preset--color--primary-strong);
+	border: 0;
+	border-radius: var(--wp--custom--radius--pill);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--base);
+	cursor: pointer;
+	display: inline-flex;
+	flex: none;
+	font: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+	gap: 6px;
+	justify-content: center;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
+	padding: 0.5rem 1rem;
+}
+
+.hri-sf__submit:hover {
+	background: var(--wp--preset--color--primary-deep);
+}
+
+.hri-sf__icon {
+	block-size: 20px;
+	flex: none;
+	inline-size: 20px;
+}
+
+/* ---------- Dropdown (header) ---------- */
+.hri-sf--dropdown {
+	display: none;
+	position: relative;
+}
+
+@media (min-width: 1100px) {
+	.hri-sf--dropdown {
+		display: block;
+	}
+}
+
+.hri-sf__details > summary {
+	align-items: center;
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--pill);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--contrast);
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	list-style: none;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
+	user-select: none;
+}
+
+.hri-sf__details > summary::-webkit-details-marker {
+	display: none;
+}
+
+.hri-sf__details > summary:hover,
+.hri-sf__details[open] > summary {
+	background: var(--wp--preset--color--surface-brand);
+	border-color: var(--wp--preset--color--primary-strong);
+}
+
+.hri-sf__panel {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	box-shadow: var(--wp--preset--shadow--md);
+	inline-size: min(24rem, 90vw);
+	inset: calc(100% + 6px) 0 auto auto;
+	padding: var(--wp--preset--spacing--30);
+	position: absolute;
+	z-index: 100;
+}
+
+/* ---------- Inline (inside the menu overlay) ---------- */
+.hri-sf--inline {
+	display: block;
+	inline-size: 100%;
+}
+
+@media (min-width: 1100px) {
+	.hri-sf--inline {
+		display: none;
+	}
+}
+
+/* ---------- Page (results page, 404) ---------- */
+.hri-sf--page {
+	max-inline-size: 40rem;
+}
+
+.hri-sf--page .hri-sf__input,
+.hri-sf--page .hri-sf__submit {
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+@media (max-width: 480px) {
+	.hri-sf--page .hri-sf__submit-label {
+		border: 0;
+		clip-path: inset(50%);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+	}
+}

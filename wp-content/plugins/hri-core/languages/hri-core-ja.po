@@ -79,6 +79,7 @@ msgstr "満席"
 msgid "ปิดรับสมัคร"
 msgstr "受付終了"
 
+#: blocks/search-results/render.php:20
 #: inc/content-model.php:92
 #: inc/content-model.php:93
 #: inc/content-model.php:94
@@ -221,7 +222,11 @@ msgstr "講座名で検索"
 msgid "ตัวกรอง"
 msgstr "絞り込み"
 
+#. translators: %s: what the visitor searched for
+#: blocks/search-form/render.php:29
+#: blocks/search-form/render.php:38
 #: inc/course-filter.php:357
+#: inc/search.php:1169
 msgid "ค้นหา"
 msgstr "検索"
 
@@ -679,6 +684,7 @@ msgid "ยังไม่มีวิทยากร"
 msgstr ""
 
 #: blocks/blog-filter/render.php:32
+#: blocks/search-results/render.php:73
 msgid "ทั้งหมด"
 msgstr "すべて"
 
@@ -733,7 +739,9 @@ msgstr "%d 件の記事をすべてインポートしました（各 TH / EN / J
 msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
 msgstr "完了するまでこのページを閉じないでください"
 
+#. translators: 1: done, 2: total
 #: inc/blog-import.php:483
+#: inc/search-admin.php:74
 msgid "ทำต่อ"
 msgstr "続行"
 
@@ -760,3 +768,163 @@ msgstr "前のページ"
 #: inc/course-filter.php:269
 msgid "หน้าถัดไป"
 msgstr "次のページ"
+
+#: blocks/search-form/render.php:24
+msgid "ค้นหาในเว็บไซต์"
+msgstr "サイト内を検索"
+
+#: blocks/search-form/render.php:26
+msgid "ค้นหาหลักสูตร บทความ…"
+msgstr "コース・記事を検索…"
+
+#: blocks/search-results/render.php:21
+msgid "บทความ"
+msgstr "記事"
+
+#: blocks/search-results/render.php:22
+msgid "หน้าเว็บ"
+msgstr "ページ"
+
+#: blocks/search-results/render.php:48
+msgid "พิมพ์คำที่ต้องการค้นหา เช่น เจรจา ผู้นำ โค้ชชิ่ง"
+msgstr "検索したい言葉を入力してください（例：交渉、リーダーシップ、コーチング）"
+
+#. translators: %s: the search words
+#: blocks/search-results/render.php:55
+#, php-format
+msgid "ไม่พบผลการค้นหาสำหรับ “%s”"
+msgstr "「%s」の検索結果は見つかりませんでした"
+
+#. translators: %s: the search words
+#: blocks/search-results/render.php:56
+msgid "ลองใช้คำที่สั้นลง คำที่ใกล้เคียง หรือพิมพ์เป็นภาษาอื่น เช่น negotiation แทน เจรจา"
+msgstr "もっと短い言葉や似た言葉、別の言語でもお試しください（例：negotiation の代わりに 交渉）。"
+
+#. translators: 1: number of results, 2: the search words
+#: blocks/search-results/render.php:62
+#, php-format
+msgid "พบ %1$s รายการสำหรับ “%2$s”"
+msgid_plural "พบ %1$s รายการสำหรับ “%2$s”"
+msgstr[0] "「%2$s」の検索結果：%1$s件"
+
+#: blocks/search-results/render.php:64
+msgid "ไม่มีรายการที่ตรงกับทุกคำ จึงแสดงรายการที่ตรงกับบางคำ"
+msgstr "すべての言葉に一致するものがないため、一部に一致するものを表示しています。"
+
+#: blocks/search-results/render.php:68
+msgid "ประเภทผลการค้นหา"
+msgstr "検索結果の種類"
+
+#. translators: 1: type (courses…), 2: number
+#: blocks/search-results/render.php:122
+#, php-format
+msgid "ดู%1$sทั้งหมด (%2$s)"
+msgstr "%1$sをすべて見る（%2$s）"
+
+#: blocks/search-results/render.php:126
+msgid "หน้าผลการค้นหา"
+msgstr "検索結果のページ"
+
+#: inc/search-admin.php:13
+#: inc/search-admin.php:69
+#: inc/search-admin.php:96
+msgid "การค้นหา"
+msgstr "検索"
+
+#. translators: 1: done, 2: total
+#: inc/search-admin.php:73
+#, php-format
+msgid "กำลังสร้างดัชนี… %1$s / %2$s"
+msgstr "インデックスを作成中… %1$s / %2$s"
+
+#: inc/search-admin.php:76
+msgid "สร้างดัชนีเสร็จแล้ว"
+msgstr "インデックスの作成が完了しました"
+
+#: inc/search-admin.php:77
+msgid "กลับ"
+msgstr "戻る"
+
+#: inc/search-admin.php:87
+msgid "คืนค่าเริ่มต้นแล้ว"
+msgstr "初期設定に戻しました"
+
+#: inc/search-admin.php:98
+msgid "คำที่มีความหมายเดียวกัน"
+msgstr "同義語"
+
+#: inc/search-admin.php:99
+msgid "หนึ่งบรรทัดต่อหนึ่งกลุ่ม คั่นคำด้วยเครื่องหมาย = เช่น เจรจา = negotiation = 交渉 เมื่อผู้เข้าชมค้นหาคำใดคำหนึ่ง จะเจอเนื้อหาที่มีคำอื่นในกลุ่มด้วย (มีผลทันที ไม่ต้องสร้างดัชนีใหม่)"
+msgstr "1行に1グループ、言葉は = で区切ります（例：เจรจา = negotiation = 交渉）。いずれかの言葉で検索すると、同じグループの他の言葉を含む内容も表示されます（すぐに反映され、インデックスの再作成は不要です）。"
+
+#: inc/search-admin.php:103
+msgid "บันทึก"
+msgstr "保存"
+
+#: inc/search-admin.php:107
+msgid "คืนค่าเริ่มต้น"
+msgstr "初期設定に戻す"
+
+#: inc/search-admin.php:110
+msgid "ดัชนีการค้นหา"
+msgstr "検索インデックス"
+
+#: inc/search-admin.php:112
+msgid "วิธีตัดคำ"
+msgstr "単語分割方式"
+
+#: inc/search-admin.php:113
+msgid "เอกสารในดัชนี"
+msgstr "インデックス内の文書数"
+
+#: inc/search-admin.php:114
+msgid "คำในดัชนี"
+msgstr "インデックス内の語数"
+
+#: inc/search-admin.php:115
+msgid "สร้างล่าสุด"
+msgstr "最終作成"
+
+#: inc/search-admin.php:117
+msgid "ดัชนีอัปเดตเองเมื่อบันทึกหลักสูตร บทความ หรือหน้า กดสร้างใหม่เมื่อนำเข้าเนื้อหาจำนวนมาก หรือเมื่อผลค้นหาดูไม่ตรง"
+msgstr "コース・記事・ページを保存すると、インデックスは自動で更新されます。大量のインポート後や、検索結果がおかしい場合は再作成してください。"
+
+#: inc/search-admin.php:118
+msgid "สร้างดัชนีใหม่ทั้งหมด"
+msgstr "インデックスをすべて再作成"
+
+#: inc/search-admin.php:120
+msgid "ทดลองค้นหา"
+msgstr "検索テスト"
+
+#: inc/search-admin.php:124
+msgid "ภาษา (th / en / ja)"
+msgstr "言語（th / en / ja）"
+
+#: inc/search-admin.php:125
+msgid "ทดลอง"
+msgstr "テスト"
+
+#. translators: 1: results, 2: milliseconds
+#: inc/search-admin.php:130
+#, php-format
+msgid "%1$s รายการ ใน %2$s ms"
+msgstr "%1$s件（%2$s ms）"
+
+#. translators: %s: what the visitor searched for
+#: inc/search.php:1169
+#, php-format
+msgid "ผลการค้นหา “%s”"
+msgstr "「%s」の検索結果"
+
+#: inc/search.php:1324
+msgid "หลักสูตรแนะนำ"
+msgstr "おすすめのコース"
+
+#: inc/search.php:1333
+msgid "ดูหลักสูตรทั้งหมด"
+msgstr "コース一覧を見る"
+
+#: inc/search.php:1335
+msgid "ติดต่อเรา"
+msgstr "お問い合わせ"

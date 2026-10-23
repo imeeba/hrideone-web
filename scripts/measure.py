@@ -37,9 +37,12 @@ DEFAULT_PAGES = [
     "/courses/coaching-mastery/",
     "/courses/negotiation-mastery/",
     "/contact-us/",
+    # Site search: results (cards + list) and no results (suggestions). th|en|ja = the query in each language.
+    "/?s=เจรจา|/?s=negotiation|/?s=交渉",
+    "/?s=zzxqvw",
 ]
 LANG_PREFIX = {"th": "", "en": "/en", "ja": "/ja"}
-NO_SUFFIX = {"/", "/courses/"}  # home and the course archive keep the same slug in every language
+NO_SUFFIX = {"/", "/courses/", "/?s=zzxqvw"}  # home and the course archive keep the same slug in every language
 # Pages whose EN / JA path does not follow the "-en" / "-ja" rule (old-site slugs kept).
 # Any --pages entry can also be written "th-path|en-path|ja-path" (paths without the /en /ja prefix).
 PATH_OVERRIDE = {"/blog/": {"ja": "/%E3%83%96%E3%83%AD%E3%82%B0/"}}

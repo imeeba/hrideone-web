@@ -14,11 +14,15 @@ add_action(
 
 		wp_register_style( 'hri-language', plugins_url( 'assets/language.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
 
+		wp_register_style( 'hri-search', plugins_url( 'assets/search.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+
+		wp_register_style( 'hri-search-results', plugins_url( 'assets/search-results.css', HRI_CORE_DIR . 'hri-core.php' ), array( 'hri-courses' ), HRI_CORE_VERSION );
+
 		wp_register_style( 'hri-company', plugins_url( 'assets/company.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
 
 		wp_register_style( 'hri-lead', plugins_url( 'assets/lead.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
 
-		foreach ( array( 'course-filter', 'course-facts', 'language-switcher', 'logo', 'company-text', 'contact-info', 'social-links', 'copyright', 'cta-band', 'course-highlight', 'lead-form', 'course-register', 'course-summary', 'course-trainers', 'blog-filter', 'related-posts' ) as $block ) {
+		foreach ( array( 'course-filter', 'course-facts', 'language-switcher', 'logo', 'company-text', 'contact-info', 'social-links', 'copyright', 'cta-band', 'course-highlight', 'lead-form', 'course-register', 'course-summary', 'course-trainers', 'blog-filter', 'related-posts', 'search-form', 'search-results' ) as $block ) {
 			register_block_type( HRI_CORE_DIR . 'blocks/' . $block );
 		}
 	},
