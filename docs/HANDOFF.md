@@ -3,7 +3,7 @@
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
 > อัปเดตล่าสุด: 2026-10-24 (รอบที่ 8: ไอคอนชุดใหม่ Phosphor Light ทั้งเว็บ + แก้ปุ่ม outline/ระยะป้าย/FAQ/ที่อยู่) · theme 0.10.0 / plugin 0.9.0
 >
-> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground · **ลำดับงานที่เหลือสำหรับ demo**: H (รูปจริงหน้าอื่น) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
+> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: H (รูปจริงหน้าอื่น) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
 >
 > **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
 
@@ -217,6 +217,13 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - About: พันธกิจ/วิสัยทัศน์/สาส์น/ไทม์ไลน์ เรียบเรียงจาก CONTENT-GAP ไม่ใช่ข้อความเต็มต้นฉบับ · ปีในไทม์ไลน์ยกเว้น 1993 ยังไม่ระบุ · Social Impact เป็น placeholder
 - คำแปล EN/JA ทั้งหมดเป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
 
+### เรื่องที่ยังไม่ได้ตัดสินใจ (จากรอบที่ 8: ตรวจ screenshot คอร์ส Lean / FAQ / footer)
+> Jimmi สั่งแก้เฉพาะข้อที่เป็นบั๊ก ข้อด้านล่างผมเสนอไว้แต่ยังไม่ได้คำตอบ → ยังไม่แก้ อย่าแก้เองโดยไม่ถาม
+- ✓ นำหน้าป้ายวันที่และราคาในหน้าคอร์ส (`.hri-chips`) สื่อว่า "จุดเด่น" ไม่เข้ากับวันที่/ราคา → ทางเลือก: ไอคอนปฏิทิน/ราคา หรือไม่มีไอคอน (ตอนนี้คงเป็น ✓ ชุดใหม่)
+- ชื่อนิติบุคคลในที่อยู่ไทย "เอช อาร์ ไอ ดีวัน จำกัด" ไม่มีคำว่า "บริษัท" นำหน้า (`hri_company_defaults()` / Settings → ข้อมูลบริษัท)
+- หน้าคอร์ส Lean: "TOYOTA" (hero) กับ "Toyota" (FAQ) สะกดต่างกัน · FAQ "ไม่ใช่แค่บันทึกความรู้" อ่านแปลก (เสนอ "ไม่ใช่แค่ความรู้บนกระดาษ") — Jimmi สั่งไม่แก้ในรอบนี้
+- ชื่อคอร์ส "Lean Transformation in 7 weeks" ตัว w เล็ก (ตามเว็บเดิม)
+
 ### ข้อมูลที่ต้องตรวจ (จากรอบที่ 6: บทความ)
 - **หมวดของ 63 เรื่องที่เว็บเดิมเป็น "ไม่มีหมวดหมู่"** ผมจัดเองจากชื่อเรื่อง (`CATEGORY_MAP` ใน `scripts/wxr-to-blog.py`) — Business = องค์กร/วัฒนธรรม/กลยุทธ์/HR/ข่าวบริษัท, Sales = ขาย/เจรจา, Coaching = ภาวะผู้นำ/ผู้จัดการ/พัฒนาตนเอง · ให้การตลาดตรวจ แก้ได้ 2 ทาง: แก้ใน wp-admin ทีละเรื่อง หรือแก้ map แล้วรันสคริปต์ + นำเข้าซ้ำ (การนำเข้าซ้ำจะทับที่แก้ใน wp-admin)
 - เรื่องที่ไม่มีรูปปกในเว็บเดิม: `why-do-managers-need-to-develop-leadership-skills` (และ EN/JA ของเรื่องนี้) → การ์ดไม่มีรูป
@@ -297,6 +304,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Screenshot ใน local: php -S รับทีละ request รูปบางรูปโหลดไม่ทัน (เห็นเป็นกล่องว่าง) ไม่ใช่บั๊ก — ตรวจด้วย `naturalWidth`
 - `?course=` ชนกับ query var ของ CPT `course` ทำให้หน้าเพี้ยน → ใช้ `?hri_course=`
 - **ปุ่มที่ PHP พิมพ์ HTML เอง** (`wp-block-button__link` นอก parser) ได้แค่สไตล์ element button ของ theme.json: ไม่มี CSS ของ core Button (ลิงก์ inline → padding ล้นกล่อง ทับของข้างล่าง) และไม่มี variation `outline` → `wp_enqueue_style( 'wp-block-button' )` + กฎ outline ใน `base.css` (หน้าอื่นไม่เห็นปัญหาเพราะมี Button block จริงในหน้า)
+- ปิดงานแล้วต้องหยุดเซิร์ฟเวอร์ local (`php -S` ที่รันเป็น background task) ด้วย ไม่งั้นแอปของ Jimmi แสดงว่ายังทำงานอยู่
 - ไอคอนใน CSS ใช้ `mask` → สีคือ `background-color` ไม่ใช่ `color` · ไอคอนใหม่ต้องเพิ่มใน `scripts/build-icons.py` (ตัวแปร CSS มีเฉพาะที่ตั้ง `True`)
 - วัด overflow ด้วย JS ต้องข้ามช่อง honeypot `.hri-lead__hp` (ซ่อนนอกจอโดยตั้งใจ) ไม่งั้นทุกหน้าที่มีฟอร์มโดน flag ผิด
 - `scripts/local-setup.sh` เมื่อรันผ่าน pipe (`| tail`) ในเครื่องมือที่มี timeout อาจค้างหลังติดตั้ง+seed เสร็จแล้ว (เซิร์ฟเวอร์ `php -S` ที่สคริปต์เปิดไว้ยังเป็น child) → รันแบบ background หรือเปลี่ยนเป็น `> log 2>&1` แล้วเช็กว่าเสร็จด้วย `curl -sI http://127.0.0.1:8899/wp/` และ `wp post list --post_type=course --format=count` (ได้ 21 หลัง seed)
@@ -341,7 +349,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
 อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ดึงเนื้อหาจริงของคอร์ส In-house ที่เหลือ 14 คอร์สจาก https://hrideone.com/courses/<slug>/ (slug ดูใน playground/seed.php) เรียบเรียงใหม่ ไม่คัดลอกยาว ใส่ใน hri_seed_inhouse_courses() ทั้ง TH/EN/JA (ใช้โครง Coaching Mastery) แล้ว seed ตรวจหน้า ข้อมูลไหนไม่แน่ใจให้ flag ใน HANDOFF ข้อ 6
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -352,7 +360,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
 อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: วางแผนและทำเครื่องมือ/ขั้นตอนนำเข้าบทความ ~150 เรื่องจาก hrideone.com (WordPress Export/Import คง slug รวม slug พิมพ์ผิดเดิม) ตรวจรูปปก หมวด Business/Sales/Coaching เปลี่ยน 'ไม่มีหมวดหมู่' เป็นชื่อจริง ทำ pagination /blog/page/N ให้ตรงเดิม และเสนอวิธีแปล EN/JA บางเรื่อง + ชื่อหมวด EN/JA (ถามผมก่อนถ้าต้องเสียเงิน)
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -363,7 +371,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
 อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ทำค้นหาทั้งเว็บภาษาไทย (หน้าผลลัพธ์ search.html, ค้นทั้งคอร์ส/บทความ/หน้า, synonym map แก้ได้จากหลังบ้าน, ไม่ใช้ปลั๊กอินเสียเงิน) ใช้ Polylang กรองภาษา
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -381,7 +389,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 6. เนื้อหาเพื่อ AI: เพิ่มใน pattern หน้าคอร์สให้มีย่อหน้าสรุปบนสุด (คืออะไร/เหมาะกับใคร/ได้อะไร) ถ้ายังไม่มี · บทความแสดง "อัปเดตล่าสุด" ถ้าแก้หลังเผยแพร่
 เกณฑ์ผ่าน: JSON-LD ทุกแบบหน้าผ่าน schema validator (ตรวจด้วยสคริปต์ใน local ถ้าเข้าเว็บ validator ไม่ได้) · sitemap ครบ 345 บทความ + หน้า + คอร์ส 3 ภาษา · hreflang ครบทุกหน้าที่มีคำแปล · measure.py 0 ปัญหา
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -392,7 +400,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
 อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ทำรายการ 301 redirects จากโครงสร้าง URL เว็บเดิม (/public-training/*, /courses/*, หน้าย่อยบริการเช่น /transformation-solutions/business-strategy/ → anchor ของหน้าหลัก, /blog/page/N) เป็นไฟล์/โมดูลใน hri-core ที่แก้ได้จากหลังบ้านแบบไม่ต้องเขียนโค้ด พร้อมเช็คลิสต์ย้ายเว็บ
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -403,7 +411,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
 อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: แก้ปัญหาใน HANDOFF หัวข้อ 'ปัญหานอกขอบเขต': tap target ≥44px ของ header/footer/course filter และชื่อคอร์สตัดกลางคำในการ์ดแคบ ตรวจ 1280/768/375 × TH/EN/JA
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -420,7 +428,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 2. ทำทีละเฟส ทดสอบด้วย provider fake ตามข้อ 6 ทุกข้อ
 3. ห้ามยิง API จริงถ้าผมไม่ได้ให้ key · ถ้าได้ key ใส่ใน wp-config ของ local เท่านั้น ห้าม commit
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความ UI ใหม่แปลได้ TH/EN/JA (gettext ตามวิธีใน HANDOFF ข้อ 4/8) · สี/ขนาดใช้ token เท่านั้น · ไม่เพิ่ม plugin และไม่มี build step · ทีมการตลาดต้องใช้งาน/ตั้งค่าจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo · ห้ามส่งข้อมูล Lead ไป provider
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความ UI ใหม่แปลได้ TH/EN/JA (gettext ตามวิธีใน HANDOFF ข้อ 4/8) · สี/ขนาดใช้ token เท่านั้น · ไม่เพิ่ม plugin และไม่มี build step · ทีมการตลาดต้องใช้งาน/ตั้งค่าจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo · ห้ามส่งข้อมูล Lead ไป provider
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · ตามข้อ 6 ของ AUTO-TRANSLATE.md · python3 -I scripts/measure.py ต้องผ่านเหมือนเดิม · screenshot เฉพาะกล่อง "การแปล" และหน้า "งานแปล"
 ปิดงาน: อัปเดต AUTO-TRANSLATE.md (สถานะ, สิ่งที่ต่างจากสเปก, ข้อ 7 ค่าใช้จ่ายถ้าทดสอบจริง) + HANDOFF (ข้อ 4 สถาปัตยกรรม, ข้อ 5, ข้อ 7) + README · bump Version plugin/theme · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -436,7 +444,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 4. รูปไหนหาไม่เจอให้คง placeholder แล้วจดใน HANDOFF ข้อ 6
 เกณฑ์ผ่าน: เปิดลิงก์ demo แล้วรูปขึ้นทุกตำแหน่งในตาราง (ตรวจ naturalWidth > 0 ด้วย JS ใน Playground จริงผ่าน built-in browser) · ไม่มี URL hrideone.com เหลือใน seed · measure.py 0 ปัญหา · เวลาบูต Playground จดไว้
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -452,7 +460,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 4. ทดสอบกับรูปตัวอย่าง + รูปที่มีตัวหนังสือ (เอาจาก playground/media) เทียบ quality 70 กับ 78 ให้ผมดู 2–3 คู่
 เกณฑ์ผ่าน: อัปโหลด JPG แล้วใน uploads ไม่มี .jpg เหลือ · ขนาดไฟล์ก่อน/หลังจดใน HANDOFF · การ์ดโหลดรูป ≤ ~80KB · โหมด download ของ Tools → นำเข้าบทความ ยังทำงาน · measure.py 0 ปัญหา
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
@@ -472,7 +480,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 8. จดสิ่งที่ต้องทำฝั่งโฮสต์ไว้ใน docs/HOSTING.md (cache header 1 ปี, Brotli, HTTP/3, Rcache, Cloudflare) — ห้ามแตะโฮสต์
 เกณฑ์ผ่าน: local ไม่ใช่ตัวแทนความเร็วโฮสต์ จึงวัดคะแนนส่วน LCP/CLS/TBT/น้ำหนักหน้า: mobile ≥90 ทุกหน้า (เป้า 95) · CLS < 0.1 · หน้าแรกไม่รวมวิดีโอ < 500KB · measure.py 0 ปัญหา · ตารางก่อน/หลังใน HANDOFF
 
-กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
