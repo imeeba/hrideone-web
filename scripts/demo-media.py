@@ -86,6 +86,7 @@ def main():
 
     with open(DATA, encoding='utf-8') as f:
         text = f.read()
+    text_before = text
     manifest = {}
     if os.path.exists(MANIFEST):
         with open(MANIFEST, encoding='utf-8') as f:
@@ -164,11 +165,13 @@ def main():
             removed += len(blocks) - len(keep)
             item['content'] = '\n\n'.join(keep)
     text = json.dumps(data, ensure_ascii=False, indent=1)
+    original = text_before
     text = OLD.sub(swap, text)
-    with open(DATA, 'w', encoding='utf-8') as f:
-        f.write(text)
-    with open(DATA + '.gz', 'wb') as f:
-        f.write(gzip.compress(text.encode('utf-8'), mtime=0))
+    if text != original:  # unchanged data: leave the files alone (gzip bytes differ between zlib versions)
+        with open(DATA, 'w', encoding='utf-8') as f:
+            f.write(text)
+        with open(DATA + '.gz', 'wb') as f:
+            f.write(gzip.compress(text.encode('utf-8'), mtime=0))
     if removed:
         print(f'{removed} broken images (404 on the old site) removed from the articles')
 
