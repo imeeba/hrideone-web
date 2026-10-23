@@ -47,6 +47,7 @@ playground/
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
 scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
 docs/HANDOFF.md          สถานะงานและบริบท
+docs/AUTO-TRANSLATE.md   สเปกแปลอัตโนมัติ TH → EN/JA (ยังไม่ได้ทำ)
 ```
 
 ## แก้ Design Token

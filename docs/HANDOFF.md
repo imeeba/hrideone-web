@@ -196,16 +196,16 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
-0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้)
+0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
 2. **รูป/วิดีโอจริง**: โลโก้ลูกค้า 40, รูปผู้บริหาร, Gallery ต่อคอร์ส (บรรยากาศรุ่นก่อน), รูปวิทยากร, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), วิดีโอแนวตั้งใน Outcomes ของคอร์ส In-house
 3. **นำเข้าบทความ ~150 เรื่อง** (WordPress Export/Import คง slug) + ตัดสินใจว่าจะแปลบทความ EN/JA บางเรื่องไหม + แปลชื่อหมวด EN/JA
 4. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
 5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, Article, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots/llms.txt
 6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, เว็บเดิมมี `/blog/page/N`)
-7. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi ค่าใช้จ่ายก่อน · และให้คนตรวจ JA
+7. **แปลอัตโนมัติ TH → EN/JA** — สเปกเต็ม: [`docs/AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) (ทำเองใน hri-core ต่อยอด Polylang ฟรี, แปลทีละ block, ไม่ทับ block ที่คนตรวจแก้, สถานะ 🤖/✅/⚠️, JA noindex จนกว่าตรวจ, จ่าย API ตามใช้ + เพดานงบ) · prompt G ในข้อ 10 · ต้องได้คำตอบข้อ 3.3 ก่อน
 8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ, Blog UI (contrast หมวด + pagination) ดูหัวข้อ "ปัญหานอกขอบเขต"
-9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม)
+9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม) และไป API แปลภาษา, WP-Cron/cron จริง, purge Rcache รายหน้าจากโค้ด (ดู AUTO-TRANSLATE.md ข้อ 3.4)
 10. Cloud staging (`new.hrideone.com`) · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
 
 ## 8. ข้อควรระวัง / สิ่งที่เคยพลาด
@@ -333,4 +333,21 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**G. แปลอัตโนมัติ TH → EN/JA** (ตอบ AUTO-TRANSLATE.md ข้อ 3.3 ข้อ 1 ก่อน แล้วแก้บรรทัด "ผู้ให้บริการ" ด้านล่าง)
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2, 4, 6–8) และ docs/AUTO-TRANSLATE.md ทั้งไฟล์ แล้วทำงานนี้บน branch feature/auto-translate: ระบบแปลอัตโนมัติ TH → EN/JA ตามสเปก AUTO-TRANSLATE.md ข้อ 4 ทำตามลำดับเฟสในข้อ 5 (ถ้าใหญ่เกินแชทเดียว ทำให้จบเฟสที่ทำได้แล้วปิดงานตามปกติ จดเฟสที่เหลือใน HANDOFF)
+ผู้ให้บริการ: <anthropic | openai | deepl> — ทำ adapter ตัวนี้ + fake · ค่าเริ่มต้นอื่นใช้ตามข้อ 3.2
+
+ลำดับ:
+1. พิสูจน์ก่อนว่า block editor เก็บ metadata.hriId ไว้หลังเปิด-บันทึก (ทดสอบใน editor จริงใน local) แล้วเลือกวิธีจับคู่ block ตามข้อ 4.2 บอกผลผมสั้นๆ แล้วทำต่อ
+2. ทำทีละเฟส ทดสอบด้วย provider fake ตามข้อ 6 ทุกข้อ
+3. ห้ามยิง API จริงถ้าผมไม่ได้ให้ key · ถ้าได้ key ใส่ใน wp-config ของ local เท่านั้น ห้าม commit
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความ UI ใหม่แปลได้ TH/EN/JA (gettext ตามวิธีใน HANDOFF ข้อ 4/8) · สี/ขนาดใช้ token เท่านั้น · ไม่เพิ่ม plugin และไม่มี build step · ทีมการตลาดต้องใช้งาน/ตั้งค่าจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo · ห้ามส่งข้อมูล Lead ไป provider
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · ตามข้อ 6 ของ AUTO-TRANSLATE.md · python3 -I scripts/measure.py ต้องผ่านเหมือนเดิม · screenshot เฉพาะกล่อง "การแปล" และหน้า "งานแปล"
+ปิดงาน: อัปเดต AUTO-TRANSLATE.md (สถานะ, สิ่งที่ต่างจากสเปก, ข้อ 7 ค่าใช้จ่ายถ้าทดสอบจริง) + HANDOFF (ข้อ 4 สถาปัตยกรรม, ข้อ 5, ข้อ 7) + README · bump Version plugin/theme · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
