@@ -747,6 +747,37 @@ video {
 .hri-post {
 	display: flex;
 	flex-direction: column;
+	position: relative;
+}
+
+/* The whole card opens the article (stretched title link); the category link stays on top. */
+.hri-post .wp-block-post-title a::after {
+	content: "";
+	inset: 0;
+	position: absolute;
+}
+
+.hri-post .hri-post__cat a {
+	position: relative;
+	z-index: 1;
+}
+
+/* Excerpt: 3 lines at most (Thai / Japanese have no spaces, so a word count does not shorten them). */
+.hri-post .wp-block-post-excerpt__excerpt {
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	overflow: hidden;
+}
+
+.hri-post:has(.wp-block-post-title a:focus-visible) {
+	outline: 2px solid var(--wp--preset--color--primary-strong);
+	outline-offset: 2px;
+}
+
+.hri-post .wp-block-post-title a:focus-visible {
+	outline: none;
 }
 
 .hri-post__body {
@@ -1695,20 +1726,83 @@ video {
 }
 
 .hri-blogfilter a[aria-current="page"] {
-	background: var(--wp--preset--color--primary);
-	border-color: var(--wp--preset--color--primary);
+	background: var(--wp--preset--color--primary-strong);
+	border-color: var(--wp--preset--color--primary-strong);
 	color: var(--wp--preset--color--base);
 }
 
+.hri-blogfilter a:focus-visible,
+.hri-posts--list .wp-block-query-pagination a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--primary-strong);
+	outline-offset: 2px;
+}
+
+/* Category label: text colour must pass AA on white (primary is for fills only). */
 .hri-post__cat,
 .hri-post__cat a {
-	color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary-strong);
 	font-weight: 600;
 	text-decoration: none;
 }
 
+.hri-post__cat a {
+	align-items: center;
+	box-sizing: border-box;
+	display: inline-flex;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
+}
+
+.hri-post__cat a:hover {
+	text-decoration: underline;
+}
+
+/* Pagination of the blog / category pages (core Query Pagination): 44px targets, current page filled. */
 .hri-posts--list .wp-block-query-pagination {
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
 	margin-block-start: var(--wp--preset--spacing--60);
+}
+
+.hri-posts--list .wp-block-query-pagination-numbers {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
+	justify-content: center;
+}
+
+.hri-posts--list .wp-block-query-pagination a,
+.hri-posts--list .wp-block-query-pagination .page-numbers {
+	align-items: center;
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--sm);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--contrast);
+	display: inline-flex;
+	gap: 0.4em;
+	justify-content: center;
+	margin: 0;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
+	padding: 0 0.75rem;
+	text-decoration: none;
+}
+
+.hri-posts--list .wp-block-query-pagination a:hover {
+	border-color: var(--wp--preset--color--primary-strong);
+	color: var(--wp--preset--color--primary-strong);
+}
+
+.hri-posts--list .wp-block-query-pagination .page-numbers.current {
+	background: var(--wp--preset--color--primary-strong);
+	border-color: var(--wp--preset--color--primary-strong);
+	color: var(--wp--preset--color--base);
+}
+
+.hri-posts--list .wp-block-query-pagination .page-numbers.dots {
+	border-color: transparent;
+	min-inline-size: auto;
+	padding: 0;
 }
 
 .hri-banner--archive .wp-block-term-description {

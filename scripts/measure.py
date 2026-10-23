@@ -40,6 +40,9 @@ DEFAULT_PAGES = [
 ]
 LANG_PREFIX = {"th": "", "en": "/en", "ja": "/ja"}
 NO_SUFFIX = {"/", "/courses/"}  # home and the course archive keep the same slug in every language
+# Pages whose EN / JA path does not follow the "-en" / "-ja" rule (old-site slugs kept).
+# Any --pages entry can also be written "th-path|en-path|ja-path" (paths without the /en /ja prefix).
+PATH_OVERRIDE = {"/blog/": {"ja": "/%E3%83%96%E3%83%AD%E3%82%B0/"}}
 
 PHP_RE = re.compile(r"(Notice|Warning|Deprecated|Fatal error|Parse error)</b>:|<b>(Notice|Warning|Deprecated|Fatal error)</b>:|PHP (Notice|Warning|Deprecated|Fatal)")
 
@@ -199,6 +202,11 @@ MEASURE_JS = r"""
 
 
 def page_url(base, lang, path):
+    if "|" in path:
+        parts = dict(zip(("th", "en", "ja"), path.split("|")))
+        return base.rstrip("/") + LANG_PREFIX[lang] + parts.get(lang, parts["th"])
+    if lang in PATH_OVERRIDE.get(path, {}):
+        return base.rstrip("/") + LANG_PREFIX[lang] + PATH_OVERRIDE[path][lang]
     if lang == "th" or path in NO_SUFFIX:
         p = LANG_PREFIX[lang] + path
     else:

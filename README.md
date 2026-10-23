@@ -41,10 +41,12 @@ wp-content/
   plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter + วิทยากร), ฟอร์ม Lead, ภาษา (Polylang), ข้อมูลบริษัท + blocks ของ footer/บล็อก
 playground/
   blueprint.json         ตั้งค่า Playground preview
-  seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, บทความ 3 เรื่อง, หน้าแรก, In-house / Public Training / Transformation / Japanese Concept, Style Guide)
+  seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, หน้าแรก, In-house / Public Training / Transformation / Japanese Concept, Style Guide) + นำเข้าบทความจริง
+  data/blog-posts.json   บทความเว็บเดิม 115 เรื่อง × TH/EN/JA (สร้างด้วย scripts/wxr-to-blog.py, .gz ไว้อัปโหลดที่ Tools → นำเข้าบทความ)
   seed-home.php          สร้างเนื้อหาหน้าจาก patterns ตามภาษา (hri_seed_page_content(), ใช้ร่วมกันสองไฟล์)
   seed-languages.php     คำแปลตัวอย่าง EN / JA (หลังตั้งค่า Polylang)
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
+scripts/wxr-to-blog.py   แปลงไฟล์ Export (WXR) ของเว็บเดิมเป็น playground/data/blog-posts.json
 scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
 docs/HANDOFF.md          สถานะงานและบริบท
 docs/AUTO-TRANSLATE.md   สเปกแปลอัตโนมัติ TH → EN/JA (ยังไม่ได้ทำ)

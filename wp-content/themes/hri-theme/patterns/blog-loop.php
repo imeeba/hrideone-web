@@ -9,11 +9,6 @@
  * @package hri-theme
  */
 
-$hri_thai_blog = '';
-if ( function_exists( 'pll_current_language' ) && 'th' !== pll_current_language() && function_exists( 'pll_get_post' ) && get_option( 'page_for_posts' ) ) {
-	$hri_thai_id   = (int) pll_get_post( (int) pll_get_post( (int) get_option( 'page_for_posts' ) ) ?: (int) get_option( 'page_for_posts' ), 'th' );
-	$hri_thai_blog = $hri_thai_id ? get_permalink( $hri_thai_id ) : '';
-}
 ?>
 <!-- wp:group {"align":"full","className":"hri-section hri-bloglist","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|80"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group alignfull hri-section hri-bloglist" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--80)"><!-- wp:hri/blog-filter /-->
@@ -45,15 +40,8 @@ if ( function_exists( 'pll_current_language' ) && 'th' !== pll_current_language(
 
 <!-- wp:query-no-results -->
 <!-- wp:paragraph {"align":"center","fontSize":"large"} -->
-<p class="has-text-align-center has-large-font-size"><?php echo esc_html( $hri_thai_blog ? __( 'บทความของเรามีเป็นภาษาไทยเป็นหลัก', 'hri-theme' ) : __( 'ยังไม่มีบทความ', 'hri-theme' ) ); ?></p>
+<p class="has-text-align-center has-large-font-size"><?php echo esc_html( __( 'ยังไม่มีบทความ', 'hri-theme' ) ); ?></p>
 <!-- /wp:paragraph -->
-<?php if ( $hri_thai_blog ) : ?>
-<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $hri_thai_blog ); ?>"><?php esc_html_e( 'อ่านบทความภาษาไทย', 'hri-theme' ); ?></a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons -->
-<?php endif; ?>
 <!-- /wp:query-no-results --></div>
 <!-- /wp:query --></div>
 <!-- /wp:group -->

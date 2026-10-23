@@ -224,43 +224,15 @@ if ( $home ) {
 	}
 }
 
-// Blog posts (home page "Knowledge" section). Machine-made titles: JA needs a review.
-$post_titles = array(
-	'hri-deone-launch-event-develop-leaders'        => array(
-		'en' => 'HRI DeOne officially launches with “Develop Leaders, Transform the Future”',
-		'ja' => 'HRI DeOne、「Develop Leaders, Transform the Future」で正式始動',
-	),
-	'why-leadership-remains-human-in-the-age-of-ai' => array(
-		'en' => 'When AI runs the world, why does the captain’s chair still belong to people?',
-		'ja' => 'AIが世界を動かす時代に、なぜ「船長の椅子」は人間のものなのか',
-	),
-	'why-success-ompanies-fail-in-15-years'         => array(
-		'en' => 'Why once-strong organizations disappear within 15 years',
-		'ja' => 'かつて強かった組織が15年で消えていく理由',
-	),
-);
-foreach ( $post_titles as $slug => $titles ) {
-	$source = get_posts( array( 'post_type' => 'post', 'name' => $slug, 'post_status' => 'publish', 'numberposts' => 1, 'lang' => 'th' ) );
-	if ( ! $source ) {
-		continue;
-	}
-	foreach ( $targets as $lang ) {
-		$id = $translate(
-			$source[0]->ID,
-			$lang,
-			array(
-				'post_title'   => $titles[ $lang ],
-				'post_date'    => $source[0]->post_date,
-				'post_content' => 'en' === $lang
-					? '<!-- wp:paragraph --><p>Sample text. The full article is on the current website.</p><!-- /wp:paragraph -->'
-					: '<!-- wp:paragraph --><p>サンプル文です。記事の全文は現在のウェブサイトに掲載されています。</p><!-- /wp:paragraph -->',
-			)
-		);
-		$thumb = get_post_thumbnail_id( $source[0]->ID );
-		if ( $id && $thumb ) {
-			set_post_thumbnail( $id, $thumb );
-		}
-	}
+// Blog: the real articles of the old site in TH / EN / JA, linked as translations
+// (playground/data/blog-posts.json, made by scripts/wxr-to-blog.py). Images stay on hrideone.com here.
+$blog_file = is_readable( __DIR__ . '/data/blog-posts.json' ) ? __DIR__ . '/data/blog-posts.json' : __DIR__ . '/hri-blog-posts.json';
+$blog_data = hri_blog_import_read( $blog_file );
+if ( is_wp_error( $blog_data ) ) {
+	echo $blog_data->get_error_message() . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput
+} else {
+	$blog_stats = hri_blog_import( $blog_data );
+	echo "Imported {$blog_stats['total']} articles (created {$blog_stats['created']}, updated {$blog_stats['updated']}).\n"; // phpcs:ignore WordPress.Security.EscapeOutput
 }
 
 // Header / footer texts (Polylang strings, Languages → Translations). Thai menu labels stay English.
@@ -290,11 +262,12 @@ foreach ( $targets as $lang ) {
 	$mo->export_to_db( $language );
 }
 
-// Blog page of each language (the posts page). Posts exist in Thai only: EN / JA show a notice.
+// Blog page of each language (the posts page). JA keeps the old site's slug (/ja/ブログ/); EN cannot
+// reuse "blog" (taken by TH, Polylang free) → /en/blog-en/, the old /en/blog/ redirects (hri-core blog.php).
 $blog_th = get_page_by_path( 'blog' );
 if ( $blog_th ) {
-	foreach ( array( 'en' => 'Blog', 'ja' => 'ブログ' ) as $lang => $title ) {
-		$translate( $blog_th->ID, $lang, array( 'post_title' => $title, 'post_content' => '' ) );
+	foreach ( array( 'en' => array( 'Blog', 'blog-en' ), 'ja' => array( 'ブログ', 'ブログ' ) ) as $lang => $page ) {
+		$translate( $blog_th->ID, $lang, array( 'post_title' => $page[0], 'post_name' => $page[1], 'post_content' => '' ) );
 	}
 }
 

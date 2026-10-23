@@ -690,3 +690,66 @@ msgstr "Article categories"
 #: blocks/related-posts/render.php:47
 msgid "บทความที่เกี่ยวข้อง"
 msgstr "Related articles"
+
+#: inc/blog-import.php:30
+msgid "อ่านไฟล์นำเข้าไม่ได้"
+msgstr "The import file cannot be read"
+
+#: inc/blog-import.php:38
+msgid "ไฟล์นำเข้าไม่ใช่รูปแบบที่ถูกต้อง (ต้องสร้างจาก scripts/wxr-to-blog.py)"
+msgstr "The import file is not in the right format (make it with scripts/wxr-to-blog.py)"
+
+#: inc/blog-import.php:380
+#: inc/blog-import.php:444
+msgid "นำเข้าบทความจากเว็บเดิม"
+msgstr "Import articles from the old site"
+
+#: inc/blog-import.php:381
+msgid "นำเข้าบทความ"
+msgstr "Import articles"
+
+#. translators: %s: upload size limit, e.g. 2 MB
+#: inc/blog-import.php:418
+#, php-format
+msgid "ไฟล์ใหญ่เกินขนาดอัปโหลดของโฮสต์ (%s) ให้ใช้ไฟล์ blog-posts.json.gz แทน"
+msgstr "The file is larger than the host's upload limit (%s). Use blog-posts.json.gz instead."
+
+#: inc/blog-import.php:420
+msgid "อัปโหลดไฟล์ไม่สำเร็จ"
+msgstr "The file could not be uploaded"
+
+#. translators: 1: articles done, 2: total
+#: inc/blog-import.php:433
+#, php-format
+msgid "นำเข้าแล้ว %1$d จาก %2$d เรื่อง กำลังทำต่อ…"
+msgstr "Imported %1$d of %2$d articles, continuing…"
+
+#. translators: %d: number of articles (each in TH / EN / JA)
+#: inc/blog-import.php:437
+#, php-format
+msgid "นำเข้าครบ %d เรื่องแล้ว (แต่ละเรื่องมี TH / EN / JA)"
+msgstr "All %d articles imported (each in TH / EN / JA)"
+
+#: inc/blog-import.php:452
+msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
+msgstr "Do not close this page until it is done"
+
+#: inc/blog-import.php:454
+msgid "ทำต่อ"
+msgstr "Continue"
+
+#: inc/blog-import.php:458
+msgid "ใช้ไฟล์ blog-posts.json.gz (หรือ .json) ที่สร้างจากไฟล์ Export ของเว็บเดิม (scripts/wxr-to-blog.py) นำเข้าซ้ำได้ บทความเดิมจะถูกอัปเดต ไม่สร้างซ้ำ"
+msgstr "Use blog-posts.json.gz (or .json) made from the old site's export file (scripts/wxr-to-blog.py). You can import again: existing articles are updated, not duplicated."
+
+#: inc/blog-import.php:463
+msgid "คัดลอกรูปเข้าคลังสื่อ (ต้องทำตอนเว็บเดิมยังเปิดอยู่)"
+msgstr "Copy the images into the media library (while the old site is still online)"
+
+#: inc/blog-import.php:464
+msgid "ใช้รูปจากเว็บเดิม (สำหรับเว็บทดสอบ)"
+msgstr "Use the images on the old site (for test sites)"
+
+#: inc/blog-import.php:465
+msgid "เริ่มนำเข้า"
+msgstr "Start import"

@@ -278,66 +278,23 @@ foreach ( $pages as $slug => $title ) {
 	);
 }
 
-// Blog posts for the home page "Knowledge" section: titles and slugs from the current site,
-// body text is a placeholder.
-$posts = array(
-	array( 'hri-deone-launch-event-develop-leaders', 'HRI DeOne เปิดตัว อย่างเป็นทางการกับงาน “Develop Leaders, Transform the Future”', '-3 days', 1, 'business' ),
-	array( 'why-leadership-remains-human-in-the-age-of-ai', 'เมื่อ AI ครองโลก ทำไม ‘เก้าอี้กัปตัน’ ถึงยังต้องเป็นของมนุษย์?', '-10 days', 2, 'business' ),
-	array( 'why-success-ompanies-fail-in-15-years', 'ทำไมองค์กรที่เคยแข็งแกร่ง ถึงล้มหายไปใน 15 ปี', '-17 days', 3, 'business' ),
-	// Sample posts: titles written from the real slugs (placeholders; the real posts are imported from the old site).
-	array( 'top-reasons-digital-transformation-fails', 'Top Reasons Digital Transformation Fails', '-24 days', 4, 'business' ),
-	array( 'unlock-data-power-for-superior-sales-strategy', 'Unlock Data Power for Superior Sales Strategy', '-31 days', 1, 'sales' ),
-	array( 'pride-month-workplace-diversity-matters', 'Pride Month: Why Workplace Diversity Matters', '-38 days', 2, 'business' ),
-	array( 'why-esg-matters-impact-cases-on-organizations', 'Why ESG Matters: Impact Cases on Organizations', '-45 days', 3, 'business' ),
-	array( 'why-do-managers-need-to-develop-leadership-skills', 'Why Do Managers Need to Develop Leadership Skills?', '-52 days', 4, 'coaching' ),
-	array( '5-ways-to-avoid-employees-feeling-alienated', '5 Ways to Avoid Employees Feeling Alienated', '-59 days', 1, 'coaching' ),
-	array( '7-ways-to-change-yourself-to-share-your-opinion', '7 Ways to Change Yourself to Share Your Opinion', '-66 days', 2, 'coaching' ),
-	array( '4-tips-to-solve-silo-problem', '4 Tips to Solve the Silo Problem', '-73 days', 3, 'business' ),
-	array( 'professional-manager-can-create-different-results', 'A Professional Manager Can Create Different Results', '-80 days', 4, 'coaching' ),
-	array( 'challenges-of-culture-in-the-new-era-organization', 'Challenges of Culture in the New-Era Organization', '-87 days', 1, 'business' ),
-	array( 'too-kind-boss-is-silent-danger-in-organization', 'Too Kind Boss Is a Silent Danger in the Organization', '-94 days', 2, 'coaching' ),
-	array( 'understanding-co-worker-style-improve-culture', 'Understanding Co-worker Style to Improve Culture', '-101 days', 3, 'sales' ),
-);
 $hello = get_page_by_path( 'hello-world', OBJECT, 'post' );
 if ( $hello ) {
 	wp_delete_post( $hello->ID, true ); // WordPress sample post.
 }
-$post_cats = array( 'business' => 'Business', 'sales' => 'Sales', 'coaching' => 'Coaching' );
-foreach ( $post_cats as $cat_slug => $cat_name ) {
-	if ( ! term_exists( $cat_slug, 'category' ) ) {
-		wp_insert_term( $cat_name, 'category', array( 'slug' => $cat_slug ) );
-	}
+
+// Blog: the real articles of the old site (playground/data/blog-posts.json, made by scripts/wxr-to-blog.py),
+// imported with hri_blog_import() (hri-core/inc/blog-import.php). Images stay on hrideone.com in preview sites.
+// With Polylang the import runs in seed-languages.php (TH + EN + JA); without it, Thai only here.
+// Sample post of an earlier seed that is not on the old site:
+foreach ( get_posts( array( 'post_type' => 'post', 'name' => 'pride-month-workplace-diversity-matters', 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) ) as $sample_id ) {
+	wp_delete_post( $sample_id, true );
 }
-foreach ( $posts as $p ) {
-	list( $slug, $title, $when, $image, $cat ) = $p;
-	$existing = get_posts( array( 'post_type' => 'post', 'name' => $slug, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) );
-	$post_id  = wp_insert_post(
-		array(
-			'ID'           => $existing ? $existing[0] : 0,
-			'post_type'    => 'post',
-			'post_status'  => 'publish',
-			'post_name'    => $slug,
-			'post_title'   => $title,
-			'post_date'    => wp_date( 'Y-m-d H:i:s', strtotime( $when ) ),
-			'post_content' => '<!-- wp:paragraph --><p>ข้อความตัวอย่าง เนื้อหาบทความจริงอยู่ที่เว็บเดิม</p><!-- /wp:paragraph -->',
-		)
-	);
-	if ( $post_id && ! is_wp_error( $post_id ) ) {
-		$cat_term = get_term_by( 'slug', $cat, 'category' );
-		if ( $cat_term ) {
-			wp_set_object_terms( $post_id, array( (int) $cat_term->term_id ), 'category' );
-		}
-	}
-	if ( $post_id && ! is_wp_error( $post_id ) && ! has_post_thumbnail( $post_id ) ) {
-		$source = $sample_image( $image );
-		if ( $source ) {
-			$tmp        = wp_tempnam( 'hri-sample.jpg' );
-			copy( $source, $tmp );
-			$attachment = media_handle_sideload( array( 'name' => "{$slug}.jpg", 'tmp_name' => $tmp ), $post_id, $title );
-			if ( ! is_wp_error( $attachment ) ) {
-				set_post_thumbnail( $post_id, $attachment );
-			}
-		}
+if ( ! function_exists( 'pll_languages_list' ) && function_exists( 'hri_blog_import' ) ) {
+	$blog_file = is_readable( __DIR__ . '/data/blog-posts.json' ) ? __DIR__ . '/data/blog-posts.json' : __DIR__ . '/hri-blog-posts.json';
+	$blog_data = hri_blog_import_read( $blog_file );
+	if ( ! is_wp_error( $blog_data ) ) {
+		hri_blog_import( $blog_data );
 	}
 }
 

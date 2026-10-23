@@ -689,3 +689,66 @@ msgstr "記事カテゴリ"
 #: blocks/related-posts/render.php:47
 msgid "บทความที่เกี่ยวข้อง"
 msgstr "関連記事"
+
+#: inc/blog-import.php:30
+msgid "อ่านไฟล์นำเข้าไม่ได้"
+msgstr "インポートファイルを読み込めません"
+
+#: inc/blog-import.php:38
+msgid "ไฟล์นำเข้าไม่ใช่รูปแบบที่ถูกต้อง (ต้องสร้างจาก scripts/wxr-to-blog.py)"
+msgstr "インポートファイルの形式が正しくありません（scripts/wxr-to-blog.py で作成してください）"
+
+#: inc/blog-import.php:380
+#: inc/blog-import.php:444
+msgid "นำเข้าบทความจากเว็บเดิม"
+msgstr "旧サイトから記事をインポート"
+
+#: inc/blog-import.php:381
+msgid "นำเข้าบทความ"
+msgstr "記事のインポート"
+
+#. translators: %s: upload size limit, e.g. 2 MB
+#: inc/blog-import.php:418
+#, php-format
+msgid "ไฟล์ใหญ่เกินขนาดอัปโหลดของโฮสต์ (%s) ให้ใช้ไฟล์ blog-posts.json.gz แทน"
+msgstr "ファイルがサーバーのアップロード上限（%s）を超えています。blog-posts.json.gz を使用してください。"
+
+#: inc/blog-import.php:420
+msgid "อัปโหลดไฟล์ไม่สำเร็จ"
+msgstr "ファイルをアップロードできませんでした"
+
+#. translators: 1: articles done, 2: total
+#: inc/blog-import.php:433
+#, php-format
+msgid "นำเข้าแล้ว %1$d จาก %2$d เรื่อง กำลังทำต่อ…"
+msgstr "%2$d 件中 %1$d 件をインポートしました。続行中…"
+
+#. translators: %d: number of articles (each in TH / EN / JA)
+#: inc/blog-import.php:437
+#, php-format
+msgid "นำเข้าครบ %d เรื่องแล้ว (แต่ละเรื่องมี TH / EN / JA)"
+msgstr "%d 件の記事をすべてインポートしました（各 TH / EN / JA）"
+
+#: inc/blog-import.php:452
+msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
+msgstr "完了するまでこのページを閉じないでください"
+
+#: inc/blog-import.php:454
+msgid "ทำต่อ"
+msgstr "続行"
+
+#: inc/blog-import.php:458
+msgid "ใช้ไฟล์ blog-posts.json.gz (หรือ .json) ที่สร้างจากไฟล์ Export ของเว็บเดิม (scripts/wxr-to-blog.py) นำเข้าซ้ำได้ บทความเดิมจะถูกอัปเดต ไม่สร้างซ้ำ"
+msgstr "旧サイトのエクスポートファイルから作成した blog-posts.json.gz（または .json）を使用します（scripts/wxr-to-blog.py）。再インポートしても記事は更新されるだけで、重複しません。"
+
+#: inc/blog-import.php:463
+msgid "คัดลอกรูปเข้าคลังสื่อ (ต้องทำตอนเว็บเดิมยังเปิดอยู่)"
+msgstr "画像をメディアライブラリにコピー（旧サイトが公開中のうちに実行）"
+
+#: inc/blog-import.php:464
+msgid "ใช้รูปจากเว็บเดิม (สำหรับเว็บทดสอบ)"
+msgstr "旧サイトの画像を使用（テストサイト用）"
+
+#: inc/blog-import.php:465
+msgid "เริ่มนำเข้า"
+msgstr "インポート開始"

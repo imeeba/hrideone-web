@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 5: tap target ≥44px + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`) · theme 0.8.2 / plugin 0.7.2
+> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 6: นำเข้าบทความจริง 115 เรื่อง × TH/EN/JA + Blog UI) · theme 0.9.0 / plugin 0.8.0
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -33,6 +33,7 @@
 - Preview (Playground, ดึงจาก `main` ทุกครั้ง): <https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json>
   - เติม `&v=<เลขใหม่>` ถ้าเห็นเวอร์ชันเก่า (cache)
   - เปิดมาที่หน้าแรก `/` · Style Guide `/style-guide/` · รวมคอร์ส `/courses/` · `/in-house/` · `/public-training/` · `/transformation-solutions/` · `/japanese-concept/`
+  - Blog: `/blog/` · `/en/blog-en/` · `/ja/ブログ/` · หมวด `/category/business/` (EN `business-en`, JA `business-ja`)
   - ภาษาอื่น: `/en/` `/ja/` (หน้าแรก) · `/en/in-house-en/` · `/ja/public-training-ja/` · `/en/transformation-solutions-en/` · `/ja/japanese-concept-ja/` · `/en/courses/negotiation-mastery-en/`
   - ทดสอบ branch อื่น: เอา blueprint มาแทน `main` เป็นชื่อ branch แล้วเปิดแบบ `https://playground.wordpress.net/#<blueprint JSON ที่ encode แล้ว>`
 - Local test site: `scripts/local-setup.sh [dir] [port]` → `http://127.0.0.1:8899/wp/` (admin/admin)
@@ -56,7 +57,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - palette ล็อกไว้ (ปิด custom color) ทีมการตลาดเลือกได้แค่สีใน token
 - ฟอนต์ self-hosted: Kanit (TH/Latin), Montserrat (display), M PLUS 1 (JA, โหลดเฉพาะ locale ja หรือหน้า style guide)
 
-**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `blocks`
+**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `leads` · `blog` · `blog-import` · `blocks`
 
 **Content model**
 - CPT `course` (archive `/courses/`)
@@ -131,7 +132,15 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 **About** (`/about/`) — `hri_page_sections()['about']` : about-hero, about-mission, about-values, about-message (เต็ม), about-timeline, home-stats, home-clients, about-impact, contact-group, home-knowledge, about-cta
 
-**Blog** — `templates/home.html` (หน้า posts), `archive.html` (หมวด), `single.html` (หมวด, วันที่, รูปปก, เนื้อหา, บทความที่เกี่ยวข้อง, CTA) · patterns `blog-hero`, `blog-loop`, `blog-cta` · blocks `hri/blog-filter` (ปุ่มหมวด, ไม่แสดงถ้าไม่มีหมวด), `hri/related-posts` (3 เรื่อง หมวดเดียวกันก่อน) · EN/JA: บทความมีเฉพาะภาษาไทย → listing แสดงข้อความ + ปุ่มไปบล็อกไทย · หน้า `blog` เป็น `page_for_posts` (แปลด้วย Polylang)
+**Blog** — `templates/home.html` (หน้า posts), `archive.html` (หมวด), `single.html` (หมวด, วันที่, รูปปก, เนื้อหา, บทความที่เกี่ยวข้อง, CTA) · patterns `blog-hero`, `blog-loop`, `blog-cta` · blocks `hri/blog-filter` (ปุ่มหมวด, ไม่แสดงหมวด default/ว่าง), `hri/related-posts` (3 เรื่อง หมวดเดียวกันก่อน) · หน้า `blog` เป็น `page_for_posts` (คำแปล: EN slug `blog-en`, JA slug `ブログ` = ตรงกับเว็บเดิม)
+- **บทความจริงจากเว็บเดิม** (รอบที่ 6): 115 เรื่อง × TH/EN/JA = 345 โพสต์ ผูกคำแปลด้วย Polylang · slug เดิมทุกเรื่อง (รวม `why-success-ompanies-…`) · เว็บเดิมใช้ **WPML + Elementor** (export ไม่มีข้อมูลภาษา: แยกภาษาจากตัวอักษรในชื่อ, จับคู่คำแปลด้วย `post_date` ที่ WPML copy ให้ตรงกัน = 115 ชุดพอดี)
+  - `scripts/wxr-to-blog.py <export.xml>` → `playground/data/blog-posts.json` (+ `.json.gz` สำหรับอัปโหลด) · ล้าง HTML ของ Elementor เป็น core blocks (paragraph, heading, list, image, quote, table, separator, details สำหรับ FAQ toggle) · ตรวจแล้ว: ข้อความไม่หาย, 9,959 block valid ใน editor, ไม่มี Classic block · ต้องมี `beautifulsoup4`
+  - หมวด: เหลือ 3 หมวด Business 55 / Coaching 48 / Sales 12 · 63 เรื่องที่เว็บเดิมเป็น "ไม่มีหมวดหมู่" จัดหมวดใหม่ตามชื่อเรื่องใน `CATEGORY_MAP` ของสคริปต์ (Jimmi สั่ง "จัดลงหมวดที่มีอยู่") · ชื่อหมวดเป็นอังกฤษทุกภาษา (ตามเว็บเดิม) slug `business` / `business-en` / `business-ja`
+  - `hri-core/inc/blog-import.php`: `hri_blog_import( $posts, [images => remote|download, offset, limit] )` idempotent (หาโพสต์จาก `_hri_source_id` = ID เว็บเดิม) · `wp hri import-blog <file> [--images=download]` · **Tools → นำเข้าบทความ** (อัปโหลด `.json.gz`, ทำทีละ 5 เรื่องต่อ request แล้วหน้าโหลดต่อเอง; ทดสอบ local 115 เรื่อง ~100 วินาที)
+  - รูป: `remote` = ใช้รูปที่ hrideone.com (Playground/local; ปกเก็บใน meta `_hri_thumbnail_url` แสดงผ่าน filter `has_post_thumbnail` / `post_thumbnail_html` ใน `blog.php`) · `download` = คัดลอกปก+รูปในเนื้อหาเข้าคลังสื่อ (ไม่ซ้ำ หาจาก `_hri_source_url`) แก้ URL/ID ใน image block → **ต้องรันบน staging ตอนเว็บเดิมยังออนไลน์**
+  - slug ชนข้ามภาษา (Polylang ฟรี): 4 เรื่อง EN ได้ `-en` (`10-ways-to-build-trust-in-the-workplace-en`, `10-popular-courses-for-senior-executives-en`, `7-ways-to-overcome-promotion-anxiety-en`, `4-challenges-in-changing-corporate-culture-en`) slug เดิมเก็บใน `_wp_old_slug` · `_wp_old_slug` ของเว็บเดิม (145 รายการ) นำเข้าด้วย → WordPress redirect เอง
+- `hri-core/inc/blog.php`: 12 เรื่องต่อหน้าทั้ง blog และหน้าหมวด (`HRI_POSTS_PER_PAGE`, เต็มแถวในกริด 3/2/1 คอลัมน์) · 301 จาก URL เว็บเดิม: `?e-page-<id>=N` (Elementor, 15/หน้า) → `/page/M/` ที่มีเรื่องแรกของหน้าเดิม · `/en/blog/` → `/en/blog-en/` · `/en/<slug>/` ของเรื่องที่ได้ `-en` · `/en|ja/category/business/` → `business-en|ja` · หมวด "ไม่มีหมวดหมู่" (`/category/ไม่มีหมวดหมู่/`, `uncategorized-en-us`, `uncategorized-ja`) → หน้าบล็อกภาษานั้น · ทำใน `parse_request` เพราะ Polylang จะ redirect `/en/<slug ไทย>/` ไปโพสต์ไทยก่อน
+- Blog UI: ปุ่มหมวด/ป้ายหมวดใช้ `primary-strong` (เดิม `primary` contrast 2.64:1) · pagination 44px + หน้าปัจจุบันทึบ · ทั้งการ์ดกดได้ (title link `::after` คลุมการ์ด, ป้ายหมวดอยู่บนสุด) · excerpt ตัดที่ 3 บรรทัดด้วย `line-clamp` (ภาษาไทย/ญี่ปุ่นไม่มีเว้นวรรค `excerptLength` จึงไม่ย่อ)
 
 **Seed ข้อมูลตัวอย่าง** — `playground/seed-course-data.php` (วิทยากร 4 คน, เนื้อหา Public 5 คอร์ส + TEN X, In-house ครบ 15 คอร์ส; TH/EN/JA) · `seed-home.php`: `hri_seed_course_body( $data|'sample', $program, $locale )` · `hri_seed_inhouse_courses()` มีเนื้อหาจริง (เรียบเรียงใหม่) ของทั้ง 15 คอร์ส In-house: `excerpt` + `page` = `intro` (หัวข้อ, ย่อหน้า), `problems` 4 ข้อ (ชื่อ, ปัญหา, "คอร์สนี้ช่วยอย่างไร"), `outcomes` 5 ข้อ (ชื่อ, คำอธิบาย) · ชื่อหัวข้อ problems/outcomes เป็นอังกฤษเหมือนกันทุกภาษา · `'sample'` (ข้อความ placeholder ที่แปลแล้ว) ใช้เป็น fallback ถ้าคอร์สไหนไม่มีข้อมูลใน `hri_seed_inhouse_courses()` และเป็นต้นแบบใน pattern "Course page — In-house" สำหรับคอร์สใหม่
 
@@ -147,6 +156,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 6 (23 ต.ค. 2569, branch `feature/blog-import`): บทความจริงจากเว็บเดิม 115 เรื่อง × TH/EN/JA (ตรงกับ https://hrideone.com/blog/ ทุก slug ทุกลำดับ 8 หน้า × 15 และตรงทุกหมวด) + เครื่องมือนำเข้า + 301 URL เดิมของบล็อก + Blog UI (contrast, tap target, การ์ดกดทั้งใบ, excerpt 3 บรรทัด) · ตรวจ: 345 โพสต์ ผูกคำแปลครบ 115 ชุด ภาษา/หมวด/วันที่ถูกทุกโพสต์, นำเข้าซ้ำไม่สร้างซ้ำ, โหมด download (ทดสอบด้วยรูป local), หน้า Tools ครบทั้งชุด, redirect ทุกแบบ, `measure.py` blog/หมวด/บทความ × 3 ภาษา × 3 จอ + หน้าเดิมทั้งหมด
 - [x] รอบที่ 5 (23 ต.ค. 2569, branch `fix/tap-targets`): tap target ≥44px ทุกจุดที่ค้างไว้ + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`
   - token ใหม่ `custom.tap` = 44px (`tokens.json` → `--wp--custom--tap`)
   - Header: ลิงก์เมนู (25px→44), ปุ่มภาษา (34→44), รายการ dropdown/list ภาษา (43/35→44), ปุ่มเปิด/ปิดเมนู (24×24→44×44 ไอคอนคง 24), ลิงก์ในเมนูเต็มจอ · Footer: ลิงก์เมนู (กว้างขั้นต่ำ 44 ด้วย) · ตัวกรอง: label checkbox (35→44), ปุ่ม "ตัวกรอง" มือถือ (43→44), pagination (39→44) · หน้าคอร์ส: "← หลักสูตรทั้งหมด" (25→44, class `hri-backlink`), PDPA checkbox 20→24px และ label สูง 44
@@ -169,7 +179,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - เมนูชี้ `/blog/` `/about/` `/contact-us/` ที่มีแล้ว (ตัวอย่างใน seed)
 - หน้าแรก: หัวข้อ/ข้อความ Hero ("พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต") เขียนใหม่ เว็บเดิมไม่มี · ข้อความแนะนำบริษัทและสาส์นผู้บริหารเรียบเรียงจากเว็บเดิม (สาส์นยังไม่ครบทั้งย่อหน้า ดึงต้นฉบับเต็มไม่ได้) ต้องให้ Jimmi/การตลาดตรวจ
 - หน้าแรก: บรรทัดเล็กเหนือ "Our Services" ใช้ "What We Do" (Jimmi สั่งให้หัวข้อใน section นี้เป็นอังกฤษล้วน ไม่แปล; คำนี้ผมตั้งเอง รอยืนยัน) · ข้อความ 01–03 ในหลอดไฟมาจากรูป reference ของ Jimmi
-- หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) · บทความ 3 เรื่องใน seed ใช้ชื่อ/slug จากเว็บเดิม (รวม slug พิมพ์ผิด `why-success-ompanies-…` เพื่อ 301 ทีหลัง) เนื้อหาเป็นข้อความตัวอย่าง
+- หน้าแรก: โลโก้ลูกค้า 40 ช่อง, รูปผู้บริหาร 2 รูป, รูป Gallery, รูปพื้น Hero เป็น placeholder/รูปตัวอย่าง (workspace โหลดรูปจาก hrideone.com ไม่ได้) 
 
 ### ข้อมูลที่ต้องตัดสินใจ/ยืนยัน (จากรอบที่ 3) — ค่าชั่วคราวอยู่ใน seed ย้อนกลับได้
 - **ข้อมูลรุ่น/วันที่/ราคา/ลิงก์ Google Form ของ Public 5 คอร์ส** มาจากเว็บเดิม ณ 19 ต.ค. 2569 ต้องให้ทีมงานยืนยัน: New Manager "รุ่น 21 หรือ 22" (ใช้ 22 ตามเมนูเว็บเดิม) และ "7 สัปดาห์ หรือ 7 ครั้งใน 8 สัปดาห์" (ใช้วันที่ 5 ครั้ง/ตัวอย่าง ต้องตรวจ); Lean "รุ่น 2 หรือ 3" (ใช้ 3) และวันที่เก่าในเนื้อหาเว็บเดิม; Early Bird ของ Negotiation / Next Director / New Manager เลยกำหนดแล้ว (ซ่อนอัตโนมัติ), Oxygen ยังใช้ได้
@@ -179,8 +189,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - หน้าย่อยเว็บเดิมรวมเป็นหน้าเดียวแล้ว → ต้อง 301 ตอนย้ายเว็บ · DO·WA·KEI ยังเป็น section (ถ้าจะเป็นคอร์สแยกต้องถาม)
 - Team Simulation / Japanese Working Philosophy / Cross-cultural Communication: ข้อความสั้นที่ผมเขียนเอง (มีป้ายตัวอย่าง)
 - About: พันธกิจ/วิสัยทัศน์/สาส์น/ไทม์ไลน์ เรียบเรียงจาก CONTENT-GAP ไม่ใช่ข้อความเต็มต้นฉบับ · ปีในไทม์ไลน์ยกเว้น 1993 ยังไม่ระบุ · Social Impact เป็น placeholder
-- Blog: บทความตัวอย่าง 12 เรื่องใหม่ตั้งชื่อจาก slug จริง (หมวดเดาเอา) — ของจริงนำเข้าจากเว็บเดิม
 - คำแปล EN/JA ทั้งหมดเป็น machine translation — JA ต้องให้คนญี่ปุ่นตรวจ
+
+### ข้อมูลที่ต้องตรวจ (จากรอบที่ 6: บทความ)
+- **หมวดของ 63 เรื่องที่เว็บเดิมเป็น "ไม่มีหมวดหมู่"** ผมจัดเองจากชื่อเรื่อง (`CATEGORY_MAP` ใน `scripts/wxr-to-blog.py`) — Business = องค์กร/วัฒนธรรม/กลยุทธ์/HR/ข่าวบริษัท, Sales = ขาย/เจรจา, Coaching = ภาวะผู้นำ/ผู้จัดการ/พัฒนาตนเอง · ให้การตลาดตรวจ แก้ได้ 2 ทาง: แก้ใน wp-admin ทีละเรื่อง หรือแก้ map แล้วรันสคริปต์ + นำเข้าซ้ำ (การนำเข้าซ้ำจะทับที่แก้ใน wp-admin)
+- เรื่องที่ไม่มีรูปปกในเว็บเดิม: `why-do-managers-need-to-develop-leadership-skills` (และ EN/JA ของเรื่องนี้) → การ์ดไม่มีรูป
+- excerpt: ใช้ excerpt เดิม หรือ meta description ของ Rank Math ถ้ามี (ส่วนใหญ่) ที่เหลือ WordPress ตัดจากเนื้อหาเอง
+- ลิงก์ในเนื้อหาที่ชี้ไปหน้าเก่า (เช่น `/courses/negotiation-skills/`, `/coaching/executive-coaching`) แปลงเป็น path ภายในแล้วแต่ **ยังไม่ได้ redirect** → รวมในงาน 301 (ข้อ 7 รายการ 6)
+- รูปใน Playground/local ยังโหลดจาก hrideone.com (ถ้าเว็บเดิมปิด/ย้ายโดเมนรูปจะหาย) → ตอนย้ายจริงใช้โหมด download
 
 ### ข้อมูลที่ต้องตรวจ (จากรอบที่ 4: เนื้อหา In-house 15 คอร์ส) — ค่าชั่วคราวอยู่ใน `hri_seed_inhouse_courses()` แก้/ย้อนกลับได้
 - **ที่มาของข้อความ**: ดึงจากหน้าเว็บเดิมทุกคอร์ส (14 หน้าดึงได้ครบ ไม่มีหน้าไหนดึงไม่ได้) แต่ผ่านเครื่องมืออ่านหน้าเว็บที่สรุปข้อความให้ ไม่ใช่ HTML ต้นฉบับ → ถ้อยคำอาจคลาดเคลื่อนจากต้นฉบับ และผมเรียบเรียงใหม่อีกชั้น (ไม่คัดลอกยาว) ต้องให้การตลาดเทียบกับหน้าเว็บเดิมก่อนใช้จริง
@@ -199,12 +215,12 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
 2. **รูป/วิดีโอจริง**: โลโก้ลูกค้า 40, รูปผู้บริหาร, Gallery ต่อคอร์ส (บรรยากาศรุ่นก่อน), รูปวิทยากร, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), วิดีโอแนวตั้งใน Outcomes ของคอร์ส In-house
-3. **นำเข้าบทความ ~150 เรื่อง** (WordPress Export/Import คง slug) + ตัดสินใจว่าจะแปลบทความ EN/JA บางเรื่องไหม + แปลชื่อหมวด EN/JA
+3. ~~นำเข้าบทความ~~ — **ทำแล้วในรอบที่ 6** (เว็บเดิมมี 115 เรื่อง ไม่ใช่ ~150 และมี EN/JA ครบอยู่แล้ว) · ตอนย้ายจริง: export ใหม่จากเว็บเดิม → `scripts/wxr-to-blog.py` → Tools → นำเข้าบทความ แบบ "คัดลอกรูปเข้าคลังสื่อ" บน staging
 4. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
 5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, Article, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots/llms.txt
-6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, เว็บเดิมมี `/blog/page/N`)
+6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, ลิงก์เก่าในเนื้อหาบทความ) · ของบล็อกทำแล้วใน `blog.php` (เว็บเดิมใช้ `?e-page-…=N` ไม่ใช่ `/blog/page/N`)
 7. **แปลอัตโนมัติ TH → EN/JA** — สเปกเต็ม: [`docs/AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) (ทำเองใน hri-core ต่อยอด Polylang ฟรี, แปลทีละ block, ไม่ทับ block ที่คนตรวจแก้, สถานะ 🤖/✅/⚠️, JA noindex จนกว่าตรวจ, จ่าย API ตามใช้ + เพดานงบ) · prompt G ในข้อ 10 · ต้องได้คำตอบข้อ 3.3 ก่อน
-8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ, Blog UI (contrast หมวด + pagination) ดูหัวข้อ "ปัญหานอกขอบเขต"
+8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · ~~Blog UI~~ ทำแล้วในรอบที่ 6 · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ ดูหัวข้อ "ปัญหานอกขอบเขต"
 9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม) และไป API แปลภาษา, WP-Cron/cron จริง, purge Rcache รายหน้าจากโค้ด (ดู AUTO-TRANSLATE.md ข้อ 3.4)
 10. Cloud staging (`new.hrideone.com`) · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
 
@@ -231,7 +247,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - เพิ่ม/แก้ข้อความใน pattern ของ theme: `wp i18n make-pot . languages/hri-theme.pot --skip-js --skip-theme-json --skip-block-json` → `wp i18n update-po` → ใส่ msgstr (อย่าให้ polib เขียนไฟล์ใหม่ทั้งไฟล์ diff จะบวม) → `make-mo` + `make-php`
 - อย่าตั้ง className ของ section ซ้ำกับ class ของ block ใน hri-core (เช่น `hri-courses` = layout ของ course filter ทำให้หน้าเพี้ยน) ใช้ `hri-courses-section`
 - **ตรวจหลังแก้ทุกครั้ง: `python3 -I scripts/measure.py`** (อยู่ใน repo แล้ว) · วัด overflow แนวนอน, tap target <44px, contrast AA, PHP notice, JS error ที่ 1280/768/375 × TH/EN/JA × `/`, `/courses/`, `/in-house/`, `/public-training/`, คอร์ส In-house 1 + Public 1, `/contact-us/` = 63 รอบ (~5 นาที) · exit code 1 ถ้ามีปัญหา
-  - ตัวเลือก: `--base http://127.0.0.1:8899/wp` (ค่าเริ่มต้น) · `--pages /about/,/blog/` (ใส่ path ภาษาไทย สคริปต์ต่อ `-en`/`-ja` ให้เอง ยกเว้น `/` และ `/courses/`) · `--widths 1280,375` · `--langs th` · `--json out.json` · `--verbose`
+  - ตัวเลือก: `--base http://127.0.0.1:8899/wp` (ค่าเริ่มต้น) · `--pages /about/,/blog/` (ใส่ path ภาษาไทย สคริปต์ต่อ `-en`/`-ja` ให้เอง ยกเว้น `/` และ `/courses/`) · path ที่ EN/JA ไม่ใช้ `-en`/`-ja` เขียนแบบ `th|en|ja` เช่น `/category/sales/|/category/sales-en/|/category/sales-ja/` (`/blog/` ตั้งไว้ใน `PATH_OVERRIDE` แล้ว) · `--widths 1280,375` · `--langs th` · `--json out.json` · `--verbose`
   - ต้องมี Playwright (Chromium อยู่ที่ /opt/pw-browsers) · รันด้วย `python3 -I`
   - ตรวจ tap target ใน 3 สถานะ: ปกติ, เปิด `<details>` ทั้งหมด (ตัวกรองมือถือ, dropdown ภาษา), เปิดเมนูแฮมเบอร์เกอร์ · checkbox ใน label วัดที่ label · ลิงก์ inline กลางประโยคและ honeypot ข้าม · ลิงก์การ์ดที่ใช้ `::after` คลุมทั้งการ์ด (stretched link) วัดทั้งการ์ด · ข้อความบน Cover block (hero รูป/วิดีโอ) ข้ามการวัด contrast เพราะขึ้นกับ overlay (ตรวจด้วยมือ 4.9:1)
   - สคริปต์ **ไม่จับ** ปัญหาด้านหน้าตา (เช่น องค์ประกอบที่ควรซ่อนแต่โผล่) → ยังต้องถ่าย screenshot ดูเฉพาะจุดที่แก้ · เจอมาแล้วในรอบที่ 5: กฎ `display:flex` ที่เพิ่มให้ `summary` ตัวกรองทับ `display:none` ของ desktop
@@ -249,6 +265,12 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `?course=` ชนกับ query var ของ CPT `course` ทำให้หน้าเพี้ยน → ใช้ `?hri_course=`
 - วัด overflow ด้วย JS ต้องข้ามช่อง honeypot `.hri-lead__hp` (ซ่อนนอกจอโดยตั้งใจ) ไม่งั้นทุกหน้าที่มีฟอร์มโดน flag ผิด
 - `scripts/local-setup.sh` เมื่อรันผ่าน pipe (`| tail`) ในเครื่องมือที่มี timeout อาจค้างหลังติดตั้ง+seed เสร็จแล้ว (เซิร์ฟเวอร์ `php -S` ที่สคริปต์เปิดไว้ยังเป็น child) → รันแบบ background หรือเปลี่ยนเป็น `> log 2>&1` แล้วเช็กว่าเสร็จด้วย `curl -sI http://127.0.0.1:8899/wp/` และ `wp post list --post_type=course --format=count` (ได้ 21 หลัง seed)
+- **Polylang ไม่สนใจ `'lang'` ใน query ที่ใช้ `name` (slug)** → `get_posts( name + lang )` คืนโพสต์ภาษาอื่นได้ ต้องเช็ก `pll_get_post_language()` เอง (ใช้ใน `blog.php`, `blog-import.php`)
+- Polylang redirect `/en/<slug>/` ไปโพสต์ภาษาไทยที่มี slug นั้น (canonical) ก่อน `template_redirect` ของเรา → redirect ของ EN/JA ต้องทำใน `parse_request`
+- ปุ่มใน form ห้ามชื่อ `submit` (`submit_button()` ค่าเริ่มต้น) ถ้าจะเรียก `form.submit()` ด้วย JS — ชื่อนี้บังเมธอด
+- `upload_max_filesize` ค่าเริ่มต้น 2MB (php -S ใน local) → ไฟล์นำเข้าใช้ `.json.gz` (0.7MB)
+- REST API ใน local (php -S) ใช้ `/?rest_route=/wp/v2/...` (`/wp-json/` ไม่ route)
+- ตรวจ block valid ทั้งเว็บ: เปิด `post-new.php` แล้วใช้ `wp.blocks.parse()` กับ `content.raw` ของทุกโพสต์ (ดู `isValid` ทุก block รวม innerBlocks)
 - Polylang จาก GitHub ใช้ tag `3.9` (ตัว `3.9.0-rc1`/beta ก็มี → เลือก tag ที่ไม่มี rc/beta) · seed ภาษา: `wp hri languages` → `wp eval-file <absolute>/playground/seed.php` → `seed-languages.php` ตามลำดับ (ตอนรัน `seed.php` ครั้งแรกใน local-setup ยังไม่มี Polylang เป็นปกติ)
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
@@ -256,7 +278,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 > tap target ของ header/footer/ตัวกรอง/หน้าคอร์ส/ฟอร์ม และชื่อคอร์สตัดกลางคำ แก้แล้วในรอบที่ 5 (ข้อ 5)
 
 - **ตัวกรองคอร์สบน desktop สูงกว่าหน้าจอ** (`/courses/` ที่ 1280: ~1390px, หลังเพิ่ม tap target 44px; ก่อนหน้า ~1150px ก็สูงกว่า viewport 900px อยู่แล้ว) แต่ `.hri-filter` เป็น `position: sticky` → ส่วนล่างของตัวกรอง (ระยะเวลา, รูปแบบ) เข้าถึงไม่ได้จนกว่าจะเลื่อนไปท้ายรายการคอร์ส · ข้อเสนอ: `max-height: calc(100vh - 2 * <top>)` + `overflow-y: auto` ที่ `.hri-filter` (ระวัง box-shadow ring ที่ `.hri-filter` ถูกตัด) หรือเลิก sticky
-- ผลจาก `measure.py --pages /blog/,/style-guide/` (ยังไม่ได้แก้/ยังไม่ได้ตรวจด้วยตา): `/blog/` แถบหมวด (ทั้งหมด/Business/Sales/Coaching) contrast 2.64:1 (ต้อง 4.5), pagination ของ Query Loop (`a.page-numbers`, `a.wp-block-query-pagination-next`) สูง 24–27px · `/style-guide/` ป้าย `#767C82` 4.47:1 (ต้อง 4.5) · แยกเป็นงานเก็บตก "Blog UI"
+- `/style-guide/` ป้าย `#767C82` 4.47:1 (ต้อง 4.5) (Blog UI แก้แล้วในรอบที่ 6)
+- ลิงก์ที่อยู่เดี่ยวๆ ในย่อหน้าของเนื้อหาบทความ (เช่น "ดูรายละเอียดหลักสูตร TEN X" ใน `why-success-ompanies-fail-in-15-years` ทั้ง 3 ภาษา) สูง 24px: ผ่าน WCAG 2.5.8 AA แต่ไม่ถึง 44px · ไม่ได้แก้ CSS เพราะ selector แยกลิงก์เดี่ยวกับลิงก์กลางประโยคไม่ได้แม่น → ทางเลือก: ให้การตลาดเปลี่ยนเป็น Button block ในบทความที่เป็น CTA
 - ลิงก์ inline ในย่อหน้า PDPA ของฟอร์ม (`hri/lead-form`) สูง ~24px **คงไว้ตั้งใจ**: WCAG 2.5.8 ยกเว้นลิงก์ที่อยู่กลางประโยค และถ้าเพิ่ม padding ระยะบรรทัดจะห่างผิดปกติ (ผ่านเกณฑ์ AA 24px ที่ตั้งไว้ ไม่ถึง 44px) · `measure.py` ข้ามลิงก์ประเภทนี้
 - การ์ดบริการ/หัวข้อ (`.hri-card__title` ของ theme) ยังไม่ได้ตรวจเรื่องคำยาวตัดกลางคำ (รอบที่ 5 แก้เฉพาะการ์ดคอร์ส)
 
@@ -280,7 +303,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
 
-**B. นำเข้าบทความจากเว็บเดิม**
+**B. นำเข้าบทความจากเว็บเดิม — ทำแล้ว (รอบที่ 6) ไม่ต้องใช้ prompt นี้อีก**
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web

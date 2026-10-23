@@ -11,7 +11,7 @@
 | หน้าคอร์ส In-house ~15 หน้า `/courses/<slug>/` | เหมือนข้างบน | ขาด ปัญหา/ผลลัพธ์/วิดีโอ/FAQ/ฟอร์ม | 🔴 |
 | Contact `/contact-us/` | **ไม่มี** (ทุก CTA ชี้มาที่นี่ → 404) | ทั้งหน้า + ฟอร์ม Lead | 🔴 |
 | About `/about/` | **ไม่มี** (เมนูชี้ไป 404) | ทั้งหน้า | 🟠 |
-| Blog `/blog/` + บทความ ~150 เรื่อง | มีแค่บทความตัวอย่าง 3 เรื่อง ไม่มีหน้า `/blog/` | listing + หมวด + ย้ายบทความ | 🟠 |
+| Blog `/blog/` + บทความ 115 เรื่อง × TH/EN/JA (เดิมประมาณไว้ ~150) | ✅ รอบที่ 6: นำเข้าบทความจริงครบ 3 ภาษา + listing + หมวด + 301 URL เดิม | — | ✅ |
 | In-house: Leadership Development / Business Development / Team Simulation | ไม่มี (เนื้อหาบางส่วนอยู่ในการ์ด Leadership/Business ของ `/in-house/`) | คำอธิบายรายหัวข้อ | 🟡 |
 | Transformation 4 หน้าย่อย | ย่อรวมไว้ใน `/transformation-solutions/` | รายละเอียดบางจุด (ดูข้อ 6) | 🟡 |
 | Japanese Concept / DO·WA·KEI | ย่อรวมไว้ใน `/japanese-concept/` | วิดีโอ, ปุ่มสมัคร, ราคา/วันที่ (เว็บเดิมก็ไม่มี) | 🟡 |
@@ -130,15 +130,15 @@ high-performance-leadership-mastery, proactive-leadership-mastery, time-and-prio
 
 ## 5. Blog
 
-เว็บเดิม: `/blog/` แสดงชื่อบทความอย่างเดียว (ไม่มีรูป/วันที่/excerpt) 15 เรื่องต่อหน้า × **10 หน้า (~150 บทความ)**, ตัวกรองหมวด: All, ไม่มีหมวดหมู่, Business, Sales, Coaching · บทความอยู่ที่ root (`/<slug>/` ไม่มี `/blog/` นำหน้า)
+เว็บเดิม: `/blog/` แสดงชื่อบทความอย่างเดียว (ไม่มีรูป/วันที่/excerpt) 15 เรื่องต่อหน้า × **8 หน้า (115 บทความ ตรวจ 23 ต.ค. 2569; เดิมประมาณ 10 หน้า ~150)**, pagination เป็น `?e-page-0d6cdc0=N` (Elementor), ตัวกรองหมวด: All, ไม่มีหมวดหมู่, Business, Sales, Coaching · บทความอยู่ที่ root (`/<slug>/` ไม่มี `/blog/` นำหน้า)
 
 ต้องทำ:
 - หน้า `/blog/` (template `home.html`/`archive.html` + Query Loop การ์ดแบบเดียวกับ "คลังความรู้" หน้าแรก: รูป 3:2, หมวด, วันที่, excerpt) + แถบหมวด + pagination · ภาษาละ 1 listing (Polylang)
 - template บทความเดี่ยว (`single.html` มีแล้ว ตรวจว่ามี: หมวด, วันที่, รูปปก, เนื้อหา, บทความที่เกี่ยวข้อง 3 เรื่อง, CTA ไปบริการที่เกี่ยวกับหมวด)
 - หน้าหมวด `/category/<slug>/` (เว็บเดิมมี business, sales, coaching) — เปลี่ยนหมวด "ไม่มีหมวดหมู่" เป็นชื่อจริง
 - **ย้ายบทความทั้งหมด** ด้วย WordPress Export/Import (Tools → Export ที่เว็บเดิม) คง slug เดิมเพื่อไม่ต้อง 301 (permalink `/%postname%/` ตรงกันแล้ว) · รวม slug พิมพ์ผิด `why-success-ompanies-fail-in-15-years`
-- หน้า 1 มีบทความ: ข้อ 1–3 (อยู่ใน seed แล้ว) + top-reasons-digital-transformation-fails, unlock-data-power-for-superior-sales-strategy, pride-month-workplace-diversity-matters, why-esg-matters-impact-cases-on-organizations, why-do-managers-need-to-develop-leadership-skills, 5-ways-to-avoid-employees-feeling-alienated, 7-ways-to-change-yourself-to-share-your-opinion, 4-tips-to-solve-silo-problem, professional-manager-can-create-different-results, challenges-of-culture-in-the-new-era-organization, too-kind-boss-is-silent-danger-in-organization, understanding-co-worker-style-improve-culture
-- บทความ EN/JA: ไม่มีในเว็บเดิม — ตัดสินใจว่าแปลเฉพาะบางเรื่อง หรือ listing EN/JA แสดงว่างพร้อมข้อความแนะนำ (ถาม Jimmi)
+- หน้า 1 มีบทความ: ข้อ 1–3 (อยู่ใน seed แล้ว) + top-reasons-digital-transformation-fails, unlock-data-power-for-superior-sales-strategy, pride-month-workplace-diversity-matters (ไม่มีแล้วในเว็บเดิม ณ 23 ต.ค. 2569), why-esg-matters-impact-cases-on-organizations, why-do-managers-need-to-develop-leadership-skills, 5-ways-to-avoid-employees-feeling-alienated, 7-ways-to-change-yourself-to-share-your-opinion, 4-tips-to-solve-silo-problem, professional-manager-can-create-different-results, challenges-of-culture-in-the-new-era-organization, too-kind-boss-is-silent-danger-in-organization, understanding-co-worker-style-improve-culture
+- บทความ EN/JA: **มีครบในเว็บเดิม** (WPML, `/en/blog/`, `/ja/ブログ/`) นำเข้าแล้วในรอบที่ 6
 
 ---
 
