@@ -566,7 +566,11 @@
   "page-inhouse": {
    "src": "https://hrideone.com/wp-content/uploads/2026/09/866A4621.webp",
    "fallback": "https://hrideone.com/wp-content/uploads/2026/09/866A4621-2048x1365.webp",
-   "kind": "photo"
+   "kind": "photo",
+   "width": 1000,
+   "height": 667,
+   "file": "page-inhouse.webp",
+   "bytes": 28952
   },
   "page-public-hero": {
    "src": "https://hrideone.com/wp-content/uploads/2026/09/423921710_4a764b88-b064-4980-b96d-c5bf460e5354-scaled.webp",
