@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>HRI DeOne — เว็บตัวอย่าง</title>
+<style>
+	:root { color-scheme: light; --brand: #0f7070; --text: #1b2326; --muted: #55616a; }
+	body { background: #f4faf9; color: var(--text); font: 16px/1.6 system-ui, sans-serif; margin: 0; }
+	main { box-sizing: border-box; margin: 0 auto; max-width: 34rem; padding: 3rem 1rem; }
+	h1 { font-size: 1.5rem; margin: 0 0 .5rem; }
+	p { color: var(--muted); margin: 0 0 1rem; }
+	a.btn { background: var(--brand); border-radius: 8px; color: #fff; display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.25rem; text-decoration: none; }
+	ul { padding-left: 1.1rem; }
+	li a { color: var(--brand); display: inline-block; min-height: 32px; }
+</style>
+</head>
+<body>
+<main>
+	<h1>HRI DeOne — เว็บตัวอย่าง</h1>
+	<p id="status">กำลังเปิดเว็บตัวอย่าง (WordPress Playground) ครั้งแรกใช้เวลาประมาณ 1–2 นาที</p>
+	<p><a class="btn" id="go" href="#">เปิดเว็บตัวอย่าง</a></p>
+	<p>เปิดหน้าอื่นโดยตรง:</p>
+	<ul id="pages"></ul>
+	<p>เว็บตัวอย่างสร้างใหม่ทุกครั้งที่เปิดจากโค้ดล่าสุดใน GitHub (branch main) สิ่งที่แก้ในเว็บตัวอย่างจะไม่ถูกบันทึก</p>
+</main>
+<script>
+	const blueprint = 'https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json';
+	const open = (path) => 'https://playground.wordpress.net/?blueprint-url=' + encodeURIComponent(blueprint) + (path ? '&url=' + encodeURIComponent(path) : '');
+	const pages = [
+		['หน้าแรก (TH)', '/'], ['English', '/en/'], ['日本語', '/ja/'], ['รวมหลักสูตร', '/courses/'],
+		['บทความ', '/blog/'], ['Blog (EN)', '/en/blog-en/'], ['ブログ (JA)', '/ja/%E3%83%96%E3%83%AD%E3%82%B0/'],
+		['In-house', '/in-house/'], ['Public Training', '/public-training/'], ['ติดต่อเรา', '/contact-us/'], ['Style Guide', '/style-guide/'],
+	];
+	const list = document.getElementById('pages');
+	for (const [label, path] of pages) {
+		const li = document.createElement('li');
+		const a = document.createElement('a');
+		a.href = open(path); a.textContent = label;
+		li.append(a); list.append(li);
+	}
+	const target = new URLSearchParams(location.search).get('page');
+	const go = document.getElementById('go');
+	go.href = open(target || '');
+	// Opened without "?stay": go straight to the demo.
+	if (!new URLSearchParams(location.search).has('stay')) {
+		location.replace(go.href);
+	}
+</script>
+</body>
+</html>

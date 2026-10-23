@@ -13,6 +13,7 @@ Needs: pillow (pip install pillow)
 """
 
 import argparse
+import concurrent.futures
 import gzip
 import hashlib
 import io
@@ -46,13 +47,15 @@ def local_name(url: str) -> str:
 
 
 def fetch(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={'User-Agent': 'hrideone-web demo-media (GitHub Actions)'})
-    for attempt in range(3):
+    # Non-ASCII file names (Thai) must be percent-encoded for urllib.
+    url = urllib.parse.quote(url, safe=':/%?=&')
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (compatible; hrideone-web demo-media)'})
+    for attempt in range(2):
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
+            with urllib.request.urlopen(req, timeout=25) as r:
                 return r.read()
         except Exception:  # noqa: BLE001 - retried, then reported
-            if attempt == 2:
+            if attempt == 1:
                 raise
             time.sleep(2 * (attempt + 1))
     return b''
@@ -76,6 +79,8 @@ def main():
     ap.add_argument('--max-edge', type=int, default=1600)
     ap.add_argument('--quality', type=int, default=78)
     ap.add_argument('--base', default=DEFAULT_BASE)
+    ap.add_argument('--workers', type=int, default=6)
+    ap.add_argument('--time-limit', type=int, default=1500, help='seconds; stop and save what is done')
     args = ap.parse_args()
 
     with open(DATA, encoding='utf-8') as f:
@@ -86,25 +91,46 @@ def main():
             manifest = json.load(f)
 
     urls = sorted(set(OLD.findall(text)))
-    print(f'{len(urls)} image URLs from the old site in blog-posts.json')
+    print(f'{len(urls)} image URLs from the old site in blog-posts.json', flush=True)
     failed, done, before, after = [], 0, 0, 0
+    todo = []
     for url in urls:
         rel = manifest.get(url, {}).get('file') or local_name(url)
+        if not os.path.exists(os.path.join(MEDIA, rel)):
+            todo.append((url, rel))
+    print(f'{len(todo)} to download', flush=True)
+
+    def work(job):
+        url, rel = job
+        raw = fetch(url)
+        data, w, h = convert(raw, args.max_edge, args.quality)
         dest = os.path.join(MEDIA, rel)
-        if not os.path.exists(dest):
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, 'wb') as f:
+            f.write(data)
+        return url, {'file': rel, 'width': w, 'height': h, 'bytes': len(data), 'source_bytes': len(raw)}
+
+    start = time.time()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
+        futures = {pool.submit(work, job): job for job in todo}
+        for i, fut in enumerate(concurrent.futures.as_completed(futures), 1):
+            url = futures[fut][0]
             try:
-                raw = fetch(url)
-                data, w, h = convert(raw, args.max_edge, args.quality)
+                url, item = fut.result()
+                manifest[url] = item
+                done += 1
             except Exception as e:  # noqa: BLE001 - keep going, report at the end
                 failed.append(f'{url}: {e}')
-                continue
-            os.makedirs(os.path.dirname(dest), exist_ok=True)
-            with open(dest, 'wb') as f:
-                f.write(data)
-            manifest[url] = {'file': rel, 'width': w, 'height': h, 'bytes': len(data), 'source_bytes': len(raw)}
-            done += 1
-        before += manifest[url].get('source_bytes', 0)
-        after += manifest[url].get('bytes', 0)
+            if i % 25 == 0 or i == len(todo):
+                print(f'  {i}/{len(todo)} · ok {done} · failed {len(failed)} · {time.time() - start:.0f}s', flush=True)
+            if time.time() - start > args.time_limit:
+                print('time limit reached: saving what is done', flush=True)
+                for f in futures:
+                    f.cancel()
+                break
+    for item in manifest.values():
+        before += item.get('source_bytes', 0)
+        after += item.get('bytes', 0)
 
     with open(MANIFEST, 'w', encoding='utf-8') as f:
         json.dump(dict(sorted(manifest.items())), f, ensure_ascii=False, indent=1)

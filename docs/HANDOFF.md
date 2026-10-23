@@ -1,7 +1,9 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 6: นำเข้าบทความจริง 115 เรื่อง × TH/EN/JA + Blog UI) · theme 0.9.0 / plugin 0.8.0
+> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 7: demo ใช้รูปบทความจาก repo (WebP) + ลิงก์ demo สั้น + แผนรูป/PageSpeed/AI SEO/โฮสต์) · theme 0.9.0 / plugin 0.8.0
+>
+> **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -30,6 +32,7 @@
 
 ## 3. ดูผลงาน
 
+- **ลิงก์ demo แบบสั้น**: <https://imeeba.github.io/hrideone-web/> (เปิดแล้วไป Playground เอง · `?stay` = แสดงรายการหน้า · `?page=/blog/` = เปิดหน้านั้น) — ไฟล์ `demo-site/index.html`, deploy ด้วย `.github/workflows/pages.yml` · ⚠️ ต้องเปิด GitHub Pages ครั้งแรกด้วยมือ: repo Settings → Pages → Build and deployment → Source = **GitHub Actions** แล้ว Actions → "Demo link (GitHub Pages)" → Run workflow (proxy ของ Claude เปิด Pages ผ่าน API ไม่ได้)
 - Preview (Playground, ดึงจาก `main` ทุกครั้ง): <https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json>
   - เติม `&v=<เลขใหม่>` ถ้าเห็นเวอร์ชันเก่า (cache)
   - เปิดมาที่หน้าแรก `/` · Style Guide `/style-guide/` · รวมคอร์ส `/courses/` · `/in-house/` · `/public-training/` · `/transformation-solutions/` · `/japanese-concept/`
@@ -44,6 +47,7 @@
 ## 4. สถาปัตยกรรม
 
 ```
+(รูป demo) playground/data/blog-posts.json ─ scripts/demo-media.py (GitHub Actions: demo-media.yml) ─→ playground/media/YYYY/MM/*.webp + manifest.json
 tokens/tokens.json  ─┐
 tokens/theme.base.json ─┴─ node tokens/build.mjs ─→ wp-content/themes/hri-theme/theme.json  (ห้ามแก้ตรง)
 wp-content/themes/hri-theme/   หน้าตาเท่านั้น: templates, parts, patterns, CSS, fonts
@@ -156,6 +160,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 7 (23 ต.ค. 2569, ตรง `main`): **รูปบทความของ demo อยู่ใน repo** — `scripts/demo-media.py` + workflow `Demo media` (รันบนเครื่อง GitHub เพราะ workspace ของ Claude เข้า hrideone.com ไม่ได้) ดาวน์โหลดเฉพาะรูปที่บทความใช้ (ปก + รูปในเนื้อหา, ไม่ใช่คลังสื่อ 1,578 ไฟล์) ย่อขอบยาวสุด 1600px แปลง WebP q78 เก็บที่ `playground/media/` (ชื่อไฟล์ ASCII, `manifest.json` = URL เดิม → ไฟล์ใหม่ + ขนาด) แล้วแก้ `blog-posts.json(.gz)` ให้ชี้ `https://cdn.jsdelivr.net/gh/imeeba/hrideone-web@main/playground/media/…` · importer โหมด download รับรูปจากโดเมนใดก็ได้ที่ไม่ใช่เว็บตัวเอง (ย้ายจริงได้แม้เว็บเดิมปิด) · ลิงก์ demo สั้น (GitHub Pages) · `docs/HOSTING.md` (ข้อมูล Ruk-com + คำถาม support)
 - [x] รอบที่ 6 (23 ต.ค. 2569, branch `feature/blog-import`): บทความจริงจากเว็บเดิม 115 เรื่อง × TH/EN/JA (ตรงกับ https://hrideone.com/blog/ ทุก slug ทุกลำดับ 8 หน้า × 15 และตรงทุกหมวด) + เครื่องมือนำเข้า + 301 URL เดิมของบล็อก + Blog UI (contrast, tap target, การ์ดกดทั้งใบ, excerpt 3 บรรทัด) · ตรวจ: 345 โพสต์ ผูกคำแปลครบ 115 ชุด ภาษา/หมวด/วันที่ถูกทุกโพสต์, นำเข้าซ้ำไม่สร้างซ้ำ, โหมด download (ทดสอบด้วยรูป local), หน้า Tools ครบทั้งชุด, redirect ทุกแบบ, `measure.py` blog/หมวด/บทความ × 3 ภาษา × 3 จอ + หน้าเดิมทั้งหมด
 - [x] รอบที่ 5 (23 ต.ค. 2569, branch `fix/tap-targets`): tap target ≥44px ทุกจุดที่ค้างไว้ + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`
   - token ใหม่ `custom.tap` = 44px (`tokens.json` → `--wp--custom--tap`)
@@ -214,15 +219,22 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
-2. **รูป/วิดีโอจริง**: โลโก้ลูกค้า 40, รูปผู้บริหาร, Gallery ต่อคอร์ส (บรรยากาศรุ่นก่อน), รูปวิทยากร, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), วิดีโอแนวตั้งใน Outcomes ของคอร์ส In-house
+2. **รูป/วิดีโอจริงของหน้าอื่น (ไม่ใช่บล็อก)** → prompt H · โลโก้ลูกค้า 40, รูปผู้บริหาร 2, Gallery, รูป hero หน้าบริการ, โลโก้พาร์ทเนอร์ 8, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), รูปวิทยากร, วิดีโอแนวตั้งใน Outcomes · **ไฟล์ export มีแต่รูปของบทความ** (1,578 attachment ผูกกับโพสต์ทั้งหมด) → ต้องหา URL รูปจากหน้าเว็บเดิมทีละหน้า แล้วใส่ใน list ให้ `demo-media.py`/workflow ดึง (ขยายสคริปต์ให้รับ list) · ดึงเฉพาะรูปที่หน้าใหม่ใช้จริง
+2.1 **รูปใน WordPress ให้เล็กสุด** → prompt I (แปลงต้นฉบับเป็น WebP/AVIF ตอนอัปโหลด, ขนาด `hri-card`, ขอบยาวสุด 1600)
+2.2 **PageSpeed** → prompt J (เป้า Lighthouse mobile ≥90 ทุกหน้า) · วัดจริงต้องรอโฮสต์ แต่ทำ/วัดใน local ได้ก่อน
 3. ~~นำเข้าบทความ~~ — **ทำแล้วในรอบที่ 6** (เว็บเดิมมี 115 เรื่อง ไม่ใช่ ~150 และมี EN/JA ครบอยู่แล้ว) · ตอนย้ายจริง: export ใหม่จากเว็บเดิม → `scripts/wxr-to-blog.py` → Tools → นำเข้าบทความ แบบ "คัดลอกรูปเข้าคลังสื่อ" บน staging
 4. **ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)
-5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, Article, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots/llms.txt
+5. **SEO / AI-SEO** → prompt D (ขยายแล้ว) — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, BlogPosting, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots.txt (AI crawlers), llms.txt, Bing/IndexNow
 6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, ลิงก์เก่าในเนื้อหาบทความ) · ของบล็อกทำแล้วใน `blog.php` (เว็บเดิมใช้ `?e-page-…=N` ไม่ใช่ `/blog/page/N`)
 7. **แปลอัตโนมัติ TH → EN/JA** — สเปกเต็ม: [`docs/AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) (ทำเองใน hri-core ต่อยอด Polylang ฟรี, แปลทีละ block, ไม่ทับ block ที่คนตรวจแก้, สถานะ 🤖/✅/⚠️, JA noindex จนกว่าตรวจ, จ่าย API ตามใช้ + เพดานงบ) · prompt G ในข้อ 10 · ต้องได้คำตอบข้อ 3.3 ก่อน
 8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · ~~Blog UI~~ ทำแล้วในรอบที่ 6 · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ ดูหัวข้อ "ปัญหานอกขอบเขต"
-9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม) และไป API แปลภาษา, WP-Cron/cron จริง, purge Rcache รายหน้าจากโค้ด (ดู AUTO-TRANSLATE.md ข้อ 3.4)
-10. Cloud staging (`new.hrideone.com`) · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
+9. **โฮสต์ Ruk-com** — **พักไว้จน demo เสร็จ** · ข้อมูลแพ็กเกจ + ข้อความถาม support 19 ข้อ + วิธีขึ้นเว็บที่เป็นไปได้: [`docs/HOSTING.md`](HOSTING.md)
+10. Cloud staging (`new.hrideone.com`) หลังได้คำตอบ support · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
+
+**การตัดสินใจ/ข้อสรุปจากรอบที่ 7** (คุยกับ Jimmi 23 ต.ค.)
+- slug: TH และ EN เป็นอังกฤษครบแล้ว · JA 115 เรื่องเป็นภาษาญี่ปุ่น (percent-encode) **คงไว้** (ตรงเว็บเดิม, Google แนะนำใช้คำในภาษาของผู้อ่าน) · ถ้า Jimmi อยากเปลี่ยนภายหลัง: slug อังกฤษ + `-ja` (Polylang ฟรีห้ามซ้ำ) + `_wp_old_slug` ให้ redirect
+- quality รูป 75–78 (บทความเดิมมีอินโฟกราฟิกตัวหนังสือไทยเยอะ ต่ำกว่า ~70 ขอบตัวอักษรเลอะ) · AVIF ใช้ได้ถ้า Imagick ของโฮสต์รองรับ ไม่งั้น WebP
+- คัดลอกรูปไม่กินโทเค็น (เซิร์ฟเวอร์/เครื่อง GitHub ดาวน์โหลดเอง Claude ไม่เห็นรูป) · กินเฉพาะตอนเขียน/ตรวจโค้ด
 
 ## 8. ข้อควรระวัง / สิ่งที่เคยพลาด
 
@@ -285,6 +297,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ## 9. วิธีทำงานที่ประหยัด usage
 
+- **ใช้ Sonnet**: งานที่ prompt ระบุชัด + มีเกณฑ์ตรวจเป็นตัวเลข ทำได้ใกล้เคียง Opus · งานที่ต้องใช้วิจารณญาณ (จัดหมวด/เขียนเนื้อหา) หรือเจอพฤติกรรมแปลกของ WordPress/Polylang มีโอกาสหยุดที่ "ดูเหมือนใช้ได้" → prompt ในข้อ 10 จึงใส่ **เกณฑ์ผ่าน** ทุกข้อ ห้ามข้าม และให้อ่านข้อ 8 (สิ่งที่เคยพลาด) ก่อนเริ่ม
+
 - หนึ่งแชทต่อหนึ่งงานใหญ่ เริ่มด้วย: "ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web อ่าน docs/HANDOFF.md แล้วทำ <งาน>"
 - ตรวจด้วย JS วัดค่า (ขนาด/overflow/การแสดงผล) ก่อน ใช้ screenshot เท่าที่จำเป็น
 - จบงานแล้วอัปเดตไฟล์นี้ (ข้อ 5–8) แล้ว push
@@ -328,8 +342,15 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 **D. SEO / AI-SEO**
 
 ```
-ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
-อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: ตั้งค่า SEO ด้วย The SEO Framework (ฟรี) + ทำ schema เองใน hri-core: EducationalOrganization, Course/CourseInstance (รวมราคา Early Bird จาก meta), FAQPage (จาก block details), Article, BreadcrumbList, Person (วิทยากร) · ตรวจ hreflang จาก Polylang · robots.txt และ llms.txt · ทดสอบด้วย Rich Results/validator ถ้าเข้าถึงได้
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 6–8) แล้วทำงานนี้: SEO + AI SEO
+1. The SEO Framework (ฟรี): title/meta/sitemap/canonical ทั้ง 3 ภาษา · ตรวจ hreflang ของ Polylang ครบทุกคู่ + x-default
+2. JSON-LD ทำเองใน hri-core (โมดูลใหม่ inc/schema.php): EducationalOrganization (โลโก้, ที่อยู่/ติดต่อจาก hri_company(), sameAs โซเชียล), WebSite, BreadcrumbList, BlogPosting (headline, datePublished/Modified, image, inLanguage, publisher), Course + hasCourseInstance + offers (ราคา, Early Bird + priceValidUntil จาก meta), Person (วิทยากร), FAQPage จาก Details block (Google ไม่โชว์ rich result FAQ ให้เว็บทั่วไปแล้ว แต่ช่วย AI อ่าน) · ไม่ซ้ำกับ schema ที่ The SEO Framework ใส่เอง
+3. robots.txt (virtual, แก้จากหลังบ้านได้): อนุญาต OAI-SearchBot, ChatGPT-User, Claude-SearchBot, PerplexityBot, Bingbot · GPTBot / ClaudeBot / Google-Extended (bot เทรนโมเดล) ให้เป็นตัวเลือกใน Settings ค่าเริ่มต้น "อนุญาต" แล้วจดใน HANDOFF ข้อ 6 ว่าลูกค้าต้องตัดสินใจ
+4. /llms.txt (virtual): ชื่อบริษัท สรุปบริการ ลิงก์หน้าสำคัญ 3 ภาษา (หน้าแรก, บริการ 4 หน้า, รวมคอร์ส, บล็อก, ติดต่อ) สร้างจากเนื้อหาจริง ไม่ hard-code
+5. IndexNow (ping Bing เมื่อ publish/update) แบบเปิด/ปิดได้ · ปิดไว้ใน local/Playground
+6. เนื้อหาเพื่อ AI: เพิ่มใน pattern หน้าคอร์สให้มีย่อหน้าสรุปบนสุด (คืออะไร/เหมาะกับใคร/ได้อะไร) ถ้ายังไม่มี · บทความแสดง "อัปเดตล่าสุด" ถ้าแก้หลังเผยแพร่
+เกณฑ์ผ่าน: JSON-LD ทุกแบบหน้าผ่าน schema validator (ตรวจด้วยสคริปต์ใน local ถ้าเข้าเว็บ validator ไม่ได้) · sitemap ครบ 345 บทความ + หน้า + คอร์ส 3 ภาษา · hreflang ครบทุกหน้าที่มีคำแปล · measure.py 0 ปัญหา
 
 กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
@@ -373,4 +394,56 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความ UI ใหม่แปลได้ TH/EN/JA (gettext ตามวิธีใน HANDOFF ข้อ 4/8) · สี/ขนาดใช้ token เท่านั้น · ไม่เพิ่ม plugin และไม่มี build step · ทีมการตลาดต้องใช้งาน/ตั้งค่าจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo · ห้ามส่งข้อมูล Lead ไป provider
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · ตามข้อ 6 ของ AUTO-TRANSLATE.md · python3 -I scripts/measure.py ต้องผ่านเหมือนเดิม · screenshot เฉพาะกล่อง "การแปล" และหน้า "งานแปล"
 ปิดงาน: อัปเดต AUTO-TRANSLATE.md (สถานะ, สิ่งที่ต่างจากสเปก, ข้อ 7 ค่าใช้จ่ายถ้าทดสอบจริง) + HANDOFF (ข้อ 4 สถาปัตยกรรม, ข้อ 5, ข้อ 7) + README · bump Version plugin/theme · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**H. รูปจริงของหน้าอื่นใน demo (ไม่ใช่บล็อก)**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2, 4, 6–8 และรอบที่ 7 ในข้อ 5) แล้วทำงานนี้: ใส่รูปจริงจากเว็บเดิมในหน้าอื่นของ demo (หน้าแรก: hero, โลโก้ลูกค้า 40 + ชื่อบริษัทเป็น alt, รูปผู้บริหาร 2, Gallery · หน้า In-house/Public/Transformation/Japanese Concept: hero + รูปประกอบ + โลโก้พาร์ทเนอร์ 8 · About · รูปคอร์ส thumbnail · รูปวิทยากร)
+1. ไล่หน้าเว็บเดิม (https://hrideone.com/ , /in-house/ , /public-training/ , /transformation-solutions/ , /japanese-concept/ , /about/ , /courses/<slug>/) หา URL รูปจริงที่ตรงกับตำแหน่งในเว็บใหม่ ทำตาราง ตำแหน่งในเว็บใหม่ → URL รูปเดิม ไว้ใน playground/data/page-media.json (ดึงเฉพาะรูปที่ใช้จริง)
+2. ขยาย scripts/demo-media.py ให้อ่าน page-media.json ด้วย (ย่อ/แปลงแบบเดียวกัน ลง playground/media/) แล้วรัน workflow "Demo media" (gh api .../actions/workflows/demo-media.yml/dispatches) รอจบแล้ว git pull
+3. แก้ seed (seed.php / seed-home.php / seed-course-data.php) ให้ใช้รูปจาก jsDelivr ตาม manifest แทนรูปตัวอย่าง (ใน Playground ห้ามดาวน์โหลดรูปเข้าคลังสื่อทีละรูป เพราะช้า ใช้ URL ตรงเหมือนบล็อก หรือหาวิธีที่ไม่ทำให้ Playground บูตช้าเกิน ~2 นาที)
+4. รูปไหนหาไม่เจอให้คง placeholder แล้วจดใน HANDOFF ข้อ 6
+เกณฑ์ผ่าน: เปิดลิงก์ demo แล้วรูปขึ้นทุกตำแหน่งในตาราง (ตรวจ naturalWidth > 0 ด้วย JS ใน Playground จริงผ่าน built-in browser) · ไม่มี URL hrideone.com เหลือใน seed · measure.py 0 ปัญหา · เวลาบูต Playground จดไว้
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**I. รูปใน WordPress ให้เล็กสุด (ก่อนย้ายเว็บ)**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2, 4, 6–8) แล้วทำงานนี้ใน hri-core/inc/images.php:
+1. แปลงไฟล์ต้นฉบับที่อัปโหลด (JPG/PNG) เป็น WebP ตั้งแต่ตอนอัปโหลด แล้วลบไฟล์เดิม (WordPress ปกติเก็บต้นฉบับไว้เสมอ และ image_editor_output_format แปลงแค่ขนาดย่อย) · ถ้า wp_image_editor_supports avif ให้เลือก AVIF ได้ด้วยค่าคงที่ใน wp-config (ค่าเริ่มต้น WebP)
+2. ขอบยาวสุดตั้งค่าได้ (HRI_IMAGE_MAX_EDGE ค่าเริ่มต้นเปลี่ยนเป็น 1600) · quality คง 78 ตั้งค่าได้
+3. เพิ่มขนาด hri-card 800×533 (crop 3:2) ให้การ์ดคอร์ส/บทความ/บทความที่เกี่ยวข้องใช้ขนาดนี้ · รูปในบทความใช้ large + srcset/sizes ถูกต้อง
+4. ทดสอบกับรูปตัวอย่าง + รูปที่มีตัวหนังสือ (เอาจาก playground/media) เทียบ quality 70 กับ 78 ให้ผมดู 2–3 คู่
+เกณฑ์ผ่าน: อัปโหลด JPG แล้วใน uploads ไม่มี .jpg เหลือ · ขนาดไฟล์ก่อน/หลังจดใน HANDOFF · การ์ดโหลดรูป ≤ ~80KB · โหมด download ของ Tools → นำเข้าบทความ ยังทำงาน · measure.py 0 ปัญหา
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**J. PageSpeed (เป้า Lighthouse mobile ≥90 ทุกหน้า)**
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2, 4, 6–8) แล้วทำงานนี้:
+1. ทำ scripts/perf.py: Lighthouse (npm lighthouse + Chromium ที่ /opt/pw-browsers) วัด 6 แบบหน้า (/, /courses/, คอร์สเดี่ยว, /blog/, บทความ, /contact-us/) × mobile/desktop เก็บ JSON + ตารางสรุป · วัด baseline ก่อนแก้ จดใน HANDOFF
+2. LCP: รูป hero fetchpriority=high ไม่ lazy · รูปแรกของบทความไม่ lazy · วิดีโอ hero มี poster และโหลดวิดีโอหลัง load / เฉพาะจอ ≥782px / ไม่โหลดเมื่อ Save-Data หรือ prefers-reduced-motion
+3. ฟอนต์: preload ≤2 ไฟล์ (Kanit Thai 400 + Latin 400) · ตัดน้ำหนักที่ไม่ใช้ (ตรวจว่าใช้จริงกี่น้ำหนัก) · fallback font ใช้ size-adjust ลด CLS
+4. CSS/JS: เช็กว่าโหลด CSS เฉพาะ block ที่ใช้ · minify base.css ใน tokens/build.mjs (ไฟล์ .min แยก ไม่แก้ต้นฉบับ) · JS โหลดเฉพาะหน้าที่ใช้ · ไม่มี jQuery ฝั่งหน้าเว็บ
+5. รูปทุกรูปมี width/height · loading=lazy เฉพาะใต้จอแรก · sizes ถูกต้อง
+6. Speculative Loading ของ core: ตั้ง prerender eagerness moderate (กดลิงก์แล้วเปิดแทบทันที) ยกเว้น wp-admin/ฟอร์ม
+7. สคริปต์ภายนอก: GA4/GTM (ถ้าจะใส่) โหลดหลัง load · Turnstile เฉพาะหน้าที่มีฟอร์ม · ไม่มี YouTube iframe ตอนโหลด (ใช้ภาพก่อนกดเล่น)
+8. จดสิ่งที่ต้องทำฝั่งโฮสต์ไว้ใน docs/HOSTING.md (cache header 1 ปี, Brotli, HTTP/3, Rcache, Cloudflare) — ห้ามแตะโฮสต์
+เกณฑ์ผ่าน: local ไม่ใช่ตัวแทนความเร็วโฮสต์ จึงวัดคะแนนส่วน LCP/CLS/TBT/น้ำหนักหน้า: mobile ≥90 ทุกหน้า (เป้า 95) · CLS < 0.1 · หน้าแรกไม่รวมวิดีโอ < 500KB · measure.py 0 ปัญหา · ตารางก่อน/หลังใน HANDOFF
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ห้ามแตะ Production · ห้าม secret ใน repo
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
+ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```

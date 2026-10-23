@@ -5,9 +5,11 @@ Rebuild ของเว็บไซต์ [hrideone.com](https://hrideone.com) (
 
 ## เปิดดูทันที (WordPress Playground)
 
+**ลิงก์สั้น: <https://imeeba.github.io/hrideone-web/>** (รายการหน้า: `?stay`)
+
 [▶ เปิด Preview ล่าสุดจาก branch `main`](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/blueprint.json)
 
-เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้าแรก มี `/in-house/`, `/public-training/`, `/transformation-solutions/`, `/japanese-concept/`, `/about/`, `/contact-us/`, `/blog/`, `/courses/` และ Style Guide (`/style-guide/`)
+เปิดได้จากทุกอุปกรณ์ ไม่ต้องติดตั้งอะไร เปิดมาที่หน้าแรก มี `/in-house/`, `/public-training/`, `/transformation-solutions/`, `/japanese-concept/`, `/about/`, `/contact-us/`, `/blog/` (บทความจริง 115 เรื่อง × 3 ภาษา รูปจาก `playground/media/`), `/courses/` และ Style Guide (`/style-guide/`)
 พร้อมข้อมูลตัวอย่าง ภาษาอังกฤษ `/en/` ญี่ปุ่น `/ja/` (Polylang) และล็อกอินหลังบ้านให้อัตโนมัติ
 ข้อมูลที่แก้ใน Playground อยู่แค่ในเบราว์เซอร์นั้นและหายเมื่อปิดแท็บ
 
@@ -46,9 +48,13 @@ playground/
   seed-home.php          สร้างเนื้อหาหน้าจาก patterns ตามภาษา (hri_seed_page_content(), ใช้ร่วมกันสองไฟล์)
   seed-languages.php     คำแปลตัวอย่าง EN / JA (หลังตั้งค่า Polylang)
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
+scripts/demo-media.py    ดึงรูปที่บทความใช้จากเว็บเดิม → WebP ใน playground/media/ (รันผ่าน GitHub Actions "Demo media")
 scripts/wxr-to-blog.py   แปลงไฟล์ Export (WXR) ของเว็บเดิมเป็น playground/data/blog-posts.json
 scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
 docs/HANDOFF.md          สถานะงานและบริบท
+docs/HOSTING.md          Ruk-com: ข้อมูลแพ็กเกจ, คำถาม support, วิธีขึ้นเว็บ (ยังไม่เริ่ม)
+demo-site/               หน้าลิงก์สั้นของ demo (GitHub Pages)
+.github/workflows/       demo-media.yml (รูป demo), pages.yml (ลิงก์สั้น)
 docs/AUTO-TRANSLATE.md   สเปกแปลอัตโนมัติ TH → EN/JA (ยังไม่ได้ทำ)
 ```
 
