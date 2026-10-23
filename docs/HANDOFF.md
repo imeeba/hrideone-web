@@ -3,6 +3,8 @@
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
 > อัปเดตล่าสุด: 2026-10-24 (รอบที่ 9: **รูปจริงจากเว็บเดิมแทน placeholder ~133 ช่อง** · branch `feature/real-images` ยังไม่ merge เข้า `main` ดูข้อ 5) · theme 0.10.1 / plugin 0.9.1
 >
+> **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
+>
 > **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
 >
 > **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
@@ -255,6 +257,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
+0.1 **Merge `feature/real-images` → `main`** (รอบที่ 9, รอ Jimmi ดู) · ดูก่อน merge: แก้ทุก `main` ใน `playground/blueprint.json` เป็น `feature/real-images` แล้วเปิดผ่าน `https://playground.wordpress.net/#<blueprint JSON>` (ลิงก์สั้นใช้ `main` เสมอ) · หลัง merge: Actions "Site media" ไม่ต้องรันใหม่ (ไฟล์อยู่ใน repo แล้ว), jsDelivr `@main` เห็นไฟล์ใหม่ทันทีเพราะเป็น path ใหม่
+0.2 **รูปที่ยังขาด (รอบที่ 9)**: Jimmi ส่งรูปกิจกรรม Social Impact (About, 4 รูป) · ยืนยันสิทธิ์ใช้รูปผู้บริหาร/ผู้เข้าอบรม/โลโก้ลูกค้ากับลูกค้าก่อนขึ้นเว็บจริง · ตรวจ alt โลโก้ช่อง 10 · อยากได้ปกคอร์สใหม่แทนรูปที่มืด/ซ้ำไหม · วิดีโอ (hero, DO·WA·KEI, Outcomes) จะใส่เมื่อไร
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
 2. ~~**รูป/วิดีโอจริงของหน้าอื่น (ไม่ใช่บล็อก)** → prompt H~~ — **ทำแล้วในรอบที่ 9 (ยังไม่ merge)** เหลือวิดีโอ + รูป Social Impact · ของเดิม: โลโก้ลูกค้า 40, รูปผู้บริหาร 2, Gallery, รูป hero หน้าบริการ, โลโก้พาร์ทเนอร์ 8, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), รูปวิทยากร, วิดีโอแนวตั้งใน Outcomes · **ไฟล์ export มีแต่รูปของบทความ** (1,578 attachment ผูกกับโพสต์ทั้งหมด) → ต้องหา URL รูปจากหน้าเว็บเดิมทีละหน้า แล้วใส่ใน list ให้ `demo-media.py`/workflow ดึง (ขยายสคริปต์ให้รับ list) · ดึงเฉพาะรูปที่หน้าใหม่ใช้จริง
@@ -342,6 +346,17 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ลิงก์ inline ในย่อหน้า PDPA ของฟอร์ม (`hri/lead-form`) สูง ~24px **คงไว้ตั้งใจ**: WCAG 2.5.8 ยกเว้นลิงก์ที่อยู่กลางประโยค และถ้าเพิ่ม padding ระยะบรรทัดจะห่างผิดปกติ (ผ่านเกณฑ์ AA 24px ที่ตั้งไว้ ไม่ถึง 44px) · `measure.py` ข้ามลิงก์ประเภทนี้
 - การ์ดบริการ/หัวข้อ (`.hri-card__title` ของ theme) ยังไม่ได้ตรวจเรื่องคำยาวตัดกลางคำ (รอบที่ 5 แก้เฉพาะการ์ดคอร์ส)
 
+**จากรอบที่ 9 (รูปจริง)**
+- workspace ของ Claude เข้า hrideone.com และ jsDelivr ไม่ได้ (curl/WebFetch ถูกปฏิเสธ) → งานที่ต้องเปิดเว็บเดิม/ดาวน์โหลดรูปให้รันบน GitHub Actions (`crawl-images.yml`, `site-media.yml`, `demo-media.yml`) · workflow ที่ trigger ด้วย `push: paths` รันบน branch ได้ (ไม่ต้องกด Run) แต่ `workflow_dispatch` ใช้ได้เฉพาะ workflow ที่อยู่บน `main` · `gh` ใช้ได้ (`gh run list --branch <b>`) แม้ `gh auth status` จะขึ้น fail
+- workflow commit กลับเข้า branch เอง → `git pull --rebase` ก่อน push ทุกครั้ง
+- clone แบบ `--depth 1` ได้ refspec เฉพาะ `main` → branch ใหม่ไม่มี tracking (hook เตือน "no remote branch" ทั้งที่ push แล้ว) แก้: `git config --add remote.origin.fetch '+refs/heads/<b>:refs/remotes/origin/<b>' && git fetch origin && git branch --set-upstream-to=origin/<b>`
+- screenshot ของ crawl ใหญ่ (16 MB) → ไม่เก็บใน repo (`.gitignore`) ดูย้อนหลังได้จาก commit `ae36993` (`git show ae36993:playground/data/crawl/shots/<ไฟล์>`) · `pages.json` เก็บไว้ (รายการรูปทุกหน้าของเว็บเดิม + URL ต้นฉบับ)
+- รูปพื้นหลัง hero ของหน้าคอร์สเดิมไม่มีตัวหนังสือ (ข้อความเป็น HTML) → ใช้เป็นปกได้ · แต่ thumbnail ในหน้ารวมคอร์สเดิม (`thumbnail-IH-*.webp`, `1920x1080-0*.webp`, `Website-Public-page-*`) **มีตัวหนังสือไทยฝัง** ห้ามใช้เป็นปก (หน้า EN/JA)
+- `782.webp` ที่ HANDOFF เดิมเขียนว่าเป็นรูป hero In-house จริงๆ เป็นภาพเครื่องหมายคำถาม 3D (รูป CTA ท้ายหน้าคอร์ส) · `1920x1080-01.webp` เป็นแบนเนอร์คอร์ส Negotiation มีตัวหนังสือ ไม่ใช่รูป "ทำไมต้อง Public"
+- core/image: อย่าใส่ width/height ใน `<img>` ของ markup ที่ seed สร้าง (core เก็บเป็น attribute แล้ว save เป็น style → editor validate ไม่ผ่าน) · ขนาดใส่ได้เฉพาะรูปที่ PHP พิมพ์เอง (featured image ผ่าน filter ใน `blog.php`)
+- ทดสอบ local: `scripts/local-setup.sh` + Polylang 3.9.1 (`git clone --depth 1 --branch 3.9.1 https://github.com/polylang/polylang` ใน plugins แล้ว `composer dump-autoload --no-dev`) + `wp hri languages` + `wp eval-file playground/seed-languages.php` · รูป site-media ใน local: `ln -s <repo>/playground/site-media <local>/site-media` + `wp config set HRI_SITE_MEDIA_BASE http://127.0.0.1:8899/site-media --type=constant` แล้วรัน seed ซ้ำ · รูปบล็อก (jsDelivr) ใน local จะขึ้นเป็นรูปเสีย = ปกติ
+- slider ที่มีสไลด์ >5 บนจอ 375: ปุ่มลูกศรเคยหดเหลือ 28px (flex shrink) แก้แล้ว ถ้าเพิ่ม control อื่นในแถวนี้ให้เช็ก tap target อีกครั้ง
+
 ## 9. วิธีทำงานที่ประหยัด usage
 
 - **ใช้ Sonnet**: งานที่ prompt ระบุชัด + มีเกณฑ์ตรวจเป็นตัวเลข ทำได้ใกล้เคียง Opus · งานที่ต้องใช้วิจารณญาณ (จัดหมวด/เขียนเนื้อหา) หรือเจอพฤติกรรมแปลกของ WordPress/Polylang มีโอกาสหยุดที่ "ดูเหมือนใช้ได้" → prompt ในข้อ 10 จึงใส่ **เกณฑ์ผ่าน** ทุกข้อ ห้ามข้าม และให้อ่านข้อ 8 (สิ่งที่เคยพลาด) ก่อนเริ่ม
@@ -405,6 +420,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ```
 
 **E. ย้ายเนื้อหา + 301**
+> หมายเหตุรอบที่ 9: ตอนย้ายต้อง sideload รูปจาก `playground/site-media/` เข้าคลังสื่อ (ปกคอร์ส/วิทยากรใน demo เป็น meta `_hri_thumbnail_url` ให้แปลงเป็น featured image จริง) · URL รูปต้นฉบับของทุกช่องอยู่ใน `site-media.json` (`src`)
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
@@ -460,6 +476,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ```
 
 **I. รูปใน WordPress ให้เล็กสุด (ก่อนย้ายเว็บ)**
+> หมายเหตุรอบที่ 9: รูปหน้าอื่นอยู่ใน `playground/site-media/` (แปลงแล้ว 1.6 MB) และใน demo เป็น URL ไม่ได้อยู่ในคลังสื่อ — งานนี้ต้องครอบคลุมตอน sideload รูปเหล่านี้เข้าคลังสื่อบนโฮสต์จริงด้วย
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web (ขอสิทธิ์ push ด้วย add_repo access:"push")
