@@ -94,6 +94,7 @@ s.custom = {
 	lineHeight: tokens.font.lineHeight,
 	fontWeight: tokens.font.weight,
 	ratio: tokens.ratio,
+	tap: tokens.tap,
 	motion: tokens.motion,
 	gutter: tokens.layout.gutter,
 };

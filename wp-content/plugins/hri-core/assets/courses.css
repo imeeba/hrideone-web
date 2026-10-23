@@ -58,19 +58,30 @@
 }
 
 .hri-filter__panel > summary {
+	align-items: center;
+	box-sizing: border-box;
 	cursor: pointer;
+	display: flex;
 	font-weight: 500;
+	justify-content: space-between;
 	list-style: none;
+	min-block-size: var(--wp--custom--tap);
 	padding-block: var(--wp--preset--spacing--20);
 }
 
 .hri-filter__panel > summary::after {
 	content: '＋';
-	float: right;
 }
 
 .hri-filter__panel[open] > summary::after {
 	content: '－';
+}
+
+/* Side panel on wide screens: always open, no toggle (must come after the summary rule above). */
+@media (min-width: 900px) {
+	.hri-filter__panel > summary {
+		display: none;
+	}
 }
 
 .hri-filter__group {
@@ -89,10 +100,11 @@
 
 .hri-check {
 	align-items: center;
+	box-sizing: border-box;
 	cursor: pointer;
 	display: flex;
 	gap: var(--wp--preset--spacing--30);
-	padding: 5px 0;
+	min-block-size: var(--wp--custom--tap);
 }
 
 .hri-check input {
@@ -172,9 +184,13 @@
 .hri-pagination a.page-numbers,
 .hri-pagination span.page-numbers {
 	border: 1px solid var(--wp--preset--color--border);
+	align-items: center;
 	border-radius: var(--wp--custom--radius--sm);
-	display: inline-block;
-	min-width: 2.5rem;
+	box-sizing: border-box;
+	display: inline-flex;
+	justify-content: center;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
 	line-height: 1.4;
 	padding: 0.45rem 0.75rem;
 	text-align: center;
@@ -254,8 +270,29 @@
 }
 
 .hri-card__title {
-	font-size: var(--wp--preset--font-size--large);
 	margin: 0;
+}
+
+/* Course card only (the theme's .hri-card service cards share the class names, so scope with
+   .hri-course-card, which also out-ranks the theme's .hri-card__title size).
+   The card is a size container so the title can follow its width: size = 0.11 x the title's
+   width, kept between the medium and large presets, so a long word such as "Transformation"
+   fits a narrow 3-column card instead of being cut mid-word. */
+.hri-course-card {
+	container-type: inline-size;
+}
+
+.hri-course-card .hri-card__title {
+	font-size: clamp(
+		var(--wp--preset--font-size--medium),
+		calc((100cqi - 2 * var(--wp--preset--spacing--50)) * 0.11),
+		var(--wp--preset--font-size--x-large)
+	);
+	overflow-wrap: break-word;
+}
+
+.hri-course-card .hri-card__title:lang(en) {
+	hyphens: auto;
 }
 
 .hri-card__title a {

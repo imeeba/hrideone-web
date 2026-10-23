@@ -45,6 +45,7 @@ playground/
   seed-home.php          สร้างเนื้อหาหน้าจาก patterns ตามภาษา (hri_seed_page_content(), ใช้ร่วมกันสองไฟล์)
   seed-languages.php     คำแปลตัวอย่าง EN / JA (หลังตั้งค่า Polylang)
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
+scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
 docs/HANDOFF.md          สถานะงานและบริบท
 ```
 

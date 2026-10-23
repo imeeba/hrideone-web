@@ -507,6 +507,7 @@
 			"ratio": {
 				"thumb": "3 / 2"
 			},
+			"tap": "44px",
 			"motion": {
 				"fast": "150ms",
 				"base": "250ms",
