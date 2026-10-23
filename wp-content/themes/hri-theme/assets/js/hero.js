@@ -7,7 +7,7 @@
 ( () => {
 	const MAX_SECONDS = 10;
 	const labels = ( window.hriL10n && window.hriL10n.hero ) || { pause: 'Pause video', play: 'Play video' };
-	const icons = {
+	const icons = ( window.hriL10n && window.hriL10n.hero && window.hriL10n.hero.icons ) || {
 		pause: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
 		play: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>',
 	};

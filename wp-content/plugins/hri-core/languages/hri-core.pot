@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: HRI Core 0.7.2\n"
+"Project-Id-Version: HRI Core 0.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hri-core\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-23T13:35:55+00:00\n"
+"POT-Creation-Date: 2026-10-23T20:38:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: hri-core\n"
@@ -57,7 +57,7 @@ msgstr ""
 #: blocks/contact-info/render.php:30
 #: blocks/cta-band/render.php:22
 #: inc/course-card.php:189
-#: inc/course-card.php:315
+#: inc/course-card.php:320
 msgid "(เปิดในแท็บใหม่)"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "เลือกภาษา / Language"
 msgstr ""
 
-#: blocks/language-switcher/render.php:52
+#: blocks/language-switcher/render.php:54
 msgid "ภาษา / Language"
 msgstr ""
 
@@ -205,58 +205,58 @@ msgstr ""
 msgid "ไฟล์นำเข้าไม่ใช่รูปแบบที่ถูกต้อง (ต้องสร้างจาก scripts/wxr-to-blog.py)"
 msgstr ""
 
-#: inc/blog-import.php:380
-#: inc/blog-import.php:444
+#: inc/blog-import.php:409
+#: inc/blog-import.php:473
 msgid "นำเข้าบทความจากเว็บเดิม"
 msgstr ""
 
-#: inc/blog-import.php:381
+#: inc/blog-import.php:410
 msgid "นำเข้าบทความ"
 msgstr ""
 
 #. translators: %s: upload size limit, e.g. 2 MB
-#: inc/blog-import.php:418
+#: inc/blog-import.php:447
 #, php-format
 msgid "ไฟล์ใหญ่เกินขนาดอัปโหลดของโฮสต์ (%s) ให้ใช้ไฟล์ blog-posts.json.gz แทน"
 msgstr ""
 
-#: inc/blog-import.php:420
+#: inc/blog-import.php:449
 msgid "อัปโหลดไฟล์ไม่สำเร็จ"
 msgstr ""
 
 #. translators: 1: articles done, 2: total
-#: inc/blog-import.php:433
+#: inc/blog-import.php:462
 #, php-format
 msgid "นำเข้าแล้ว %1$d จาก %2$d เรื่อง กำลังทำต่อ…"
 msgstr ""
 
 #. translators: %d: number of articles (each in TH / EN / JA)
-#: inc/blog-import.php:437
+#: inc/blog-import.php:466
 #, php-format
 msgid "นำเข้าครบ %d เรื่องแล้ว (แต่ละเรื่องมี TH / EN / JA)"
 msgstr ""
 
-#: inc/blog-import.php:452
+#: inc/blog-import.php:481
 msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
 msgstr ""
 
-#: inc/blog-import.php:454
+#: inc/blog-import.php:483
 msgid "ทำต่อ"
 msgstr ""
 
-#: inc/blog-import.php:458
+#: inc/blog-import.php:487
 msgid "ใช้ไฟล์ blog-posts.json.gz (หรือ .json) ที่สร้างจากไฟล์ Export ของเว็บเดิม (scripts/wxr-to-blog.py) นำเข้าซ้ำได้ บทความเดิมจะถูกอัปเดต ไม่สร้างซ้ำ"
 msgstr ""
 
-#: inc/blog-import.php:463
+#: inc/blog-import.php:492
 msgid "คัดลอกรูปเข้าคลังสื่อ (ต้องทำตอนเว็บเดิมยังเปิดอยู่)"
 msgstr ""
 
-#: inc/blog-import.php:464
+#: inc/blog-import.php:493
 msgid "ใช้รูปจากเว็บเดิม (สำหรับเว็บทดสอบ)"
 msgstr ""
 
-#: inc/blog-import.php:465
+#: inc/blog-import.php:494
 msgid "เริ่มนำเข้า"
 msgstr ""
 
@@ -280,12 +280,12 @@ msgstr ""
 msgid "ข้อความแถบชวนติดต่อ"
 msgstr ""
 
-#: inc/company.php:176
-#: inc/company.php:188
+#: inc/company.php:189
+#: inc/company.php:201
 msgid "ข้อมูลบริษัท"
 msgstr ""
 
-#: inc/company.php:189
+#: inc/company.php:202
 msgid "ใช้ใน footer และส่วนอื่นของเว็บ แก้ที่นี่ที่เดียว ช่องลิงก์ที่เว้นว่างจะไม่แสดงบนเว็บ ข้อความภาษา EN / JA ที่เว้นว่างจะใช้ภาษาไทยแทน"
 msgstr ""
 
@@ -565,11 +565,11 @@ msgstr ""
 msgid "สถานะ"
 msgstr ""
 
-#: inc/course-card.php:321
+#: inc/course-card.php:326
 msgid "สอบถามหลักสูตรนี้"
 msgstr ""
 
-#: inc/course-card.php:345
+#: inc/course-card.php:350
 msgid "มีใบประกาศนียบัตร"
 msgstr ""
 
@@ -593,6 +593,14 @@ msgstr ""
 
 #: inc/course-filter.php:245
 msgid "ล้างตัวกรอง"
+msgstr ""
+
+#: inc/course-filter.php:268
+msgid "หน้าก่อนหน้า"
+msgstr ""
+
+#: inc/course-filter.php:269
+msgid "หน้าถัดไป"
 msgstr ""
 
 #: inc/course-filter.php:273

@@ -216,6 +216,7 @@ video {
 	align-items: center;
 	box-sizing: border-box;
 	display: inline-flex;
+	gap: var(--wp--preset--spacing--10);
 	min-block-size: var(--wp--custom--tap);
 }
 
@@ -306,6 +307,16 @@ video {
 /* ---------- Header logo ---------- */
 .hri-header .hri-logo {
 	flex: none;
+}
+
+/* ---------- Button "Outline" ----------
+   Same as the outline variation in theme.json. Repeated here because core prints that
+   variation only on pages where a parsed Button block renders; buttons printed by PHP
+   (course hero, hri_course_buttons()) would otherwise look like the main button. */
+.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) {
+	background: transparent;
+	border-color: var(--wp--preset--color--primary-strong);
+	color: var(--wp--preset--color--primary-strong);
 }
 
 /* ---------- Button "Outline light" (second button on dark / hero) ---------- */
@@ -902,17 +913,38 @@ video {
 	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--40);
 }
 
-/* Check mark (two borders, rotated), used by chips and checklists. */
+/* ---------- Icons in CSS ----------
+   Phosphor Light from hri-core (variables --hri-icon-*, see hri-core/inc/icons.php).
+   Shape = mask, colour = background (currentColor unless set). */
 .hri-chips li::before,
-.hri-checklist li::before {
-	border-bottom: 2px solid var(--wp--preset--color--secondary);
-	border-right: 2px solid var(--wp--preset--color--secondary);
-	box-sizing: border-box;
+.hri-checklist li::before,
+.hri-card__link a::after,
+.hri-faq__item summary::after,
+.hri-pagination .wp-block-query-pagination-previous-arrow,
+.hri-pagination .wp-block-query-pagination-next-arrow {
+	background-color: currentColor;
+	block-size: 1.25em;
 	content: "";
 	flex: none;
-	height: 0.8em;
-	transform: rotate(45deg) translate(-0.1em, -0.1em);
-	width: 0.45em;
+	inline-size: 1.25em;
+	-webkit-mask: var(--hri-icon-check) center / contain no-repeat;
+	mask: var(--hri-icon-check) center / contain no-repeat;
+}
+
+/* Check mark, used by chips and checklists. */
+.hri-chips li::before,
+.hri-checklist li::before {
+	background-color: var(--wp--preset--color--secondary);
+}
+
+.hri-chips li::before {
+	block-size: 1em;
+	inline-size: 1em;
+}
+
+/* The icon box has its own white space on the left, so less padding there. */
+.hri-chips li {
+	padding-inline-start: var(--wp--preset--spacing--30);
 }
 
 .hri-checklist {
@@ -926,7 +958,7 @@ video {
 }
 
 .hri-checklist li::before {
-	margin-block-start: 0.35em;
+	margin-block-start: 0.1em;
 }
 
 .hri-checklist li + li {
@@ -1002,7 +1034,8 @@ video {
 }
 
 .hri-card__link a::after {
-	content: "→";
+	-webkit-mask-image: var(--hri-icon-arrow-right);
+	mask-image: var(--hri-icon-arrow-right);
 	transition: transform var(--wp--custom--motion--fast) var(--hri-ease);
 }
 
@@ -1223,11 +1256,11 @@ video {
 }
 
 .hri-faq__item summary::after {
-	color: var(--wp--preset--color--primary-strong);
-	content: "+";
-	flex: none;
-	font-size: var(--wp--preset--font-size--x-large);
-	line-height: 1;
+	background-color: var(--wp--preset--color--primary-strong);
+	block-size: 28px;
+	inline-size: 28px;
+	-webkit-mask-image: var(--hri-icon-plus);
+	mask-image: var(--hri-icon-plus);
 	transition: transform var(--wp--custom--motion--base) var(--hri-ease);
 }
 
@@ -1242,7 +1275,12 @@ video {
 
 .hri-faq__item > p {
 	color: var(--wp--preset--color--contrast-muted);
-	margin-block: 0 var(--wp--preset--spacing--40);
+	margin-block-start: 0;
+}
+
+/* Space under the answer: padding, because core zeroes the last child's margin. */
+.hri-faq__item[open] {
+	padding-block-end: var(--wp--preset--spacing--40);
 }
 
 /* ---------- Call-to-action band inside a page ---------- */
@@ -1788,6 +1826,26 @@ video {
 	text-decoration: none;
 }
 
+/* Arrows: the core "→" / "←" text is hidden and the icon drawn instead. */
+.hri-pagination .wp-block-query-pagination-previous-arrow,
+.hri-pagination .wp-block-query-pagination-next-arrow {
+	display: inline-block;
+	margin: 0;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+.hri-pagination .wp-block-query-pagination-previous-arrow {
+	-webkit-mask-image: var(--hri-icon-arrow-left);
+	mask-image: var(--hri-icon-arrow-left);
+}
+
+.hri-pagination .wp-block-query-pagination-next-arrow {
+	-webkit-mask-image: var(--hri-icon-arrow-right);
+	mask-image: var(--hri-icon-arrow-right);
+}
+
 .hri-posts--list .wp-block-query-pagination a:hover {
 	border-color: var(--wp--preset--color--primary-strong);
 	color: var(--wp--preset--color--primary-strong);
@@ -1818,4 +1876,18 @@ video {
 	gap: var(--wp--preset--spacing--50);
 	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* ---------- Icon sizes inside buttons (hri_icon() SVGs) ---------- */
+.hri-slider__arrow .hri-icon,
+.wp-block-navigation__responsive-container-open .hri-icon,
+.wp-block-navigation__responsive-container-close .hri-icon {
+	block-size: 24px;
+	inline-size: 24px;
+	vertical-align: middle;
+}
+
+.hri-hero__toggle .hri-icon {
+	block-size: 20px;
+	inline-size: 20px;
 }

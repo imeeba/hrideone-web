@@ -33,7 +33,7 @@ msgstr ""
 msgid "เลือกภาษา / Language"
 msgstr "Choose language"
 
-#: blocks/language-switcher/render.php:52
+#: blocks/language-switcher/render.php:54
 msgid "ภาษา / Language"
 msgstr "Language"
 
@@ -271,7 +271,7 @@ msgstr "Add us on LINE"
 #: blocks/contact-info/render.php:30
 #: blocks/cta-band/render.php:22
 #: inc/course-card.php:189
-#: inc/course-card.php:315
+#: inc/course-card.php:320
 msgid "(เปิดในแท็บใหม่)"
 msgstr "(opens in a new tab)"
 
@@ -309,12 +309,12 @@ msgstr "CTA band title"
 msgid "ข้อความแถบชวนติดต่อ"
 msgstr "CTA band text"
 
-#: inc/company.php:176
-#: inc/company.php:188
+#: inc/company.php:189
+#: inc/company.php:201
 msgid "ข้อมูลบริษัท"
 msgstr "Company info"
 
-#: inc/company.php:189
+#: inc/company.php:202
 msgid "ใช้ใน footer และส่วนอื่นของเว็บ แก้ที่นี่ที่เดียว ช่องลิงก์ที่เว้นว่างจะไม่แสดงบนเว็บ ข้อความภาษา EN / JA ที่เว้นว่างจะใช้ภาษาไทยแทน"
 msgstr "Used in the footer and elsewhere on the site: edit it here only. Empty links are not shown. Empty EN / JA texts fall back to Thai."
 
@@ -561,11 +561,11 @@ msgstr "Fee"
 msgid "มี"
 msgstr "Yes"
 
-#: inc/course-card.php:321
+#: inc/course-card.php:326
 msgid "สอบถามหลักสูตรนี้"
 msgstr "Ask about this course"
 
-#: inc/course-card.php:345
+#: inc/course-card.php:350
 msgid "มีใบประกาศนียบัตร"
 msgstr "Certificate provided"
 
@@ -699,57 +699,65 @@ msgstr "The import file cannot be read"
 msgid "ไฟล์นำเข้าไม่ใช่รูปแบบที่ถูกต้อง (ต้องสร้างจาก scripts/wxr-to-blog.py)"
 msgstr "The import file is not in the right format (make it with scripts/wxr-to-blog.py)"
 
-#: inc/blog-import.php:380
-#: inc/blog-import.php:444
+#: inc/blog-import.php:409
+#: inc/blog-import.php:473
 msgid "นำเข้าบทความจากเว็บเดิม"
 msgstr "Import articles from the old site"
 
-#: inc/blog-import.php:381
+#: inc/blog-import.php:410
 msgid "นำเข้าบทความ"
 msgstr "Import articles"
 
 #. translators: %s: upload size limit, e.g. 2 MB
-#: inc/blog-import.php:418
+#: inc/blog-import.php:447
 #, php-format
 msgid "ไฟล์ใหญ่เกินขนาดอัปโหลดของโฮสต์ (%s) ให้ใช้ไฟล์ blog-posts.json.gz แทน"
 msgstr "The file is larger than the host's upload limit (%s). Use blog-posts.json.gz instead."
 
-#: inc/blog-import.php:420
+#: inc/blog-import.php:449
 msgid "อัปโหลดไฟล์ไม่สำเร็จ"
 msgstr "The file could not be uploaded"
 
 #. translators: 1: articles done, 2: total
-#: inc/blog-import.php:433
+#: inc/blog-import.php:462
 #, php-format
 msgid "นำเข้าแล้ว %1$d จาก %2$d เรื่อง กำลังทำต่อ…"
 msgstr "Imported %1$d of %2$d articles, continuing…"
 
 #. translators: %d: number of articles (each in TH / EN / JA)
-#: inc/blog-import.php:437
+#: inc/blog-import.php:466
 #, php-format
 msgid "นำเข้าครบ %d เรื่องแล้ว (แต่ละเรื่องมี TH / EN / JA)"
 msgstr "All %d articles imported (each in TH / EN / JA)"
 
-#: inc/blog-import.php:452
+#: inc/blog-import.php:481
 msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
 msgstr "Do not close this page until it is done"
 
-#: inc/blog-import.php:454
+#: inc/blog-import.php:483
 msgid "ทำต่อ"
 msgstr "Continue"
 
-#: inc/blog-import.php:458
+#: inc/blog-import.php:487
 msgid "ใช้ไฟล์ blog-posts.json.gz (หรือ .json) ที่สร้างจากไฟล์ Export ของเว็บเดิม (scripts/wxr-to-blog.py) นำเข้าซ้ำได้ บทความเดิมจะถูกอัปเดต ไม่สร้างซ้ำ"
 msgstr "Use blog-posts.json.gz (or .json) made from the old site's export file (scripts/wxr-to-blog.py). You can import again: existing articles are updated, not duplicated."
 
-#: inc/blog-import.php:463
+#: inc/blog-import.php:492
 msgid "คัดลอกรูปเข้าคลังสื่อ (ต้องทำตอนเว็บเดิมยังเปิดอยู่)"
 msgstr "Copy the images into the media library (while the old site is still online)"
 
-#: inc/blog-import.php:464
+#: inc/blog-import.php:493
 msgid "ใช้รูปจากเว็บเดิม (สำหรับเว็บทดสอบ)"
 msgstr "Use the images on the old site (for test sites)"
 
-#: inc/blog-import.php:465
+#: inc/blog-import.php:494
 msgid "เริ่มนำเข้า"
 msgstr "Start import"
+
+#: inc/course-filter.php:268
+msgid "หน้าก่อนหน้า"
+msgstr "Previous page"
+
+#: inc/course-filter.php:269
+msgid "หน้าถัดไป"
+msgstr "Next page"

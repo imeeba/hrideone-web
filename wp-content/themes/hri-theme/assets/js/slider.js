@@ -31,17 +31,18 @@
 
 		const controls = document.createElement( 'div' );
 		controls.className = 'hri-slider__controls';
-		const button = ( cls, label, d ) => {
+		const icons = labels.icons || {};
+		const button = ( cls, label, d, icon ) => {
 			const b = document.createElement( 'button' );
 			b.type = 'button';
 			b.className = `hri-slider__arrow ${ cls }`;
 			b.setAttribute( 'aria-label', label );
 			b.setAttribute( 'aria-controls', track.id );
-			b.innerHTML = arrow( d );
+			b.innerHTML = icon || arrow( d );
 			return b;
 		};
-		const prev = button( 'hri-slider__arrow--prev', labels.prev, 'M15 5l-7 7 7 7' );
-		const next = button( 'hri-slider__arrow--next', labels.next, 'M9 5l7 7-7 7' );
+		const prev = button( 'hri-slider__arrow--prev', labels.prev, 'M15 5l-7 7 7 7', icons.prev );
+		const next = button( 'hri-slider__arrow--next', labels.next, 'M9 5l7 7-7 7', icons.next );
 		const dots = document.createElement( 'div' );
 		dots.className = 'hri-slider__dots';
 		const dotButtons = slides.map( ( _, i ) => {

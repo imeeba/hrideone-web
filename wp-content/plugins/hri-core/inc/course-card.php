@@ -303,6 +303,11 @@ function hri_course_highlight_ids( string $program, int $count ): array {
 function hri_course_buttons( int $post_id, string $variant = 'default', bool $secondary = true, bool $center = false ): string {
 	list( $url, $label, $external ) = hri_course_cta( $post_id );
 	$light   = 'light' === $variant;
+
+	// This markup skips the block parser, so core would not load the Button styles
+	// (outline style, inline-block link) on pages without another Button block.
+	wp_enqueue_style( 'wp-block-buttons' );
+	wp_enqueue_style( 'wp-block-button' );
 	$contact = add_query_arg( 'hri_course', get_post_field( 'post_name', $post_id ), hri_contact_url() ) . '#contact-form';
 
 	$button = static function ( string $href, string $text, string $style, bool $blank ): string {

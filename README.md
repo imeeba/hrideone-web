@@ -50,6 +50,7 @@ playground/
 scripts/local-setup.sh   สร้างเว็บทดสอบในเครื่อง
 scripts/demo-media.py    ดึงรูปที่บทความใช้จากเว็บเดิม → WebP ใน playground/media/ (รันผ่าน GitHub Actions "Demo media")
 scripts/wxr-to-blog.py   แปลงไฟล์ Export (WXR) ของเว็บเดิมเป็น playground/data/blog-posts.json
+scripts/build-icons.py   สร้างชุดไอคอน (Phosphor Light, MIT) → hri-core/assets/icons/ + icons.css ดู HANDOFF ข้อ 4
 scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
 docs/HANDOFF.md          สถานะงานและบริบท
 docs/HOSTING.md          Ruk-com: ข้อมูลแพ็กเกจ, คำถาม support, วิธีขึ้นเว็บ (ยังไม่เริ่ม)

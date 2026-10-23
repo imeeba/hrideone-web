@@ -112,6 +112,19 @@ function hri_company( string $key, string $lang = '' ): string {
 }
 
 /**
+ * Multi-line text (address) as escaped HTML with <br>, where a short last word of a line
+ * ("5", "5,", "10330") stays with the word before it instead of wrapping alone.
+ */
+function hri_company_lines_html( string $text ): string {
+	$lines = preg_split( '/\R/u', $text );
+	$lines = array_map(
+		static fn( $line ) => preg_replace( '/[ \t]+(\S{1,5})$/u', "\u{00A0}$1", rtrim( (string) $line ) ),
+		(array) $lines
+	);
+	return implode( "<br />\n", array_map( 'esc_html', $lines ) );
+}
+
+/**
  * Phone number for a tel: link: "065-097-9444" → "+66650979444".
  */
 function hri_phone_href( string $phone ): string {

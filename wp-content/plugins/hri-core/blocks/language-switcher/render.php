@@ -39,11 +39,13 @@ $wrapper = get_block_wrapper_attributes( array( 'class' => 'hri-lang hri-lang--'
 
 if ( 'dropdown' === $variant ) {
 	printf(
-		'<div %1$s><details class="hri-lang__details"><summary aria-label="%2$s"><svg class="hri-lang__globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0c2.5-2.4 3.8-5.4 3.8-9S14.500 5.400 12 3m0 18c-2.500-2.400-3.800-5.400-3.800-9S9.500 5.400 12 3M3.500 9h17M3.500 15h17"/></svg><span>%3$s</span><svg class="hri-lang__chevron" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.6" d="m2 4 4 4 4-4"/></svg></summary><ul>%4$s</ul></details></div>',
+		'<div %1$s><details class="hri-lang__details"><summary aria-label="%2$s">%5$s<span>%3$s</span>%6$s</summary><ul>%4$s</ul></details></div>',
 		$wrapper, // phpcs:ignore WordPress.Security.EscapeOutput -- core helper escapes.
 		esc_attr__( 'เลือกภาษา / Language', 'hri-core' ),
 		esc_html( $current['label'] ),
-		$items // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above.
+		$items, // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above.
+		hri_icon( 'globe', 'hri-lang__globe' ), // phpcs:ignore WordPress.Security.EscapeOutput -- local SVG.
+		hri_icon( 'caret-down', 'hri-lang__chevron' ) // phpcs:ignore WordPress.Security.EscapeOutput -- local SVG.
 	);
 } else {
 	printf(

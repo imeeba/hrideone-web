@@ -70,11 +70,18 @@
 }
 
 .hri-filter__panel > summary::after {
-	content: '＋';
+	background: currentColor;
+	block-size: 20px;
+	content: "";
+	flex: none;
+	inline-size: 20px;
+	-webkit-mask: var(--hri-icon-plus) center / contain no-repeat;
+	mask: var(--hri-icon-plus) center / contain no-repeat;
 }
 
 .hri-filter__panel[open] > summary::after {
-	content: '－';
+	-webkit-mask-image: var(--hri-icon-minus);
+	mask-image: var(--hri-icon-minus);
 }
 
 /* Side panel on wide screens: always open, no toggle (must come after the summary rule above). */

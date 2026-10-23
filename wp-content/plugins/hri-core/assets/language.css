@@ -62,7 +62,14 @@
 	outline: none;
 }
 
+.hri-lang__globe {
+	block-size: 20px;
+	inline-size: 20px;
+}
+
 .hri-lang__chevron {
+	block-size: 14px;
+	inline-size: 14px;
 	transition: transform var(--wp--custom--motion--fast) var(--wp--custom--motion--easing);
 }
 

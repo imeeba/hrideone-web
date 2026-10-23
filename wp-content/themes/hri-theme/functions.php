@@ -138,6 +138,28 @@ add_filter(
 );
 
 /**
+ * Open / close icons of the mobile menu: same icon set as the rest of the site (hri-core).
+ */
+add_filter(
+	'render_block_core/navigation',
+	static function ( $content ) {
+		if ( ! function_exists( 'hri_icon' ) ) {
+			return $content;
+		}
+		foreach ( array( 'open' => 'list', 'close' => 'x' ) as $button => $icon ) {
+			$content = preg_replace(
+				'#(<button[^>]*wp-block-navigation__responsive-container-' . $button . '[^>]*>)\s*<svg.*?</svg>#s',
+				'$1' . hri_icon( $icon ),
+				$content,
+				1
+			);
+		}
+		return $content;
+	},
+	20
+);
+
+/**
  * Home page sections, in order (patterns/home-{slug}.php). Used by the "Home page" pattern.
  *
  * @return string[]
@@ -215,6 +237,12 @@ function hri_enqueue_script( string $name ): void {
 			/* translators: 1: slide number, 2: number of slides */
 			'slide' => __( 'รูปที่ %1$s จาก %2$s', 'hri-theme' ),
 		);
+	// Icons (Phosphor Light from hri-core); the script keeps its own fallback without the plugin.
+	if ( function_exists( 'hri_icon' ) ) {
+		$labels['icons'] = 'hero' === $name
+			? array( 'pause' => hri_icon( 'pause' ), 'play' => hri_icon( 'play' ) )
+			: array( 'prev' => hri_icon( 'caret-left' ), 'next' => hri_icon( 'caret-right' ) );
+	}
 	wp_add_inline_script( $handle, 'window.hriL10n=Object.assign(window.hriL10n||{},' . wp_json_encode( array( $name => $labels ) ) . ');', 'before' );
 }
 

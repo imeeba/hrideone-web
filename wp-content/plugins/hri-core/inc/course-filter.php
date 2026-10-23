@@ -265,8 +265,8 @@ function hri_render_course_results( WP_Query $query, array $params, string $acti
 				'total'     => $query->max_num_pages,
 				'add_args'  => $add_args,
 				'type'      => 'list',
-				'prev_text' => '‹',
-				'next_text' => '›',
+				'prev_text' => hri_icon( 'caret-left', '', __( 'หน้าก่อนหน้า', 'hri-core' ) ),
+				'next_text' => hri_icon( 'caret-right', '', __( 'หน้าถัดไป', 'hri-core' ) ),
 			)
 		);
 		if ( $links ) {

@@ -33,7 +33,7 @@ msgstr ""
 msgid "เลือกภาษา / Language"
 msgstr "言語を選択"
 
-#: blocks/language-switcher/render.php:52
+#: blocks/language-switcher/render.php:54
 msgid "ภาษา / Language"
 msgstr "言語"
 
@@ -270,7 +270,7 @@ msgstr "LINEで友だち追加"
 #: blocks/contact-info/render.php:30
 #: blocks/cta-band/render.php:22
 #: inc/course-card.php:189
-#: inc/course-card.php:315
+#: inc/course-card.php:320
 msgid "(เปิดในแท็บใหม่)"
 msgstr "（新しいタブで開きます）"
 
@@ -308,12 +308,12 @@ msgstr "CTA帯の見出し"
 msgid "ข้อความแถบชวนติดต่อ"
 msgstr "CTA帯の本文"
 
-#: inc/company.php:176
-#: inc/company.php:188
+#: inc/company.php:189
+#: inc/company.php:201
 msgid "ข้อมูลบริษัท"
 msgstr "会社情報"
 
-#: inc/company.php:189
+#: inc/company.php:202
 msgid "ใช้ใน footer และส่วนอื่นของเว็บ แก้ที่นี่ที่เดียว ช่องลิงก์ที่เว้นว่างจะไม่แสดงบนเว็บ ข้อความภาษา EN / JA ที่เว้นว่างจะใช้ภาษาไทยแทน"
 msgstr "フッターなどサイト全体で使います。ここだけを編集してください。空欄のリンクは表示されません。EN / JA が空欄の場合はタイ語を表示します。"
 
@@ -560,11 +560,11 @@ msgstr "参加費"
 msgid "มี"
 msgstr "あり"
 
-#: inc/course-card.php:321
+#: inc/course-card.php:326
 msgid "สอบถามหลักสูตรนี้"
 msgstr "このコースについて問い合わせる"
 
-#: inc/course-card.php:345
+#: inc/course-card.php:350
 msgid "มีใบประกาศนียบัตร"
 msgstr "修了証あり"
 
@@ -698,57 +698,65 @@ msgstr "インポートファイルを読み込めません"
 msgid "ไฟล์นำเข้าไม่ใช่รูปแบบที่ถูกต้อง (ต้องสร้างจาก scripts/wxr-to-blog.py)"
 msgstr "インポートファイルの形式が正しくありません（scripts/wxr-to-blog.py で作成してください）"
 
-#: inc/blog-import.php:380
-#: inc/blog-import.php:444
+#: inc/blog-import.php:409
+#: inc/blog-import.php:473
 msgid "นำเข้าบทความจากเว็บเดิม"
 msgstr "旧サイトから記事をインポート"
 
-#: inc/blog-import.php:381
+#: inc/blog-import.php:410
 msgid "นำเข้าบทความ"
 msgstr "記事のインポート"
 
 #. translators: %s: upload size limit, e.g. 2 MB
-#: inc/blog-import.php:418
+#: inc/blog-import.php:447
 #, php-format
 msgid "ไฟล์ใหญ่เกินขนาดอัปโหลดของโฮสต์ (%s) ให้ใช้ไฟล์ blog-posts.json.gz แทน"
 msgstr "ファイルがサーバーのアップロード上限（%s）を超えています。blog-posts.json.gz を使用してください。"
 
-#: inc/blog-import.php:420
+#: inc/blog-import.php:449
 msgid "อัปโหลดไฟล์ไม่สำเร็จ"
 msgstr "ファイルをアップロードできませんでした"
 
 #. translators: 1: articles done, 2: total
-#: inc/blog-import.php:433
+#: inc/blog-import.php:462
 #, php-format
 msgid "นำเข้าแล้ว %1$d จาก %2$d เรื่อง กำลังทำต่อ…"
 msgstr "%2$d 件中 %1$d 件をインポートしました。続行中…"
 
 #. translators: %d: number of articles (each in TH / EN / JA)
-#: inc/blog-import.php:437
+#: inc/blog-import.php:466
 #, php-format
 msgid "นำเข้าครบ %d เรื่องแล้ว (แต่ละเรื่องมี TH / EN / JA)"
 msgstr "%d 件の記事をすべてインポートしました（各 TH / EN / JA）"
 
-#: inc/blog-import.php:452
+#: inc/blog-import.php:481
 msgid "อย่าปิดหน้านี้จนกว่าจะเสร็จ"
 msgstr "完了するまでこのページを閉じないでください"
 
-#: inc/blog-import.php:454
+#: inc/blog-import.php:483
 msgid "ทำต่อ"
 msgstr "続行"
 
-#: inc/blog-import.php:458
+#: inc/blog-import.php:487
 msgid "ใช้ไฟล์ blog-posts.json.gz (หรือ .json) ที่สร้างจากไฟล์ Export ของเว็บเดิม (scripts/wxr-to-blog.py) นำเข้าซ้ำได้ บทความเดิมจะถูกอัปเดต ไม่สร้างซ้ำ"
 msgstr "旧サイトのエクスポートファイルから作成した blog-posts.json.gz（または .json）を使用します（scripts/wxr-to-blog.py）。再インポートしても記事は更新されるだけで、重複しません。"
 
-#: inc/blog-import.php:463
+#: inc/blog-import.php:492
 msgid "คัดลอกรูปเข้าคลังสื่อ (ต้องทำตอนเว็บเดิมยังเปิดอยู่)"
 msgstr "画像をメディアライブラリにコピー（旧サイトが公開中のうちに実行）"
 
-#: inc/blog-import.php:464
+#: inc/blog-import.php:493
 msgid "ใช้รูปจากเว็บเดิม (สำหรับเว็บทดสอบ)"
 msgstr "旧サイトの画像を使用（テストサイト用）"
 
-#: inc/blog-import.php:465
+#: inc/blog-import.php:494
 msgid "เริ่มนำเข้า"
 msgstr "インポート開始"
+
+#: inc/course-filter.php:268
+msgid "หน้าก่อนหน้า"
+msgstr "前のページ"
+
+#: inc/course-filter.php:269
+msgid "หน้าถัดไป"
+msgstr "次のページ"

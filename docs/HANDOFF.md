@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 7: demo ใช้รูปบทความจาก repo (WebP) + ลิงก์ demo สั้น + แผนรูป/PageSpeed/AI SEO/โฮสต์) · theme 0.9.0 / plugin 0.8.0
+> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 8: ไอคอนชุดใหม่ Phosphor Light ทั้งเว็บ + แก้ปุ่ม outline/ระยะป้าย/FAQ/ที่อยู่) · theme 0.10.0 / plugin 0.9.0
 >
 > **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground · **ลำดับงานที่เหลือสำหรับ demo**: H (รูปจริงหน้าอื่น) → C (ค้นหา) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
 >
@@ -63,7 +63,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - palette ล็อกไว้ (ปิด custom color) ทีมการตลาดเลือกได้แค่สีใน token
 - ฟอนต์ self-hosted: Kanit (TH/Latin), Montserrat (display), M PLUS 1 (JA, โหลดเฉพาะ locale ja หรือหน้า style guide)
 
-**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `leads` · `blog` · `blog-import` · `blocks`
+**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `icons` (ไอคอน ดูด้านล่าง) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `leads` · `blog` · `blog-import` · `blocks`
 
 **Content model**
 - CPT `course` (archive `/courses/`)
@@ -87,6 +87,11 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ข้อความใน code: gettext ภาษาต้นทางเป็นไทย → `hri-core/languages/hri-core-{en_US,ja}.po/.mo/.l10n.php`, `hri-theme/languages/{en_US,ja}.*` (ของ theme ชื่อไฟล์เป็น locale อย่างเดียว) ข้อความไทยใน template ย้ายไปเป็น pattern PHP (`archive-course-header`, `single-course-back`, `single-course-cta`, `not-found`, `no-results`)
 - แก้ข้อความ: แก้ .po → `wp i18n make-mo <dir>` + `wp i18n make-php <dir>`; เพิ่มข้อความใหม่ → `wp i18n make-pot . languages/hri-core.pot --skip-js --skip-block-json` แล้ว `wp i18n update-po`
 - Polylang ฟรีไม่ให้ slug ซ้ำข้ามภาษา → ข้อมูลตัวอย่างใช้ `-en` / `-ja` ต่อท้าย ของจริงตั้ง slug เองได้ (slug ซ้ำได้ = Polylang Pro)
+
+**ไอคอน** (รอบที่ 8) — **Phosphor Icons น้ำหนัก Light (MIT ไม่ต้องใส่เครดิต)** ทั้งเว็บ · Jimmi อยากได้แนว Flaticon UIcons Thin แต่ license ฟรีบังคับใส่เครดิตบนเว็บ → Jimmi เลือกชุดที่หน้าตาคล้ายกันแทน · Light ใกล้ UIcons Thin ที่สุดที่ 16–24px (Phosphor Thin จางเกินที่ 16px)
+- ที่มาเดียว: `scripts/build-icons.py <โฟลเดอร์ @phosphor-icons/core>` (`npm pack @phosphor-icons/core`) → `hri-core/assets/icons/<ชื่อ>.svg` + `hri-core/assets/icons.css` (ตัวแปร `--hri-icon-<ชื่อ>` แบบ data URI ~1.7 KB พิมพ์ inline ทุกหน้า + ใน editor) · เพิ่มไอคอน = เพิ่มใน `ICONS` ของสคริปต์แล้วรันใหม่ (ห้ามแก้ไฟล์ผลลัพธ์ตรง)
+- PHP: `hri_icon( 'globe', $class, $label )` (`inc/icons.php`) = SVG inline สีตามตัวอักษร ขนาด 1.25em (ไม่มี label = `aria-hidden`) · CSS: `content:""; background-color: currentColor; mask: var(--hri-icon-check) center / contain no-repeat;` · JS (slider, hero): SVG ส่งมาใน `hriL10n.<name>.icons` จาก `hri_enqueue_script()` (ไม่มี plugin = ใช้ SVG เดิมใน JS)
+- ที่ใช้: ✓ ป้าย/checklist, + FAQ (หมุนเป็น × ตอนเปิด), +/− กลุ่มตัวกรองมือถือ, → ลิงก์การ์ดบริการ + ปุ่มหน้าบล็อก (ซ่อนตัวอักษร → ของ core), ← "หลักสูตรทั้งหมด", ‹ › หน้าตัวกรองคอร์ส (label "หน้าก่อนหน้า/หน้าถัดไป"), ลูกโลก + ลูกศรของปุ่มภาษา, เมนูแฮมเบอร์เกอร์/ปิด (แทน SVG ของ core ใน `render_block_core/navigation`), ก่อน/ถัดไปของ slider, เล่น/หยุดวิดีโอ hero · **ไม่เปลี่ยน**: โลโก้โซเชียล (โลโก้แบรนด์), จุดของรายการปัญหาและจุด slider (bullet), infographic หลอดไฟ
 
 **ข้อมูลบริษัท** (`inc/company.php`) — Settings → ข้อมูลบริษัท (option `hri_company`): เบอร์, อีเมล, LINE/Facebook/YouTube/LinkedIn URL, และแยกภาษา TH/EN/JA: ที่อยู่, tagline ใต้โลโก้, หัวข้อ/ข้อความแถบ CTA · อ่านด้วย `hri_company( 'phone' )` (ฟิลด์แยกภาษาคืนภาษาปัจจุบัน ว่าง = ใช้ไทย) · ค่าเริ่มต้นใน `hri_company_defaults()` (จากเว็บเดิม) · ช่องลิงก์ว่าง = ไม่แสดง · `hri_contact_url()` / `hri_is_contact_page()`
 
@@ -162,6 +167,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 8 (24 ต.ค. 2569, ตรง `main`): Jimmi ส่ง screenshot 3 รูป (hero คอร์ส Lean, FAQ, ที่อยู่ footer) ให้หาจุดแปลก แล้วสั่งแก้ 4 ข้อ + เปลี่ยนไอคอนทั้งเว็บ
+  - ปุ่ม "สอบถามหลักสูตรนี้" ใน hero คอร์สเป็นปุ่มทึบเหมือนปุ่มหลัก → ปุ่มขอบ: ปุ่มที่ `hri_course_buttons()` พิมพ์เองไม่ผ่าน parser → core ไม่โหลด CSS ของ Button และ variation outline ของ theme.json · แก้: enqueue `wp-block-button(s)` ในฟังก์ชัน + กฎ `.is-style-outline` ใน `base.css` (ค่าเดียวกับ theme.json, hover เหมือนหน้าแรก)
+  - ป้าย (รุ่น/วันที่/ราคา) ชิดปุ่มแค่ ~2px: สาเหตุเดียวกัน (ลิงก์ปุ่มเป็น inline → padding ล้นกล่อง) แก้แล้วห่าง 16px
+  - FAQ: คำตอบติดเส้นคั่นล่าง (core ตั้ง margin ของลูกตัวสุดท้ายเป็น 0) → `padding-block-end` ที่ `.hri-faq__item[open]` (ทุกหน้าที่มี FAQ)
+  - ที่อยู่: คำสั้นท้ายบรรทัด (≤5 ตัว เช่น "5", "10330") ไม่ตกบรรทัดเดี่ยว → `hri_company_lines_html()` ใช้ใน `hri/company-text` และ `hri/contact-info` (ทีมการตลาดแก้ที่อยู่ใน Settings ได้ตามเดิม)
+  - ไอคอน Phosphor Light ทั้งเว็บ (ข้อ 4 "ไอคอน") · ป้ายในหน้าคอร์สลด padding ซ้ายให้ 3 ป้ายยังอยู่แถวเดียวที่ 1280 เหมือนเดิม
+  - Jimmi ยืนยันแล้ว: วันที่ Lean "24 ก.พ. – 8 เม.ย. 2570 (7 สัปดาห์)" ใช้ตามเดิม · ที่อยู่ "118 บล็อก 28X ชั้น 4 ยูนิต X406" ถูกต้อง · ภาพ 2 แก้เฉพาะระยะ FAQ (ไม่แก้ TOYOTA/Toyota และคำว่า "บันทึกความรู้") · ✓ ในป้ายวันที่/ราคาคงไว้ (เปลี่ยนแค่หน้าตาไอคอน)
+  - ตรวจ: `measure.py` 63 รอบ + about/blog/transformation/japanese/คอร์ส Lean 45 รอบ = 0 ปัญหา · screenshot ทุกจุดที่เปลี่ยนไอคอน (desktop/มือถือ, เมนูเปิด, dropdown ภาษา)
 - [x] รอบที่ 7 (23 ต.ค. 2569, ตรง `main`): **demo ใช้รูปบทความจาก repo ของเราเอง**
   - `scripts/demo-media.py` + workflow **Demo media** (`.github/workflows/demo-media.yml`, รันบนเครื่อง GitHub เพราะ workspace ของ Claude เข้า hrideone.com / jsDelivr ไม่ได้; รันเองเมื่อ `blog-posts.json` เปลี่ยน หรือกด Run workflow) ดาวน์โหลด **เฉพาะรูปที่บทความใช้** (ปก + รูปในเนื้อหา ไม่ใช่คลังสื่อ 1,578 ไฟล์) ย่อขอบยาวสุด 1600px แปลง WebP q78 → `playground/media/YYYY/MM/*.webp` (ชื่อไฟล์ ASCII) + `manifest.json` (URL เดิม → ไฟล์, ขนาด) แล้วแก้ `blog-posts.json(.gz)` ให้ชี้ `https://cdn.jsdelivr.net/gh/imeeba/hrideone-web@main/playground/media/…`
   - ผล: **527 รูป 185.8 MB → 25.4 MB** (ค่ากลาง 35 KB/รูป, ใหญ่สุด 920 KB) · 11 รูปเป็น **404 บนเว็บเดิมอยู่แล้ว** (ตรวจด้วยเบราว์เซอร์) → `missing` ใน manifest และ image block ถูกตัดออกจากบทความ (เรื่อง `why-you-must-training-with-deone-academy`, `cross-functional-management-cfm`, `people-transformation-with-green-yellow-red-idea` (TenX 4 รูป), `why-do-managers-need-to-develop-leadership-skills` 3 รูป รวม EN/JA)
@@ -283,6 +296,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - `wp i18n make-pot` ของ plugin ต้องใส่ `--skip-block-json` (ไม่งั้นยิงไป svn.wordpress.org) และ `update-po` ต้องใช้ path absolute
 - Screenshot ใน local: php -S รับทีละ request รูปบางรูปโหลดไม่ทัน (เห็นเป็นกล่องว่าง) ไม่ใช่บั๊ก — ตรวจด้วย `naturalWidth`
 - `?course=` ชนกับ query var ของ CPT `course` ทำให้หน้าเพี้ยน → ใช้ `?hri_course=`
+- **ปุ่มที่ PHP พิมพ์ HTML เอง** (`wp-block-button__link` นอก parser) ได้แค่สไตล์ element button ของ theme.json: ไม่มี CSS ของ core Button (ลิงก์ inline → padding ล้นกล่อง ทับของข้างล่าง) และไม่มี variation `outline` → `wp_enqueue_style( 'wp-block-button' )` + กฎ outline ใน `base.css` (หน้าอื่นไม่เห็นปัญหาเพราะมี Button block จริงในหน้า)
+- ไอคอนใน CSS ใช้ `mask` → สีคือ `background-color` ไม่ใช่ `color` · ไอคอนใหม่ต้องเพิ่มใน `scripts/build-icons.py` (ตัวแปร CSS มีเฉพาะที่ตั้ง `True`)
 - วัด overflow ด้วย JS ต้องข้ามช่อง honeypot `.hri-lead__hp` (ซ่อนนอกจอโดยตั้งใจ) ไม่งั้นทุกหน้าที่มีฟอร์มโดน flag ผิด
 - `scripts/local-setup.sh` เมื่อรันผ่าน pipe (`| tail`) ในเครื่องมือที่มี timeout อาจค้างหลังติดตั้ง+seed เสร็จแล้ว (เซิร์ฟเวอร์ `php -S` ที่สคริปต์เปิดไว้ยังเป็น child) → รันแบบ background หรือเปลี่ยนเป็น `> log 2>&1` แล้วเช็กว่าเสร็จด้วย `curl -sI http://127.0.0.1:8899/wp/` และ `wp post list --post_type=course --format=count` (ได้ 21 หลัง seed)
 - **Polylang ไม่สนใจ `'lang'` ใน query ที่ใช้ `name` (slug)** → `get_posts( name + lang )` คืนโพสต์ภาษาอื่นได้ ต้องเช็ก `pll_get_post_language()` เอง (ใช้ใน `blog.php`, `blog-import.php`)

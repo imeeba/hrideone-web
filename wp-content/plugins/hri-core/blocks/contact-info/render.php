@@ -40,7 +40,7 @@ foreach ( $items as $item ) {
 		case 'address':
 			$address = hri_company( 'address' );
 			if ( $address ) {
-				$rows .= sprintf( '<li class="hri-contact__item hri-contact__item--address"><span class="hri-contact__label">%1$s</span><address>%2$s</address></li>', esc_html__( 'ที่อยู่', 'hri-core' ), nl2br( esc_html( $address ) ) );
+				$rows .= sprintf( '<li class="hri-contact__item hri-contact__item--address"><span class="hri-contact__label">%1$s</span><address>%2$s</address></li>', esc_html__( 'ที่อยู่', 'hri-core' ), hri_company_lines_html( $address ) );
 			}
 			break;
 	}
