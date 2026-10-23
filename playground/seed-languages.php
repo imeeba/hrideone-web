@@ -225,7 +225,7 @@ if ( $home ) {
 }
 
 // Blog: the real articles of the old site in TH / EN / JA, linked as translations
-// (playground/data/blog-posts.json, made by scripts/wxr-to-blog.py). Images stay on hrideone.com here.
+// (playground/data/blog-posts.json, made by scripts/wxr-to-blog.py). Images: copies in playground/media (scripts/demo-media.py), served by jsDelivr.
 $blog_file = is_readable( __DIR__ . '/data/blog-posts.json' ) ? __DIR__ . '/data/blog-posts.json' : __DIR__ . '/hri-blog-posts.json';
 $blog_data = hri_blog_import_read( $blog_file );
 if ( is_wp_error( $blog_data ) ) {

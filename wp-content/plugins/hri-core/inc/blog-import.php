@@ -8,7 +8,7 @@
  *   the old slug is kept in _wp_old_slug, so WordPress redirects the old URL)
  * - categories Business / Sales / Coaching in every language (slugs business, business-en, business-ja ...)
  * - idempotent: run it again to update (posts are found by their old-site ID, _hri_source_id)
- * - images: "remote" keeps the hrideone.com URLs (preview sites; cover via _hri_thumbnail_url, see blog.php)
+ * - images: "remote" keeps the image URLs of the file (hrideone.com, or the demo copies in playground/media via jsDelivr; cover via _hri_thumbnail_url, see blog.php)
  *   or "download" copies cover and content images into the media library (staging / real site,
  *   run it while the old site is still online)
  *
@@ -187,8 +187,10 @@ function hri_blog_import_content_images( string $content, int $post_id ): string
 	return (string) preg_replace_callback(
 		'#<!-- wp:image -->\n<figure class="wp-block-image"><img src="([^"]+)" alt="([^"]*)"/>(.*?)</figure>\n<!-- /wp:image -->#s',
 		static function ( $m ) use ( $post_id ) {
-			$url = html_entity_decode( $m[1] );
-			if ( ! str_contains( $url, 'hrideone.com/' ) ) {
+			$url  = html_entity_decode( $m[1] );
+			$host = (string) wp_parse_url( $url, PHP_URL_HOST );
+			// Images on another site (hrideone.com, or the demo copies in the repo via jsDelivr).
+			if ( '' === $host || (string) wp_parse_url( home_url(), PHP_URL_HOST ) === $host ) {
 				return $m[0];
 			}
 			$id  = hri_blog_import_media( $url, $post_id, html_entity_decode( $m[2] ) );

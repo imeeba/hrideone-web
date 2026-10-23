@@ -284,7 +284,7 @@ if ( $hello ) {
 }
 
 // Blog: the real articles of the old site (playground/data/blog-posts.json, made by scripts/wxr-to-blog.py),
-// imported with hri_blog_import() (hri-core/inc/blog-import.php). Images stay on hrideone.com in preview sites.
+// imported with hri_blog_import() (hri-core/inc/blog-import.php). Images: copies in playground/media (scripts/demo-media.py), not downloaded in preview sites.
 // With Polylang the import runs in seed-languages.php (TH + EN + JA); without it, Thai only here.
 // Sample post of an earlier seed that is not on the old site:
 foreach ( get_posts( array( 'post_type' => 'post', 'name' => 'pride-month-workplace-diversity-matters', 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids', 'lang' => '' ) ) as $sample_id ) {

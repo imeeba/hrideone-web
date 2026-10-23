@@ -1,0 +1,43 @@
+# Copies the images used by the blog from hrideone.com into playground/media/ (WebP, max 1600px)
+# and points playground/data/blog-posts.json at them. See scripts/demo-media.py and docs/DEMO.md.
+name: Demo media
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_edge:
+        description: Longest edge in px
+        default: '1600'
+      quality:
+        description: WebP quality (0-100)
+        default: '78'
+  push:
+    branches: [main]
+    paths: [playground/data/blog-posts.json]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: demo-media
+  cancel-in-progress: false
+
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow==11.0.0
+      - name: Copy and convert images
+        run: python3 scripts/demo-media.py --max-edge "${{ inputs.max_edge || '1600' }}" --quality "${{ inputs.quality || '78' }}"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add playground/media playground/data
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Demo media: blog images as WebP in playground/media"
+          git push
