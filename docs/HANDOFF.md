@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-19 (รอบที่ 4: เนื้อหาจริงคอร์ส In-house ครบ 15 คอร์ส TH/EN/JA) · theme 0.8.1 / plugin 0.7.1
+> อัปเดตล่าสุด: 2026-10-23 (รอบที่ 5: tap target ≥44px + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`) · theme 0.8.2 / plugin 0.7.2
 
 ## 1. โปรเจกต์คืออะไร
 
@@ -51,7 +51,7 @@ playground/                    blueprint.json, seed.php (ข้อมูลต�
 scripts/local-setup.sh         สร้างเว็บทดสอบในเครื่อง
 ```
 
-**Design tokens** 3 ชั้น: primitive (teal/green/neutral ramp) → semantic 12 slug → component (`custom`: radius, shadow, motion, ratio)
+**Design tokens** 3 ชั้น: primitive (teal/green/neutral ramp) → semantic 12 slug → component (`custom`: radius, shadow, motion, ratio, tap = พื้นที่กดขั้นต่ำ 44px)
 - ❗ `primary` #00B0BD ใช้กับพื้น/กราฟิกเท่านั้น (contrast กับขาวไม่ผ่าน) ตัวอักษร/ลิงก์/ปุ่มใช้ `primary-strong` #0F7070
 - palette ล็อกไว้ (ปิด custom color) ทีมการตลาดเลือกได้แค่สีใน token
 - ฟอนต์ self-hosted: Kanit (TH/Latin), Montserrat (display), M PLUS 1 (JA, โหลดเฉพาะ locale ja หรือหน้า style guide)
@@ -147,6 +147,12 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 5 (23 ต.ค. 2569, branch `fix/tap-targets`): tap target ≥44px ทุกจุดที่ค้างไว้ + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`
+  - token ใหม่ `custom.tap` = 44px (`tokens.json` → `--wp--custom--tap`)
+  - Header: ลิงก์เมนู (25px→44), ปุ่มภาษา (34→44), รายการ dropdown/list ภาษา (43/35→44), ปุ่มเปิด/ปิดเมนู (24×24→44×44 ไอคอนคง 24), ลิงก์ในเมนูเต็มจอ · Footer: ลิงก์เมนู (กว้างขั้นต่ำ 44 ด้วย) · ตัวกรอง: label checkbox (35→44), ปุ่ม "ตัวกรอง" มือถือ (43→44), pagination (39→44) · หน้าคอร์ส: "← หลักสูตรทั้งหมด" (25→44, class `hri-backlink`), PDPA checkbox 20→24px และ label สูง 44
+  - ชื่อคอร์สในการ์ด: เดิมชื่ออังกฤษยาว ("Transformation", "Communication") ถูกตัดกลางคำที่ ≥1280px (การ์ดแคบ 3 คอลัมน์ข้างตัวกรอง) ทั้งหน้า TH/JA (`overflow-wrap`) และล้นกล่องในหน้า EN · แก้: ขนาดหัวข้อตามความกว้างการ์ด (`container-type` + `cqi`, อยู่ระหว่าง medium–x-large) การ์ดกว้างยังเป็นขนาดเดิม · เพิ่ม `hyphens:auto` เฉพาะ `:lang(en)` · ตรวจ 320–1440px ไม่มีคำตัดกลางคำแล้ว
+  - ผลวัด `measure.py`: ก่อนแก้ tap target ต่ำกว่า 44px ใน 63/63 รอบ (ลิงก์เมนู 25px, label ตัวกรอง 35px, ปุ่มแฮมเบอร์เกอร์ 24px ฯลฯ) · หลังแก้ 0/63 รอบ ไม่มี overflow, contrast, PHP notice, JS error
+  - ไม่ได้แก้ markup นอกจากเพิ่ม class 2 ตัว (`hri-backlink`, `hri-course-card`) · หน้าตา desktop เปลี่ยนเล็กน้อย: เมนู header ห่างขึ้นเล็กน้อย (Blog/About กว้างขั้นต่ำ 44px), ตัวกรองสูงขึ้น ~240px (ดูข้อ "ปัญหานอกขอบเขต")
 - [x] รอบที่ 4 (19 ต.ค. 2569): เนื้อหาจริงคอร์ส In-house อีก 14 คอร์ส (รวม Coaching Mastery = ครบ 15) ดึงจาก `hrideone.com/courses/<slug>/` ได้ครบทุกหน้า เรียบเรียงใหม่ ใส่ใน `hri_seed_inhouse_courses()` TH/EN/JA ตามโครง Coaching Mastery · seed (local + Polylang 3.9 จาก GitHub): 21 คอร์ส + 42 คำแปล · ตรวจ 15 คอร์ส × TH/EN/JA × 1280/768/375 (135 โหลด): ไม่ล้นจอ, contrast AA ผ่านในเนื้อหาใหม่, ไม่มี tap target <44px ในเนื้อหาใหม่, ไม่มี JS error, ไม่มี PHP notice, ไม่มีข้อความ placeholder เหลือ, ไม่มีตัวอักษรไทยหลุดในหน้า EN/JA · ไม่แตะ theme/plugin code (bump Version เป็น 0.8.1 / 0.7.1 เท่านั้น)
 - [x] รอบที่ 3 (19 ต.ค. 2569, branch `feature/content-pages`): Lead form + Contact · โมเดลคอร์ส + หน้าคอร์ส Public 5 คอร์ส + TEN X + วิทยากร · หน้าคอร์ส In-house (Coaching Mastery จริง + โครงตัวอย่าง 14 คอร์ส) · About · Blog (listing/หมวด/บทความ + ตัวอย่าง 15 เรื่อง) · ตรวจ 18 หน้า × TH/EN/JA × 1280/768/375: ไม่ล้นจอ, ไม่มี PHP notice, ไม่มี freeform block · ฟอร์ม: prefill/ส่งสำเร็จ(JS และไม่มี JS)/ข้อมูลผิด/honeypot ผ่าน
 
@@ -198,7 +204,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 5. **SEO / AI-SEO** — The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, Article, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots/llms.txt
 6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, เว็บเดิมมี `/blog/page/N`)
 7. **AI แปลภาษา** — ต้องใช้ API key (จ่ายตามใช้) ต้องบอก Jimmi ค่าใช้จ่ายก่อน · และให้คนตรวจ JA
-8. **แก้ tap target ≥44px** (header/footer/course filter ดูหัวข้อ "ปัญหานอกขอบเขต") + ชื่อคอร์สตัดกลางคำในการ์ดแคบ
+8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ, Blog UI (contrast หมวด + pagination) ดูหัวข้อ "ปัญหานอกขอบเขต"
 9. **คำถามที่ต้องถาม Ruk-com**: PHP version, Imagick/WebP, SSH/WP-CLI, Rcache กับ query string (filter, `?hri_course=`), memory limit, outbound HTTPS ไป Google (webhook ฟอร์ม)
 10. Cloud staging (`new.hrideone.com`) · (ถาม Jimmi) Polylang Pro ถ้าอยากให้ slug เหมือนกันทุกภาษา (เสียเงิน)
 
@@ -224,7 +230,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - ลบ/ย้าย component ใน pattern แล้วต้อง seed หน้าใหม่ (page content เก็บใน DB): local ใช้ `wp eval-file playground/seed.php` แล้ว `seed-languages.php` · ระวังตอนลบ CSS ทั้งบล็อก — กฎ selector ที่ใช้ร่วมกัน (เช่น `.hri-post`) อยู่ปนกับของที่ลบ
 - เพิ่ม/แก้ข้อความใน pattern ของ theme: `wp i18n make-pot . languages/hri-theme.pot --skip-js --skip-theme-json --skip-block-json` → `wp i18n update-po` → ใส่ msgstr (อย่าให้ polib เขียนไฟล์ใหม่ทั้งไฟล์ diff จะบวม) → `make-mo` + `make-php`
 - อย่าตั้ง className ของ section ซ้ำกับ class ของ block ใน hri-core (เช่น `hri-courses` = layout ของ course filter ทำให้หน้าเพี้ยน) ใช้ `hri-courses-section`
-- Hook ทดสอบหลังแก้: `python3 measure.py` (overflow/tap/contrast/PHP/JS ที่ 1280/768/375 × `/`,`/en/`,`/ja/`) — สคริปต์อยู่ใน scratchpad ของแชทเก่า ไม่อยู่ใน repo ให้เขียนใหม่ด้วย Playwright (Chromium อยู่ที่ /opt/pw-browsers)
+- **ตรวจหลังแก้ทุกครั้ง: `python3 -I scripts/measure.py`** (อยู่ใน repo แล้ว) · วัด overflow แนวนอน, tap target <44px, contrast AA, PHP notice, JS error ที่ 1280/768/375 × TH/EN/JA × `/`, `/courses/`, `/in-house/`, `/public-training/`, คอร์ส In-house 1 + Public 1, `/contact-us/` = 63 รอบ (~5 นาที) · exit code 1 ถ้ามีปัญหา
+  - ตัวเลือก: `--base http://127.0.0.1:8899/wp` (ค่าเริ่มต้น) · `--pages /about/,/blog/` (ใส่ path ภาษาไทย สคริปต์ต่อ `-en`/`-ja` ให้เอง ยกเว้น `/` และ `/courses/`) · `--widths 1280,375` · `--langs th` · `--json out.json` · `--verbose`
+  - ต้องมี Playwright (Chromium อยู่ที่ /opt/pw-browsers) · รันด้วย `python3 -I`
+  - ตรวจ tap target ใน 3 สถานะ: ปกติ, เปิด `<details>` ทั้งหมด (ตัวกรองมือถือ, dropdown ภาษา), เปิดเมนูแฮมเบอร์เกอร์ · checkbox ใน label วัดที่ label · ลิงก์ inline กลางประโยคและ honeypot ข้าม · ลิงก์การ์ดที่ใช้ `::after` คลุมทั้งการ์ด (stretched link) วัดทั้งการ์ด · ข้อความบน Cover block (hero รูป/วิดีโอ) ข้ามการวัด contrast เพราะขึ้นกับ overlay (ตรวจด้วยมือ 4.9:1)
+  - สคริปต์ **ไม่จับ** ปัญหาด้านหน้าตา (เช่น องค์ประกอบที่ควรซ่อนแต่โผล่) → ยังต้องถ่าย screenshot ดูเฉพาะจุดที่แก้ · เจอมาแล้วในรอบที่ 5: กฎ `display:flex` ที่เพิ่มให้ `summary` ตัวกรองทับ `display:none` ของ desktop
+- **class `.hri-card` / `.hri-card__title` ซ้ำกันระหว่าง theme (การ์ดหน้าบริการ, `base.css`) กับ plugin (การ์ดคอร์ส, `courses.css`)** · theme โหลดทีหลัง จึงทับขนาดหัวข้อของ plugin (การ์ดคอร์สเคยเป็น x-large เพราะเหตุนี้) → ถ้าจะแก้เฉพาะการ์ดคอร์สให้ใช้ `.hri-course-card` (เพิ่ม class นี้ใน `course-card.php` แล้ว) ถ้าแก้ `.hri-card` ตรงๆ จะกระทบการ์ดหน้าบริการด้วย
+- `container-type` ทำให้ element นั้นเป็น containing block ของลูกที่ `position:absolute` → อย่าใส่ที่ `.hri-card__body` (ลิงก์ `::after` คลุมทั้งการ์ดจะถูกตัดแค่ในส่วน body) ใส่ที่ตัวการ์ด `.hri-course-card` เท่านั้น
+- Tap target: ใช้ `var(--wp--custom--tap)` (token `tap` = 44px) เป็น `min-block-size`/`min-inline-size` + `inline-flex` + `align-items:center` + `box-sizing:border-box` · ตัวอักษร/ไอคอนขนาดเดิม แค่พื้นที่กดขยาย
 - Production/Ruk-com: พิจารณา `define( 'PLL_COOKIE', false );` ใน wp-config เพื่อไม่ให้ cookie ภาษาไปรบกวน Rcache (ภาษาอยู่ใน URL แล้ว)
 - `wp eval-file` ต้องใช้ path แบบ absolute · seed ใหม่ต้อง `wp eval 'wp_get_theme()->delete_pattern_cache();'` (หรือ bump Version) ก่อน แล้ว `seed.php` → `seed-languages.php`
 - Pattern PHP ที่ใช้ helper `hri_bm_*` ต้องส่ง array ตามรูปแบบที่ helper คาด (`hri_bm_cards` รับ associative: title/text/help/kicker/num) ส่งแบบ indexed จะ fatal
@@ -240,11 +253,12 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
 
-- Header desktop: ลิงก์เมนูสูง 25px, ปุ่มภาษา (summary) สูง 34px, รายการใน dropdown ภาษา 43px · ปุ่มแฮมเบอร์เกอร์ (<1100px) 24×24 — ต่ำกว่าเกณฑ์ 44px (ผ่าน WCAG 2.5.8 AA 24px แต่ไม่ผ่าน 44px ที่ตั้งไว้)
-- Footer: ลิงก์เมนูสูง 43px ที่จอ 375 (ปัดเศษ) และคำสั้น (Blog/About) กว้าง <44px
-- Course filter (`hri/course-filter`): label checkbox สูง 34–35px, ปุ่ม "ตัวกรอง" บนมือถือ 43px — ต่ำกว่า 44px
-- หน้าคอร์สเดี่ยว (พบรอบที่ 4, ทุกคอร์ส/ทุกภาษา ที่ 375 และ 768): ลิงก์ "← หลักสูตรทั้งหมด" (pattern `single-course-back`) สูง 25–27px · ช่องติ๊ก PDPA ในฟอร์ม `hri/lead-form` 20×20px · ลิงก์ในย่อหน้า PDPA ของฟอร์มสูง 24px — ต่ำกว่า 44px (เนื้อหาใหม่ของรอบที่ 4 ผ่าน ไม่มีส่วนที่ต่ำกว่าเกณฑ์) · ใส่รวมกับ prompt F
-- การ์ดคอร์ส: ชื่อคอร์สยาวตัดกลางคำ ("Transformatio-n Mastery") ในการ์ดแคบ 3 คอลัมน์ เพราะ `overflow-wrap` ของ `[lang|="th"]` — ควรใช้ `hyphens`/ลดขนาดหัวข้อในการ์ด
+> tap target ของ header/footer/ตัวกรอง/หน้าคอร์ส/ฟอร์ม และชื่อคอร์สตัดกลางคำ แก้แล้วในรอบที่ 5 (ข้อ 5)
+
+- **ตัวกรองคอร์สบน desktop สูงกว่าหน้าจอ** (`/courses/` ที่ 1280: ~1390px, หลังเพิ่ม tap target 44px; ก่อนหน้า ~1150px ก็สูงกว่า viewport 900px อยู่แล้ว) แต่ `.hri-filter` เป็น `position: sticky` → ส่วนล่างของตัวกรอง (ระยะเวลา, รูปแบบ) เข้าถึงไม่ได้จนกว่าจะเลื่อนไปท้ายรายการคอร์ส · ข้อเสนอ: `max-height: calc(100vh - 2 * <top>)` + `overflow-y: auto` ที่ `.hri-filter` (ระวัง box-shadow ring ที่ `.hri-filter` ถูกตัด) หรือเลิก sticky
+- ผลจาก `measure.py --pages /blog/,/style-guide/` (ยังไม่ได้แก้/ยังไม่ได้ตรวจด้วยตา): `/blog/` แถบหมวด (ทั้งหมด/Business/Sales/Coaching) contrast 2.64:1 (ต้อง 4.5), pagination ของ Query Loop (`a.page-numbers`, `a.wp-block-query-pagination-next`) สูง 24–27px · `/style-guide/` ป้าย `#767C82` 4.47:1 (ต้อง 4.5) · แยกเป็นงานเก็บตก "Blog UI"
+- ลิงก์ inline ในย่อหน้า PDPA ของฟอร์ม (`hri/lead-form`) สูง ~24px **คงไว้ตั้งใจ**: WCAG 2.5.8 ยกเว้นลิงก์ที่อยู่กลางประโยค และถ้าเพิ่ม padding ระยะบรรทัดจะห่างผิดปกติ (ผ่านเกณฑ์ AA 24px ที่ตั้งไว้ ไม่ถึง 44px) · `measure.py` ข้ามลิงก์ประเภทนี้
+- การ์ดบริการ/หัวข้อ (`.hri-card__title` ของ theme) ยังไม่ได้ตรวจเรื่องคำยาวตัดกลางคำ (รอบที่ 5 แก้เฉพาะการ์ดคอร์ส)
 
 ## 9. วิธีทำงานที่ประหยัด usage
 
@@ -310,7 +324,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
 
-**F. แก้ tap target + การ์ดคอร์ส**
+**F. แก้ tap target + การ์ดคอร์ส — ทำแล้ว (รอบที่ 5) ไม่ต้องใช้ prompt นี้อีก เก็บไว้เป็นตัวอย่างรูปแบบ**
 
 ```
 ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web

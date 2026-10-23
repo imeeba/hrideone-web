@@ -150,7 +150,23 @@ video {
 }
 
 .hri-header .wp-block-navigation .wp-block-navigation-item__content {
+	align-items: center;
+	box-sizing: border-box;
+	display: inline-flex;
+	justify-content: center;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
 	white-space: nowrap;
+}
+
+/* Menu button (and its close button): the 24px icon stays, the touch area grows to 44px. */
+.hri-header .wp-block-navigation__responsive-container-open,
+.hri-header .wp-block-navigation__responsive-container-close {
+	align-items: center;
+	box-sizing: border-box;
+	justify-content: center;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
 }
 
 .hri-header .wp-block-navigation a {
@@ -184,6 +200,7 @@ video {
 }
 
 .hri-header .wp-block-navigation .is-menu-open .wp-block-navigation-item__content {
+	justify-content: flex-start;
 	padding-block: 0.25rem;
 }
 
@@ -192,6 +209,14 @@ video {
 	margin-top: var(--wp--preset--spacing--30);
 	padding-top: var(--wp--preset--spacing--40);
 	width: 100%;
+}
+
+/* "← All courses" link above a course title. */
+.hri-backlink a {
+	align-items: center;
+	box-sizing: border-box;
+	display: inline-flex;
+	min-block-size: var(--wp--custom--tap);
 }
 
 /* ---------- Footer ---------- */
@@ -247,8 +272,12 @@ video {
 }
 
 .hri-footer__nav .wp-block-navigation-item__content {
-	display: inline-block;
-	padding-block: 0.6rem; /* ≥ 44px tap target */
+	align-items: center;
+	box-sizing: border-box;
+	display: inline-flex;
+	min-block-size: var(--wp--custom--tap);
+	min-inline-size: var(--wp--custom--tap);
+	padding-block: 0.6rem;
 	text-decoration: none;
 }
 

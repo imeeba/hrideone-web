@@ -11,6 +11,6 @@
 
 $hri_courses_url = get_post_type_archive_link( 'course' );
 ?>
-<!-- wp:paragraph {"className":"is-style-eyebrow"} -->
-<p class="is-style-eyebrow"><a href="<?php echo esc_url( $hri_courses_url ? $hri_courses_url : home_url( '/courses/' ) ); ?>">← <?php esc_html_e( 'หลักสูตรทั้งหมด', 'hri-theme' ); ?></a></p>
+<!-- wp:paragraph {"className":"is-style-eyebrow hri-backlink"} -->
+<p class="is-style-eyebrow hri-backlink"><a href="<?php echo esc_url( $hri_courses_url ? $hri_courses_url : home_url( '/courses/' ) ); ?>">← <?php esc_html_e( 'หลักสูตรทั้งหมด', 'hri-theme' ); ?></a></p>
 <!-- /wp:paragraph -->
