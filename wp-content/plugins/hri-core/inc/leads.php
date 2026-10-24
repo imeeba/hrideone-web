@@ -13,6 +13,7 @@
  *   HRI_LEAD_WEBHOOK_TOKEN   shared secret the script checks (optional but recommended)
  *   HRI_TURNSTILE_SITE_KEY / HRI_TURNSTILE_SECRET   Cloudflare Turnstile (optional; honeypot + rate limit work without it)
  *   HRI_LEAD_NOTIFY          e-mail that receives new leads (default: company e-mail)
+ *   HRI_IP_HEADER            (optional) server variable that holds the visitor's real IP behind a proxy / CDN, e.g. HTTP_CF_CONNECTING_IP
  *
  * Works without JavaScript (plain POST to admin-post.php + redirect); view.js sends it with fetch instead.
  * There is no nonce, so pages with the form can be cached.
@@ -212,7 +213,32 @@ function hri_turnstile_enabled(): bool {
  * Visitor IP (only used to rate-limit and to call Turnstile; it is hashed and never stored).
  */
 function hri_lead_ip(): string {
-	return isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+	$remote = isset( $_SERVER['REMOTE_ADDR'] ) ? (string) wp_unslash( $_SERVER['REMOTE_ADDR'] ) : '';
+	$remote = false !== filter_var( $remote, FILTER_VALIDATE_IP ) ? $remote : '';
+
+	// Behind a proxy / CDN every visitor would share the proxy's address (and the 5-per-10-minutes limit).
+	// A forwarding header can be forged, so it is only believed when
+	//   - the site owner says which header to trust: define( 'HRI_IP_HEADER', 'HTTP_CF_CONNECTING_IP' ) in wp-config.php
+	//     (Cloudflare: HTTP_CF_CONNECTING_IP · many hosts: HTTP_X_FORWARDED_FOR or HTTP_X_REAL_IP), or
+	//   - the connection comes from a private / loopback address (a reverse proxy in front of PHP on the host's own network).
+	$headers = array();
+	if ( defined( 'HRI_IP_HEADER' ) && '' !== (string) HRI_IP_HEADER ) {
+		$headers = array( (string) HRI_IP_HEADER );
+	} elseif ( '' !== $remote && false === filter_var( $remote, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+		$headers = array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_REAL_IP', 'HTTP_X_FORWARDED_FOR' );
+	}
+	foreach ( $headers as $header ) {
+		if ( empty( $_SERVER[ $header ] ) || ! is_string( $_SERVER[ $header ] ) ) {
+			continue;
+		}
+		foreach ( explode( ',', wp_unslash( $_SERVER[ $header ] ) ) as $candidate ) { // X-Forwarded-For: the first address is the visitor.
+			$candidate = trim( $candidate );
+			if ( false !== filter_var( $candidate, FILTER_VALIDATE_IP ) ) {
+				return $candidate;
+			}
+		}
+	}
+	return $remote;
 }
 
 /**
