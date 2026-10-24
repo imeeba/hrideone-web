@@ -129,3 +129,46 @@
 	gap: var(--wp--preset--spacing--40);
 	margin: var(--wp--preset--spacing--50) 0 0;
 }
+
+mark {
+	background: var(--wp--preset--color--surface-brand);
+	color: inherit;
+	font-weight: 500;
+}
+
+/* Phones: a course is one short row (small cover, title, status) instead of a 550px card, so the
+   courses, articles and pages fit in a few screens. */
+@media (max-width: 640px) {
+	.hri-sr .hri-grid {
+		gap: var(--wp--preset--spacing--30);
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.hri-sr .hri-course-card {
+		flex-direction: row;
+		gap: var(--wp--preset--spacing--30);
+		padding: var(--wp--preset--spacing--30);
+	}
+
+	.hri-sr .hri-course-card .hri-card__media {
+		aspect-ratio: auto;
+		border-radius: var(--wp--custom--radius--sm);
+		flex: 0 0 72px;
+		min-block-size: 72px;
+	}
+
+	.hri-sr .hri-course-card .hri-card__meta {
+		display: none;
+	}
+
+	.hri-sr .hri-course-card .hri-card__badge,
+	.hri-sr .hri-course-card .hri-card__excerpt {
+		display: none;
+	}
+
+	.hri-sr .hri-course-card .hri-card__body {
+		gap: var(--wp--preset--spacing--10);
+		min-inline-size: 0;
+		padding: 0;
+	}
+}

@@ -112,6 +112,10 @@ function hri_search_admin_page(): void {
 			<tr><th><?php esc_html_e( 'วิธีตัดคำ', 'hri-core' ); ?></th><td><?php echo esc_html( 'icu' === ( $meta['mode'] ?? '' ) ? 'ICU (intl)' : ( 'ngram' === ( $meta['mode'] ?? '' ) ? 'n-gram' : '—' ) ); ?></td></tr>
 			<tr><th><?php esc_html_e( 'เอกสารในดัชนี', 'hri-core' ); ?></th><td><?php echo esc_html( number_format_i18n( (int) ( $meta['docs'] ?? 0 ) ) ); ?></td></tr>
 			<tr><th><?php esc_html_e( 'คำในดัชนี', 'hri-core' ); ?></th><td><?php echo esc_html( number_format_i18n( (int) ( $meta['rows'] ?? 0 ) ) ); ?></td></tr>
+			<?php $build = get_option( HRI_SEARCH_OPTION_BUILD ); ?>
+			<?php if ( is_array( $build ) ) : ?>
+				<tr><th><?php esc_html_e( 'กำลังสร้างใหม่', 'hri-core' ); ?></th><td><?php echo esc_html( number_format_i18n( (int) $build['next'] ) . ' / ' . number_format_i18n( (int) $build['total'] ) ); ?></td></tr>
+			<?php endif; ?>
 			<tr><th><?php esc_html_e( 'สร้างล่าสุด', 'hri-core' ); ?></th><td><?php echo ! empty( $meta['built'] ) ? esc_html( wp_date( 'Y-m-d H:i', (int) $meta['built'] ) ) : '—'; ?></td></tr>
 		</tbody></table>
 		<p><?php esc_html_e( 'ดัชนีอัปเดตเองเมื่อบันทึกหลักสูตร บทความ หรือหน้า กดสร้างใหม่เมื่อนำเข้าเนื้อหาจำนวนมาก หรือเมื่อผลค้นหาดูไม่ตรง', 'hri-core' ); ?></p>

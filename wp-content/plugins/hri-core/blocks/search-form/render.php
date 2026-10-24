@@ -2,8 +2,8 @@
 /**
  * Search form block (server-rendered).
  *
- * variant "dropdown": a <details> menu opened from a search icon (desktop header, >= 1100px).
- * variant "inline":   the field itself, inside the mobile / tablet menu (< 1100px).
+ * variant "dropdown": a <details> menu opened from a search icon (desktop header, >= 1220px).
+ * variant "inline":   the field itself, inside the mobile / tablet menu (< 1220px).
  * variant "page":     the field on the results page (and the 404 page), filled with the current query.
  *
  * Plain GET form to the home page of the current language: works without JavaScript.

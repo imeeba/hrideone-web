@@ -226,7 +226,7 @@ msgstr "絞り込み"
 #: blocks/search-form/render.php:29
 #: blocks/search-form/render.php:38
 #: inc/course-filter.php:357
-#: inc/search.php:1169
+#: inc/search.php:1280
 msgid "ค้นหา"
 msgstr "検索"
 
@@ -881,50 +881,54 @@ msgstr "インデックス内の文書数"
 msgid "คำในดัชนี"
 msgstr "インデックス内の語数"
 
-#: inc/search-admin.php:115
+#: inc/search-admin.php:119
 msgid "สร้างล่าสุด"
 msgstr "最終作成"
 
-#: inc/search-admin.php:117
+#: inc/search-admin.php:121
 msgid "ดัชนีอัปเดตเองเมื่อบันทึกหลักสูตร บทความ หรือหน้า กดสร้างใหม่เมื่อนำเข้าเนื้อหาจำนวนมาก หรือเมื่อผลค้นหาดูไม่ตรง"
 msgstr "コース・記事・ページを保存すると、インデックスは自動で更新されます。大量のインポート後や、検索結果がおかしい場合は再作成してください。"
 
-#: inc/search-admin.php:118
+#: inc/search-admin.php:122
 msgid "สร้างดัชนีใหม่ทั้งหมด"
 msgstr "インデックスをすべて再作成"
 
-#: inc/search-admin.php:120
+#: inc/search-admin.php:124
 msgid "ทดลองค้นหา"
 msgstr "検索テスト"
 
-#: inc/search-admin.php:124
+#: inc/search-admin.php:128
 msgid "ภาษา (th / en / ja)"
 msgstr "言語（th / en / ja）"
 
-#: inc/search-admin.php:125
+#: inc/search-admin.php:129
 msgid "ทดลอง"
 msgstr "テスト"
 
 #. translators: 1: results, 2: milliseconds
-#: inc/search-admin.php:130
+#: inc/search-admin.php:134
 #, php-format
 msgid "%1$s รายการ ใน %2$s ms"
 msgstr "%1$s件（%2$s ms）"
 
 #. translators: %s: what the visitor searched for
-#: inc/search.php:1169
+#: inc/search.php:1280
 #, php-format
 msgid "ผลการค้นหา “%s”"
 msgstr "「%s」の検索結果"
 
-#: inc/search.php:1324
+#: inc/search.php:1518
 msgid "หลักสูตรแนะนำ"
 msgstr "おすすめのコース"
 
-#: inc/search.php:1333
+#: inc/search.php:1527
 msgid "ดูหลักสูตรทั้งหมด"
 msgstr "コース一覧を見る"
 
-#: inc/search.php:1335
+#: inc/search.php:1529
 msgid "ติดต่อเรา"
 msgstr "お問い合わせ"
+
+#: inc/search-admin.php:117
+msgid "กำลังสร้างใหม่"
+msgstr "再作成中"

@@ -35,6 +35,7 @@ const HRI_SEARCH_MAX_CHARS       = 100;  // Longest query used (characters).
 const HRI_SEARCH_MAX_UNITS       = 8;    // Most words (units) of one query.
 const HRI_SEARCH_OPTION_SYN      = 'hri_search_synonyms';
 const HRI_SEARCH_OPTION_INDEX    = 'hri_search_index';
+const HRI_SEARCH_OPTION_BUILD    = 'hri_search_build';
 const HRI_SEARCH_CONTENT_CHARS   = 60000; // Body text indexed per post (characters).
 const HRI_SEARCH_ROWS_PER_DOC    = 4000;
 
@@ -109,6 +110,7 @@ function hri_search_install(): void {
 	if ( hri_search_tables_ready( true ) ) {
 		update_option( 'hri_search_db_version', HRI_SEARCH_DB_VERSION );
 		delete_option( HRI_SEARCH_OPTION_INDEX ); // Rebuilt on first use.
+		delete_option( HRI_SEARCH_OPTION_BUILD );
 	}
 }
 add_action( 'plugins_loaded', 'hri_search_install', 20 );
@@ -632,9 +634,12 @@ function hri_search_all_ids(): array {
 }
 
 /**
- * Rebuild the index, a batch at a time (offset 0 starts from empty).
+ * Rebuild the index, a batch at a time. Nothing is deleted up front: every post is re-indexed in
+ * place (its old rows are replaced), so searches keep working during a rebuild; rows of posts that
+ * no longer belong in the index are removed at the end. Progress is saved, so a rebuild stopped by a
+ * time limit carries on where it was (see hri_search_ensure_index).
  *
- * @param int         $offset Position in the list of posts.
+ * @param int         $offset Position in the list of posts (0 = start).
  * @param int         $limit  Posts in this batch, 0 = all.
  * @param string|null $mode   Tokenizer to use (default: this host's).
  * @return array{done:int,total:int,next:int|null,rows:int}
@@ -647,11 +652,6 @@ function hri_search_rebuild( int $offset = 0, int $limit = 0, ?string $mode = nu
 	$all  = count( $ids );
 
 	if ( 0 === $offset ) {
-		$wpdb->suppress_errors( true );
-		$wpdb->query( 'DELETE FROM ' . hri_search_table( 'idx' ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$wpdb->query( 'DELETE FROM ' . hri_search_table( 'docs' ) ); // phpcs:ignore WordPress.DB.PreparedSQL
-		$wpdb->suppress_errors( false );
-		update_option( HRI_SEARCH_OPTION_INDEX, array( 'mode' => $mode, 'docs' => 0, 'rows' => 0, 'built' => 0 ), false );
 		hri_search_excluded_ids( true );
 	}
 
@@ -664,16 +664,28 @@ function hri_search_rebuild( int $offset = 0, int $limit = 0, ?string $mode = nu
 	$next = $offset + count( $batch );
 	$done = $next >= $all;
 	if ( $done ) {
+		// Rows of posts that are gone, unpublished or excluded.
+		$wpdb->suppress_errors( true );
+		$known = array_map( 'intval', (array) $wpdb->get_col( 'SELECT post_id FROM ' . hri_search_table( 'docs' ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL
+		foreach ( array_diff( $known, $ids ) as $gone ) {
+			hri_search_forget( (int) $gone );
+		}
+		$wpdb->query( 'DELETE FROM ' . hri_search_table( 'idx' ) . ' WHERE post_id NOT IN (SELECT post_id FROM ' . hri_search_table( 'docs' ) . ')' ); // phpcs:ignore WordPress.DB.PreparedSQL
+		$wpdb->suppress_errors( false );
 		delete_transient( 'hri_search_building' );
+		delete_option( HRI_SEARCH_OPTION_BUILD );
+		hri_search_touch_stats( $mode, true );
+	} else {
+		update_option( HRI_SEARCH_OPTION_BUILD, array( 'mode' => $mode, 'next' => $next, 'total' => $all ), false );
 	}
-	hri_search_touch_stats( $mode, $done );
 	return array( 'done' => count( $batch ), 'total' => $all, 'next' => $done ? null : $next, 'rows' => $rows );
 }
 
 /**
  * Make sure there is an index that matches this host before a search (first search after
  * install, an import without a request-end flush, or a host / tokenizer change). Builds it in
- * this request, within a time limit; a lock stops visitors from building it all at once.
+ * this request within a time limit and saves its progress, so the next visit carries on; a lock
+ * stops visitors from building it all at once. The old index stays in use until the new one is done.
  */
 function hri_search_ensure_index(): void {
 	static $checked = false;
@@ -690,12 +702,14 @@ function hri_search_ensure_index(): void {
 	if ( get_transient( 'hri_search_building' ) ) {
 		return;
 	}
+	$build  = get_option( HRI_SEARCH_OPTION_BUILD );
 	$start  = microtime( true );
-	$offset = 0;
+	$offset = is_array( $build ) && ( $build['mode'] ?? '' ) === $mode ? (int) $build['next'] : 0;
 	do {
-		$step   = hri_search_rebuild( $offset, 40, $mode );
+		$step   = hri_search_rebuild( $offset, 20, $mode );
 		$offset = (int) $step['next'];
-	} while ( null !== $step['next'] && ( microtime( true ) - $start ) < 25 );
+	} while ( null !== $step['next'] && ( microtime( true ) - $start ) < 20 );
+	delete_transient( 'hri_search_building' ); // Stopped by the time limit: the next visitor carries on.
 }
 
 /* -------------------------------------------------------------------------
@@ -767,7 +781,7 @@ function hri_search_synonym_members( string $line ): array {
  * tokens = words to look up in the index · contig = text that must appear in one piece ('' = no need)
  * · core = the word without function words at its ends.
  *
- * @return array{tokens:string[],contig:string,core:string}
+ * @return array{tokens:string[],contig:string,soft:string,core:string}
  */
 function hri_search_unit( string $chunk, string $mode, bool $drop_stop = true ): array {
 	$core   = $chunk;
@@ -795,10 +809,26 @@ function hri_search_unit( string $chunk, string $mode, bool $drop_stop = true ):
 	// ICU split one typed word into several pieces, or the fallback made bigrams: the whole word
 	// must also appear as one piece of text.
 	$contig = '';
+	$soft   = '';
 	if ( count( $pieces ) > 1 && preg_match( '/[\p{Thai}\p{Han}\p{Hiragana}\p{Katakana}]/u', $core ) ) {
 		$contig = $core;
+		// Thai typed without spaces ("หลักสูตรผู้นำ"): when every piece is a real word of 3+ letters, the
+		// pieces matching together are enough; short fragments (a loan word cut in two) must stay in one piece.
+		if ( 'icu' === $mode && ! preg_match( '/[\p{Han}\p{Hiragana}\p{Katakana}]/u', $core ) ) {
+			$short = false;
+			foreach ( $pieces as $piece ) {
+				if ( mb_strlen( $piece, 'UTF-8' ) < 3 ) {
+					$short = true;
+					break;
+				}
+			}
+			if ( ! $short ) {
+				$soft   = $contig;
+				$contig = '';
+			}
+		}
 	}
-	return array( 'tokens' => $tokens, 'contig' => $contig, 'core' => $core );
+	return array( 'tokens' => $tokens, 'contig' => $contig, 'soft' => $soft, 'core' => $core );
 }
 
 /**
@@ -879,7 +909,8 @@ function hri_search_clean_query( $raw ): string {
  * The query of the current request.
  */
 function hri_search_query_string(): string {
-	return hri_search_clean_query( $_GET['s'] ?? '' ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput
+	$raw = $_GET['s'] ?? get_query_var( 's' ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput -- /search/<words>/ has no ?s=.
+	return hri_search_clean_query( $raw );
 }
 
 /**
@@ -942,6 +973,7 @@ function hri_search_terms_from_chunks( array $chunks, string $mode, array $syn, 
 					array(
 						'tokens'  => $unit['tokens'],
 						'contigs' => '' !== $unit['contig'] ? array( $unit['contig'] ) : array(),
+						'softs'   => '' !== $unit['soft'] ? array( $unit['soft'] ) : array(),
 						'syn'     => false,
 					),
 				),
@@ -1050,7 +1082,7 @@ function hri_search_by_words( string $raw, array $args = array() ): array {
 	foreach ( $posts as $id => $post ) {
 		foreach ( $terms as $ti => $term ) {
 			foreach ( $term['alts'] as $alt ) {
-				if ( $alt['contigs'] && ! array_diff( $alt['tokens'], array_keys( $post['tok'] ) ) ) {
+				if ( ( $alt['contigs'] || ! empty( $alt['softs'] ) ) && ! array_diff( $alt['tokens'], array_keys( $post['tok'] ) ) ) {
 					$need[ $id ] = true;
 				}
 			}
@@ -1085,7 +1117,13 @@ function hri_search_by_words( string $raw, array $args = array() ): array {
 						continue 2;
 					}
 				}
-				$value = ( $sum / max( 1, count( $alt['tokens'] ) ) ) * ( $alt['syn'] ? 0.9 : 1.0 ); // A word typed as is beats its synonym.
+				$bonus = 0;
+				foreach ( $alt['softs'] ?? array() as $soft ) { // Typed as one word and found as one word: better than the same pieces apart.
+					if ( str_contains( $texts[ $id ] ?? '', str_replace( ' ', '', $soft ) ) ) {
+						$bonus += 500;
+					}
+				}
+				$value = ( $sum / max( 1, count( $alt['tokens'] ) ) + $bonus ) * ( $alt['syn'] ? 0.9 : 1.0 ); // A word typed as is beats its synonym.
 				$best  = null === $best ? $value : max( $best, $value );
 			}
 			if ( null !== $best ) {
@@ -1257,14 +1295,96 @@ function hri_search_action_url(): string {
 }
 
 /**
- * Short text for a result: the excerpt, or the start of the page text.
+ * Words the visitor typed (without function words and one-letter words), for the snippet.
+ *
+ * @return string[]
  */
-function hri_search_snippet( WP_Post $post, int $chars = 150 ): string {
-	$text = '' !== trim( $post->post_excerpt ) ? hri_search_plain( $post->post_excerpt ) : hri_search_plain( $post->post_content );
-	if ( mb_strlen( $text, 'UTF-8' ) > $chars ) {
-		$text = rtrim( mb_substr( $text, 0, $chars, 'UTF-8' ) ) . '…';
+function hri_search_typed_words( string $query ): array {
+	$words = array();
+	foreach ( preg_split( '/\s+/u', hri_search_normalize( $query ) ) ?: array() as $word ) {
+		// The word as typed, and its pieces when it is several words typed together ("หลักสูตรผู้นำ").
+		foreach ( array_merge( array( $word ), hri_search_pieces( $word, hri_search_runtime_mode() ) ) as $piece ) {
+			if ( mb_strlen( $piece, 'UTF-8' ) >= 2 && ! isset( hri_search_stopwords()[ $piece ] ) ) {
+				$words[ $piece ] = $piece;
+			}
+		}
+	}
+	return array_slice( array_values( $words ), 0, 8 );
+}
+
+/**
+ * Where a snippet starts: a little before the match, at the start of a word (never in the middle of one).
+ */
+function hri_search_snippet_start( string $source, int $pos ): int {
+	$from = max( 0, $pos - 40 );
+	if ( 0 === $from ) {
+		return 0;
+	}
+	$head  = mb_substr( $source, $from, $pos - $from, 'UTF-8' );
+	$space = mb_strpos( $head, ' ', 0, 'UTF-8' );
+	if ( false !== $space ) {
+		return $from + $space + 1;
+	}
+	if ( hri_search_icu_available() ) {
+		$it = IntlBreakIterator::createWordInstance( 'th' );
+		$it->setText( $head );
+		foreach ( $it->getPartsIterator() as $part ) {
+			return min( $pos, $from + mb_strlen( (string) $part, 'UTF-8' ) );
+		}
+	}
+	return $from;
+}
+
+/**
+ * Short text for a result: the part of the excerpt or of the page text where a typed word appears
+ * (else the start of the excerpt / text).
+ *
+ * @param string[] $words Words typed by the visitor.
+ */
+function hri_search_snippet( WP_Post $post, int $chars = 150, array $words = array() ): string {
+	$sources = array();
+	if ( '' !== trim( $post->post_excerpt ) ) {
+		$sources[] = hri_search_plain( $post->post_excerpt );
+	}
+	$sources[] = hri_search_plain( $post->post_content );
+	$pick      = $sources[0];
+	$at        = 0;
+	foreach ( $sources as $source ) {
+		foreach ( $words as $word ) {
+			$pos = mb_stripos( $source, $word, 0, 'UTF-8' );
+			if ( false !== $pos ) {
+				$pick = $source;
+				$at   = hri_search_snippet_start( $source, $pos );
+				break 2;
+			}
+		}
+	}
+	$text = mb_substr( $pick, $at, $chars, 'UTF-8' );
+	if ( $at > 0 ) {
+		$text = '…' . ltrim( $text );
+	}
+	if ( mb_strlen( $pick, 'UTF-8' ) > $at + $chars ) {
+		$text = rtrim( $text ) . '…';
 	}
 	return $text;
+}
+
+/**
+ * Escaped text with the typed words wrapped in <mark> (no JavaScript).
+ *
+ * @param string[] $words
+ */
+function hri_search_highlight( string $text, array $words ): string {
+	if ( ! $words ) {
+		return esc_html( $text );
+	}
+	$quoted = array_map( static fn( $w ) => preg_quote( $w, '/' ), $words );
+	$parts  = preg_split( '/(' . implode( '|', $quoted ) . ')/iu', $text, -1, PREG_SPLIT_DELIM_CAPTURE ) ?: array( $text );
+	$out    = '';
+	foreach ( $parts as $i => $part ) {
+		$out .= 1 === $i % 2 ? '<mark>' . esc_html( $part ) . '</mark>' : esc_html( $part );
+	}
+	return $out;
 }
 
 /**
@@ -1283,7 +1403,8 @@ function hri_search_render_item( int $post_id ): string {
 		}
 		$meta[] = '<time datetime="' . esc_attr( get_the_date( 'c', $post ) ) . '">' . esc_html( get_the_date( '', $post ) ) . '</time>';
 	}
-	$snippet = hri_search_snippet( $post );
+	$words   = hri_search_typed_words( hri_search_query_string() );
+	$snippet = hri_search_snippet( $post, 150, $words );
 
 	ob_start();
 	?>
@@ -1291,9 +1412,9 @@ function hri_search_render_item( int $post_id ): string {
 		<?php if ( $meta ) : ?>
 			<p class="hri-sr__meta"><?php echo implode( ' · ', $meta ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above. ?></p>
 		<?php endif; ?>
-		<h3 class="hri-sr__title"><a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><?php echo esc_html( get_the_title( $post ) ); ?></a></h3>
+		<h3 class="hri-sr__title"><a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><?php echo hri_search_highlight( get_the_title( $post ), $words ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?></a></h3>
 		<?php if ( '' !== $snippet ) : ?>
-			<p class="hri-sr__snippet"><?php echo esc_html( $snippet ); ?></p>
+			<p class="hri-sr__snippet"><?php echo hri_search_highlight( $snippet, $words ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?></p>
 		<?php endif; ?>
 	</li>
 	<?php
@@ -1402,7 +1523,7 @@ function hri_search_empty_suggestions(): string {
 	}
 	printf(
 		'<p class="hri-sr__links"><a class="hri-sr__link" href="%1$s">%2$s</a> <a class="hri-sr__link" href="%3$s">%4$s</a></p>',
-		esc_url( function_exists( 'hri_localize_url' ) ? hri_localize_url( '/public-training/' ) : home_url( '/public-training/' ) ),
+		esc_url( function_exists( 'hri_localize_url' ) ? hri_localize_url( '/courses/' ) : home_url( '/courses/' ) ),
 		esc_html__( 'ดูหลักสูตรทั้งหมด', 'hri-core' ),
 		esc_url( hri_contact_url() ),
 		esc_html__( 'ติดต่อเรา', 'hri-core' )

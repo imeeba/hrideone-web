@@ -178,8 +178,8 @@ video {
 	text-underline-offset: 0.3em;
 }
 
-/* Seven menu items need room: switch to the menu button below 1100px (core switches at 600px). */
-@media (max-width: 1099px) {
+/* Seven menu items need room: switch to the menu button below 1220px (core switches at 600px; the Japanese menu is the longest and needs 1210px with the search icon). */
+@media (max-width: 1219px) {
 	.hri-header .wp-block-navigation__responsive-container:not(.is-menu-open) {
 		display: none;
 	}

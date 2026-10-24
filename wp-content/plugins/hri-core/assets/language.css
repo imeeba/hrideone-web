@@ -1,6 +1,6 @@
 /* Language switcher.
-   dropdown = header, desktop only (>= 1100px)
-   list     = inside the menu overlay (mobile and tablet, < 1100px) */
+   dropdown = header, desktop only (>= 1220px)
+   list     = inside the menu overlay (mobile and tablet, < 1220px) */
 
 .hri-lang ul {
 	list-style: none;
@@ -22,7 +22,7 @@
 	position: relative;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1220px) {
 	.hri-lang--dropdown {
 		display: block;
 	}
@@ -118,7 +118,7 @@
 	display: block;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1220px) {
 	.hri-lang--list {
 		display: none;
 	}

@@ -1,6 +1,6 @@
 /* Search form.
-   dropdown = header, desktop only (>= 1100px): a search icon that opens a field
-   inline   = inside the menu overlay (mobile and tablet, < 1100px)
+   dropdown = header, desktop only (>= 1220px): a search icon that opens a field
+   inline   = inside the menu overlay (mobile and tablet, < 1220px)
    page     = results page and 404 */
 
 .hri-sf__form {
@@ -67,7 +67,7 @@
 	position: relative;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1220px) {
 	.hri-sf--dropdown {
 		display: block;
 	}
@@ -116,7 +116,7 @@
 	inline-size: 100%;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1220px) {
 	.hri-sf--inline {
 		display: none;
 	}
