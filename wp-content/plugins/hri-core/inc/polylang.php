@@ -126,6 +126,14 @@ function hri_localize_url( string $url ): string {
 		return $url; // External, anchor, mailto, tel…
 	}
 
+	// Already in a language (…/en/courses/, from get_post_type_archive_link() or an imported article): leave it,
+	// or the language prefix would be added twice (/en/en/courses/).
+	foreach ( (array) pll_languages_list() as $slug ) {
+		if ( $slug !== pll_default_language() && preg_match( '#^/' . preg_quote( (string) $slug, '#' ) . '(?:[/?\#]|$)#', $path ) ) {
+			return $url;
+		}
+	}
+
 	// Keep a query string (filter links such as /in-house/?pillar[]=leadership) and an #anchor.
 	$suffix = '';
 	if ( preg_match( '/[?#].*$/s', $path, $m ) ) {

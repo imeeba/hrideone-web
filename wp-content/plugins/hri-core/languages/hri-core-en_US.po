@@ -485,7 +485,7 @@ msgstr ""
 #: inc/course-card.php:241
 #: inc/course-card.php:245
 msgid "ใบประกาศนียบัตร"
-msgstr ""
+msgstr "Certificate"
 
 #: inc/content-model.php:209
 msgid "มีใบประกาศนียบัตรเมื่อจบหลักสูตร"
