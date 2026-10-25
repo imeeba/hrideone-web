@@ -10,17 +10,17 @@ defined( 'ABSPATH' ) || exit;
 add_action(
 	'init',
 	static function () {
-		wp_register_style( 'hri-courses', plugins_url( 'assets/courses.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+		hri_register_plugin_style( 'hri-courses', 'courses.css' );
 
-		wp_register_style( 'hri-language', plugins_url( 'assets/language.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+		hri_register_plugin_style( 'hri-language', 'language.css' );
 
-		wp_register_style( 'hri-search', plugins_url( 'assets/search.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+		hri_register_plugin_style( 'hri-search', 'search.css' );
 
-		wp_register_style( 'hri-search-results', plugins_url( 'assets/search-results.css', HRI_CORE_DIR . 'hri-core.php' ), array( 'hri-courses' ), HRI_CORE_VERSION );
+		hri_register_plugin_style( 'hri-search-results', 'search-results.css', array( 'hri-courses' ) );
 
-		wp_register_style( 'hri-company', plugins_url( 'assets/company.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+		hri_register_plugin_style( 'hri-company', 'company.css' );
 
-		wp_register_style( 'hri-lead', plugins_url( 'assets/lead.css', HRI_CORE_DIR . 'hri-core.php' ), array(), HRI_CORE_VERSION );
+		hri_register_plugin_style( 'hri-lead', 'lead.css' );
 
 		foreach ( array( 'course-filter', 'course-facts', 'language-switcher', 'logo', 'company-text', 'contact-info', 'social-links', 'copyright', 'cta-band', 'course-highlight', 'lead-form', 'course-register', 'course-summary', 'course-trainers', 'blog-filter', 'related-posts', 'search-form', 'search-results' ) as $block ) {
 			register_block_type( HRI_CORE_DIR . 'blocks/' . $block );

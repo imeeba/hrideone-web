@@ -356,6 +356,8 @@ function hri_render_course_filter( array $args = array() ): string {
 				<?php endforeach; ?>
 				<button type="submit" class="hri-filter__submit wp-element-button"><?php esc_html_e( 'ค้นหา', 'hri-core' ); ?></button>
 			</details>
+			<?php // Fold the panel on small screens before first paint (view.js does the same later; doing it only there shifted the page, CLS 0.26). Without JS it stays open. ?>
+			<script>if(matchMedia('(max-width:899px)').matches)document.currentScript.previousElementSibling.open=false</script>
 		</form>
 
 		<?php echo hri_render_course_results( $query, $params, $action ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?>

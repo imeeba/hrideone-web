@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'HRI_CORE_VERSION', '0.11.0' );
 define( 'HRI_CORE_DIR', __DIR__ . '/' );
 
-foreach ( array( 'cleanup', 'icons', 'images', 'images-optimize', 'content-model', 'trainers', 'course-card', 'course-filter', 'languages', 'polylang', 'company', 'leads', 'blog', 'blog-import', 'search', 'search-admin', 'blocks' ) as $module ) {
+foreach ( array( 'cleanup', 'performance', 'icons', 'images', 'images-optimize', 'content-model', 'trainers', 'course-card', 'course-filter', 'languages', 'polylang', 'company', 'leads', 'blog', 'blog-import', 'search', 'search-admin', 'blocks' ) as $module ) {
 	require_once HRI_CORE_DIR . "inc/{$module}.php";
 }
 

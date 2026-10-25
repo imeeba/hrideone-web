@@ -3,6 +3,19 @@
  * Only what theme.json cannot express. Every value comes from a token variable.
  */
 
+/* ---------- Font fallback metrics ---------- */
+/* While Kanit loads (font-display: swap) Latin text shows in Arial resized to Kanit's width and line box,
+   so the swap does not move the layout. Numbers measured from the font files (average Latin advance
+   0.4524 em vs 0.4468 em; ascent 1.1, descent 0.395). Thai glyphs come from the system font either way. */
+@font-face {
+	font-family: "Kanit Fallback";
+	src: local("Arial"), local("Helvetica"), local("Liberation Sans");
+	size-adjust: 101.2%;
+	ascent-override: 108.7%;
+	descent-override: 39%;
+	line-gap-override: 0%;
+}
+
 /* ---------- Language-aware font stacks ---------- */
 /* Redefining the preset variables lets every element that uses them switch font inside a ja block. */
 [lang|="ja"] {

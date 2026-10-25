@@ -51,20 +51,36 @@ function hri_needs_japanese_fonts(): bool {
 }
 
 /**
+ * Enqueue assets/css/{name}.css, using the committed {name}.min.css when it exists
+ * (`node scripts/minify-css.mjs`; SCRIPT_DEBUG loads the readable file). The file path is registered
+ * so WordPress can inline it if it is small (see hri_inline_css_limit in hri-core).
+ *
+ * @param string[] $deps Dependencies.
+ */
+function hri_enqueue_theme_style( string $handle, string $name, array $deps = array() ): void {
+	$file = "assets/css/{$name}.css";
+	$min  = "assets/css/{$name}.min.css";
+	if ( ! ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) && file_exists( get_theme_file_path( $min ) ) ) {
+		$file = $min;
+	}
+	wp_enqueue_style( $handle, get_theme_file_uri( $file ), $deps, HRI_THEME_VERSION );
+	wp_style_add_data( $handle, 'path', get_theme_file_path( $file ) );
+}
+
+/**
  * Front-end assets.
  */
 add_action(
 	'wp_enqueue_scripts',
 	static function () {
-		$uri = get_theme_file_uri( 'assets/css/' );
-		wp_enqueue_style( 'hri-base', $uri . 'base.css', array(), HRI_THEME_VERSION );
+		hri_enqueue_theme_style( 'hri-base', 'base' );
 
 		if ( hri_needs_japanese_fonts() ) {
-			wp_enqueue_style( 'hri-fonts-ja', $uri . 'fonts-ja.css', array(), HRI_THEME_VERSION );
+			hri_enqueue_theme_style( 'hri-fonts-ja', 'fonts-ja' );
 		}
 
 		if ( hri_is_style_guide() ) {
-			wp_enqueue_style( 'hri-style-guide', $uri . 'style-guide.css', array( 'hri-base' ), HRI_THEME_VERSION );
+			hri_enqueue_theme_style( 'hri-style-guide', 'style-guide', array( 'hri-base' ) );
 		}
 	}
 );
@@ -80,15 +96,21 @@ add_action(
 );
 
 /**
- * Preload the two Kanit files every Thai page needs above the fold.
+ * Preload the two font files that paint the first screen: body text (300) and headings (600) in the
+ * page language. Thai pages preload the Thai subset, others the Latin one; Japanese pages none
+ * (M PLUS 1 is split into ~120 pieces, so a fixed file cannot be guessed).
  */
 add_action(
 	'wp_head',
 	static function () {
-		foreach ( array( 'kanit-thai-300-normal', 'kanit-latin-300-normal' ) as $file ) {
+		if ( hri_needs_japanese_fonts() ) {
+			return;
+		}
+		$subset = str_starts_with( determine_locale(), 'th' ) ? 'thai' : 'latin';
+		foreach ( array( '300', '600' ) as $weight ) {
 			printf(
 				'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
-				esc_url( get_theme_file_uri( "assets/fonts/kanit/{$file}.woff2" ) )
+				esc_url( get_theme_file_uri( "assets/fonts/kanit/kanit-{$subset}-{$weight}-normal.woff2" ) )
 			);
 		}
 	},

@@ -27,7 +27,8 @@ const RANGES = {
 };
 
 const kanitFaces = [];
-for (const w of ['300', '400', '500', '600', '700']) {
+// 700 is left out on purpose: no page uses it (only 8 characters on /style-guide/); bold text resolves to 600.
+for (const w of ['300', '400', '500', '600']) {
 	for (const subset of ['thai', 'latin', 'latin-ext']) {
 		kanitFaces.push({
 			fontFamily: 'Kanit',
