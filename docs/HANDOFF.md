@@ -1,11 +1,11 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.11.2 / plugin 0.10.2
+> อัปเดตล่าสุด: 2026-10-25 (รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.12.0 / plugin 0.11.0
 >
 > **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
 >
-> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → ~~C (ค้นหา)~~ ทำแล้วรอบที่ 10 (รอ merge) → I (รูปให้เล็กสุด) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
+> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → ~~C (ค้นหา)~~ ทำแล้วรอบที่ 10 (รอ merge) → ~~I (รูปให้เล็กสุด)~~ ทำแล้วรอบที่ 11 (branch `feature/image-optimize`) → J (PageSpeed) → D (SEO + AI SEO) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](HOSTING.md)) → E (ย้ายเว็บ + 301)
 >
 > **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
 
@@ -66,7 +66,15 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - palette ล็อกไว้ (ปิด custom color) ทีมการตลาดเลือกได้แค่สีใน token
 - ฟอนต์ self-hosted: Kanit (TH/Latin), Montserrat (display), M PLUS 1 (JA, โหลดเฉพาะ locale ja หรือหน้า style guide)
 
-**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `icons` (ไอคอน ดูด้านล่าง) · `images` (ขอบยาวสุด 1920, WebP, quality 78, ตัดขนาดที่ไม่ใช้) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `leads` · `blog` · `blog-import` · `blocks`
+**hri-core modules** (`hri-core.php` โหลดตามลำดับ): `cleanup` (emoji, XML-RPC, comments ปิด) · `icons` (ไอคอน ดูด้านล่าง) · `images` + `images-optimize` (ดู "รูปในคลังสื่อ" ด้านล่าง) · `content-model` · `course-card` · `course-filter` · `languages` · `polylang` · `company` · `leads` · `blog` · `blog-import` · `blocks`
+
+**รูปในคลังสื่อ** (รอบที่ 11) — `inc/images.php` + `inc/images-optimize.php`
+- **แปลงตอนรับไฟล์**: ทุกทางที่ไฟล์เข้าคลังสื่อ (อัปโหลดใน wp-admin, sideload จากโค้ด, ตัวนำเข้าบทความโหมด download) ผ่าน filter `wp_handle_upload` → JPG/PNG ถูกหมุนตาม EXIF, ย่อให้ขอบยาวสุด ≤ `HRI_IMAGE_MAX_EDGE` (1600), บันทึกเป็น WebP (หรือ AVIF) แล้ว **ลบไฟล์เดิมทิ้ง** (ไม่เก็บต้นฉบับ — Jimmi สั่ง 25 ต.ค.) · ไม่ทำกับ GIF/SVG/WebP เดิม · ถ้าแปลงไม่ได้ (เซิร์ฟเวอร์ไม่มี WebP, ไฟล์เสีย) หรือผลไม่เล็กกว่าเดิม → เก็บไฟล์เดิม อัปโหลดไม่ล้ม · PNG โปร่งใสยังโปร่งใส · ปิดไม่ให้แปลงเฉพาะครั้ง: filter `hri_image_convert_upload`
+- ค่าใน wp-config (ไม่บังคับ): `HRI_IMAGE_FORMAT` `webp`(ค่าเริ่มต้น)|`avif` (ใช้เมื่อเซิร์ฟเวอร์รองรับ ไม่งั้นกลับเป็น WebP) · `HRI_IMAGE_MAX_EDGE` (1600) · `HRI_IMAGE_QUALITY` (78)
+- ขนาดย่อย: thumbnail, medium, large, **`hri-card` 800×533 ครอป 3:2** (เลือกใน editor ได้: "การ์ด (3:2)") · ตัด medium_large/1536/2048 · ใช้ `hri-card` ที่: การ์ดคอร์ส (`course-card.php`), การ์ดบล็อก (`blog-loop`, `home-knowledge` ผ่าน `sizeSlug`), บทความที่เกี่ยวข้อง · หน้าบทความ/หน้าคอร์สเดี่ยวใช้ `large` · ก่อนหน้านี้บล็อก Featured Image ไม่มี `sizeSlug` จึงโหลดไฟล์เต็ม 1600px ทุกการ์ด
+- `sizes` ของการ์ด: filter `wp_get_attachment_image_attributes` แทนค่ากลางของ WordPress (`(max-width: 800px) 100vw, 800px`) ด้วย `(min-width: 1100px) 33vw, (min-width: 600px) 50vw, 100vw` (การ์ดคอร์สส่ง `sizes` เองเพราะอยู่ข้างตัวกรอง)
+- **รูปที่อยู่ในคลังสื่อแล้ว**: `wp hri images optimize [--dry-run] [--limit=N] [--ids=1,2]` หรือ Tools → ปรับรูปให้เล็ก (ทีละ 10 รูป หน้าโหลดต่อเอง) · ทำ: แปลงไฟล์หลัก, ลบขนาดย่อยเก่า/backup/`original_image`, สร้างขนาดย่อยใหม่, **แก้ URL ของไฟล์เก่าในเนื้อหาและ excerpt ของทุกโพสต์** (รวมแบบ JSON-escaped `\/` ในคอมเมนต์บล็อก) · รูปที่ WordPress ย่อเป็น `-scaled.webp` ให้เองแต่ยังเก็บ JPG ต้นฉบับใหญ่ไว้ (`original_image`) = ลบต้นฉบับ + ย้ายลิงก์ไปไฟล์ที่ย่อแล้ว · รันซ้ำได้ (รอบสองไม่เหลืองาน) · **ลบไฟล์ถาวร สำรองก่อนรัน**
+- Demo บน Playground **ไม่เปลี่ยน**: รูปใน demo เป็น URL (`_hri_thumbnail_url`, jsDelivr) ไม่ได้อยู่ในคลังสื่อ ผลของงานนี้เห็นตอนมีรูปในคลังสื่อจริง (อัปโหลดเอง / ตอนย้ายเว็บงาน E)
 
 **Content model**
 - CPT `course` (archive `/courses/`)
@@ -184,6 +192,13 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
 - [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
 - [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 11 (25 ต.ค. 2569, branch `feature/image-optimize`): **รูปใน WordPress ให้เล็กสุด (งาน I)** — ดูสถาปัตยกรรมที่ข้อ 4 "รูปในคลังสื่อ"
+  - ทำ: แปลง JPG/PNG → WebP ตอนรับไฟล์ + ลบต้นฉบับ · `HRI_IMAGE_MAX_EDGE` 1920 → 1600 · ขนาด `hri-card` 800×533 + `sizes` ตามกริด · `wp hri images optimize` + Tools → ปรับรูปให้เล็ก · เก็บกวาด `original_image` ที่ WordPress เก็บไว้
+  - **ตัวเลข (local, GD + WebP, ไม่มี Imagick/AVIF)**: รูปจริงจาก repo 3 ใบ (ถอดรหัสเป็น PNG แล้วอัปโหลดผ่านระบบ): รูปถ่าย 1600×1067 → ไฟล์หลัก 60.1 KB / `hri-card` 23.2 KB / large 30.8 KB / medium 6.5 KB · อินโฟกราฟิกตัวหนังสือ 1024² → 51.8 KB / การ์ด 24.2 KB · รูปคำคม 870×485 → 26.8 KB / การ์ด 25.7 KB → **การ์ดละ ~23–26 KB (เกณฑ์ ≤ 80 KB ผ่าน)** · รูปสังเคราะห์ 3000×2000 JPG 748 KB → 18.9 KB · รูปเก่า 13 ไฟล์ (9 MB) → 239 KB ด้วยคำสั่งแปลงรูปเดิม
+  - **quality 70 vs 78** (3 คู่ ซูม 2×: รูปถ่าย, อินโฟกราฟิกตัวหนังสือ, ภาพคน): 70 เล็กกว่า 9–14% (51.8 vs 60.1 KB, 47.3 vs 51.8 KB, 23.9 vs 26.8 KB) ตัวหนังสือคมเท่ากัน ต่างเล็กน้อยที่พื้นผิวรูปถ่าย · **ข้อจำกัดของการเทียบ**: ต้นฉบับ JPG ของเว็บเดิมไม่มีในเครื่อง ใช้รูปใน `playground/media` (WebP ที่บีบมารอบหนึ่งแล้ว) ผลจริงกับ JPG ต้นฉบับอาจต่างเล็กน้อย → **คง 78** (ตามที่ตกลงในรอบที่ 7) · ถ้าอยากเล็กลงอีก ~10% ตั้ง `HRI_IMAGE_QUALITY` 72
+  - ตรวจ: อัปโหลด JPG/PNG/EXIF หมุน/PNG โปร่งใส/ไฟล์เล็กมาก ใน uploads ไม่เหลือ .jpg/.png · ไฟล์เสีย, GIF, ไม่มี image editor → ไม่ล้ม เก็บไฟล์เดิม · ตัวนำเข้าบทความโหมด download (รูปในเนื้อหา + ปก) ได้ WebP ทั้งหมด · คำสั่งแปลงรูปเดิม: JPG หลัก, `-scaled.webp` + `original_image`, ลิงก์ในเนื้อหาแบบปกติและ JSON-escaped, รันซ้ำ, หน้า Tools ใน wp-admin จริง (13 รูป หลายรอบ) · markup การ์ดคอร์ส/บล็อก: `hri-card` + srcset + sizes ถูกต้อง
+  - **MEASURE_PLACEHOLDER**
+  - ยังไม่ได้ทดสอบ: Imagick/AVIF (workspace ไม่มี) · MySQL จริง · ขนาดเวลาแปลงรูปใหญ่บนโฮสต์ shared (ทีละ 10 รูป/คำขอ ถ้า timeout ให้ใช้ WP-CLI หรือลดเหลือ 5)
 - [x] รอบที่ 10 (24 ต.ค. 2569, branch `feature/search` แตกจาก `feature/real-images` — **merge เข้า `main` แล้ว 25 ต.ค. 2569**): **ค้นหาทั้งเว็บ (งาน C)**
   - ทำ: ดูสถาปัตยกรรมละเอียดที่ข้อ 4.y · เลือกวิธีทำดัชนีเอง (Jimmi อนุญาตให้ตัดสินใจเอง ไม่ถามก่อน) จาก 3 ทาง:
     - **A. ตารางดัชนีคำของเราเอง (เลือก)** — ข้อดี: ใช้ได้ทั้ง MySQL/SQLite เหมือนกันทุกบรรทัด, ตัดคำไทยจริง (ICU หรือ n-gram), จัดอันดับ ชื่อ > excerpt > เนื้อหา, กรองภาษา/สถานะเปิดรับ, ค้น ~10 ms; ข้อเสีย: โค้ดเยอะ (~1,400 บรรทัด), ต้องดูแลดัชนี (ทำอัตโนมัติ + ปุ่มสร้างใหม่), ดัชนีใหญ่ ~270 คำ/โพสต์ (429 โพสต์ = 114k แถว)
@@ -301,7 +316,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
 1. ~~เนื้อหา In-house อีก 14 คอร์ส~~ — **ทำแล้วในรอบที่ 4** (ครบ 15 คอร์ส) เหลือให้การตลาดตรวจ/เติมตามหัวข้อ "ข้อมูลที่ต้องตรวจ (จากรอบที่ 4)" ในข้อ 6 · ส่วนที่เว็บเดิมไม่มีและควรเติมเพื่อ convert: outline, กลุ่มเป้าหมาย, ระยะเวลา, วิทยากร, รีวิว ของแต่ละคอร์ส (แก้ใน editor ได้ ใช้ pattern "Course page — In-house")
 2. ~~**รูป/วิดีโอจริงของหน้าอื่น (ไม่ใช่บล็อก)** → prompt H~~ — **ทำแล้วในรอบที่ 9 (merge แล้ว)** เหลือวิดีโอ + รูป Social Impact · ของเดิม: โลโก้ลูกค้า 40, รูปผู้บริหาร 2, Gallery, รูป hero หน้าบริการ, โลโก้พาร์ทเนอร์ 8, รูปคอร์ส (thumbnail เว็บเดิม `thumbnail-IH-03.webp` ฯลฯ), รูปวิทยากร, วิดีโอแนวตั้งใน Outcomes · **ไฟล์ export มีแต่รูปของบทความ** (1,578 attachment ผูกกับโพสต์ทั้งหมด) → ต้องหา URL รูปจากหน้าเว็บเดิมทีละหน้า แล้วใส่ใน list ให้ `demo-media.py`/workflow ดึง (ขยายสคริปต์ให้รับ list) · ดึงเฉพาะรูปที่หน้าใหม่ใช้จริง
-2.1 **รูปใน WordPress ให้เล็กสุด** → prompt I (แปลงต้นฉบับเป็น WebP/AVIF ตอนอัปโหลด, ขนาด `hri-card`, ขอบยาวสุด 1600)
+2.1 ~~**รูปใน WordPress ให้เล็กสุด** → prompt I~~ — **ทำแล้วในรอบที่ 11** (ดูข้อ 4 "รูปในคลังสื่อ") · ตอนย้ายเว็บ (E): sideload รูปจาก `playground/site-media/` แล้วรัน `wp hri images optimize` บน staging
 2.2 **PageSpeed** → prompt J (เป้า Lighthouse mobile ≥90 ทุกหน้า) · วัดจริงต้องรอโฮสต์ แต่ทำ/วัดใน local ได้ก่อน
 3. ~~นำเข้าบทความ~~ — **ทำแล้วในรอบที่ 6** (เว็บเดิมมี 115 เรื่อง ไม่ใช่ ~150 และมี EN/JA ครบอยู่แล้ว) · ตอนย้ายจริง: export ใหม่จากเว็บเดิม → `scripts/wxr-to-blog.py` → Tools → นำเข้าบทความ แบบ "คัดลอกรูปเข้าคลังสื่อ" บน staging
 4. ~~**ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)~~ — **ทำแล้วในรอบที่ 10 (merge แล้ว)** ดูข้อ 4.y · เหลือ: ทดสอบบน MySQL จริง (Ruk-com), ขอ Ruk-com เปิด ext-intl (เขียนใน HOSTING.md แล้ว), ให้ Jimmi ตรวจ synonym 25 กลุ่ม
@@ -374,6 +389,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - Playground: เปิดหน้าอื่นใช้ช่อง URL ด้านล่างของ Playground หรือพารามิเตอร์ `&url=/path/` (ตั้ง `location` ของ iframe ตรงๆ ได้หน้าว่าง เพราะ URL มี scope) · iframe ซ้อน 2 ชั้น
 - `download_url()` ปฏิเสธพอร์ตที่ไม่ใช่ 80/443/8080 → ทดสอบ download ใน local ต้องเพิ่ม `http_allowed_safe_ports` และใช้ชื่อโฮสต์คนละชื่อกับเว็บ (`localhost` vs `127.0.0.1`) เพราะ importer ข้าม URL ของเว็บตัวเอง
 - Polylang จาก GitHub ใช้ tag `3.9` (ตัว `3.9.0-rc1`/beta ก็มี → เลือก tag ที่ไม่มี rc/beta) · seed ภาษา: `wp hri languages` → `wp eval-file <absolute>/playground/seed.php` → `seed-languages.php` ตามลำดับ (ตอนรัน `seed.php` ครั้งแรกใน local-setup ยังไม่มี Polylang เป็นปกติ)
+
+- **รูป (รอบที่ 11)**: `set_quality()` ของ WordPress ไม่มีผลเมื่อบันทึกเป็นนามสกุลใหม่ (PNG→WebP) เพราะ `save()` ตั้ง quality ใหม่จาก filter `wp_editor_set_quality` → ถ้าจะ override ต้องใช้ filter ที่ priority สูงกว่าและเปิดค้างไว้จน `save()` จบ (`hri_image_convert_file()` ทำให้แล้ว) · `wp_unique_filename()` มองว่า `name.jpg` ชน `name.webp` → ต้องลบต้นฉบับก่อนตั้งชื่อ ไม่งั้นได้ `name-1.webp` · ประเภทไฟล์ของ attachment (`post_mime_type`) ไม่เท่ากับไฟล์จริงเสมอ: WordPress ย่อรูปใหญ่เป็น `-scaled.webp` แต่ attachment ยังเป็น `image/jpeg` และเก็บ `original_image` (JPG ใหญ่) ไว้ → ตัดสินจาก `wp_check_filetype( $file )` · `wp_insert_post()` ต้อง `wp_slash()` ถ้า content มี `\/` (ใน test fixture) · บล็อก Featured Image ถ้าไม่ใส่ `sizeSlug` จะใช้ขนาดเต็ม · `wp-cli eval-file` ที่ไม่มี `mysql` ใช้ `wp db query` ไม่ได้ (SQLite) ให้ใช้ `wp eval 'echo get_post_field(...)'`
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
 
@@ -530,7 +547,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
 ```
 
-**I. รูปใน WordPress ให้เล็กสุด (ก่อนย้ายเว็บ)**
+**I. รูปใน WordPress ให้เล็กสุด (ก่อนย้ายเว็บ)** — ทำแล้วในรอบที่ 11 (เก็บ prompt ไว้อ้างอิง)
 > หมายเหตุรอบที่ 9: รูปหน้าอื่นอยู่ใน `playground/site-media/` (แปลงแล้ว 1.6 MB) และใน demo เป็น URL ไม่ได้อยู่ในคลังสื่อ — งานนี้ต้องครอบคลุมตอน sideload รูปเหล่านี้เข้าคลังสื่อบนโฮสต์จริงด้วย
 
 ```

@@ -22,7 +22,7 @@
 <!-- wp:query {"queryId":11,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"className":"hri-posts"} -->
 <div class="wp-block-query hri-posts"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"16rem"}} -->
 <!-- wp:group {"className":"is-style-card hri-post","layout":{"type":"default"}} -->
-<div class="wp-block-group is-style-card hri-post"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","className":"hri-post__media"} /-->
+<div class="wp-block-group is-style-card hri-post"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","sizeSlug":"hri-card","className":"hri-post__media"} /-->
 
 <!-- wp:group {"className":"hri-post__body","layout":{"type":"default"}} -->
 <div class="wp-block-group hri-post__body"><!-- wp:post-date {"fontSize":"small","textColor":"contrast-muted"} /-->

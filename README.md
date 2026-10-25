@@ -40,7 +40,7 @@ wp-content/
     assets/js/           hero.js (วิดีโอ hero ≤10 วินาที), slider.js (Gallery แบบสไลด์)
     inc/markup.php       ตัวช่วยพิมพ์ block markup ให้ patterns (hri_bm_*)
     parts/ templates/ patterns/   (หน้าแรก: home-*.php · บริการ: inhouse-*, public-*, transformation-*, japanese-*)
-  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images, หลักสูตร (CPT + filter + วิทยากร), ฟอร์ม Lead, ภาษา (Polylang), ข้อมูลบริษัท + ค้นหาทั้งเว็บ (inc/search.php ดัชนีของเราเอง, Settings → การค้นหา) + blocks ของ footer/บล็อก/ค้นหา
+  plugins/hri-core/      Features ที่ไม่ผูกกับธีม: cleanup, images (แปลง JPG/PNG → WebP ตอนอัปโหลด + `wp hri images optimize`), หลักสูตร (CPT + filter + วิทยากร), ฟอร์ม Lead, ภาษา (Polylang), ข้อมูลบริษัท + ค้นหาทั้งเว็บ (inc/search.php ดัชนีของเราเอง, Settings → การค้นหา) + blocks ของ footer/บล็อก/ค้นหา
 playground/
   blueprint.json         ตั้งค่า Playground preview
   seed.php               ข้อมูลตัวอย่าง (คอร์ส 20 รายการ, หน้าแรก, In-house / Public Training / Transformation / Japanese Concept, Style Guide) + นำเข้าบทความจริง

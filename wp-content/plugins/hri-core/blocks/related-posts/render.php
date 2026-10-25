@@ -33,7 +33,7 @@ if ( ! $related ) {
 $cards = '';
 foreach ( $related as $item ) {
 	$link  = get_permalink( $item );
-	$image = has_post_thumbnail( $item ) ? get_the_post_thumbnail( $item, 'medium_large', array( 'loading' => 'lazy', 'alt' => '' ) ) : '';
+	$image = has_post_thumbnail( $item ) ? get_the_post_thumbnail( $item, 'hri-card', array( 'loading' => 'lazy', 'alt' => '', 'sizes' => '(min-width: 782px) 33vw, (min-width: 600px) 50vw, 100vw' ) ) : '';
 	$cards .= sprintf(
 		'<article class="wp-block-group is-style-card hri-post">%1$s<div class="hri-post__body"><time class="wp-block-post-date has-small-font-size has-contrast-muted-color has-text-color" datetime="%2$s">%3$s</time><h3 class="wp-block-post-title has-large-font-size"><a href="%4$s">%5$s</a></h3></div></article>',
 		$image ? '<a class="hri-post__media" href="' . esc_url( $link ) . '" tabindex="-1" aria-hidden="true">' . $image . '</a>' : '', // phpcs:ignore WordPress.Security.EscapeOutput -- core markup.

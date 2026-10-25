@@ -16,7 +16,7 @@
 <!-- wp:query {"queryId":21,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"className":"hri-posts hri-posts--list"} -->
 <div class="wp-block-query hri-posts hri-posts--list"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"16rem"}} -->
 <!-- wp:group {"className":"is-style-card hri-post","layout":{"type":"default"}} -->
-<div class="wp-block-group is-style-card hri-post"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","className":"hri-post__media"} /-->
+<div class="wp-block-group is-style-card hri-post"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","sizeSlug":"hri-card","className":"hri-post__media"} /-->
 
 <!-- wp:group {"className":"hri-post__body","layout":{"type":"default"}} -->
 <div class="wp-block-group hri-post__body"><!-- wp:post-terms {"term":"category","fontSize":"small","className":"hri-post__cat"} /-->
