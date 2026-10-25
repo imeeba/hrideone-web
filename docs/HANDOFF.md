@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — tag ย้อนกลับ `pre-merge-2026-10-25`) · theme 0.11.2 / plugin 0.10.2
+> อัปเดตล่าสุด: 2026-10-24 (รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.11.2 / plugin 0.10.2
 >
 > **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
 >
@@ -293,7 +293,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
-0.0 ~~Merge `feature/search` → `main`~~ — **ทำแล้ว 25 ต.ค. 2569** (fast-forward, tag `pre-merge-2026-10-25` = `main` เดิม b07d21a ใช้ย้อนกลับด้วย `git reset --hard pre-merge-2026-10-25`) · หลัง merge เช็ค demo จริงที่ https://imeeba.github.io/hrideone-web/ (jsDelivr cache `@main` ได้ถึง ~12 ชม. ใส่ `&v=<เลข>` เพื่อเลี่ยง)
+0.0 ~~Merge `feature/search` → `main`~~ — **ทำแล้ว 25 ต.ค. 2569** (fast-forward, branch `backup/pre-merge-2026-10-25` = `main` เดิม b07d21a ย้อนกลับด้วย `git push -f origin backup/pre-merge-2026-10-25:main` · branch `preview/feature-search` ลบไม่ได้จากเซสชันนี้ (403) — ลบเองบน GitHub ได้) · หลัง merge เช็ค demo จริงที่ https://imeeba.github.io/hrideone-web/ (jsDelivr cache `@main` ได้ถึง ~12 ชม. ใส่ `&v=<เลข>` เพื่อเลี่ยง)
 0.1 **ผลทดสอบก่อน merge (25 ต.ค. 2569, เว็บ build ใหม่จาก blueprint บน SQLite):** crawl 620 URL ผ่าน (html lang/h1/title) · measure.py 3 ภาษา × 1280/1220/1024/768/375 × 17 หน้า ไม่มี overflow/tap/contrast/PHP/JS error · ฟอร์ม lead: honeypot, rate limit 5/10 นาที, validate ผ่าน · ค้นหา TH/EN/JA + ไม่พบผล + input แปลก ๆ ผ่าน · แก้ระหว่างทาง: `/en/en/` ซ้ำใน `hri_localize_url`, label ใบประกาศนียบัตรไม่แปล
 0.2 **ปัญหาที่รู้แล้ว ยังไม่แก้:** ~44 ลิงก์ในบทความที่นำเข้าชี้ URL เว็บเดิมที่ไม่มีแล้ว (→ งาน E ทำ redirect mapping — ต้องให้ Jimmi ตัดสิน เช่น negotiation-skills→negotiation-mastery, master-of-communication→communication-mastery, embracing-change→change-transformation-mastery, time-and-priority-management→time-and-priority-mastery, และ consulting, coaching, public-training/e-learning, the-sales-master, logical-and-critical-thinking ฯลฯ) · ไม่มี meta description ทุกหน้า (→ งาน D) · `<img>` ~4,000 รูปไม่มี width/height (→ งาน I/J) · `<title>` ของหน้า 404 เป็นอังกฤษ · ยังไม่ทดสอบ MySQL จริง · ต้องถาม Ruk-com เรื่อง ext-intl
 0.1 **Merge `feature/real-images` → `main`** (รอบที่ 9, รอ Jimmi ดู) · ดูก่อน merge: แก้ทุก `main` ใน `playground/blueprint.json` เป็น `feature/real-images` แล้วเปิดผ่าน `https://playground.wordpress.net/#<blueprint JSON>` (ลิงก์สั้นใช้ `main` เสมอ) · หลัง merge: Actions "Site media" ไม่ต้องรันใหม่ (ไฟล์อยู่ใน repo แล้ว), jsDelivr `@main` เห็นไฟล์ใหม่ทันทีเพราะเป็น path ใหม่
