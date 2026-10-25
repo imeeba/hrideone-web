@@ -426,6 +426,8 @@ def main():
             'thumbnail_alt': thumb.get('alt', ''),
             'old_slugs': sorted({s for s in meta.get('_wp_old_slug', []) if s and s != slug}),
             'old_id': int(it.find('wp:post_id', NS).text),
+            # WordPress ≥5.7 exports the last-modified time; older exports have none (= date).
+            'modified': (it.find('wp:post_modified', NS).text if it.find('wp:post_modified', NS) is not None else '') or date,
             'categories': cats,
         }
 

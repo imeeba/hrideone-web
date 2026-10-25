@@ -24,6 +24,16 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "wordpress.org/plugins",
+				"slug": "autodescription"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
 				"slug": "polylang"
 			},
 			"options": {
@@ -165,6 +175,10 @@
 		{
 			"step": "runPHP",
 			"code": "<?php require '/wordpress/wp-load.php'; hri_search_rebuild( 0, 0 ); echo 'Search index built.';"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; foreach ( hri_seo_setup() as $line ) { echo $line, \"\\n\"; } flush_rewrite_rules( false );"
 		}
 	]
 }

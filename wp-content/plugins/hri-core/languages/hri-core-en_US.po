@@ -934,3 +934,68 @@ msgstr "Contact us"
 #: inc/search-admin.php:117
 msgid "กำลังสร้างใหม่"
 msgstr "Rebuilding"
+
+#: inc/seo.php
+msgid "%1$s รุ่นที่ %2$d"
+msgstr "%1$s – Batch %2$d"
+
+#: inc/seo.php
+msgid "SEO และ AI"
+msgstr "SEO & AI"
+
+#: inc/seo.php
+msgid "ชื่อ คำอธิบาย และรูปแชร์ของแต่ละหน้าแก้ได้ที่กล่อง SEO ในหน้าแก้ไข · ข้อมูลบริษัทที่ใช้ในไฟล์เหล่านี้แก้ที่ ตั้งค่า → ข้อมูลบริษัท"
+msgstr "Each page’s title, description and share image can be edited in the SEO box on its edit screen · Company details used in these files are edited under Settings → Company information"
+
+#: inc/seo.php
+msgid "ตั้งค่าครบแล้ว"
+msgstr "All set"
+
+#: inc/seo.php
+msgid "บอตค้นหาและตอบคำถามผู้ใช้ (ChatGPT Search, Claude, Perplexity, Bing, Google) อนุญาตเสมอ เพื่อให้เว็บถูกแนะนำในคำตอบของ AI · ปิดตรงนี้ = ไม่ให้นำเนื้อหาไปฝึกโมเดล แต่ไม่รับประกันว่าทุกเจ้าจะทำตาม"
+msgstr "Bots that search and answer users’ questions (ChatGPT Search, Claude, Perplexity, Bing, Google) are always allowed so the site can be recommended in AI answers · Turning this off asks crawlers not to use the content for training models, but not every operator is guaranteed to comply"
+
+#: inc/seo.php
+msgid "บอตที่เก็บเนื้อหาไปฝึกโมเดล AI"
+msgstr "Bots that collect content to train AI models"
+
+#: inc/seo.php
+msgid "ราคาตามใบเสนอราคา (จัดอบรมภายในองค์กร)"
+msgstr "Price on quotation (in-house training)"
+
+#: inc/seo.php
+msgid "สถาบันฝึกอบรมผู้บริหารและพัฒนาองค์กร"
+msgstr "Executive training and organizational development"
+
+#: inc/seo.php
+msgid "ส่งจริงเฉพาะเว็บ production (ไม่ส่งจาก Playground, localhost หรือ staging)"
+msgstr "Only sent from the production site (never from Playground, localhost or staging)"
+
+#: inc/seo.php
+msgid "อนุญาต"
+msgstr "Allow"
+
+#: inc/seo.php
+msgid "แจ้ง Bing เมื่อเผยแพร่หรือแก้หน้า"
+msgstr "Notify Bing when a page is published or changed"
+
+#: inc/seo.php
+msgid "ไฟล์ key:"
+msgstr "Key file:"
+
+#: inc/seo.php
+msgid "ไฟล์ที่สร้างให้อัตโนมัติ"
+msgstr "Files generated automatically"
+
+#: inc/seo.php
+msgid "ไม่พบปลั๊กอิน The SEO Framework (ติดตั้งและเปิดใช้งานก่อน)"
+msgstr "The SEO Framework plugin was not found (install and activate it first)"
+
+#. translators: %s: date
+#: inc/seo.php
+msgid "อัปเดตล่าสุด %s"
+msgstr "Last updated %s"
+
+#: inc/seo.php
+msgid "บทความและแนวคิดด้านภาวะผู้นำ การขาย การเจรจา และการพัฒนาองค์กร จากทีมผู้เชี่ยวชาญ HRI DeOne"
+msgstr "Articles and ideas on leadership, sales, negotiation and organizational development from the HRI DeOne experts."

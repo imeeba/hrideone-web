@@ -932,3 +932,68 @@ msgstr "お問い合わせ"
 #: inc/search-admin.php:117
 msgid "กำลังสร้างใหม่"
 msgstr "再作成中"
+
+#: inc/seo.php
+msgid "%1$s รุ่นที่ %2$d"
+msgstr "%1$s 第%2$d期"
+
+#: inc/seo.php
+msgid "SEO และ AI"
+msgstr "SEOとAI"
+
+#: inc/seo.php
+msgid "ชื่อ คำอธิบาย และรูปแชร์ของแต่ละหน้าแก้ได้ที่กล่อง SEO ในหน้าแก้ไข · ข้อมูลบริษัทที่ใช้ในไฟล์เหล่านี้แก้ที่ ตั้งค่า → ข้อมูลบริษัท"
+msgstr "各ページのタイトル・説明文・共有画像は、編集画面のSEOボックスで変更できます · これらのファイルで使う会社情報は 設定 → 会社情報 で変更します"
+
+#: inc/seo.php
+msgid "ตั้งค่าครบแล้ว"
+msgstr "設定済み"
+
+#: inc/seo.php
+msgid "บอตค้นหาและตอบคำถามผู้ใช้ (ChatGPT Search, Claude, Perplexity, Bing, Google) อนุญาตเสมอ เพื่อให้เว็บถูกแนะนำในคำตอบของ AI · ปิดตรงนี้ = ไม่ให้นำเนื้อหาไปฝึกโมเดล แต่ไม่รับประกันว่าทุกเจ้าจะทำตาม"
+msgstr "検索やユーザーの質問への回答のために巡回するボット（ChatGPT Search、Claude、Perplexity、Bing、Google）は常に許可されます。これをオフにすると、コンテンツをモデルの学習に使わないよう求めますが、すべての事業者が従う保証はありません"
+
+#: inc/seo.php
+msgid "บอตที่เก็บเนื้อหาไปฝึกโมเดล AI"
+msgstr "AIモデルの学習のためにコンテンツを収集するボット"
+
+#: inc/seo.php
+msgid "ราคาตามใบเสนอราคา (จัดอบรมภายในองค์กร)"
+msgstr "お見積りによる（社内研修）"
+
+#: inc/seo.php
+msgid "สถาบันฝึกอบรมผู้บริหารและพัฒนาองค์กร"
+msgstr "経営者研修・組織開発"
+
+#: inc/seo.php
+msgid "ส่งจริงเฉพาะเว็บ production (ไม่ส่งจาก Playground, localhost หรือ staging)"
+msgstr "本番サイトからのみ送信されます（Playground、localhost、ステージングからは送信されません）"
+
+#: inc/seo.php
+msgid "อนุญาต"
+msgstr "許可する"
+
+#: inc/seo.php
+msgid "แจ้ง Bing เมื่อเผยแพร่หรือแก้หน้า"
+msgstr "ページの公開・更新時にBingへ通知する"
+
+#: inc/seo.php
+msgid "ไฟล์ key:"
+msgstr "キーファイル:"
+
+#: inc/seo.php
+msgid "ไฟล์ที่สร้างให้อัตโนมัติ"
+msgstr "自動生成されるファイル"
+
+#: inc/seo.php
+msgid "ไม่พบปลั๊กอิน The SEO Framework (ติดตั้งและเปิดใช้งานก่อน)"
+msgstr "The SEO Frameworkプラグインが見つかりません（先にインストールして有効化してください）"
+
+#. translators: %s: date
+#: inc/seo.php
+msgid "อัปเดตล่าสุด %s"
+msgstr "最終更新 %s"
+
+#: inc/seo.php
+msgid "บทความและแนวคิดด้านภาวะผู้นำ การขาย การเจรจา และการพัฒนาองค์กร จากทีมผู้เชี่ยวชาญ HRI DeOne"
+msgstr "リーダーシップ、営業、交渉、組織開発に関する記事とヒントを、HRI DeOneの専門家がお届けします。"

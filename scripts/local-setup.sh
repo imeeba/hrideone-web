@@ -47,7 +47,8 @@ fi
 
 # Serve $DIR so the site lives at /wp/ (same as the original test setup).
 if ! curl -s -o /dev/null "http://127.0.0.1:$PORT/"; then
-	(cd "$DIR" && nohup php -S "127.0.0.1:$PORT" -t "$DIR" >"$DIR/server.log" 2>&1 &)
+	# The router sends /wp/robots.txt, /wp/sitemap.xml, /wp/llms.txt … to WordPress.
+	(cd "$DIR" && nohup php -S "127.0.0.1:$PORT" -t "$DIR" "$REPO/scripts/local-router.php" >"$DIR/server.log" 2>&1 </dev/null &)
 	sleep 1
 fi
 echo "Ready: $URL/  (admin / admin)   WP-CLI: $WP"

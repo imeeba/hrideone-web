@@ -299,6 +299,7 @@ function hri_blog_import( array $posts, array $args = array() ): array {
 				continue;
 			}
 			++$stats[ $existing ? 'updated' : 'created' ];
+			hri_blog_import_keep_modified( $post_id, (string) ( $item['modified'] ?? '' ) );
 			if ( function_exists( 'pll_set_post_language' ) ) {
 				pll_set_post_language( $post_id, $lang );
 			}
@@ -344,10 +345,37 @@ function hri_blog_import( array $posts, array $args = array() ): array {
 		if ( count( $ids ) > 1 && function_exists( 'pll_save_post_translations' ) ) {
 			pll_save_post_translations( $ids );
 		}
+		// Saving (and linking translations, editing image URLs) stamps "modified = now": put back the old
+		// site's date, so "อัปเดตล่าสุด" and dateModified mean a real edit, not the import.
+		foreach ( $ids as $lang => $id ) {
+			hri_blog_import_keep_modified( $id, (string) ( $group['translations'][ $lang ]['modified'] ?? '' ) );
+		}
 	}
 	wp_defer_term_counting( false );
 	$stats['images'] = 'download' === $args['images'] ? count( get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => -1, 'fields' => 'ids', 'meta_key' => '_hri_source_url', 'lang' => '' ) ) ) : 0; // phpcs:ignore WordPress.DB.SlowDBQuery
 	return $stats;
+}
+
+/**
+ * Sets an imported post's last-modified time to the old site's (or to its publish date when the export
+ * has none). Direct update: wp_update_post() would stamp the current time again.
+ */
+function hri_blog_import_keep_modified( int $post_id, string $modified ): void {
+	global $wpdb;
+	$post = get_post( $post_id );
+	if ( ! $post ) {
+		return;
+	}
+	$local = preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $modified ) && $modified > $post->post_date ? $modified : $post->post_date;
+	$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->posts,
+		array(
+			'post_modified'     => $local,
+			'post_modified_gmt' => get_gmt_from_date( $local ),
+		),
+		array( 'ID' => $post_id )
+	);
+	clean_post_cache( $post_id );
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

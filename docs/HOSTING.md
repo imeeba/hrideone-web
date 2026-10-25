@@ -75,3 +75,10 @@
 8. **ไฟล์วิดีโอ hero** (ตอนมี): ต้องเสิร์ฟด้วย `Accept-Ranges: bytes` (เล่นได้ไม่ต้องโหลดทั้งไฟล์) ขนาดแนะนำ ≤ 2 MB สำหรับ 10 วินาที, H.264 MP4 + พื้นที่ `poster` ถ้าทำเพิ่ม
 
 ตัวเลือกที่ **ไม่ได้ทำ** (ตัดสินใจแล้ว): ไม่ใช้ปลั๊กอินแคช/ปรับความเร็ว (WP Rocket ฯลฯ) — ไม่มีงบ และ Rcache ทำหน้าที่เดียวกัน · ไม่ทำ critical CSS แยกต่อหน้า (ทดลอง inline CSS ทั้งหมดแล้วหน้าแรกไม่ดีขึ้น 92 → 87)
+
+## 6. SEO / AI SEO บนโฮสต์ (งาน D)
+
+1. **ติดตั้ง The SEO Framework** (`autodescription`) แล้วเปิดใช้ → เปิด wp-admin ครั้งแรกจะตั้งค่าเอง หรือ `wp hri seo setup` · ตั้ง Permalink เป็น "ชื่อโพสต์" (sitemap/llms.txt ต้องการ)
+2. **`/robots.txt` และ `/llms.txt` ต้องถึง WordPress** — WordPress สร้างให้แบบ virtual ห้ามมีไฟล์จริงชื่อเดียวกันที่ root (ไฟล์ที่ Ruk-com สร้างไว้ให้ต้องลบ) · ถ้า nginx/Rcache ตอบ `.txt` เองโดยไม่ผ่าน PHP ให้ขอให้ส่งต่อ (คำถามข้อ 17)
+3. Rcache แคช `/robots.txt`, `/llms.txt`, `/sitemap.xml` ได้ (เปลี่ยนไม่บ่อย; llms.txt ส่ง `Cache-Control: max-age=3600`)
+4. หลังสลับโดเมน: ส่ง `https://<โดเมน>/sitemap.xml` (และ `/en/…`, `/ja/…`) เข้า Google Search Console + Bing Webmaster Tools · เปิด IndexNow ที่ Settings → SEO และ AI · ตรวจด้วย `python3 -I scripts/seo-check.py --base https://<staging หรือโดเมน> --robots-url https://<โดเมน>/robots.txt`
