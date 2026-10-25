@@ -1,0 +1,158 @@
+{
+ "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+ "meta": {
+  "title": "HRI DeOne — rebuild preview (preview: feature/search)",
+  "description": "Installs Polylang, hri-theme and hri-core from GitHub main, adds 20 sample courses with EN / JA translations, imports the 115 articles of the old site (TH / EN / JA, images still on hrideone.com), creates the home page (front page), In-house, Public Training, Transformation Solutions, Japanese Concept and Style Guide pages and opens the home page (English: /en/, Japanese: /ja/, all courses: /courses/, style guide: /style-guide/).",
+  "author": "imeeba"
+ },
+ "landingPage": "/",
+ "preferredVersions": {
+  "php": "8.3",
+  "wp": "latest"
+ },
+ "features": {
+  "networking": true
+ },
+ "login": true,
+ "siteOptions": {
+  "blogname": "HRI DeOne",
+  "blogdescription": "สถาบันฝึกอบรม Executive Training ชั้นนำ",
+  "permalink_structure": "/%postname%/"
+ },
+ "steps": [
+  {
+   "step": "installPlugin",
+   "pluginData": {
+    "resource": "wordpress.org/plugins",
+    "slug": "polylang"
+   },
+   "options": {
+    "activate": true
+   }
+  },
+  {
+   "step": "installTheme",
+   "themeData": {
+    "resource": "git:directory",
+    "url": "https://github.com/imeeba/hrideone-web",
+    "ref": "feature/search",
+    "refType": "branch",
+    "path": "wp-content/themes/hri-theme"
+   },
+   "options": {
+    "activate": true,
+    "targetFolderName": "hri-theme"
+   }
+  },
+  {
+   "step": "installPlugin",
+   "pluginData": {
+    "resource": "git:directory",
+    "url": "https://github.com/imeeba/hrideone-web",
+    "ref": "feature/search",
+    "refType": "branch",
+    "path": "wp-content/plugins/hri-core"
+   },
+   "options": {
+    "activate": true,
+    "targetFolderName": "hri-core"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-sample-1.jpg",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/sample/sample-1.jpg"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-sample-2.jpg",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/sample/sample-2.jpg"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-sample-3.jpg",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/sample/sample-3.jpg"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-sample-4.jpg",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/sample/sample-4.jpg"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-seed.php",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/seed.php"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-seed-home.php",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/seed-home.php"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-seed-course-data.php",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/seed-course-data.php"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-blog-posts.json",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/data/blog-posts.json"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-site-media.json",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/data/site-media.json"
+   }
+  },
+  {
+   "step": "writeFile",
+   "path": "/wordpress/hri-seed-languages.php",
+   "data": {
+    "resource": "url",
+    "url": "https://raw.githubusercontent.com/imeeba/hrideone-web/feature/search/playground/seed-languages.php"
+   }
+  },
+  {
+   "step": "runPHP",
+   "code": "<?php require '/wordpress/wp-load.php'; require '/wordpress/hri-seed.php'; foreach ( get_posts( array( 'post_type' => array( 'post', 'page' ), 'post_status' => 'any', 'numberposts' => -1, 'post_name__in' => array( 'hello-world', 'sample-page' ) ) ) as $p ) { wp_delete_post( $p->ID, true ); } flush_rewrite_rules();"
+  },
+  {
+   "step": "runPHP",
+   "code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; $r = hri_polylang_setup(); echo is_wp_error( $r ) ? $r->get_error_message() : implode( \"\\n\", $r );"
+  },
+  {
+   "step": "runPHP",
+   "code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; require '/wordpress/hri-seed-languages.php';"
+  },
+  {
+   "step": "runPHP",
+   "code": "<?php require '/wordpress/wp-load.php'; hri_search_rebuild( 0, 0 ); echo 'Search index built.';"
+  }
+ ]
+}
