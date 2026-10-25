@@ -56,8 +56,8 @@
      "box": {
       "x": -56,
       "y": 56,
-      "w": 1393,
-      "h": 599
+      "w": 1392,
+      "h": 598
      },
      "section": "Negotiation Mastery รุ่นที่ 3",
      "cls": "swiper-slide-bg elementor-ken-burns elementor-ken-burns--in ",
@@ -1595,8 +1595,8 @@
      "box": {
       "x": 975,
       "y": 3522,
-      "w": 80,
-      "h": 80
+      "w": 79,
+      "h": 79
      },
      "section": "Negotiation Mastery รุ่นที่ 3",
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
@@ -1860,7 +1860,7 @@
      ],
      "box": {
       "x": 453,
-      "y": 5433,
+      "y": 5434,
       "w": 372,
       "h": 209
      },
@@ -1879,7 +1879,7 @@
      ],
      "box": {
       "x": 829,
-      "y": 5433,
+      "y": 5434,
       "w": 372,
       "h": 209
      },
@@ -4175,7 +4175,7 @@
     },
     {
      "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-01.png",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-04.png",
      "alt": "",
      "natural": [
       0,
@@ -4190,11 +4190,11 @@
      "section": "Transformation Solutions",
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-01.png"
+     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-04.png"
     },
     {
      "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-07.png",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-03.png",
      "alt": "",
      "natural": [
       0,
@@ -4209,83 +4209,7 @@
      "section": "Transformation Solutions",
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-07.png"
-    },
-    {
-     "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-02.png",
-     "alt": "",
-     "natural": [
-      0,
-      0
-     ],
-     "box": {
-      "x": 433,
-      "y": 2136,
-      "w": 101,
-      "h": 101
-     },
-     "section": "Transformation Solutions",
-     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-02.png"
-    },
-    {
-     "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-03.png",
-     "alt": "",
-     "natural": [
-      0,
-      0
-     ],
-     "box": {
-      "x": 537,
-      "y": 2136,
-      "w": 101,
-      "h": 101
-     },
-     "section": "Transformation Solutions",
-     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
-     "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-03.png"
-    },
-    {
-     "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-04.png",
-     "alt": "",
-     "natural": [
-      0,
-      0
-     ],
-     "box": {
-      "x": 642,
-      "y": 2136,
-      "w": 101,
-      "h": 101
-     },
-     "section": "Transformation Solutions",
-     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-04.png"
-    },
-    {
-     "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-08.png",
-     "alt": "",
-     "natural": [
-      0,
-      0
-     ],
-     "box": {
-      "x": 746,
-      "y": 2136,
-      "w": 101,
-      "h": 101
-     },
-     "section": "Transformation Solutions",
-     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-08.png"
     },
     {
      "kind": "bg",
@@ -4296,7 +4220,7 @@
       0
      ],
      "box": {
-      "x": 850,
+      "x": 433,
       "y": 2136,
       "w": 101,
       "h": 101
@@ -4315,7 +4239,7 @@
       0
      ],
      "box": {
-      "x": 954,
+      "x": 537,
       "y": 2136,
       "w": 101,
       "h": 101
@@ -4324,6 +4248,82 @@
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-05.png"
+    },
+    {
+     "kind": "bg",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-07.png",
+     "alt": "",
+     "natural": [
+      0,
+      0
+     ],
+     "box": {
+      "x": 642,
+      "y": 2136,
+      "w": 101,
+      "h": 101
+     },
+     "section": "Transformation Solutions",
+     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-07.png"
+    },
+    {
+     "kind": "bg",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-01.png",
+     "alt": "",
+     "natural": [
+      0,
+      0
+     ],
+     "box": {
+      "x": 746,
+      "y": 2136,
+      "w": 101,
+      "h": 101
+     },
+     "section": "Transformation Solutions",
+     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-01.png"
+    },
+    {
+     "kind": "bg",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-02.png",
+     "alt": "",
+     "natural": [
+      0,
+      0
+     ],
+     "box": {
+      "x": 850,
+      "y": 2136,
+      "w": 101,
+      "h": 101
+     },
+     "section": "Transformation Solutions",
+     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-02.png"
+    },
+    {
+     "kind": "bg",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-08.png",
+     "alt": "",
+     "natural": [
+      0,
+      0
+     ],
+     "box": {
+      "x": 954,
+      "y": 2136,
+      "w": 101,
+      "h": 101
+     },
+     "section": "Transformation Solutions",
+     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/09/logo-partner-08.png"
     },
     {
      "kind": "img",
@@ -6962,7 +6962,7 @@
   "/public-training/negotiation-mastery/": {
    "slug": "public-training-negotiation-mastery",
    "title": "Negotiation Mastery | HRI DeOne",
-   "height": 10757,
+   "height": 10756,
    "chunks": 8,
    "images": [
     {
@@ -7185,7 +7185,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 6511,
+      "y": 6510,
       "w": 0,
       "h": 0
      },
@@ -7204,7 +7204,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 6511,
+      "y": 6510,
       "w": 0,
       "h": 0
      },
@@ -7223,7 +7223,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 6511,
+      "y": 6510,
       "w": 0,
       "h": 0
      },
@@ -7242,7 +7242,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 6511,
+      "y": 6510,
       "w": 0,
       "h": 0
      },
@@ -7261,7 +7261,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 6511,
+      "y": 6510,
       "w": 0,
       "h": 0
      },
@@ -7272,7 +7272,7 @@
     },
     {
      "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2022/02/2148756209.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2022/02/93410-768x512.webp",
      "alt": "",
      "natural": [
       0,
@@ -7281,46 +7281,8 @@
      "box": {
       "x": 130,
       "y": 6871,
-      "w": 135,
-      "h": 203
-     },
-     "section": "Negotiation Mastery",
-     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2022/02/2148756209.webp"
-    },
-    {
-     "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2022/02/43848.webp",
-     "alt": "",
-     "natural": [
-      0,
-      0
-     ],
-     "box": {
-      "x": 270,
-      "y": 6871,
-      "w": 134,
-      "h": 203
-     },
-     "section": "Negotiation Mastery",
-     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2022/02/43848.webp"
-    },
-    {
-     "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2022/02/93410-768x512.webp",
-     "alt": "",
-     "natural": [
-      0,
-      0
-     ],
-     "box": {
-      "x": 410,
-      "y": 6871,
       "w": 303,
-      "h": 203
+      "h": 202
      },
      "section": "Negotiation Mastery",
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
@@ -7329,22 +7291,22 @@
     },
     {
      "kind": "bg",
-     "src": "https://hrideone.com/wp-content/uploads/2022/02/2151241099.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2022/02/2148756209.webp",
      "alt": "",
      "natural": [
       0,
       0
      ],
      "box": {
-      "x": 718,
+      "x": 438,
       "y": 6871,
-      "w": 134,
-      "h": 203
+      "w": 135,
+      "h": 202
      },
      "section": "Negotiation Mastery",
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2022/02/2151241099.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2022/02/2148756209.webp"
     },
     {
      "kind": "bg",
@@ -7355,15 +7317,53 @@
       0
      ],
      "box": {
-      "x": 857,
+      "x": 578,
       "y": 6871,
       "w": 293,
-      "h": 203
+      "h": 202
      },
      "section": "Negotiation Mastery",
      "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2022/02/6472.webp"
+    },
+    {
+     "kind": "bg",
+     "src": "https://hrideone.com/wp-content/uploads/2022/02/2151241099.webp",
+     "alt": "",
+     "natural": [
+      0,
+      0
+     ],
+     "box": {
+      "x": 876,
+      "y": 6871,
+      "w": 134,
+      "h": 202
+     },
+     "section": "Negotiation Mastery",
+     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2022/02/2151241099.webp"
+    },
+    {
+     "kind": "bg",
+     "src": "https://hrideone.com/wp-content/uploads/2022/02/43848.webp",
+     "alt": "",
+     "natural": [
+      0,
+      0
+     ],
+     "box": {
+      "x": 1016,
+      "y": 6871,
+      "w": 134,
+      "h": 202
+     },
+     "section": "Negotiation Mastery",
+     "cls": "e-gallery-image elementor-gallery-item__image e-gallery-imag",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2022/02/43848.webp"
     },
     {
      "kind": "img",
@@ -7584,7 +7584,7 @@
      ],
      "box": {
       "x": 100,
-      "y": 10456,
+      "y": 10455,
       "w": 130,
       "h": 30
      },
@@ -7870,25 +7870,6 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/09/7101.webp",
-     "alt": "",
-     "natural": [
-      800,
-      476
-     ],
-     "box": {
-      "x": 100,
-      "y": 5580,
-      "w": 379,
-      "h": 333
-     },
-     "section": "DAY 4: Executive Communication & Personal Branding",
-     "cls": "attachment-large size-large wp-image-12118",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/09/7101.webp"
-    },
-    {
-     "kind": "img",
      "src": "https://hrideone.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/country/us.svg",
      "alt": "",
      "natural": [
@@ -7897,7 +7878,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -7916,7 +7897,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -7935,7 +7916,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -7954,7 +7935,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -7973,7 +7954,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -7992,7 +7973,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -8011,7 +7992,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -8030,7 +8011,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -8049,7 +8030,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -8068,7 +8049,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -8087,7 +8068,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 5764,
+      "y": 5424,
       "w": 0,
       "h": 0
      },
@@ -8095,6 +8076,25 @@
      "cls": "",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/plugins/elementor/assets/images/placeholder.png"
+    },
+    {
+     "kind": "img",
+     "src": "https://hrideone.com/wp-content/uploads/2026/09/7101.webp",
+     "alt": "",
+     "natural": [
+      800,
+      476
+     ],
+     "box": {
+      "x": 100,
+      "y": 5580,
+      "w": 379,
+      "h": 333
+     },
+     "section": "DAY 4: Executive Communication & Personal Branding",
+     "cls": "attachment-large size-large wp-image-12118",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/09/7101.webp"
     },
     {
      "kind": "img",
@@ -10448,7 +10448,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 1361,
+      "y": 1274,
       "w": 0,
       "h": 0
      },
@@ -10467,7 +10467,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 1361,
+      "y": 1274,
       "w": 0,
       "h": 0
      },
@@ -10486,7 +10486,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 1361,
+      "y": 1274,
       "w": 0,
       "h": 0
      },
@@ -10505,7 +10505,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 1361,
+      "y": 1274,
       "w": 0,
       "h": 0
      },
@@ -10524,7 +10524,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 1361,
+      "y": 1274,
       "w": 0,
       "h": 0
      },
@@ -11404,7 +11404,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 2802,
+      "y": 3182,
       "w": 0,
       "h": 0
      },
@@ -11423,7 +11423,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 2802,
+      "y": 3182,
       "w": 0,
       "h": 0
      },
@@ -11442,7 +11442,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 2802,
+      "y": 3182,
       "w": 0,
       "h": 0
      },
@@ -11461,7 +11461,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 2802,
+      "y": 3182,
       "w": 0,
       "h": 0
      },
@@ -11480,7 +11480,7 @@
      ],
      "box": {
       "x": 0,
-      "y": 2802,
+      "y": 3182,
       "w": 0,
       "h": 0
      },
@@ -12041,7 +12041,7 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-01.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-08.webp",
      "alt": "",
      "natural": [
       500,
@@ -12054,13 +12054,13 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12523",
+     "cls": "attachment-large size-large wp-image-12530",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-01.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-08.webp"
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-08.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-01.webp",
      "alt": "",
      "natural": [
       500,
@@ -12073,9 +12073,9 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12530",
+     "cls": "attachment-large size-large wp-image-12523",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-08.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-01.webp"
     },
     {
      "kind": "img",
@@ -12253,7 +12253,7 @@
       "h": 455
      },
      "section": "หลักสูตรบริหารเวลาและจัดลำดับความสำคัญ",
-     "cls": "attachment-large size-large wp-image-12102",
+     "cls": "attachment-large size-large wp-image-12924",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/782.webp"
     },
@@ -12689,7 +12689,7 @@
       "h": 455
      },
      "section": "หลักสูตรทักษะการสื่อสารเพื่อกลยุทธ์และผลลัพธ์",
-     "cls": "attachment-large size-large wp-image-12102",
+     "cls": "attachment-large size-large wp-image-12924",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/782.webp"
     },
@@ -12888,7 +12888,7 @@
       "h": 455
      },
      "section": "หลักสูตรยกระดับทักษะการโค้ชสู่ความเป็นมืออาชีพ",
-     "cls": "attachment-large size-large wp-image-12102",
+     "cls": "attachment-large size-large wp-image-12924",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/782.webp"
     },
@@ -13485,7 +13485,7 @@
       "h": 455
      },
      "section": "หลักสูตรพลิกเกมขายองค์กร ด้วยกลยุทธ์ปิดดีลระดับสูง",
-     "cls": "attachment-large size-large wp-image-12102",
+     "cls": "attachment-large size-large wp-image-15875",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/782.webp"
     },
@@ -13510,7 +13510,7 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp",
      "alt": "",
      "natural": [
       500,
@@ -13523,9 +13523,9 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12531",
+     "cls": "attachment-large size-large wp-image-12535",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp"
     },
     {
      "kind": "img",
@@ -13567,7 +13567,7 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp",
      "alt": "",
      "natural": [
       500,
@@ -13580,9 +13580,9 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12535",
+     "cls": "attachment-large size-large wp-image-12531",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
     },
     {
      "kind": "img",
@@ -13785,44 +13785,6 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp",
-     "alt": "",
-     "natural": [
-      500,
-      656
-     ],
-     "box": {
-      "x": 188,
-      "y": 5456,
-      "w": 221,
-      "h": 290
-     },
-     "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12532",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp"
-    },
-    {
-     "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp",
-     "alt": "",
-     "natural": [
-      500,
-      656
-     ],
-     "box": {
-      "x": 416,
-      "y": 5456,
-      "w": 221,
-      "h": 290
-     },
-     "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12531",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
-    },
-    {
-     "kind": "img",
      "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp",
      "alt": "",
      "natural": [
@@ -13830,7 +13792,7 @@
       656
      ],
      "box": {
-      "x": 643,
+      "x": 188,
       "y": 5456,
       "w": 221,
       "h": 290
@@ -13849,7 +13811,7 @@
       656
      ],
      "box": {
-      "x": 871,
+      "x": 416,
       "y": 5456,
       "w": 221,
       "h": 290
@@ -13858,6 +13820,44 @@
      "cls": "attachment-large size-large wp-image-12533",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp"
+    },
+    {
+     "kind": "img",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp",
+     "alt": "",
+     "natural": [
+      500,
+      656
+     ],
+     "box": {
+      "x": 643,
+      "y": 5456,
+      "w": 221,
+      "h": 290
+     },
+     "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
+     "cls": "attachment-large size-large wp-image-12532",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp"
+    },
+    {
+     "kind": "img",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp",
+     "alt": "",
+     "natural": [
+      500,
+      656
+     ],
+     "box": {
+      "x": 871,
+      "y": 5456,
+      "w": 221,
+      "h": 290
+     },
+     "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
+     "cls": "attachment-large size-large wp-image-12531",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
     },
     {
      "kind": "img",
@@ -14060,7 +14060,7 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp",
      "alt": "",
      "natural": [
       500,
@@ -14073,13 +14073,13 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12535",
+     "cls": "attachment-large size-large wp-image-12533",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp"
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp",
      "alt": "",
      "natural": [
       500,
@@ -14092,13 +14092,13 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12534",
+     "cls": "attachment-large size-large wp-image-12535",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-13.webp"
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp",
      "alt": "",
      "natural": [
       500,
@@ -14111,13 +14111,13 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12533",
+     "cls": "attachment-large size-large wp-image-12532",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp"
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp",
      "alt": "",
      "natural": [
       500,
@@ -14130,9 +14130,9 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12532",
+     "cls": "attachment-large size-large wp-image-12534",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp"
     },
     {
      "kind": "img",
@@ -14335,7 +14335,7 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp",
      "alt": "",
      "natural": [
       500,
@@ -14348,9 +14348,9 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12531",
+     "cls": "attachment-large size-large wp-image-12533",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp"
     },
     {
      "kind": "img",
@@ -14373,7 +14373,7 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp",
      "alt": "",
      "natural": [
       500,
@@ -14386,9 +14386,9 @@
       "h": 290
      },
      "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12533",
+     "cls": "attachment-large size-large wp-image-12531",
      "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-11.webp"
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
     },
     {
      "kind": "img",
@@ -14629,25 +14629,6 @@
     },
     {
      "kind": "img",
-     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp",
-     "alt": "",
-     "natural": [
-      500,
-      656
-     ],
-     "box": {
-      "x": 416,
-      "y": 5627,
-      "w": 221,
-      "h": 290
-     },
-     "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
-     "cls": "attachment-large size-large wp-image-12534",
-     "inHeader": false,
-     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp"
-    },
-    {
-     "kind": "img",
      "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-10.webp",
      "alt": "",
      "natural": [
@@ -14655,7 +14636,7 @@
       656
      ],
      "box": {
-      "x": 643,
+      "x": 416,
       "y": 5627,
       "w": 221,
       "h": 290
@@ -14674,7 +14655,7 @@
       656
      ],
      "box": {
-      "x": 871,
+      "x": 643,
       "y": 5627,
       "w": 221,
       "h": 290
@@ -14683,6 +14664,25 @@
      "cls": "attachment-large size-large wp-image-12531",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-09.webp"
+    },
+    {
+     "kind": "img",
+     "src": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp",
+     "alt": "",
+     "natural": [
+      500,
+      656
+     ],
+     "box": {
+      "x": 871,
+      "y": 5627,
+      "w": 221,
+      "h": 290
+     },
+     "section": "คุณอาจสนใจหลักสูตรเหล่านี้",
+     "cls": "attachment-large size-large wp-image-12534",
+     "inHeader": false,
+     "original": "https://hrideone.com/wp-content/uploads/2026/03/thumbnail-IH-12.webp"
     },
     {
      "kind": "img",
@@ -15078,7 +15078,7 @@
       "h": 455
      },
      "section": "หลักสูตรรับมือข้อติชม กู้คืนความเชื่อมั่นอย่างมืออาชีพ",
-     "cls": "attachment-large size-large wp-image-12102",
+     "cls": "attachment-large size-large wp-image-12924",
      "inHeader": false,
      "original": "https://hrideone.com/wp-content/uploads/2026/09/782.webp"
     },
