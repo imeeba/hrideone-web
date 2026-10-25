@@ -65,8 +65,18 @@ add_filter(
 		// Known size (demo images): the browser reserves the space before the file arrives.
 		$w = (int) get_post_meta( $post_id, '_hri_thumbnail_w', true );
 		$h = (int) get_post_meta( $post_id, '_hri_thumbnail_h', true );
+		if ( ! ( $w > 0 && $h > 0 ) ) {
+			list( $w, $h ) = array_pad( hri_image_dimensions( $url ), 2, 0 ); // Table / file lookup (performance.php).
+		}
 		if ( $w > 0 && $h > 0 ) {
 			$attr = wp_parse_args( $attr, array( 'width' => $w, 'height' => $h ) );
+		}
+		// The picture at the top of a single article / course is the page's largest element: load it first.
+		static $first_single = true;
+		if ( is_singular() && $first_single && ! isset( $attr['fetchpriority'] ) ) {
+			$first_single          = false;
+			$attr['loading']       = 'eager';
+			$attr['fetchpriority'] = 'high';
 		}
 		$attr['class'] = trim( 'attachment-' . ( is_string( $size ) ? $size : 'post-thumbnail' ) . ' size-' . ( is_string( $size ) ? $size : 'post-thumbnail' ) . ' wp-post-image ' . ( $attr['class'] ?? '' ) );
 		$out           = '<img src="' . esc_url( $url ) . '"';

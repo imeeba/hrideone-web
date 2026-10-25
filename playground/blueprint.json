@@ -132,6 +132,14 @@
 		},
 		{
 			"step": "writeFile",
+			"path": "/wordpress/hri-image-dims.json",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/imeeba/hrideone-web/main/playground/data/image-dims.json"
+			}
+		},
+		{
+			"step": "writeFile",
 			"path": "/wordpress/hri-seed-languages.php",
 			"data": {
 				"resource": "url",
@@ -149,6 +157,10 @@
 		{
 			"step": "runPHP",
 			"code": "<?php define( 'PLL_ADMIN', true ); require '/wordpress/wp-load.php'; require '/wordpress/hri-seed-languages.php';"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; update_option( 'hri_image_dims', json_decode( (string) file_get_contents( '/wordpress/hri-image-dims.json' ), true ), false ); echo 'Image sizes stored.';"
 		},
 		{
 			"step": "runPHP",

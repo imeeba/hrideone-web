@@ -218,6 +218,26 @@ function hri_include_page_sections( string $page ): void {
 }
 
 /**
+ * The hero video must not compete with the first paint. The file is moved from src to data-hri-src and
+ * autoplay is removed; assets/js/hero.js starts it after the page has loaded, on screens >= 782px,
+ * unless the visitor asked to save data or reduce motion (then only the play button starts it).
+ * Without JS the video never loads: the colour overlay and the text are the hero.
+ */
+function hri_defer_hero_video( string $html ): string {
+	$tags = new WP_HTML_Tag_Processor( $html );
+	while ( $tags->next_tag( 'video' ) ) {
+		$src = $tags->get_attribute( 'src' );
+		if ( is_string( $src ) && '' !== $src ) {
+			$tags->set_attribute( 'data-hri-src', $src );
+			$tags->remove_attribute( 'src' );
+		}
+		$tags->remove_attribute( 'autoplay' );
+		$tags->set_attribute( 'preload', 'none' );
+	}
+	return $tags->get_updated_html();
+}
+
+/**
  * Small scripts, loaded only on pages that use them:
  * - Hero cover with a video: plays at most the first 10 seconds in a loop, pause button,
  *   no autoplay for visitors who prefer reduced motion.
@@ -230,6 +250,7 @@ add_filter(
 		$class = (string) ( $block['attrs']['className'] ?? '' );
 		if ( 'core/cover' === $name && str_contains( $class, 'is-style-hero' ) && 'video' === ( $block['attrs']['backgroundType'] ?? '' ) ) {
 			hri_enqueue_script( 'hero' );
+			$content = hri_defer_hero_video( $content );
 		} elseif ( 'core/gallery' === $name && str_contains( $class, 'is-style-slider' ) ) {
 			hri_enqueue_script( 'slider' );
 		}

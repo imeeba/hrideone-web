@@ -3,6 +3,9 @@
  * - Plays at most the first 10 seconds, in a loop (a shorter video loops as it is).
  * - Pause / play button (WCAG 2.2.2: moving content longer than 5 seconds needs one).
  * - Visitors who prefer reduced motion get the first frame, paused.
+ * - The file is not downloaded during the first paint: PHP moves src to data-hri-src, and it is set here after
+ *   the page has loaded, only on screens >= 782px and not when the visitor asked to save data or reduce motion.
+ *   Then the play button is the only way to start it (and to download it).
  */
 ( () => {
 	const MAX_SECONDS = 10;
@@ -12,12 +15,25 @@
 		play: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>',
 	};
 	const reduceMotion = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+	const saveData = !! ( navigator.connection && navigator.connection.saveData );
+	const wide = window.matchMedia( '(min-width: 782px)' );
 
 	document.querySelectorAll( '.wp-block-cover.is-style-hero' ).forEach( ( cover ) => {
 		const video = cover.querySelector( 'video.wp-block-cover__video-background' );
 		if ( ! video || cover.querySelector( '.hri-hero__toggle' ) ) {
 			return;
 		}
+		// Small screens: no video and no pause button (nothing moves, nothing to download).
+		if ( ! wide.matches ) {
+			video.remove();
+			return;
+		}
+		const load = () => {
+			if ( ! video.getAttribute( 'src' ) && video.dataset.hriSrc ) {
+				video.src = video.dataset.hriSrc;
+			}
+			return video.play();
+		};
 		video.muted = true;
 		video.playsInline = true;
 		video.setAttribute( 'aria-hidden', 'true' );
@@ -38,7 +54,7 @@
 		};
 		button.addEventListener( 'click', () => {
 			if ( video.paused ) {
-				video.play().catch( () => {} );
+				load().catch( () => {} );
 			} else {
 				video.pause();
 			}
@@ -46,11 +62,16 @@
 		video.addEventListener( 'play', sync );
 		video.addEventListener( 'pause', sync );
 
-		if ( reduceMotion ) {
-			video.removeAttribute( 'autoplay' );
-			video.pause();
-		}
 		sync();
 		cover.appendChild( button );
+		if ( ! reduceMotion && ! saveData ) {
+			// After load, when the browser is idle, so the video never delays the first paint or the LCP.
+			const start = () => ( 'requestIdleCallback' in window ? window.requestIdleCallback( () => load().catch( () => {} ), { timeout: 3000 } ) : setTimeout( () => load().catch( () => {} ), 1500 ) );
+			if ( document.readyState === 'complete' ) {
+				start();
+			} else {
+				window.addEventListener( 'load', start, { once: true } );
+			}
+		}
 	} );
 } )();
