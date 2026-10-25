@@ -183,7 +183,8 @@ def check_ld(page, data, problems):
     for n in by_type["Course"]:
         need(n, ("name", "description", "provider", "inLanguage"), "Course")
         for inst in n.get("hasCourseInstance") or []:
-            need(inst, ("courseMode", "startDate", "endDate"), "CourseInstance")
+            # In-house courses have no fixed dates; a public batch has both.
+            need(inst, ("courseMode", "endDate") if inst.get("startDate") else ("courseMode",), "CourseInstance")
             for off in (inst.get("offers") if isinstance(inst.get("offers"), list) else [inst.get("offers")] if inst.get("offers") else []):
                 need(off, ("price", "priceCurrency"), "Offer")
     for n in by_type["FAQPage"]:

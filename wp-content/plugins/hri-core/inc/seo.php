@@ -356,7 +356,7 @@ add_filter(
 		if ( '' !== trim( (string) $description ) ) {
 			return $description;
 		}
-		$id = is_array( $args ) ? (int) ( $args['id'] ?? 0 ) : ( is_singular() ? (int) get_queried_object_id() : 0 );
+		$id = is_array( $args ) ? (int) ( $args['id'] ?? 0 ) : ( is_singular() || is_home() ? (int) get_queried_object_id() : 0 ); // The blog index is the posts page.
 		if ( $id && 'page' === get_post_type( $id ) && 'blog' === hri_schema_source_slug( $id ) ) {
 			return __( 'บทความและแนวคิดด้านภาวะผู้นำ การขาย การเจรจา และการพัฒนาองค์กร จากทีมผู้เชี่ยวชาญ HRI DeOne', 'hri-core' );
 		}
