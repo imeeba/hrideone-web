@@ -53,6 +53,10 @@ scripts/crawl-images.py  สำรวจรูปในหน้าเว็บ�
 scripts/site-media.py    ดึง/แปลงรูปจริงของช่องรูปทั้งเว็บตาม playground/data/site-media.json → playground/site-media/ (Actions "Site media")
 scripts/wxr-to-blog.py   แปลงไฟล์ Export (WXR) ของเว็บเดิมเป็น playground/data/blog-posts.json
 scripts/build-icons.py   สร้างชุดไอคอน (Phosphor Light, MIT) → hri-core/assets/icons/ + icons.css ดู HANDOFF ข้อ 4
+scripts/perf.py          วัด Lighthouse 6 หน้า × mobile/desktop (ผ่าน scripts/perf-proxy.mjs ที่บีบอัดเหมือนโฮสต์) ดู HANDOFF ข้อ 4 "ความเร็ว"
+scripts/minify-css.mjs    สร้าง *.min.css ข้างไฟล์ CSS (commit ไว้) · แก้ CSS แล้วต้องรันใหม่
+scripts/subset-fonts.py   ลดขนาดฟอนต์ละติน (ไม่เก็บ hinting)
+scripts/image-dims.py     ขนาดรูป demo → playground/data/image-dims.json
 scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
 docs/HANDOFF.md          สถานะงานและบริบท
 docs/HOSTING.md          Ruk-com: ข้อมูลแพ็กเกจ, คำถาม support, วิธีขึ้นเว็บ (ยังไม่เริ่ม)
