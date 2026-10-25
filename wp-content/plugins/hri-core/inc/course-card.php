@@ -170,7 +170,7 @@ function hri_course_card( int $post_id ): string {
 	$link     = $external ?: get_permalink( $post_id );
 
 	$media = has_post_thumbnail( $post_id )
-		? get_the_post_thumbnail( $post_id, 'large', array( 'loading' => 'lazy', 'alt' => '' ) )
+		? get_the_post_thumbnail( $post_id, 'hri-card', array( 'loading' => 'lazy', 'alt' => '', 'sizes' => '(min-width: 1280px) 25vw, (min-width: 782px) 33vw, (min-width: 600px) 50vw, 100vw' ) )
 		: '';
 
 	ob_start();
