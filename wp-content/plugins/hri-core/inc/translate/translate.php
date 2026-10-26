@@ -734,10 +734,17 @@ function hri_tr_sync_noindex_flag( int $target_id ): void {
 	$state = hri_tr_state( $target_id );
 	$lang  = hri_tr_post_lang( $target_id );
 	$noidx = $state && 'reviewed' !== ( $state['status'] ?? '' ) && 'publish_noindex' === ( hri_tr_settings()['policy'][ $lang ] ?? '' );
+	$had   = '1' === (string) get_post_meta( $target_id, '_hri_tr_noindex', true );
 	if ( $noidx ) {
 		update_post_meta( $target_id, '_hri_tr_noindex', '1' );
 	} else {
 		delete_post_meta( $target_id, '_hri_tr_noindex' );
+	}
+	if ( $had !== (bool) $noidx ) { // Visibility to search engines changed: rebuild the lists that name this page.
+		delete_transient( 'hri_llms_txt' );
+		if ( function_exists( 'hri_seo_clear_sitemaps' ) ) {
+			hri_seo_clear_sitemaps();
+		}
 	}
 }
 

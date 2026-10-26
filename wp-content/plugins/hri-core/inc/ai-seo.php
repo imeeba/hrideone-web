@@ -211,8 +211,8 @@ function hri_llms_txt(): string {
 		if ( $courses ) {
 			$out .= "\n### " . ( 'th' === $lang ? 'หลักสูตร' : ( 'ja' === $lang ? 'コース' : 'Courses' ) ) . "\n\n";
 			foreach ( $courses as $course ) {
-				if ( get_post_meta( $course->ID, 'hri_external_url', true ) ) {
-					continue; // Lives on another website.
+				if ( get_post_meta( $course->ID, 'hri_external_url', true ) || hri_seo_is_noindex( $course->ID ) ) {
+					continue; // Lives on another website, or not for search engines yet.
 				}
 				$out .= hri_llms_line( wp_strip_all_tags( get_the_title( $course ) ), get_permalink( $course ), hri_seo_description( $course->ID ) );
 			}
