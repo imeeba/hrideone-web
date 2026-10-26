@@ -963,7 +963,7 @@ msgstr "お見積りによる（社内研修）"
 
 #: inc/seo.php
 msgid "สถาบันฝึกอบรมผู้บริหารและพัฒนาองค์กร"
-msgstr "経営者研修・組織開発"
+msgstr "エグゼクティブ研修・組織開発"
 
 #: inc/seo.php
 msgid "ส่งจริงเฉพาะเว็บ production (ไม่ส่งจาก Playground, localhost หรือ staging)"
