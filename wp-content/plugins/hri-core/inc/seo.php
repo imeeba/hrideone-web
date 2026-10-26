@@ -165,6 +165,7 @@ function hri_seo_noindex_ids(): array {
 		)
 	);
 	$ids = array_values( array_unique( array_merge( $ids, array_map( 'intval', $external ) ) ) );
+	$ids = array_values( array_unique( array_map( 'intval', (array) apply_filters( 'hri_seo_noindex_ids', $ids ) ) ) );
 	return $ids;
 }
 
