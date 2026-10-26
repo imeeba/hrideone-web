@@ -685,7 +685,7 @@ function hri_seed_public_courses(): array {
  * hri_course_page_sample( 'inhouse' ).
  * Source: hrideone.com/courses/<slug>/ (checked 19 Oct 2026): intro, 4 pain points and 5 outcomes re-written,
  * not copied. The third item of each pain point (how the course helps) is NOT on the original site: written
- * here. Texts need marketing review (see docs/HANDOFF.md section 6).
+ * here. Texts need marketing review (see docs/OPEN-QUESTIONS.md, section 6).
  */
 function hri_seed_inhouse_courses(): array {
 	return array(

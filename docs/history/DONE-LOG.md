@@ -1,0 +1,105 @@
+# DONE-LOG — งานที่เสร็จแล้วแต่ละรอบ (HANDOFF ข้อ 5)
+
+> แยกออกมาจาก `docs/HANDOFF.md` เมื่อ 2026-10-26 (เนื้อหาเดิมทุกตัวอักษร) · **เลขข้อคงเดิม**: ข้อ 3–4 = [`ARCHITECTURE.md`](../ARCHITECTURE.md) · ข้อ 5 = [`history/DONE-LOG.md`](DONE-LOG.md) · ข้อ 6 = [`OPEN-QUESTIONS.md`](../OPEN-QUESTIONS.md) · ข้อ 7 = [`BACKLOG.md`](../BACKLOG.md) · ข้อ 8 = [`PITFALLS.md`](../PITFALLS.md) · ข้อ 10 = [`PROMPTS.md`](../PROMPTS.md) · ข้อ 1, 2, 9 = [`HANDOFF.md`](../HANDOFF.md)
+
+## บันทึกหัวไฟล์ HANDOFF เดิม (ก่อนแยกไฟล์ 26 ต.ค. 2569)
+
+> อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
+> อัปเดตล่าสุด: 2026-10-25 (รอบที่ 13: **SEO + AI SEO (งาน D)** **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) — จุดย้อนกลับ branch `backup/pre-merge-seo-2026-10-25` (= main เดิม 90f3c33; ย้อนด้วย `git push -f origin backup/pre-merge-seo-2026-10-25:main`) · รอบที่ 12: **PageSpeed (งาน J)** · รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.13.0 / plugin 0.13.0
+>
+> **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
+>
+> **เริ่มแชทใหม่**: ใช้ประโยคในข้อ 9 + prompt ในข้อ 10 · สถานะสั้นๆ: เสร็จแล้ว = design tokens/Style Guide, header/footer, หน้าแรก, หน้าบริการ 4 หน้า, About, Contact + ฟอร์ม Lead, คอร์ส 21 + ตัวกรอง, 3 ภาษา (Polylang), บล็อกจริง 115 เรื่อง × 3 ภาษา + รูปใน repo, demo บน Playground, ไอคอนชุดเดียวทั้งเว็บ (Phosphor Light) · **ลำดับงานที่เหลือสำหรับ demo**: ~~H (รูปจริงหน้าอื่น)~~ ทำแล้วรอบที่ 9 (รอ merge) → ~~C (ค้นหา)~~ ทำแล้วรอบที่ 10 (รอ merge) → ~~I (รูปให้เล็กสุด)~~ ทำแล้วรอบที่ 11 (merge แล้ว) → ~~J (PageSpeed)~~ ทำแล้วรอบที่ 12 (merge แล้ว) → ~~D (SEO + AI SEO)~~ ทำแล้วรอบที่ 13 (merge แล้ว) → G (แปลอัตโนมัติ, ต้องตอบ AUTO-TRANSLATE.md 3.3 ก่อน) · หลัง demo เสร็จ: โฮสต์ ([`HOSTING.md`](../HOSTING.md)) → E (ย้ายเว็บ + 301)
+>
+> **ทิศทางตอนนี้ (Jimmi, 23 ต.ค.)**: ทำ **demo บน GitHub (Playground) ให้เสร็จทั้งเว็บก่อน** ยังไม่ยุ่งกับโฮสต์ · รูปให้ดึง **เฉพาะที่เว็บใหม่ใช้จริง** ไม่เอาคลังสื่อทั้งหมดของเว็บเดิม · Jimmi จะให้ **Sonnet** ทำงานต่อจาก prompt ในข้อ 10
+
+## 5. เสร็จแล้ว
+
+- [x] Design tokens + Style Guide (Jimmi รับแล้ว)
+- [x] Content model คอร์ส + การ์ด + หน้าคอร์สเดี่ยว
+- [x] Course filter (ทดสอบ desktop/mobile, no-JS, พารามิเตอร์แปลก, XSS ไม่สะท้อน)
+- [x] หน้า `/in-house/` และ `/public-training/` (block เดียวกัน ล็อกประเภท)
+- [x] Thumbnail 3:2 + รูปตัวอย่าง
+- [x] Header ใหม่ + ปุ่มภาษา (ตรวจที่ 1280/1100/1024/768/375 ผ่านการจำลองจอ)
+- [x] Footer ใหม่ + โลโก้ SVG 5 แบบ + หน้าข้อมูลบริษัท + แถบ CTA (ทดสอบ 1280/768/375, TH/EN/JA ใน Playground)
+- [x] หน้าแรก TH/EN/JA: Hero (รูป/วิดีโอ ≤10 วินาที), แนะนำบริษัท, หลักสูตรยอดฮิต (อัตโนมัติ), บริการ 3 ด้าน (infographic หลอดไฟ SVG + ปุ่ม CTA ไปหน้าบริการ), สถิติ, โลโก้ลูกค้า, สาส์นผู้บริหาร, Gallery slider, คลังความรู้ · header ใช้โลโก้ SVG · ตรวจ 1280/768/375 × 3 ภาษา (ไม่ล้นจอ, contrast AA ผ่านทุกข้อความ, ไม่มี PHP notice/JS error) · block valid ใน editor ทั้ง 3 ภาษา · ทดสอบวิดีโอ 15 วินาทีวนที่ 10 วินาที, ปุ่มหยุด, reduced motion
+- [x] หน้าบริการ TH/EN/JA (19 ต.ค.): In-house + Public Training เพิ่ม Introduction/เนื้อหาขายจากเว็บเดิม (hero, จุดเด่น, ขั้นตอน, FAQ, CTA) · หน้า Transformation Solutions และ Japanese Concept ใหม่ (เนื้อหาจากเว็บเดิมรวมหน้าย่อย) · ตรวจ 1280/768/375 × 3 ภาษา × 4 หน้า: ไม่ล้นจอ, contrast AA, tap target ≥44px (ส่วนใหม่ทั้งหมด), ไม่มี PHP notice/JS error, block valid ใน editor ครบ 12 หน้า
+- [x] Polylang TH/EN/JA: ปุ่มภาษาสลับได้จริง (dropdown desktop + list ในเมนู mobile ทดสอบใน Playground ด้วย Polylang จาก wordpress.org), คอร์ส/หน้าแปลได้, ชื่อ term EN/JA, ตัวกรองนับต่อภาษา, ข้อความ UI EN/JA, ตัวอย่างคำแปลครบทุกคอร์ส
+- [x] รอบที่ 12 (25 ต.ค. 2569, branch `feature/pagespeed` — **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) จุดย้อนกลับ `a22691f` = `main` ก่อน merge: `git push -f origin a22691f:main`): **PageSpeed (งาน J)** — รายละเอียดการทำงานอยู่ในข้อ 4 "ความเร็ว (รอบที่ 12)"
+  - **ผล (Lighthouse mobile, ค่ากลาง 3 รอบ, ผ่านพร็อกซี Brotli — local ไม่ใช่ความเร็วโฮสต์ ใช้เทียบก่อน/หลังเท่านั้น):**
+
+    | หน้า | คะแนน ก่อน → หลัง | LCP ก่อน → หลัง | น้ำหนัก (KB) ก่อน → หลัง | CLS ก่อน → หลัง |
+    |---|---|---|---|---|
+    | หน้าแรก | 92 → **94** | 3.0 → 2.7 s | 230 → 183 | 0.001 → 0.000 |
+    | รวมคอร์ส | 97 → **100** | 2.4 → 1.7 s | 185 → 147 | 0.007 → 0.000 |
+    | คอร์สเดี่ยว | 91 → **94** | 2.9 → 2.7 s | 228 → 182 | 0.074 → 0.061* |
+    | บล็อก | 97 → **97** | 2.4 → 2.3 s | 184 → 145 | 0.000 → 0.000 |
+    | บทความ | 96 → **98** | 2.6 → 2.3 s | 184 → 144 | 0.001 → 0.000 |
+    | ติดต่อเรา | 97 → **98** | 2.4 → 2.2 s | 186 → 148 | 0.001 → 0.000 |
+
+    desktop ทุกหน้า 100 · TBT 0–2 ms · \* CLS ที่เหลือเกิดจากรูปเสียใน sandbox (CDN ถูกบล็อก) — โหลดรูปจริงด้วย Playwright แล้ว CLS ≤0.002 ทุกหน้า · **เป้า 95 ยังไม่ถึง 2 หน้า (หน้าแรกและคอร์สเดี่ยว 94)**: เหลือ CSS บล็อก core ที่ไม่ตัดได้ (navigation 20 KB, cover 20 KB, gallery 16 KB) และ LCP เป็นหัวข้อ h1 ที่รอ CSS + ฟอนต์ · เกณฑ์อื่นผ่าน: ทุกหน้า ≥90, CLS <0.1, หน้าแรกไม่รวมวิดีโอ 183 KB (<500 KB)
+  - ก่อนแก้ (baseline ครั้งแรก ไม่ผ่านพร็อกซี): หน้าแรก 77 / รวมคอร์ส 85 / คอร์สเดี่ยว 77 / บทความ 86 — ตัวเลขสูงเกินจริงเพราะ `php -S` ไม่บีบอัด จึงสร้างพร็อกซีแล้ววัดใหม่
+  - ตรวจ: `measure.py` 81 รอบ 0 ปัญหา · รูปไม่ผิดสัดส่วนหลังเติม width/height (Playwright เทียบสัดส่วนที่แสดงกับ attribute ทุกรูปทุกหน้าที่ 375/1280) · ไม่มี `<img>` ไร้ขนาดในหน้าหลักทั้ง 12 หน้า (เดิม 41–51 รูปต่อหน้า) · วิดีโอ hero 3 กรณี · blueprint JSON ถูกต้อง แต่ **ยังไม่ได้เปิดบน Playground จริง** (ต้องรอ merge เข้า `main` แล้วเปิดลิงก์ demo — ขั้นใหม่คือเขียน `hri-image-dims.json` + เก็บ option)
+  - สิ่งที่ Jimmi ต้องทำ/ตัดสินใจ: (1) ตั้งค่าฝั่งโฮสต์ตาม `HOSTING.md` ข้อ 5 (Brotli, cache header, HTTP/2+, Rcache ไม่แยกตาม cookie ภาษา) (2) prerender `moderate` เพิ่มงาน PHP ตอนผู้ใช้ hover — ถ้าโฮสต์หนักให้ปิดด้วย `hri_speculation` (3) ใส่ GA4/GTM ตอนไหน (ยังไม่ได้ทำ ถ้าใส่ต้องโหลดหลัง `load`)
+- [x] รอบที่ 11 (25 ต.ค. 2569, branch `feature/image-optimize`): **รูปใน WordPress ให้เล็กสุด (งาน I)** — ดูสถาปัตยกรรมที่ข้อ 4 "รูปในคลังสื่อ"
+  - ทำ: แปลง JPG/PNG → WebP ตอนรับไฟล์ + ลบต้นฉบับ · `HRI_IMAGE_MAX_EDGE` 1920 → 1600 · ขนาด `hri-card` 800×533 + `sizes` ตามกริด · `wp hri images optimize` + Tools → ปรับรูปให้เล็ก · เก็บกวาด `original_image` ที่ WordPress เก็บไว้
+  - **ตัวเลข (local, GD + WebP, ไม่มี Imagick/AVIF)**: รูปจริงจาก repo 3 ใบ (ถอดรหัสเป็น PNG แล้วอัปโหลดผ่านระบบ): รูปถ่าย 1600×1067 → ไฟล์หลัก 60.1 KB / `hri-card` 23.2 KB / large 30.8 KB / medium 6.5 KB · อินโฟกราฟิกตัวหนังสือ 1024² → 51.8 KB / การ์ด 24.2 KB · รูปคำคม 870×485 → 26.8 KB / การ์ด 25.7 KB → **การ์ดละ ~23–26 KB (เกณฑ์ ≤ 80 KB ผ่าน)** · รูปสังเคราะห์ 3000×2000 JPG 748 KB → 18.9 KB · รูปเก่า 13 ไฟล์ (9 MB) → 239 KB ด้วยคำสั่งแปลงรูปเดิม
+  - **quality 70 vs 78** (3 คู่ ซูม 2×: รูปถ่าย, อินโฟกราฟิกตัวหนังสือ, ภาพคน): 70 เล็กกว่า 9–14% (51.8 vs 60.1 KB, 47.3 vs 51.8 KB, 23.9 vs 26.8 KB) ตัวหนังสือคมเท่ากัน ต่างเล็กน้อยที่พื้นผิวรูปถ่าย · **ข้อจำกัดของการเทียบ**: ต้นฉบับ JPG ของเว็บเดิมไม่มีในเครื่อง ใช้รูปใน `playground/media` (WebP ที่บีบมารอบหนึ่งแล้ว) ผลจริงกับ JPG ต้นฉบับอาจต่างเล็กน้อย → **คง 78** (ตามที่ตกลงในรอบที่ 7) · ถ้าอยากเล็กลงอีก ~10% ตั้ง `HRI_IMAGE_QUALITY` 72
+  - ตรวจ: อัปโหลด JPG/PNG/EXIF หมุน/PNG โปร่งใส/ไฟล์เล็กมาก ใน uploads ไม่เหลือ .jpg/.png · ไฟล์เสีย, GIF, ไม่มี image editor → ไม่ล้ม เก็บไฟล์เดิม · ตัวนำเข้าบทความโหมด download (รูปในเนื้อหา + ปก) ได้ WebP ทั้งหมด · คำสั่งแปลงรูปเดิม: JPG หลัก, `-scaled.webp` + `original_image`, ลิงก์ในเนื้อหาแบบปกติและ JSON-escaped, รันซ้ำ, หน้า Tools ใน wp-admin จริง (13 รูป หลายรอบ) · markup การ์ดคอร์ส/บล็อก: `hri-card` + srcset + sizes ถูกต้อง
+  - `python3 -I scripts/measure.py` เต็มชุด (หลังเปลี่ยน, Polylang 3.9.1 + seed ใหม่) = **81 รอบ (3 ภาษา × 1280/768/375 × 9 หน้า รวมหน้าค้นหา) 0 ปัญหา** (overflow, tap target, contrast, PHP notice, JS error) · จุดย้อนกลับก่อน merge: `main` เดิม `14fe8de` (`git push -f origin 14fe8de:main`)
+  - ยังไม่ได้ทดสอบ: Imagick/AVIF (workspace ไม่มี) · MySQL จริง · ขนาดเวลาแปลงรูปใหญ่บนโฮสต์ shared (ทีละ 10 รูป/คำขอ ถ้า timeout ให้ใช้ WP-CLI หรือลดเหลือ 5)
+- [x] รอบที่ 10 (24 ต.ค. 2569, branch `feature/search` แตกจาก `feature/real-images` — **merge เข้า `main` แล้ว 25 ต.ค. 2569**): **ค้นหาทั้งเว็บ (งาน C)**
+  - ทำ: ดูสถาปัตยกรรมละเอียดที่ข้อ 4.y · เลือกวิธีทำดัชนีเอง (Jimmi อนุญาตให้ตัดสินใจเอง ไม่ถามก่อน) จาก 3 ทาง:
+    - **A. ตารางดัชนีคำของเราเอง (เลือก)** — ข้อดี: ใช้ได้ทั้ง MySQL/SQLite เหมือนกันทุกบรรทัด, ตัดคำไทยจริง (ICU หรือ n-gram), จัดอันดับ ชื่อ > excerpt > เนื้อหา, กรองภาษา/สถานะเปิดรับ, ค้น ~10 ms; ข้อเสีย: โค้ดเยอะ (~1,400 บรรทัด), ต้องดูแลดัชนี (ทำอัตโนมัติ + ปุ่มสร้างใหม่), ดัชนีใหญ่ ~270 คำ/โพสต์ (429 โพสต์ = 114k แถว)
+    - B. เก็บข้อความตัดคำแล้วใน meta/คอลัมน์ + `LIKE` — ข้อดี: ง่ายสุด; ข้อเสีย: ไม่มีอันดับที่ดี, ช้าลงตามจำนวนโพสต์ (full scan), คำที่ตัดคำต่างกันพลาด
+    - C. FULLTEXT ของ MySQL / FTS5 ของ SQLite — ข้อดี: เร็ว มีอันดับในตัว; ข้อเสีย: ต้องเขียนสองชุดตามฐานข้อมูล (Playground/SQLite กับ Ruk-com/MySQL คนละแบบ), parser ภาษาไทยของ MySQL ไม่มี (ต้องตัดคำก่อนอยู่ดี), InnoDB FULLTEXT มี stopword/ความยาวคำขั้นต่ำที่ทำให้คำไทยสั้นหาย
+  - Synonym (Settings → การค้นหา), หน้าไม่เจอ, ฟอร์มใน header (desktop = ไอคอน, มือถือ/แท็บเล็ต = ในเมนู), ฟอร์มใน 404 · คำแปล EN/JA ทุกข้อความใหม่ (machine translation — JA ให้คนญี่ปุ่นตรวจ) · วัดด้วย `measure.py` เพิ่ม 2 หน้า (`/?s=…` ผลลัพธ์ + ไม่เจอ)
+  - **ชุดทดสอบ + ผลที่ควรได้ (demo 21 คอร์ส + บทความ; ICU และ n-gram ได้เท่ากัน ยกเว้นที่ระบุ)** — รันด้วย `wp hri search query "<คำ>" --lang=<ภาษา>`:
+    | คำค้น | ภาษา | คอร์ส | บทความ | หน้า | หมายเหตุ |
+    |---|---|---|---|---|---|
+    | เจรจา | th | 3 | 16 | 0 | Negotiation Mastery, Negotiation Masterclass มาก่อน (Complaint Handling Excellence ตรงในเนื้อหา) |
+    | ผู้นำ | th | 14 | 67 | 5 | Proactive/High-Performance Leadership ฯลฯ |
+    | negotiation | en | 2 | 11 | 0 | Negotiation Mastery, Negotiation Masterclass |
+    | leadership | en | 14 | 66 | 5 | |
+    | コーチング | ja | 2 | 52 | 2 | Coaching Mastery มาก่อน (n-gram ได้คอร์ส 3) |
+    | negotiation | th | 3 | 16 | 0 | synonym ข้ามภาษา → เจอเนื้อหาไทย |
+    | เจรจา | en | 2 | 11 | 0 | EN ไม่เจอผลภาษาไทย (กรองภาษา) |
+    | หลักสูตรผู้นำ (พิมพ์ติดกัน) | th | 10 | 54 | 5 | ตัดเป็น หลักสูตร + ผู้นำ (ก่อนแก้ ได้แค่ 2 รายการ) |
+    | zzxqvw, ซซซซซซ | th | 0 | 0 | 0 | หน้า 200 + หลักสูตรแนะนำ |
+    ผ่านทั้งหมด · คำที่ ICU ตัดต่างกันในประโยค (เช่น ชื่อทับศัพท์ "โนวา") เจอด้วยตัวสำรองค้นข้อความต่อเนื่อง
+  - **คำค้นแปลก**: `<script>`, `%`, 500 ตัวอักษร, `?s[]=a`, `?s=`, `' " \ OR 1=1`, `&lt;b&gt;`, `?type=zzz&pg=-5`, `?pg` เกินจำนวนหน้า → HTTP 200 ทุกกรณี ไม่มี PHP notice ไม่สะท้อน HTML (แสดงเป็นข้อความ escape) · แก้/ลบ/draft โพสต์แล้วดัชนีตามภายในคำขอเดียวกัน (ทดสอบข้ามโปรเซส)
+  - **เวลา (local, SQLite, 429 โพสต์ ดัชนี 114k แถว, `php -S` ตัวเดียว)**: query ในเครื่องยนต์ 8–15 ms (เกณฑ์ ≤100 ms ผ่าน) · ทั้งหน้าผลลัพธ์ (รวม WordPress + render การ์ด) 110–220 ms · สร้างดัชนีทั้งหมด 16–17 วินาที (ICU) / 37 วินาที (n-gram) บน SQLite (ช้าเพราะ SQLite integration เขียนทีละโพสต์ ~35–40 ms) — MySQL น่าจะเร็วกว่ามากแต่ยังไม่ได้วัด
+  - **ผลวัดรอบที่ 10 (ก่อนแก้ตามการตรวจซ้ำ ผ่าน; ผลหลังแก้ตามการตรวจซ้ำ: วัดซ้ำเต็มชุดอีกครั้ง 81 รอบ 0 ปัญหาเช่นกัน; จุดสลับ header 1220px ตรวจแยกด้วย Playwright ที่ 1190–1280 × TH/EN/JA: เมนูอยู่บรรทัดเดียวทุกภาษาตั้งแต่ 1220px)**: `python3 -I scripts/measure.py` เต็มชุด = 81 รอบ (1280/768/375 × TH/EN/JA × 9 หน้า รวมหน้าค้นหาที่มีผลและไม่มีผล) → **0 ปัญหา** (overflow, tap target ≥44px, contrast AA, PHP notice, JS error) · ช่องค้นหาใน header/เมนูมือถือรวมอยู่ในทุกหน้าที่วัด
+- [x] รอบที่ 9 (24 ต.ค. 2569, branch `feature/real-images` — **merge เข้า `main` แล้ว 25 ต.ค. 2569**): **รูปจริงจากเว็บเดิมแทน placeholder**
+  - flow: crawl เว็บเดิมด้วย Playwright บน GitHub (35 หน้า, screenshot ติดเลขกรอบรูป) → จับคู่ช่องรูปด้วยตา → `site-media.json` (97 รูป) → `scripts/site-media.py` แปลงตามชนิด: logo ≤240px q85 · cover 3:2 960×640 q76 · square (ครอปรอบหน้า) 640 q80 · photo ≤1000 q76 · hero ≤1600 q70 → **รวม 1.6 MB, ไฟล์ใหญ่สุด 115 KB** · ดูผลจับคู่: `playground/data/site-media-sheet-1…4.jpg`
+  - ใส่แล้ว: hero หน้าแรก (1), โลโก้ลูกค้า 40 (หน้าแรก/About/In-house) + พาร์ทเนอร์ 8 (Transformation) พร้อม alt ชื่อบริษัท, ผู้บริหาร 2 (หน้าแรก+About), Gallery หน้าแรก 4, รูป hero ของ About/In-house/Public/Transformation/Japanese + "ทำไมต้อง Public" (6), ปกคอร์ส 20 จาก 21 (ภาพ hero ของหน้าคอร์สเดิม ครอป 3:2), วิทยากร 4, Gallery ไฮไลต์ของคอร์ส (Oxygen ใช้ของจริง 6 รูป คอร์สอื่นหมุนจากสระรูปอบรมจริงของ HRI 10 รูป)
+  - **วิธีใส่รูป (เพื่อให้เปิดเร็ว)**: ปกคอร์ส/วิทยากร = URL ใน meta `_hri_thumbnail_url` (+`_alt`, `_w`, `_h`) ไม่อัปโหลดเข้าคลังสื่อ → Playground บูตเร็ว, `<img>` มี width/height กัน layout กระโดด (ใช้ filter เดิมใน `blog.php` ขยายให้ทุก post type) · รูปในเนื้อหา = core/image ชี้ URL jsDelivr ตรง (ไม่มี width/height ใน markup เพราะ core เก็บเป็น style แล้ว editor จะ validate ไม่ผ่าน) · **ตอนขึ้นโฮสต์จริง** ให้ดึงรูปเข้าคลังสื่อ (WordPress ทำหลายขนาด/srcset ให้) ด้วยโหมด download ของ importer หรือ sideload ใน seed
+  - **ไม่ได้ใส่ / ยังเป็น placeholder**: About "Social Impact" gallery 4 รูป (เว็บเดิมไม่มีรูปกิจกรรมเพื่อสังคม ต้องขอจาก Jimmi) · ปก TEN X (เว็บแยก ใช้รูปตัวอย่างเดิม) · วิดีโอ (hero, DO·WA·KEI, แนวตั้งใน Outcomes) · รูปประกอบ Pain point/Outcomes ของคอร์ส (เว็บเดิมมี 4 รูปต่อคอร์ส แต่หน้าใหม่ไม่มีช่องรูป) · รูปรีวิว/อวตาร (เว็บเดิมเป็นรูปกลาง)
+  - **ควรให้ Jimmi ตรวจ**: ปกคอร์สบางใบมืด/ซ้ำกัน (เว็บเดิมใช้รูปเดียวกัน: B2B Selling = Complaint Handling, Strategic = Consultative Selling) · Gallery ของคอร์สที่ไม่ใช่ Oxygen ใช้รูปอบรม HRI ทั่วไปไม่ใช่รูปของรุ่นนั้น · hero ของ Public/In-house เป็นภาพ gradient นามธรรมจากเว็บเดิม · alt ของโลโก้ ผมอ่านจากตัวโลโก้เอง (ช่อง 10 = การไฟฟ้าส่วนภูมิภาค ไม่แน่ใจ 100%) · สิทธิ์ใช้รูป: ผู้บริหาร/ผู้เข้าอบรม/โลโก้ลูกค้าเป็นรูปที่เปิดเผยบนเว็บเดิมอยู่แล้ว (ใช้ใน demo ได้) ก่อนขึ้นเว็บจริงควรให้ลูกค้ายืนยัน · รูป stock ต้องเป็น license ของลูกค้า
+  - แก้เพิ่ม: ปุ่มก่อน/ถัดไปของ slider หดเหลือ 28px บนมือถือเมื่อสไลด์ >5 → จุดขึ้นแถวใหม่ที่ ≤520px (`base.css`)
+  - ตรวจ: `measure.py` 63 รอบ (TH/EN/JA) + about/transformation/japanese/oxygen = 0 ปัญหา · ไม่มี placeholder เหลือ (ยกเว้น Social Impact 4) · รูปทุกใบโหลดได้ (naturalWidth>0) บน local WP + Polylang · ทดสอบ local ใช้ `HRI_SITE_MEDIA_BASE` ชี้ไปโฟลเดอร์ `playground/site-media` (ไม่ผ่าน jsDelivr)
+  - **ดู branch นี้ใน Playground**: เปิดลิงก์ในข้อ 3 แต่แทน `main` ด้วย `feature/real-images` ใน blueprint (ทุก URL ใน `playground/blueprint.json` ชี้ `main` — เปลี่ยนก่อน merge ไม่ได้ผ่านลิงก์สั้น) หรือ merge แล้วเปิดลิงก์เดิม
+- [x] รอบที่ 8 (24 ต.ค. 2569, ตรง `main`): Jimmi ส่ง screenshot 3 รูป (hero คอร์ส Lean, FAQ, ที่อยู่ footer) ให้หาจุดแปลก แล้วสั่งแก้ 4 ข้อ + เปลี่ยนไอคอนทั้งเว็บ
+  - ปุ่ม "สอบถามหลักสูตรนี้" ใน hero คอร์สเป็นปุ่มทึบเหมือนปุ่มหลัก → ปุ่มขอบ: ปุ่มที่ `hri_course_buttons()` พิมพ์เองไม่ผ่าน parser → core ไม่โหลด CSS ของ Button และ variation outline ของ theme.json · แก้: enqueue `wp-block-button(s)` ในฟังก์ชัน + กฎ `.is-style-outline` ใน `base.css` (ค่าเดียวกับ theme.json, hover เหมือนหน้าแรก)
+  - ป้าย (รุ่น/วันที่/ราคา) ชิดปุ่มแค่ ~2px: สาเหตุเดียวกัน (ลิงก์ปุ่มเป็น inline → padding ล้นกล่อง) แก้แล้วห่าง 16px
+  - FAQ: คำตอบติดเส้นคั่นล่าง (core ตั้ง margin ของลูกตัวสุดท้ายเป็น 0) → `padding-block-end` ที่ `.hri-faq__item[open]` (ทุกหน้าที่มี FAQ)
+  - ที่อยู่: คำสั้นท้ายบรรทัด (≤5 ตัว เช่น "5", "10330") ไม่ตกบรรทัดเดี่ยว → `hri_company_lines_html()` ใช้ใน `hri/company-text` และ `hri/contact-info` (ทีมการตลาดแก้ที่อยู่ใน Settings ได้ตามเดิม)
+  - ไอคอน Phosphor Light ทั้งเว็บ (ข้อ 4 "ไอคอน") · ป้ายในหน้าคอร์สลด padding ซ้ายให้ 3 ป้ายยังอยู่แถวเดียวที่ 1280 เหมือนเดิม
+  - Jimmi ยืนยันแล้ว: วันที่ Lean "24 ก.พ. – 8 เม.ย. 2570 (7 สัปดาห์)" ใช้ตามเดิม · ที่อยู่ "118 บล็อก 28X ชั้น 4 ยูนิต X406" ถูกต้อง · ภาพ 2 แก้เฉพาะระยะ FAQ (ไม่แก้ TOYOTA/Toyota และคำว่า "บันทึกความรู้") · ✓ ในป้ายวันที่/ราคาคงไว้ (เปลี่ยนแค่หน้าตาไอคอน)
+  - ตรวจ: `measure.py` 63 รอบ + about/blog/transformation/japanese/คอร์ส Lean 45 รอบ = 0 ปัญหา · screenshot ทุกจุดที่เปลี่ยนไอคอน (desktop/มือถือ, เมนูเปิด, dropdown ภาษา)
+- [x] รอบที่ 7 (23 ต.ค. 2569, ตรง `main`): **demo ใช้รูปบทความจาก repo ของเราเอง**
+  - `scripts/demo-media.py` + workflow **Demo media** (`.github/workflows/demo-media.yml`, รันบนเครื่อง GitHub เพราะ workspace ของ Claude เข้า hrideone.com / jsDelivr ไม่ได้; รันเองเมื่อ `blog-posts.json` เปลี่ยน หรือกด Run workflow) ดาวน์โหลด **เฉพาะรูปที่บทความใช้** (ปก + รูปในเนื้อหา ไม่ใช่คลังสื่อ 1,578 ไฟล์) ย่อขอบยาวสุด 1600px แปลง WebP q78 → `playground/media/YYYY/MM/*.webp` (ชื่อไฟล์ ASCII) + `manifest.json` (URL เดิม → ไฟล์, ขนาด) แล้วแก้ `blog-posts.json(.gz)` ให้ชี้ `https://cdn.jsdelivr.net/gh/imeeba/hrideone-web@main/playground/media/…`
+  - ผล: **527 รูป 185.8 MB → 25.4 MB** (ค่ากลาง 35 KB/รูป, ใหญ่สุด 920 KB) · 11 รูปเป็น **404 บนเว็บเดิมอยู่แล้ว** (ตรวจด้วยเบราว์เซอร์) → `missing` ใน manifest และ image block ถูกตัดออกจากบทความ (เรื่อง `why-you-must-training-with-deone-academy`, `cross-functional-management-cfm`, `people-transformation-with-green-yellow-red-idea` (TenX 4 รูป), `why-do-managers-need-to-develop-leadership-skills` 3 รูป รวม EN/JA)
+  - `[video]` shortcode (เรื่องงานเปิดตัว 3 ภาษา) → **Video block** · วิดีโอ MP4 ยังเล่นจาก hrideone.com ใน demo (ไม่ได้ย้ายเข้า repo: ไฟล์ใหญ่) poster มาจาก repo แล้ว · importer โหมด download คัดลอกทั้งวิดีโอและ poster เข้าคลังสื่อ (ทดสอบแล้ว)
+  - importer โหมด download รับรูป/วิดีโอจากโดเมนใดก็ได้ที่ไม่ใช่เว็บตัวเอง → ตอนย้ายจริงดึงรูปจาก repo ได้แม้เว็บเดิมปิดแล้ว
+  - ตรวจใน **Playground จริง** (built-in browser): บูตจากศูนย์ถึงหน้า `/blog/` ~80–90 วินาที · การ์ด 12 ใบรูปโหลดจาก jsDelivr ครบ · หน้าเรื่องงานเปิดตัว 12/12 รูป + วิดีโอเล่นได้ · block ทั้ง 345 เรื่อง valid ใน editor (9,959 block)
+  - ลิงก์ demo สั้น https://imeeba.github.io/hrideone-web/ (GitHub Pages, ใช้งานได้แล้ว) · `docs/HOSTING.md` (ข้อมูล Ruk-com + คำถาม support 19 ข้อ + วิธีขึ้นเว็บ)
+- [x] รอบที่ 6 (23 ต.ค. 2569, branch `feature/blog-import`): บทความจริงจากเว็บเดิม 115 เรื่อง × TH/EN/JA (ตรงกับ https://hrideone.com/blog/ ทุก slug ทุกลำดับ 8 หน้า × 15 และตรงทุกหมวด) + เครื่องมือนำเข้า + 301 URL เดิมของบล็อก + Blog UI (contrast, tap target, การ์ดกดทั้งใบ, excerpt 3 บรรทัด) · ตรวจ: 345 โพสต์ ผูกคำแปลครบ 115 ชุด ภาษา/หมวด/วันที่ถูกทุกโพสต์, นำเข้าซ้ำไม่สร้างซ้ำ, โหมด download (ทดสอบด้วยรูป local), หน้า Tools ครบทั้งชุด, redirect ทุกแบบ, `measure.py` blog/หมวด/บทความ × 3 ภาษา × 3 จอ + หน้าเดิมทั้งหมด
+- [x] รอบที่ 5 (23 ต.ค. 2569, branch `fix/tap-targets`): tap target ≥44px ทุกจุดที่ค้างไว้ + ชื่อคอร์สในการ์ดไม่ตัดกลางคำ + `scripts/measure.py`
+  - token ใหม่ `custom.tap` = 44px (`tokens.json` → `--wp--custom--tap`)
+  - Header: ลิงก์เมนู (25px→44), ปุ่มภาษา (34→44), รายการ dropdown/list ภาษา (43/35→44), ปุ่มเปิด/ปิดเมนู (24×24→44×44 ไอคอนคง 24), ลิงก์ในเมนูเต็มจอ · Footer: ลิงก์เมนู (กว้างขั้นต่ำ 44 ด้วย) · ตัวกรอง: label checkbox (35→44), ปุ่ม "ตัวกรอง" มือถือ (43→44), pagination (39→44) · หน้าคอร์ส: "← หลักสูตรทั้งหมด" (25→44, class `hri-backlink`), PDPA checkbox 20→24px และ label สูง 44
+  - ชื่อคอร์สในการ์ด: เดิมชื่ออังกฤษยาว ("Transformation", "Communication") ถูกตัดกลางคำที่ ≥1280px (การ์ดแคบ 3 คอลัมน์ข้างตัวกรอง) ทั้งหน้า TH/JA (`overflow-wrap`) และล้นกล่องในหน้า EN · แก้: ขนาดหัวข้อตามความกว้างการ์ด (`container-type` + `cqi`, อยู่ระหว่าง medium–x-large) การ์ดกว้างยังเป็นขนาดเดิม · เพิ่ม `hyphens:auto` เฉพาะ `:lang(en)` · ตรวจ 320–1440px ไม่มีคำตัดกลางคำแล้ว
+  - ผลวัด `measure.py`: ก่อนแก้ tap target ต่ำกว่า 44px ใน 63/63 รอบ (ลิงก์เมนู 25px, label ตัวกรอง 35px, ปุ่มแฮมเบอร์เกอร์ 24px ฯลฯ) · หลังแก้ 0/63 รอบ ไม่มี overflow, contrast, PHP notice, JS error
+  - ไม่ได้แก้ markup นอกจากเพิ่ม class 2 ตัว (`hri-backlink`, `hri-course-card`) · หน้าตา desktop เปลี่ยนเล็กน้อย: เมนู header ห่างขึ้นเล็กน้อย (Blog/About กว้างขั้นต่ำ 44px), ตัวกรองสูงขึ้น ~240px (ดูข้อ "ปัญหานอกขอบเขต")
+- [x] รอบที่ 4 (19 ต.ค. 2569): เนื้อหาจริงคอร์ส In-house อีก 14 คอร์ส (รวม Coaching Mastery = ครบ 15) ดึงจาก `hrideone.com/courses/<slug>/` ได้ครบทุกหน้า เรียบเรียงใหม่ ใส่ใน `hri_seed_inhouse_courses()` TH/EN/JA ตามโครง Coaching Mastery · seed (local + Polylang 3.9 จาก GitHub): 21 คอร์ส + 42 คำแปล · ตรวจ 15 คอร์ส × TH/EN/JA × 1280/768/375 (135 โหลด): ไม่ล้นจอ, contrast AA ผ่านในเนื้อหาใหม่, ไม่มี tap target <44px ในเนื้อหาใหม่, ไม่มี JS error, ไม่มี PHP notice, ไม่มีข้อความ placeholder เหลือ, ไม่มีตัวอักษรไทยหลุดในหน้า EN/JA · ไม่แตะ theme/plugin code (bump Version เป็น 0.8.1 / 0.7.1 เท่านั้น)
+- [x] รอบที่ 3 (19 ต.ค. 2569, branch `feature/content-pages`): Lead form + Contact · โมเดลคอร์ส + หน้าคอร์ส Public 5 คอร์ส + TEN X + วิทยากร · หน้าคอร์ส In-house (Coaching Mastery จริง + โครงตัวอย่าง 14 คอร์ส) · About · Blog (listing/หมวด/บทความ + ตัวอย่าง 15 เรื่อง) · ตรวจ 18 หน้า × TH/EN/JA × 1280/768/375: ไม่ล้นจอ, ไม่มี PHP notice, ไม่มี freeform block · ฟอร์ม: prefill/ส่งสำเร็จ(JS และไม่มี JS)/ข้อมูลผิด/honeypot ผ่าน

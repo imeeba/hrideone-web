@@ -55,7 +55,7 @@
 
 1. **ทีละส่วนผ่าน wp-admin** (ไม่ต้องมี SSH): ติดตั้ง WordPress ใหม่ → อัปโหลด `hri-theme` / `hri-core` เป็น zip → ติดตั้ง Polylang → กดปุ่ม "ตั้งค่าภาษา" (แจ้งเตือนใน wp-admin) → Tools → นำเข้าบทความ (`playground/data/blog-posts.json.gz`, โหมด "คัดลอกรูปเข้าคลังสื่อ" ดึงรูปจาก repo ผ่าน jsDelivr) → หน้า/คอร์สสร้างจาก seed (ตอนนี้ seed รันได้แค่ WP-CLI/Playground → ต้องทำหน้า "รัน seed" ใน wp-admin หรือใช้วิธี 2)
 2. **ย้ายทั้งก้อน**: ประกอบเว็บให้เสร็จใน local/Playground → แพ็กด้วยปลั๊กอินย้ายเว็บ (Duplicator ฟรี / All-in-One WP Migration มีเพดานขนาดไฟล์ในรุ่นฟรี) → แตกบน subdomain ทดสอบ → หรือส่งให้ Ruk-com ย้ายให้ (ถ้ารับไฟล์)
-3. หลังเว็บทดสอบผ่าน: สลับโดเมนจริง + 301 (prompt E ใน HANDOFF) + ส่ง sitemap เข้า Search Console / Bing
+3. หลังเว็บทดสอบผ่าน: สลับโดเมนจริง + 301 (prompt E ใน PROMPTS.md) + ส่ง sitemap เข้า Search Console / Bing
 
 ข้อควรรู้: ฐานข้อมูลของ local/Playground เป็น SQLite ส่วนโฮสต์ใช้ MySQL → ย้ายทั้งก้อนต้องใช้ปลั๊กอินที่ export เป็น SQL/ไฟล์กลาง ไม่ใช่ copy ไฟล์ DB ตรงๆ
 
@@ -70,7 +70,7 @@
 3. **HTTP/2 หรือ HTTP/3** — หน้าแรกมี ~75 request (รูปส่วนใหญ่ lazy) ถ้าเป็น HTTP/1.1 จะช้าลงชัดเจน
 4. **Rcache** ต้องแคชหน้า HTML ของคนที่ไม่ล็อกอิน และ **ห้ามแคชแยกตาม cookie ภาษา** (ภาษาอยู่ใน URL อยู่แล้ว → ตั้ง `define( 'PLL_COOKIE', false );` ใน wp-config) · หน้าที่มี query string (`?pillar[]=…`, `?s=…`) แคชหรือไม่ก็ได้ แต่ต้องไม่ทำให้ผลกรองของคนหนึ่งไปโผล่ให้อีกคน
 5. **Speculation Rules (prerender เมื่อ hover)** ทำให้เซิร์ฟเวอร์เรนเดอร์หน้าล่วงหน้าเมื่อผู้ใช้เอาเมาส์ค้างบนลิงก์ ~200 ms ถ้า Rcache แคชหน้านั้นไว้แล้วแทบไม่มีต้นทุน ถ้าโหลดเซิร์ฟเวอร์สูงให้ปิดด้วย `add_filter( 'hri_speculation', '__return_null' );` (ไฟล์ใน mu-plugin หรือ functions ของ child) หรือลดเป็น `prefetch`
-6. **PHP**: เปิด OPcache · ext-intl (ตัดคำไทยของค้นหา ดู HANDOFF ข้อ 4.y) · Imagick หรือ GD ที่รองรับ WebP (แปลงรูปตอนอัปโหลด งาน I)
+6. **PHP**: เปิด OPcache · ext-intl (ตัดคำไทยของค้นหา ดู ARCHITECTURE.md ข้อ 4.y) · Imagick หรือ GD ที่รองรับ WebP (แปลงรูปตอนอัปโหลด งาน I)
 7. **Cloudflare (ถ้าจะใช้)**: เปิด Brotli, HTTP/3, Auto Minify ปิดไว้ (เรา minify เองแล้ว), อย่าเปิด Rocket Loader/Mirage (เลื่อนสคริปต์ของเมนู/ตัวกรองจนอาจใช้งานไม่ได้ และกระทบ LCP) · ถ้าอยู่หลัง Cloudflare ต้องตั้ง `HRI_IP_HEADER` ตาม `LEAD-SETUP.md`
 8. **ไฟล์วิดีโอ hero** (ตอนมี): ต้องเสิร์ฟด้วย `Accept-Ranges: bytes` (เล่นได้ไม่ต้องโหลดทั้งไฟล์) ขนาดแนะนำ ≤ 2 MB สำหรับ 10 วินาที, H.264 MP4 + พื้นที่ `poster` ถ้าทำเพิ่ม
 

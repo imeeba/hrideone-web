@@ -111,7 +111,7 @@ high-performance-leadership-mastery, proactive-leadership-mastery, time-and-prio
 เว็บเดิมมี: Google Map (สำนักงาน ซ.จุฬาฯ 5), หัวข้อ "ติดต่อเรา / CONTACT US", ชื่อบริษัทไทย "เอช อาร์ ไอ ดีวัน จำกัด" + ที่อยู่ไทย + เลขทะเบียน 0105548058192, **Our Group Company**: HR Institute Co., Ltd. (1-13-23 Jingumae, Shibuya-ku, Tokyo 150-0001) และ HRI Vietnam (Sunwah Innovation Center, Ho Chi Minh City) พร้อมลิงก์เว็บ/แผนที่, โซเชียล, เบอร์โทร · **เว็บเดิมไม่มีฟอร์ม**
 
 ควรทำ (เพื่อ convert):
-- ฟอร์ม Lead (HANDOFF ข้อ 7.3) ฟิลด์ตามฟอร์มในหน้าคอร์ส: ชื่อ-นามสกุล, บริษัท, ตำแหน่ง, เบอร์, อีเมล, หลักสูตร/บริการที่สนใจ (dropdown: In-house / Public รายคอร์ส / Transformation / Japanese Concept / อื่นๆ), ข้อความ, checkbox PDPA · รับ `?course=<slug>` เพื่อเติมค่าให้อัตโนมัติจากปุ่มในหน้าคอร์ส
+- ฟอร์ม Lead (BACKLOG.md ข้อ 7.3) ฟิลด์ตามฟอร์มในหน้าคอร์ส: ชื่อ-นามสกุล, บริษัท, ตำแหน่ง, เบอร์, อีเมล, หลักสูตร/บริการที่สนใจ (dropdown: In-house / Public รายคอร์ส / Transformation / Japanese Concept / อื่นๆ), ข้อความ, checkbox PDPA · รับ `?course=<slug>` เพื่อเติมค่าให้อัตโนมัติจากปุ่มในหน้าคอร์ส
 - ช่องทางด่วน: โทร (tel:), LINE, อีเมล + "ตอบกลับภายใน 24 ชั่วโมง"
 - ที่อยู่ + แผนที่ (Jimmi เคยตัดสินใจไม่ใส่แผนที่ใน footer — ถามว่าในหน้า Contact ใส่ได้ไหม; แผนที่ embed ใช้ iframe ไม่ต้องใช้ปลั๊กอิน)
 - Group companies (HRI Japan / HRI Vietnam) — ช่วยเรื่องความน่าเชื่อถือ
@@ -124,7 +124,7 @@ high-performance-leadership-mastery, proactive-leadership-mastery, time-and-prio
 เว็บเดิม (ตามลำดับ): รูป hero → **พันธกิจ** "Develop Leaders. Transform the Future." → **วิสัยทัศน์** "A trusted partner in shaping organizations that thrive across generations." → **คุณค่าหลัก** "Where Differences Become Strength." (การรวมสององค์กร) + รูป → **สาส์นจากผู้บริหาร** ฉบับเต็ม (HR Institute ได้รับความไว้วางใจจากองค์กรญี่ปุ่นตั้งแต่ 1993, DeOne Academy เชี่ยวชาญ Leadership & Transformation, ยกระดับสู่มาตรฐานสากล, ยุค AI ต้องการพาร์ทเนอร์ที่สร้างผลลัพธ์จริง, สะพานญี่ปุ่น–ไทย–อาเซียน, 30+ ปีกับบริษัทญี่ปุ่น) ลงชื่อ ดร.ชัยพัชร์ (CEO) และ Mr. Ken Misaka (Chairman) + รูป 2 ท่าน → **โลโก้ลูกค้า 40** → **Social Impact** "มุ่งพัฒนาสังคมให้น่าอยู่" (กิจกรรมชุมชนร่วม HRI Group) → บทความ 3 เรื่อง + View All
 
 ควรเพิ่มนอกจากของเดิม (ถาม Jimmi ก่อน): ตัวเลขสถิติ (ใช้ชุดเดียวกับหน้าแรก), ไทม์ไลน์ (1993 HR Institute ก่อตั้งงานกับองค์กรญี่ปุ่น → DeOne Academy → ควบรวมเป็น HRI DeOne → งานเปิดตัว "Develop Leaders, Transform the Future"), Group companies, ปุ่ม CTA ไปบริการ 3 ด้าน
-- สาส์นในหน้าแรกของเราย่อมาจากที่นี่ (HANDOFF ข้อ 6 บอกว่ายังไม่ครบ) → หน้า About ใส่ฉบับเต็ม หน้าแรกคงฉบับย่อ + ลิงก์ "อ่านต่อ"
+- สาส์นในหน้าแรกของเราย่อมาจากที่นี่ (OPEN-QUESTIONS.md (ข้อ 6) บอกว่ายังไม่ครบ) → หน้า About ใส่ฉบับเต็ม หน้าแรกคงฉบับย่อ + ลิงก์ "อ่านต่อ"
 
 ---
 
@@ -192,14 +192,14 @@ high-performance-leadership-mastery, proactive-leadership-mastery, time-and-prio
 
 ## 9. ทั้งเว็บ (global)
 
-- **ฟอร์ม Lead** — เว็บเดิมใช้ Google Form แยกคอร์ส + ฟอร์มในหน้า; ของใหม่ยังไม่มีเลย (HANDOFF ข้อ 7.3) → เป็น blocker ของ Contact, หน้าคอร์ส, In-house
+- **ฟอร์ม Lead** — เว็บเดิมใช้ Google Form แยกคอร์ส + ฟอร์มในหน้า; ของใหม่ยังไม่มีเลย (BACKLOG.md ข้อ 7.3) → เป็น blocker ของ Contact, หน้าคอร์ส, In-house
 - **LINE OA ไม่ตรงกัน** — หน้าคอร์สเขียน @deoneacademy บางหน้า @hrideone; footer ลิงก์ page.line.me/hrideone → ถาม Jimmi ว่าใช้อันไหน
 - **เบอร์โทร** — เขียน 065-0979444 และ 065-097-9444 → ใช้ `hri_company('phone')` ที่เดียว
 - **เลขผู้เสียภาษี** — เว็บเดิมแสดงทุกหน้า, ของใหม่ตัดออก (Jimmi ตัดสินแล้ว) แต่ควรอยู่ในหน้า Contact
-- **ชื่อบริษัทภาษาไทย** "เอช อาร์ ไอ ดีวัน จำกัด" (จากหน้า Contact เดิม) → ใช้ใน `hri_company_defaults()` แทนชื่ออังกฤษในที่อยู่ไทย (HANDOFF ข้อ 6 ค้างตรวจอยู่)
+- **ชื่อบริษัทภาษาไทย** "เอช อาร์ ไอ ดีวัน จำกัด" (จากหน้า Contact เดิม) → ใช้ใน `hri_company_defaults()` แทนชื่ออังกฤษในที่อยู่ไทย (OPEN-QUESTIONS.md (ข้อ 6) ค้างตรวจอยู่)
 - **วิดีโอ MP4 แนวตั้ง** ใช้ซ้ำหลายหน้า (`0_Success_Cinematic_720x1280.mp4`, `0_Growth_Data_1080x1920.mp4`) → ต้องมีสไตล์ Video block แนวตั้ง (เล่นเงียบ วน มี poster, ไม่ autoplay ถ้า reduced motion — ใช้แนวทางเดียวกับ hero.js)
 - **ไอคอนปัญหา** (webp) ในหน้าคอร์ส → ทำชุดไอคอน SVG ของเราเอง (สีตาม token) หรือใช้รูปเดิม
-- **SEO** — หน้าคอร์สควรมี schema Course/CourseInstance (ราคา, วันที่, สถานที่) จาก meta ใหม่ข้อ 1.2 · FAQPage จาก FAQ ทุกหน้า (HANDOFF ข้อ 7.5)
+- **SEO** — หน้าคอร์สควรมี schema Course/CourseInstance (ราคา, วันที่, สถานที่) จาก meta ใหม่ข้อ 1.2 · FAQPage จาก FAQ ทุกหน้า (BACKLOG.md ข้อ 7.5)
 
 ---
 

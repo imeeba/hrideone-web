@@ -52,13 +52,20 @@ scripts/demo-media.py    ดึงรูปที่บทความใช้�
 scripts/crawl-images.py  สำรวจรูปในหน้าเว็บเดิม (Playwright) → playground/data/crawl/pages.json (Actions "Crawl old site images")
 scripts/site-media.py    ดึง/แปลงรูปจริงของช่องรูปทั้งเว็บตาม playground/data/site-media.json → playground/site-media/ (Actions "Site media")
 scripts/wxr-to-blog.py   แปลงไฟล์ Export (WXR) ของเว็บเดิมเป็น playground/data/blog-posts.json
-scripts/build-icons.py   สร้างชุดไอคอน (Phosphor Light, MIT) → hri-core/assets/icons/ + icons.css ดู HANDOFF ข้อ 4
-scripts/perf.py          วัด Lighthouse 6 หน้า × mobile/desktop (ผ่าน scripts/perf-proxy.mjs ที่บีบอัดเหมือนโฮสต์) ดู HANDOFF ข้อ 4 "ความเร็ว"
+scripts/build-icons.py   สร้างชุดไอคอน (Phosphor Light, MIT) → hri-core/assets/icons/ + icons.css ดู docs/ARCHITECTURE.md ข้อ 4
+scripts/perf.py          วัด Lighthouse 6 หน้า × mobile/desktop (ผ่าน scripts/perf-proxy.mjs ที่บีบอัดเหมือนโฮสต์) ดู docs/ARCHITECTURE.md ข้อ 4 "ความเร็ว"
 scripts/minify-css.mjs    สร้าง *.min.css ข้างไฟล์ CSS (commit ไว้) · แก้ CSS แล้วต้องรันใหม่
 scripts/subset-fonts.py   ลดขนาดฟอนต์ละติน (ไม่เก็บ hinting)
 scripts/image-dims.py     ขนาดรูป demo → playground/data/image-dims.json
-scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู HANDOFF ข้อ 8
-docs/HANDOFF.md          สถานะงานและบริบท
+scripts/measure.py       ตรวจ overflow / tap target ≥44px / contrast / PHP notice / JS error (Playwright) ดู docs/PITFALLS.md
+docs/HANDOFF.md          จุดเริ่มต้น: สถานะสั้นๆ + ข้อกำหนด + วิธีทำงาน + แผนที่เอกสาร (อ่านก่อนเสมอ)
+docs/ARCHITECTURE.md     วิธีดูผลงาน/local + โครงสร้างโค้ดทุกฟีเจอร์ (HANDOFF ข้อ 3–4 เดิม)
+docs/PITFALLS.md         สิ่งที่เคยพลาด (อ่านก่อนแก้โค้ด)
+docs/OPEN-QUESTIONS.md   ข้อมูลสมมติ + เรื่องรอตัดสินใจ
+docs/BACKLOG.md          งานถัดไปแบบละเอียด
+docs/PROMPTS.md          prompt เริ่มแชทใหม่ (1 งาน = 1 แชท)
+docs/history/DONE-LOG.md งานที่เสร็จแต่ละรอบ + ผลวัด + จุดย้อนกลับ
+docs/quality/STANDARDS.md มาตรฐานคุณภาพ เกณฑ์ผ่าน วิธีวัด และผลวัดล่าสุด
 docs/HOSTING.md          Ruk-com: ข้อมูลแพ็กเกจ, คำถาม support, วิธีขึ้นเว็บ (ยังไม่เริ่ม)
 demo-site/               หน้าลิงก์สั้นของ demo (GitHub Pages)
 .github/workflows/       demo-media.yml (รูป demo), pages.yml (ลิงก์สั้น)
