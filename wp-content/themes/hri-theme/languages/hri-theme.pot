@@ -1365,25 +1365,13 @@ msgstr ""
 msgid "หลักสูตรและบริการ"
 msgstr ""
 
-#: patterns/japanese-programs.php:20
-msgid "เส้นทางพัฒนาผู้บริหาร 3 ขั้น จากการเข้าใจตนเอง สู่การนำคนอย่างกลมกลืน และการวางรากฐานองค์กรให้ยืนได้ข้ามรุ่น"
-msgstr ""
-
 #: patterns/japanese-programs.php:21
 msgid "ดูรายละเอียด DO·WA·KEI"
-msgstr ""
-
-#: patterns/japanese-programs.php:26
-msgid "หลักคิดและวิธีทำงานแบบญี่ปุ่นที่สร้างองค์กรยั่งยืน นำมาประยุกต์ใช้กับการทำงานประจำวันในบริบทไทย"
 msgstr ""
 
 #: patterns/japanese-programs.php:27
 #: patterns/japanese-programs.php:33
 msgid "สอบถามหลักสูตรนี้"
-msgstr ""
-
-#: patterns/japanese-programs.php:32
-msgid "เสริมทักษะการสื่อสารและการทำงานร่วมกันระหว่างทีมไทยและญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจข้ามวัฒนธรรม"
 msgstr ""
 
 #: patterns/japanese.php
@@ -1987,4 +1975,62 @@ msgstr ""
 #: patterns/transformation.php
 msgctxt "Pattern description"
 msgid "Every Transformation Solutions section in order. Insert into an empty page, then edit the texts and images."
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Why Japan"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgctxt "Pattern description"
+msgid "The 100-year-company fact and three everyday Japanese practices (Ho-Ren-So, Kaizen, working with Japan)."
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ทำไมต้องแนวคิดแบบญี่ปุ่น"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ญี่ปุ่นมีบริษัทอายุเกิน 100 ปีมากที่สุดในโลก"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ความยั่งยืนนี้ไม่ได้มาจากโชคหรือเทคโนโลยี แต่มาจากวินัยในการทำงานประจำวัน การสื่อสารที่เปิดกว้าง และการปรับปรุงเล็ก ๆ อย่างต่อเนื่อง HRI DeOne ถ่ายทอดแนวคิดนี้ผ่าน HR Institute ประเทศญี่ปุ่น ซึ่งพัฒนาบุคลากรให้องค์กรชั้นนำของญี่ปุ่นมาตั้งแต่ปี 1993 และปรับให้เข้ากับบริบทธุรกิจไทย"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ปัญหาเล็กไม่เคยถูกปล่อย จนกลายเป็นเรื่องใหญ่"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "วัฒนธรรม Ho-Ren-So (รายงาน แจ้ง ปรึกษา) ทำให้ปัญหาถูกพูดถึงตั้งแต่ยังเล็ก ก่อนจะบานปลาย"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "เก่งขึ้นทุกวัน โดยไม่ต้องรอการเปลี่ยนแปลงครั้งใหญ่"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "Kaizen คือการปรับปรุงทีละ 1% ในงานประจำวัน โดยไม่ต้องใช้งบประมาณก้อนใหญ่"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ทำงานกับญี่ปุ่นได้อย่างเข้าใจ ไม่ใช่แค่ทำตาม"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "เมื่อเข้าใจเหตุผลเบื้องหลังวิธีสื่อสารแบบญี่ปุ่น ความขัดแย้งจะกลายเป็นความร่วมมือที่แน่นแฟ้นกับบริษัทแม่ พันธมิตร และลูกค้า"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "โปรแกรมผู้บริหารในไทยและญี่ปุ่น พัฒนาภาวะผู้นำจากภายในและเยี่ยมชมองค์กรอายุกว่าร้อยปี"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ปลูกฝังแนวปฏิบัติที่หล่อเลี้ยงองค์กรญี่ปุ่นมาหลายศตวรรษ เช่น Ho-Ren-So, Kaizen, PDCA และ 5S ให้ทีมไทยนำไปใช้ได้ทุกวัน"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "เชื่อมช่องว่างวัฒนธรรมการทำงานไทย–ญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจกับบริษัทแม่ พันธมิตร และลูกค้าชาวญี่ปุ่น"
 msgstr ""

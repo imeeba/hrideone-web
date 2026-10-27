@@ -159,12 +159,12 @@ function hri_localize_url( string $url ): string {
 }
 
 /**
- * Navigation links in the header (and any core/navigation-link): URL and label per language.
+ * Navigation links and submenus in the header (core/navigation-link, core/navigation-submenu): URL and label per language.
  */
 add_filter(
 	'render_block_data',
 	static function ( $block ) {
-		if ( 'core/navigation-link' !== ( $block['blockName'] ?? '' ) || ! hri_has_polylang() || is_admin() ) {
+		if ( ! in_array( $block['blockName'] ?? '', array( 'core/navigation-link', 'core/navigation-submenu' ), true ) || ! hri_has_polylang() || is_admin() ) {
 			return $block;
 		}
 		$attrs = $block['attrs'] ?? array();
@@ -228,8 +228,12 @@ function hri_part_strings(): array {
 	$walk    = static function ( array $blocks ) use ( &$walk, &$strings ): void {
 		foreach ( $blocks as $block ) {
 			$name = (string) $block['blockName'];
-			if ( 'core/navigation-link' === $name && ! empty( $block['attrs']['label'] ) ) {
+			if ( in_array( $name, array( 'core/navigation-link', 'core/navigation-submenu' ), true ) && ! empty( $block['attrs']['label'] ) ) {
 				$strings[] = wp_strip_all_tags( (string) $block['attrs']['label'] );
+				// Generated lists (Public courses, blog categories): the template only holds a placeholder.
+				if ( 'core/navigation-submenu' === $name && str_contains( (string) ( $block['attrs']['className'] ?? '' ), 'hri-nav-dynamic' ) ) {
+					continue;
+				}
 			} elseif ( in_array( $name, array( 'core/heading', 'core/paragraph', 'core/button' ), true ) ) {
 				$text = hri_block_text( (string) ( $block['innerHTML'] ?? '' ) );
 				if ( '' !== $text ) {

@@ -204,7 +204,7 @@ function hri_page_sections(): array {
 		'transformation-solutions' => array( 'transformation-hero', 'transformation-scope', 'transformation-business', 'transformation-technology', 'transformation-people', 'transformation-culture', 'transformation-partners' ),
 		'about'                    => array( 'about-hero', 'about-mission', 'about-values', 'about-message', 'about-timeline', 'home-stats', 'home-clients', 'about-impact', 'contact-group', 'home-knowledge', 'about-cta' ),
 		'contact-us'               => array( 'contact-hero', 'contact-main', 'contact-map', 'contact-group' ),
-		'japanese-concept'         => array( 'japanese-hero', 'japanese-programs', 'japanese-dowakei', 'japanese-challenges', 'japanese-journey', 'japanese-outcomes', 'japanese-cta' ),
+		'japanese-concept'         => array( 'japanese-hero', 'japanese-intro', 'japanese-programs', 'japanese-dowakei', 'japanese-challenges', 'japanese-journey', 'japanese-outcomes', 'japanese-cta' ),
 	);
 }
 
