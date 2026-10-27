@@ -12,10 +12,10 @@
 | Contact `/contact-us/` | **ไม่มี** (ทุก CTA ชี้มาที่นี่ → 404) | ทั้งหน้า + ฟอร์ม Lead | 🔴 |
 | About `/about/` | **ไม่มี** (เมนูชี้ไป 404) | ทั้งหน้า | 🟠 |
 | Blog `/blog/` + บทความ 115 เรื่อง × TH/EN/JA (เดิมประมาณไว้ ~150) | ✅ รอบที่ 6: นำเข้าบทความจริงครบ 3 ภาษา + listing + หมวด + 301 URL เดิม | — | ✅ |
-| In-house: Leadership Development / Business Development / Team Simulation | ไม่มี (เนื้อหาบางส่วนอยู่ในการ์ด Leadership/Business ของ `/in-house/`) | คำอธิบายรายหัวข้อ | 🟡 |
+| In-house: Leadership Development / Business Development / Team Simulation | ✅ ตรวจ 27 ต.ค. 2569: เว็บเดิมไม่มีคำอธิบายรายหัวข้อ (มีแค่ชื่อหัวข้อ + รายชื่อคอร์ส) การจัดคอร์สเข้าหัวข้อตรงกันครบ 15 คอร์ส · Team Simulation/Marketing/Finance/HR มีแค่ชื่อในเมนูเดิม ไม่มีเนื้อหา | — | ✅ |
 | Transformation 4 หน้าย่อย | ย่อรวมไว้ใน `/transformation-solutions/` | รายละเอียดบางจุด (ดูข้อ 6) | 🟡 |
 | Japanese Concept / DO·WA·KEI | ย่อรวมไว้ใน `/japanese-concept/` | วิดีโอ, ปุ่มสมัคร, ราคา/วันที่ (เว็บเดิมก็ไม่มี) | 🟡 |
-| หน้าแรก | ครบทุก section | แบนเนอร์คอร์ส 7 ใบ (รวม TEN X), รูปจริง | 🟢 |
+| หน้าแรก | ครบทุก section · Highlight Program แสดงครบ 6 คอร์ส Public (รวม TEN X) | แบนเนอร์สไลด์ 7 ใบแบบเว็บเดิม (ไม่ได้ทำ), รูปจริง | 🟢 |
 | `/in-house/`, `/public-training/` | ทำแล้วรอบนี้ | TEN X, วันที่บนการ์ด, รูปจริง | 🟢 |
 
 ---

@@ -251,9 +251,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
   - ตรวจ: ทุกลิงก์กรองคอร์สได้จริง (จำนวนต่างกันตามหัวข้อ) · TH/EN/JA ลิงก์/ป้ายถูก · desktop 1220/1280/1366 และ JA/EN ที่ 1220 ไม่ล้น · เปิด/ปิดด้วยคีย์บอร์ด · มือถือ 390 ไม่มี horizontal scroll
   - **แก้ความเข้าใจผิด:** `CONTENT-GAP.md` ว่า TEN X ยังไม่มี — จริง ๆ มีแล้วใน seed (ลิงก์ออก) ที่ขาดคือแบนเนอร์ TEN X ใน hero หน้าแรก
   - ผลเทียบเนื้อหากับ hrideone.com (ยังไม่แก้): หน้า Japanese Concept ขาด H3 3 ตัว, ข้อเท็จจริง "100 ปี", การ์ด 2 ใบไม่ตรง, ปุ่ม Explore ชี้ไปหน้า do-wa-kei ที่ยังไม่มี · Public courses ขาดข้อ FAQ บางข้อ · `/in-house/` ยังไม่มีคำอธิบายรายหัวข้อ · ต้องทำ 301 รวม `professional-brand-new-manager` → `the-new-manager`
-- [x] รอบที่ 14b (27 ต.ค. 2569, branch `feature/home-tenx-banner` แตกจาก `main`, **ยังไม่ merge**): **TEN X บนหน้าแรก**
+- [x] รอบที่ 14b (27 ต.ค. 2569, branch `feature/home-tenx-banner` (ซ้อนบน japanese-concept-content), **ยังไม่ merge**): **TEN X บนหน้าแรก**
   - หน้าแรกของเราไม่มีแบนเนอร์สไลด์แบบเว็บเดิม (hero เดียว + "Highlight Program") — TEN X และ Lean หายเพราะ Highlight แสดงแค่ 4 คอร์สที่เริ่มเร็วสุด → เปลี่ยนเป็น 6 (ครบคอร์ส Public ทั้ง 5 + TEN X) · TEN X ลิงก์ออก `tenx.utcc.ac.th` เปิดแท็บใหม่ (ตรงเมนู Public ของเว็บเดิม; แบนเนอร์เว็บเดิมชี้ `/in-house/` ซึ่งดูเหมือนผิด) · เรียงตามวันเริ่ม
   - `.hri-highlight .hri-grid` กว้างขึ้น (min 340px) ให้ 6 ใบเป็น 3+3 · `courses.min.css` สร้างใหม่ · หน้าที่ seed ไว้แล้วต้อง seed ใหม่ (`hri_seed_home_content`) เพราะ content เก็บในหน้า · ถ้าเพิ่มคอร์ส Public เกิน 6 ต้องเพิ่ม `count` (สูงสุด 12)
+- [x] รอบที่ 14c (27 ต.ค. 2569, branch `feature/public-faq` (ซ้อนบน home-tenx-banner), **ยังไม่ merge**): **FAQ หน้าคอร์ส Public ให้ครบเท่าเว็บเดิม** (หน้ารวม `/public-training/` เว็บเดิมไม่มี FAQ — FAQ ที่ขึ้นหน้านั้นเป็นของเราเอง)
+  - `playground/seed-course-data.php` (TH/EN/JA): Negotiation Mastery 4→5 (+ช่องทางสมัคร) · The Next Director 5→6 (+Guest Speaker ต่างจากวิทยากรหลักอย่างไร) · The New Manager 3→5 (+"3 ชม./ครั้งพอไหม", +ใบประกาศ) · Oxygen Leadership ไม่มี FAQ (เว็บเดิมก็ไม่มี) · Lean ตรงแล้ว
+  - The New Manager: ตั้ง `hri_certificate = 1` (เว็บเดิมบอกทุกคนได้ใบประกาศ) · **ข้อมูลไม่ตรงกันที่ต้องให้ Jimmi เช็ค:** เว็บเดิมบอก "7 ครั้ง ตลอด 8 สัปดาห์" แต่วันที่ในเว็บเรา (5 ก.พ.–5 มี.ค. 2570) ครอบ ~4 สัปดาห์ → คำตอบ FAQ จึงไม่ระบุจำนวนสัปดาห์
+  - schema FAQPage เพิ่มตามจำนวนข้อ (ตรวจแล้ว 5/6/5) · ข้อมูลเก็บในเนื้อหาหน้า → เว็บที่ seed ไว้แล้วต้อง seed คอร์สใหม่
+  - ตรวจ `/in-house/` เทียบเว็บเดิม (27 ต.ค.): เว็บเดิม**ไม่มี**คำอธิบายรายหัวข้อ — ข้อสรุปเดิมในรอบก่อนที่ว่าขาดนั้นผิด (แก้ใน CONTENT-GAP แล้ว)
 - [x] รอบที่ 12 (25 ต.ค. 2569, branch `feature/pagespeed` — **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) จุดย้อนกลับ `a22691f` = `main` ก่อน merge: `git push -f origin a22691f:main`): **PageSpeed (งาน J)** — รายละเอียดการทำงานอยู่ในข้อ 4 "ความเร็ว (รอบที่ 12)"
   - **ผล (Lighthouse mobile, ค่ากลาง 3 รอบ, ผ่านพร็อกซี Brotli — local ไม่ใช่ความเร็วโฮสต์ ใช้เทียบก่อน/หลังเท่านั้น):**
 
