@@ -1,6 +1,8 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
+> **⚠ ค้างแก้จากรีวิว 27 ต.ค. 2569 (หลัง merge PR #1–#5)**: 3 จุด ดูข้อ 7 "0.R" · prompt K ในข้อ 10
+>
 > อัปเดตล่าสุด: 2026-10-27 (รอบที่ 14 อัปเดต 27 ต.ค.: ทดสอบ API จริงยังไม่ผ่าน ดูข้อ 4.w · **ค้างรอบที่ 14**: ทดสอบแปลอัตโนมัติกับ key ที่มีเครดิต — เช็กลิสต์อยู่ท้ายข้อ 4.w · ถ้า key เคยถูกวางในแชท ให้เพิกถอนแล้วสร้างใหม่ · รอบที่ 14: **แปลอัตโนมัติ TH→EN/JA (งาน G)** branch `feature/auto-translate` **merge เข้า `main` แล้ว 27 ต.ค. 2569 โดยยังไม่ผ่านการทดสอบกับ API จริง** (key ใช้ได้ แต่บัญชีไม่มีเครดิต) ดูข้อ 4.w · จุดย้อนกลับ branch `backup/pre-merge-translate-2026-10-27` (= main เดิม f13270a) · รอบที่ 13: **SEO + AI SEO (งาน D)** **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) — จุดย้อนกลับ branch `backup/pre-merge-seo-2026-10-25` (= main เดิม 90f3c33; ย้อนด้วย `git push -f origin backup/pre-merge-seo-2026-10-25:main`) · รอบที่ 12: **PageSpeed (งาน J)** · รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.13.0 / plugin 0.14.0
 >
 > **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
@@ -397,6 +399,14 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ## 7. งานถัดไป (เรียงตามที่เสนอ)
 
+**0.R ต้องแก้ — ผลรีวิวหลัง merge PR #1–#5 (27 ต.ค. 2569, ทดสอบบน local WP 7.1.3 + Polylang 3.9.1)** → prompt K ในข้อ 10
+1. 🔴 **ลิงก์ของเมนูที่มี dropdown ไม่เปลี่ยนตามภาษา** — ทุก block `core/navigation-submenu` (In-house, Leadership Development, Business Development, Public Training, Transformation, Japanese Concept, Blog) ได้ href ตามที่พิมพ์ใน `parts/header.html` ตรง ๆ (`/in-house/` ฯลฯ): หน้า EN/JA กดหัวเมนูแล้วไปหน้า **ภาษาไทย** และถ้าติดตั้ง WP ใน sub-folder จะ 404 · ส่วนลิงก์ลูก (`core/navigation-link`) และ About/Contact ถูกต้อง · ตรวจแล้ว: filter `render_block_data` ใน `polylang.php` **ถูกเรียก** กับ submenu และแก้ `attrs['url']` แล้ว แต่ HTML ที่ออกยังเป็น URL เดิม (core submenu render ใช้ `$attributes['url']` ที่บรรทัด ~158 ของ `wp-includes/blocks/navigation-submenu.php` แต่ค่าที่แก้ไม่ไปถึง) · ทางแก้ที่เสนอ: เพิ่ม filter `render_block_core/navigation-submenu` (หรือ `render_block` เช็ค blockName) แก้ `href` ของ `<a class="wp-block-navigation-item__content">` ตัวแรกด้วย `WP_HTML_Tag_Processor` + `hri_localize_url()` · ทดสอบ: ทุกลิงก์ใน header × TH/EN/JA ต้องได้ 200 และอยู่ในภาษานั้น (สคริปต์ตัวอย่าง: เปิดหน้าแรกแต่ละภาษา เก็บ `.hri-header nav a[href]` แล้ว request ทีละลิงก์ + เช็ค `id` ของ `#anchor`)
+2. 🟠 **ปุ่มลูกศรเปิด dropdown (desktop ≥1220px) เล็ก 8.9×8.9px** (`button.wp-block-navigation-submenu__toggle`) ต่ำกว่าเกณฑ์ tap target 44px ของโปรเจกต์ — `measure.py` แจ้งทุกหน้า × EN/JA/TH ที่ 1220/1280 · แก้ใน `base.css` (ขยายพื้นที่กดของปุ่มโดยไม่ทำให้เมนูกว้างขึ้นจนล้นที่ 1220px — เมนู JA ยาวสุด) แล้ว `node scripts/minify-css.mjs`
+3. 🟡 **ยังไม่ bump Version** หลังแก้ CSS/PHP รอบ 14–15: `base.min.css?ver=0.13.0` เดิม → browser/CDN อาจใช้ CSS เก่า (ไม่มี style dropdown) · bump theme → 0.14.0, plugin → 0.15.0 (`style.css` + `hri-core.php` ทั้ง header และ `HRI_CORE_VERSION`) และแก้บรรทัด "theme/plugin" ด้านบนไฟล์นี้
+- ✅ ตรวจผ่าน: `measure.py` 9 หน้า (หน้าแรก, In-house, Public, Japanese Concept, Transformation, คอร์ส Public 3 หน้า, Blog) × TH/EN/JA × 1280/1220/768/375 = ไม่ล้นจอ, contrast ผ่าน, ไม่มี PHP notice/JS error (ปัญหาเดียวคือข้อ 2) · ลิงก์ลูกทุกตัว 200 และ anchor มีจริง (`#do-wa-kei`, `#programs`, `#business-strategy` ฯลฯ) · ตัวกรองจากเมนู In-house ได้คอร์สตรงเว็บเดิม (Lead Self 5, Lead Team 2, Strategy 1, Sales 5, Customer Service 2) · รายการ Public/Blog อัตโนมัติถูกภาษา (EN `/en/category/…-en/`, JA "第3期") · FAQ + schema FAQPage 5/6/5 ข้อ · Highlight หน้าแรก 6 ใบรวม TEN X
+- ⏳ ยังไม่ได้ตรวจ: demo บน Playground จริงหลัง merge (blueprint ดึง `main`; jsDelivr cache ~12 ชม.) · seed ใหม่ทั้งเว็บจากศูนย์ (local อัปเดตเฉพาะหน้าที่เปลี่ยนด้วย `hri_seed_page_content` / `hri_seed_course_body`)
+- 📝 รอ Jimmi/การตลาด: The New Manager — เว็บเดิมบอก "7 ครั้ง ตลอด 8 สัปดาห์" แต่วันที่ในเว็บเรา 5 ก.พ.–5 มี.ค. 2570 (~4 สัปดาห์) · คำแปล JA ของหน้า Japanese Concept + FAQ ใหม่ (machine translation) · ข้อความไทยที่เรียบเรียงใหม่จากสรุปของ WebFetch (หน้า Japanese Concept, FAQ 4 ข้อ)
+
 ส่วนที่ยังขาดเทียบเว็บเดิม: [`docs/CONTENT-GAP.md`](CONTENT-GAP.md) (รอบที่ 3 ทำข้อ 1–5 ไปแล้วในรูปแบบตัวอย่าง) · แต่ละข้อด้านล่างเหมาะกับ **แชทใหม่แยกกัน** (prompt พร้อมวางในข้อ 10)
 
 0.0 ~~Merge `feature/search` → `main`~~ — **ทำแล้ว 25 ต.ค. 2569** (fast-forward, branch `backup/pre-merge-2026-10-25` = `main` เดิม b07d21a ย้อนกลับด้วย `git push -f origin backup/pre-merge-2026-10-25:main` · branch `preview/feature-search` ลบไม่ได้จากเซสชันนี้ (403) — ลบเองบน GitHub ได้) · หลัง merge เช็ค demo จริงที่ https://imeeba.github.io/hrideone-web/ (jsDelivr cache `@main` ได้ถึง ~12 ชม. ใส่ `&v=<เลข>` เพื่อเลี่ยง)
@@ -675,4 +685,15 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น ห้ามแก้ theme.json ตรงๆ (แก้ tokens แล้ว node tokens/build.mjs) · ไม่เพิ่ม plugin · ทีมการตลาดต้องแก้เนื้อหาจากหลังบ้านได้โดยไม่เขียนโค้ด · ไอคอนใช้ชุดเดิมเท่านั้น (`hri_icon()` / `--hri-icon-*`, เพิ่มผ่าน scripts/build-icons.py ไม่ใช้ตัวอักษร → ✓ ×) · ห้ามแตะ Production · ห้าม secret ใน repo
 ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · เช็ค 1280/768/375 × TH/EN/JA (ไม่ล้นจอ, contrast AA, tap target ≥44px, ไม่มี PHP notice) วัดด้วย JS ก่อน screenshot เท่าที่จำเป็น
 ปิดงาน: อัปเดต HANDOFF (+README ถ้าโครงสร้างเปลี่ยน) · bump Version theme/plugin · merge เข้า main แล้ว push · สรุปไทยสั้นๆ (ทำอะไร, อะไรให้ผมตรวจ/ตัดสินใจ)
+```
+
+**K. แก้ผลรีวิว 27 ต.ค. (เมนู dropdown)** — ดูข้อ 7 "0.R"
+
+```
+ทำเว็บ hrideone ต่อ repo imeeba/hrideone-web
+อ่าน docs/HANDOFF.md ให้ครบก่อน (ข้อ 2 ข้อกำหนด, ข้อ 4 สถาปัตยกรรม, ข้อ 7 "0.R", ข้อ 8) แล้วทำงานนี้: แก้ 3 จุดในข้อ 7 "0.R" — (1) ลิงก์หัวเมนู dropdown (core/navigation-submenu) ให้เปลี่ยนตามภาษาเหมือนลิงก์ลูก (2) ปุ่มลูกศร dropdown บน desktop ให้พื้นที่กด ≥44px โดยเมนู JA ที่ 1220px ไม่ล้น (3) bump Version theme/plugin · ทำบน branch ใหม่จาก main
+
+กฎ: ทำเฉพาะงานนี้ ปัญหานอกขอบเขตให้จดใน HANDOFF แล้วแจ้งผม · ข้อความทุกจุดแปลได้ TH/EN/JA และลิงก์ภายในไปหน้าภาษานั้น · สี/ขนาดใช้ token เท่านั้น · ไม่เพิ่ม plugin · ห้ามแตะ Production · ห้าม secret ใน repo · ห้าม merge เข้า main ถ้าผมยังไม่อนุมัติ
+ทดสอบ: local ด้วย scripts/local-setup.sh + Polylang จาก GitHub · ทุกลิงก์ใน header × TH/EN/JA ต้อง 200 และอยู่ในภาษานั้น · scripts/measure.py หน้าแรก/In-house/Japanese Concept × 1280/1220/768/375 ต้องไม่มี tap target <44px · เปิด/ปิด dropdown ด้วยคีย์บอร์ดและมือถือได้เหมือนเดิม
+ปิดงาน: อัปเดต HANDOFF (ขีดฆ่าข้อ 0.R ที่แก้แล้ว) · push branch + เปิด PR · สรุปไทยสั้นๆ
 ```
