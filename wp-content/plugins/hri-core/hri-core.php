@@ -2,7 +2,7 @@
 /**
  * Plugin Name: HRI Core
  * Description: Site features for HRI DeOne (content model, search, lead forms, images, SEO). Theme-independent.
- * Version:           0.14.0
+ * Version:           0.15.0
  * Requires at least: 6.6
  * Requires PHP: 8.1
  * Author: HRI DeOne
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'HRI_CORE_VERSION', '0.14.0' );
+define( 'HRI_CORE_VERSION', '0.15.0' );
 define( 'HRI_CORE_DIR', __DIR__ . '/' );
 
 foreach ( array( 'cleanup', 'performance', 'icons', 'images', 'images-optimize', 'content-model', 'trainers', 'course-card', 'course-filter', 'languages', 'polylang', 'company', 'leads', 'blog', 'blog-import', 'nav', 'search', 'search-admin', 'seo', 'schema', 'ai-seo', 'translate/segments', 'translate/providers', 'translate/glossary', 'translate/translate', 'translate/admin', 'blocks' ) as $module ) {

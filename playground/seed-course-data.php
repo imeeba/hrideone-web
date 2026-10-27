@@ -443,7 +443,7 @@ function hri_seed_public_courses(): array {
 					'quote'    => array( 'Managers fix problems. Leaders empower people to fix them.', 'ผู้จัดการแก้ปัญหา ผู้นำเสริมพลังให้คนแก้ปัญหาได้เอง' ),
 					'program'  => array(
 						'title'  => 'LEADER Journey · 7 Modules',
-						'lead'   => 'เรียน 7 ครั้งต่อเนื่อง จบด้วยการนำเสนอผลงาน (ตรวจรูปแบบสัปดาห์/ครั้งกับทีมงานก่อนยืนยัน)',
+						'lead'   => 'เรียน 7 ครั้งในราว 4 สัปดาห์ จบด้วยการนำเสนอผลงาน',
 						'groups' => array(
 							array( 'L', 'Lead Transition', array(), 'ก้าวข้ามจากผู้ลงมือสู่ผู้นำทีม' ),
 							array( 'E', 'Empower Change', array(), 'เสริมพลังและนำการเปลี่ยนแปลง' ),
@@ -487,7 +487,7 @@ function hri_seed_public_courses(): array {
 					'quote'    => array( 'Managers fix problems. Leaders empower people to fix them.', '' ),
 					'program'  => array(
 						'title'  => 'LEADER Journey · 7 Modules',
-						'lead'   => 'Seven sessions ending with a final presentation (confirm the weekly format with the team before publishing).',
+						'lead'   => 'Seven sessions over about four weeks, ending with a final presentation.',
 						'groups' => array(
 							array( 'L', 'Lead Transition', array(), 'Step from doer to team leader.' ),
 							array( 'E', 'Empower Change', array(), 'Empower people and lead change.' ),
@@ -531,7 +531,7 @@ function hri_seed_public_courses(): array {
 					'quote'    => array( 'Managers fix problems. Leaders empower people to fix them.', 'マネージャーは問題を解決する。リーダーは、人が問題を解決できるように力づける。' ),
 					'program'  => array(
 						'title'  => 'LEADER Journey · 7 Modules',
-						'lead'   => '全7回、最終発表で締めくくります（週ごとの形式は公開前に事務局へ要確認）。',
+						'lead'   => '約4週間で全7回、最終発表で締めくくります。',
 						'groups' => array(
 							array( 'L', 'Lead Transition', array(), '実務者からチームリーダーへ。' ),
 							array( 'E', 'Empower Change', array(), '人を力づけ、変革を導く。' ),

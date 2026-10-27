@@ -272,6 +272,40 @@ video {
 	align-items: center;
 }
 
+/* Drop-down arrow button (desktop): the arrow stays 0.6em, the touch area is a 44px square.
+   The Japanese menu at 1220px has ~5px to spare, so the button must not take more room in the row than the
+   bare arrow did (0.25em margin + 0.6em arrow). Negative margins keep that footprint: the extra area lies on the
+   16px gap between items (3/4 on the right, 1/4 over the end of the heading link), and the arrow sits in the
+   middle of the gap. z-index lets the button win where it overlaps the heading link. Core sizes the SVG with
+   inherit, so it is pinned here. */
+.hri-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-icon {
+	align-items: center;
+	block-size: var(--wp--custom--tap);
+	box-sizing: border-box;
+	display: inline-flex;
+	inline-size: var(--wp--custom--tap);
+	justify-content: center;
+}
+
+.hri-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-icon svg {
+	block-size: 0.6em;
+	inline-size: 0.6em;
+	margin: 0;
+}
+
+.hri-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__container > .has-child > .wp-block-navigation__submenu-icon {
+	margin-inline-end: calc(3 * (0.85em - var(--wp--custom--tap)) / 4);
+	margin-inline-start: calc((0.85em - var(--wp--custom--tap)) / 4);
+	position: relative;
+	z-index: 1;
+}
+
+/* Arrow of a submenu inside a drop-down card (opens to the right): the card has room, so the button simply is 44px. */
+.hri-header .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__submenu-container .has-child > .wp-block-navigation__submenu-icon {
+	flex: none;
+	margin-inline: 0 0.25em;
+}
+
 /* Menu overlay (< 1220px): everything left aligned; submenus are always open, indented under their heading
    (heading > item > sub-item in size). Core aligns overlay items to the end because the bar is right-aligned. */
 .hri-header .wp-block-navigation .is-menu-open .wp-block-navigation-item {
