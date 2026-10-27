@@ -896,26 +896,14 @@ msgstr ""
 msgid "หลักสูตรและบริการ"
 msgstr "プログラムとサービス"
 
-#: patterns/japanese-programs.php:20
-msgid "เส้นทางพัฒนาผู้บริหาร 3 ขั้น จากการเข้าใจตนเอง สู่การนำคนอย่างกลมกลืน และการวางรากฐานองค์กรให้ยืนได้ข้ามรุ่น"
-msgstr "自己理解から、調和をもって人を導く力、そして世代を超えて続く組織の土台づくりまでを学ぶ、3段階の経営者育成プログラム。"
-
 #: patterns/japanese-programs.php:21
 msgid "ดูรายละเอียด DO·WA·KEI"
 msgstr "DO·WA·KEIの詳細"
-
-#: patterns/japanese-programs.php:26
-msgid "หลักคิดและวิธีทำงานแบบญี่ปุ่นที่สร้างองค์กรยั่งยืน นำมาประยุกต์ใช้กับการทำงานประจำวันในบริบทไทย"
-msgstr "持続する組織をつくる日本の考え方と働き方を、タイの日常業務に応用します。"
 
 #: patterns/japanese-programs.php:27
 #: patterns/japanese-programs.php:33
 msgid "สอบถามหลักสูตรนี้"
 msgstr "このプログラムについて問い合わせる"
-
-#: patterns/japanese-programs.php:32
-msgid "เสริมทักษะการสื่อสารและการทำงานร่วมกันระหว่างทีมไทยและญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจข้ามวัฒนธรรม"
-msgstr "タイと日本のチーム間のコミュニケーションと協働を強化し、誤解を減らして、文化を超えた信頼関係を築きます。"
 
 #: patterns/japanese.php
 msgctxt "Pattern title"
@@ -1988,3 +1976,61 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "Title and search field at the top of the search results page."
 msgstr ""
+
+#: patterns/japanese-intro.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Why Japan"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgctxt "Pattern description"
+msgid "The 100-year-company fact and three everyday Japanese practices (Ho-Ren-So, Kaizen, working with Japan)."
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ทำไมต้องแนวคิดแบบญี่ปุ่น"
+msgstr "なぜ日本の考え方なのか"
+
+#: patterns/japanese-intro.php
+msgid "ญี่ปุ่นมีบริษัทอายุเกิน 100 ปีมากที่สุดในโลก"
+msgstr "日本は創業100年を超える企業が世界で最も多い国です"
+
+#: patterns/japanese-intro.php
+msgid "ความยั่งยืนนี้ไม่ได้มาจากโชคหรือเทคโนโลยี แต่มาจากวินัยในการทำงานประจำวัน การสื่อสารที่เปิดกว้าง และการปรับปรุงเล็ก ๆ อย่างต่อเนื่อง HRI DeOne ถ่ายทอดแนวคิดนี้ผ่าน HR Institute ประเทศญี่ปุ่น ซึ่งพัฒนาบุคลากรให้องค์กรชั้นนำของญี่ปุ่นมาตั้งแต่ปี 1993 และปรับให้เข้ากับบริบทธุรกิจไทย"
+msgstr "この持続力は運や技術ではなく、日々の仕事の規律、開かれたコミュニケーション、小さな改善の積み重ねから生まれます。HRI DeOneは、1993年から日本を代表する企業の人材育成を支えてきた日本のHRインスティテュートを通じてこの考え方を伝え、タイのビジネス環境に合わせて実践できる形にしています。"
+
+#: patterns/japanese-intro.php
+msgid "ปัญหาเล็กไม่เคยถูกปล่อย จนกลายเป็นเรื่องใหญ่"
+msgstr "小さな問題を放置せず、大きくしない"
+
+#: patterns/japanese-intro.php
+msgid "วัฒนธรรม Ho-Ren-So (รายงาน แจ้ง ปรึกษา) ทำให้ปัญหาถูกพูดถึงตั้งแต่ยังเล็ก ก่อนจะบานปลาย"
+msgstr "報連相（報告・連絡・相談）の文化により、問題は小さいうちに共有され、大きくなる前に対処できます。"
+
+#: patterns/japanese-intro.php
+msgid "เก่งขึ้นทุกวัน โดยไม่ต้องรอการเปลี่ยนแปลงครั้งใหญ่"
+msgstr "大きな変革を待たず、毎日成長する"
+
+#: patterns/japanese-intro.php
+msgid "Kaizen คือการปรับปรุงทีละ 1% ในงานประจำวัน โดยไม่ต้องใช้งบประมาณก้อนใหญ่"
+msgstr "カイゼンとは、大きな予算を使わず、日々の仕事を1%ずつ改善していくことです。"
+
+#: patterns/japanese-intro.php
+msgid "ทำงานกับญี่ปุ่นได้อย่างเข้าใจ ไม่ใช่แค่ทำตาม"
+msgstr "日本と「従う」のではなく「理解して」働く"
+
+#: patterns/japanese-intro.php
+msgid "เมื่อเข้าใจเหตุผลเบื้องหลังวิธีสื่อสารแบบญี่ปุ่น ความขัดแย้งจะกลายเป็นความร่วมมือที่แน่นแฟ้นกับบริษัทแม่ พันธมิตร และลูกค้า"
+msgstr "日本流コミュニケーションの背景にある考え方を理解すれば、摩擦は、親会社・パートナー・顧客との強い協力関係に変わります。"
+
+#: patterns/japanese-intro.php
+msgid "โปรแกรมผู้บริหารในไทยและญี่ปุ่น พัฒนาภาวะผู้นำจากภายในและเยี่ยมชมองค์กรอายุกว่าร้อยปี"
+msgstr "タイと日本で行うエグゼクティブ向けプログラム。内面からリーダーシップを磨き、創業100年を超える企業を訪問します。"
+
+#: patterns/japanese-intro.php
+msgid "ปลูกฝังแนวปฏิบัติที่หล่อเลี้ยงองค์กรญี่ปุ่นมาหลายศตวรรษ เช่น Ho-Ren-So, Kaizen, PDCA และ 5S ให้ทีมไทยนำไปใช้ได้ทุกวัน"
+msgstr "報連相、カイゼン、PDCA、5Sなど、日本企業を何世紀も支えてきた実践を根づかせ、タイのチームが毎日使えるようにします。"
+
+#: patterns/japanese-intro.php
+msgid "เชื่อมช่องว่างวัฒนธรรมการทำงานไทย–ญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจกับบริษัทแม่ พันธมิตร และลูกค้าชาวญี่ปุ่น"
+msgstr "タイと日本の仕事文化の違いを埋め、誤解を減らし、日本の親会社・パートナー・顧客との信頼を築きます。"

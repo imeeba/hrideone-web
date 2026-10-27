@@ -169,6 +169,11 @@
 	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
+/* Home highlight: wider cards so six courses make 3 + 3, not 4 + 2. */
+.hri-highlight .hri-grid {
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+}
+
 .hri-pagination {
 	margin-top: var(--wp--preset--spacing--60);
 }
