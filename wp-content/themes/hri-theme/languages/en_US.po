@@ -896,26 +896,14 @@ msgstr ""
 msgid "หลักสูตรและบริการ"
 msgstr "Programs and services"
 
-#: patterns/japanese-programs.php:20
-msgid "เส้นทางพัฒนาผู้บริหาร 3 ขั้น จากการเข้าใจตนเอง สู่การนำคนอย่างกลมกลืน และการวางรากฐานองค์กรให้ยืนได้ข้ามรุ่น"
-msgstr "A 3-part executive journey: from understanding yourself, to leading people in harmony, to laying foundations that let the organization endure across generations."
-
 #: patterns/japanese-programs.php:21
 msgid "ดูรายละเอียด DO·WA·KEI"
 msgstr "DO·WA·KEI details"
-
-#: patterns/japanese-programs.php:26
-msgid "หลักคิดและวิธีทำงานแบบญี่ปุ่นที่สร้างองค์กรยั่งยืน นำมาประยุกต์ใช้กับการทำงานประจำวันในบริบทไทย"
-msgstr "Japanese principles and ways of working that build lasting organizations, applied to everyday work in the Thai context."
 
 #: patterns/japanese-programs.php:27
 #: patterns/japanese-programs.php:33
 msgid "สอบถามหลักสูตรนี้"
 msgstr "Ask about this program"
-
-#: patterns/japanese-programs.php:32
-msgid "เสริมทักษะการสื่อสารและการทำงานร่วมกันระหว่างทีมไทยและญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจข้ามวัฒนธรรม"
-msgstr "Strengthen communication and collaboration between Thai and Japanese teams, reduce misunderstandings and build trust across cultures."
 
 #: patterns/japanese.php
 msgctxt "Pattern title"
@@ -1988,3 +1976,61 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "Title and search field at the top of the search results page."
 msgstr ""
+
+#: patterns/japanese-intro.php
+msgctxt "Pattern title"
+msgid "Japanese Concept — Why Japan"
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgctxt "Pattern description"
+msgid "The 100-year-company fact and three everyday Japanese practices (Ho-Ren-So, Kaizen, working with Japan)."
+msgstr ""
+
+#: patterns/japanese-intro.php
+msgid "ทำไมต้องแนวคิดแบบญี่ปุ่น"
+msgstr "Why the Japanese approach"
+
+#: patterns/japanese-intro.php
+msgid "ญี่ปุ่นมีบริษัทอายุเกิน 100 ปีมากที่สุดในโลก"
+msgstr "Japan has more companies over 100 years old than any other country"
+
+#: patterns/japanese-intro.php
+msgid "ความยั่งยืนนี้ไม่ได้มาจากโชคหรือเทคโนโลยี แต่มาจากวินัยในการทำงานประจำวัน การสื่อสารที่เปิดกว้าง และการปรับปรุงเล็ก ๆ อย่างต่อเนื่อง HRI DeOne ถ่ายทอดแนวคิดนี้ผ่าน HR Institute ประเทศญี่ปุ่น ซึ่งพัฒนาบุคลากรให้องค์กรชั้นนำของญี่ปุ่นมาตั้งแต่ปี 1993 และปรับให้เข้ากับบริบทธุรกิจไทย"
+msgstr "This longevity comes not from luck or technology, but from daily work discipline, open communication and continuous small improvements. HRI DeOne brings this approach through HR Institute Japan, which has developed people for leading Japanese organizations since 1993, and adapts it to the Thai business context."
+
+#: patterns/japanese-intro.php
+msgid "ปัญหาเล็กไม่เคยถูกปล่อย จนกลายเป็นเรื่องใหญ่"
+msgstr "Small problems are never left alone until they become big ones"
+
+#: patterns/japanese-intro.php
+msgid "วัฒนธรรม Ho-Ren-So (รายงาน แจ้ง ปรึกษา) ทำให้ปัญหาถูกพูดถึงตั้งแต่ยังเล็ก ก่อนจะบานปลาย"
+msgstr "The Ho-Ren-So culture (report, inform, consult) brings problems up while they are still small, before they escalate."
+
+#: patterns/japanese-intro.php
+msgid "เก่งขึ้นทุกวัน โดยไม่ต้องรอการเปลี่ยนแปลงครั้งใหญ่"
+msgstr "Get better every day, without waiting for a big change"
+
+#: patterns/japanese-intro.php
+msgid "Kaizen คือการปรับปรุงทีละ 1% ในงานประจำวัน โดยไม่ต้องใช้งบประมาณก้อนใหญ่"
+msgstr "Kaizen means improving by about 1% at a time in everyday work, without a large budget."
+
+#: patterns/japanese-intro.php
+msgid "ทำงานกับญี่ปุ่นได้อย่างเข้าใจ ไม่ใช่แค่ทำตาม"
+msgstr "Work with Japan with understanding, not just by following"
+
+#: patterns/japanese-intro.php
+msgid "เมื่อเข้าใจเหตุผลเบื้องหลังวิธีสื่อสารแบบญี่ปุ่น ความขัดแย้งจะกลายเป็นความร่วมมือที่แน่นแฟ้นกับบริษัทแม่ พันธมิตร และลูกค้า"
+msgstr "Once you understand the reasoning behind Japanese communication, friction turns into stronger collaboration with parent companies, partners and clients."
+
+#: patterns/japanese-intro.php
+msgid "โปรแกรมผู้บริหารในไทยและญี่ปุ่น พัฒนาภาวะผู้นำจากภายในและเยี่ยมชมองค์กรอายุกว่าร้อยปี"
+msgstr "An executive program in Thailand and Japan that develops leadership from within, with visits to century-old organizations."
+
+#: patterns/japanese-intro.php
+msgid "ปลูกฝังแนวปฏิบัติที่หล่อเลี้ยงองค์กรญี่ปุ่นมาหลายศตวรรษ เช่น Ho-Ren-So, Kaizen, PDCA และ 5S ให้ทีมไทยนำไปใช้ได้ทุกวัน"
+msgstr "Instill the practices that have sustained Japanese organizations for centuries, such as Ho-Ren-So, Kaizen, PDCA and 5S, so Thai teams can apply them every day."
+
+#: patterns/japanese-intro.php
+msgid "เชื่อมช่องว่างวัฒนธรรมการทำงานไทย–ญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจกับบริษัทแม่ พันธมิตร และลูกค้าชาวญี่ปุ่น"
+msgstr "Bridge the Thai–Japanese work-culture gap, reduce misunderstandings and build trust with Japanese parent companies, partners and clients."
