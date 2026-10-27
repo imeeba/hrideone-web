@@ -251,6 +251,9 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
   - ตรวจ: ทุกลิงก์กรองคอร์สได้จริง (จำนวนต่างกันตามหัวข้อ) · TH/EN/JA ลิงก์/ป้ายถูก · desktop 1220/1280/1366 และ JA/EN ที่ 1220 ไม่ล้น · เปิด/ปิดด้วยคีย์บอร์ด · มือถือ 390 ไม่มี horizontal scroll
   - **แก้ความเข้าใจผิด:** `CONTENT-GAP.md` ว่า TEN X ยังไม่มี — จริง ๆ มีแล้วใน seed (ลิงก์ออก) ที่ขาดคือแบนเนอร์ TEN X ใน hero หน้าแรก
   - ผลเทียบเนื้อหากับ hrideone.com (ยังไม่แก้): หน้า Japanese Concept ขาด H3 3 ตัว, ข้อเท็จจริง "100 ปี", การ์ด 2 ใบไม่ตรง, ปุ่ม Explore ชี้ไปหน้า do-wa-kei ที่ยังไม่มี · Public courses ขาดข้อ FAQ บางข้อ · `/in-house/` ยังไม่มีคำอธิบายรายหัวข้อ · ต้องทำ 301 รวม `professional-brand-new-manager` → `the-new-manager`
+- [x] รอบที่ 14b (27 ต.ค. 2569, branch `feature/home-tenx-banner` แตกจาก `main`, **ยังไม่ merge**): **TEN X บนหน้าแรก**
+  - หน้าแรกของเราไม่มีแบนเนอร์สไลด์แบบเว็บเดิม (hero เดียว + "Highlight Program") — TEN X และ Lean หายเพราะ Highlight แสดงแค่ 4 คอร์สที่เริ่มเร็วสุด → เปลี่ยนเป็น 6 (ครบคอร์ส Public ทั้ง 5 + TEN X) · TEN X ลิงก์ออก `tenx.utcc.ac.th` เปิดแท็บใหม่ (ตรงเมนู Public ของเว็บเดิม; แบนเนอร์เว็บเดิมชี้ `/in-house/` ซึ่งดูเหมือนผิด) · เรียงตามวันเริ่ม
+  - `.hri-highlight .hri-grid` กว้างขึ้น (min 340px) ให้ 6 ใบเป็น 3+3 · `courses.min.css` สร้างใหม่ · หน้าที่ seed ไว้แล้วต้อง seed ใหม่ (`hri_seed_home_content`) เพราะ content เก็บในหน้า · ถ้าเพิ่มคอร์ส Public เกิน 6 ต้องเพิ่ม `count` (สูงสุด 12)
 - [x] รอบที่ 12 (25 ต.ค. 2569, branch `feature/pagespeed` — **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) จุดย้อนกลับ `a22691f` = `main` ก่อน merge: `git push -f origin a22691f:main`): **PageSpeed (งาน J)** — รายละเอียดการทำงานอยู่ในข้อ 4 "ความเร็ว (รอบที่ 12)"
   - **ผล (Lighthouse mobile, ค่ากลาง 3 รอบ, ผ่านพร็อกซี Brotli — local ไม่ใช่ความเร็วโฮสต์ ใช้เทียบก่อน/หลังเท่านั้น):**
 

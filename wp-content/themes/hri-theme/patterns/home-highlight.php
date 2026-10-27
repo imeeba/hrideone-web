@@ -19,7 +19,7 @@
 <h2 class="wp-block-heading has-text-align-center is-style-section-title">Highlight Program</h2>
 <!-- /wp:heading -->
 
-<!-- wp:hri/course-highlight {"count":4} /-->
+<!-- wp:hri/course-highlight {"count":6} /-->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
