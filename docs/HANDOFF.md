@@ -1,7 +1,7 @@
 # HANDOFF — สถานะงานและบริบทสำหรับแชท/คนถัดไป
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
-> อัปเดตล่าสุด: 2026-10-26 (รอบที่ 14: **แปลอัตโนมัติ TH→EN/JA (งาน G)** branch `feature/auto-translate` **merge เข้า `main` แล้ว 27 ต.ค. 2569 โดยยังไม่ผ่านการทดสอบกับ API จริง** (key ใช้ได้ แต่บัญชีไม่มีเครดิต) ดูข้อ 4.w · จุดย้อนกลับ branch `backup/pre-merge-translate-2026-10-27` (= main เดิม f13270a) · รอบที่ 13: **SEO + AI SEO (งาน D)** **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) — จุดย้อนกลับ branch `backup/pre-merge-seo-2026-10-25` (= main เดิม 90f3c33; ย้อนด้วย `git push -f origin backup/pre-merge-seo-2026-10-25:main`) · รอบที่ 12: **PageSpeed (งาน J)** · รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.13.0 / plugin 0.14.0
+> อัปเดตล่าสุด: 2026-10-27 (รอบที่ 14 อัปเดต 27 ต.ค.: ทดสอบ API จริงยังไม่ผ่าน ดูข้อ 4.w · **ค้างรอบที่ 14**: ทดสอบแปลอัตโนมัติกับ key ที่มีเครดิต — เช็กลิสต์อยู่ท้ายข้อ 4.w · ถ้า key เคยถูกวางในแชท ให้เพิกถอนแล้วสร้างใหม่ · รอบที่ 14: **แปลอัตโนมัติ TH→EN/JA (งาน G)** branch `feature/auto-translate` **merge เข้า `main` แล้ว 27 ต.ค. 2569 โดยยังไม่ผ่านการทดสอบกับ API จริง** (key ใช้ได้ แต่บัญชีไม่มีเครดิต) ดูข้อ 4.w · จุดย้อนกลับ branch `backup/pre-merge-translate-2026-10-27` (= main เดิม f13270a) · รอบที่ 13: **SEO + AI SEO (งาน D)** **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) — จุดย้อนกลับ branch `backup/pre-merge-seo-2026-10-25` (= main เดิม 90f3c33; ย้อนด้วย `git push -f origin backup/pre-merge-seo-2026-10-25:main`) · รอบที่ 12: **PageSpeed (งาน J)** · รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.13.0 / plugin 0.14.0
 >
 > **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
 >
@@ -164,6 +164,15 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - **ทดสอบแล้วใน local (provider fake + จำลอง HTTP)**: 22 กรณี engine (คนแก้/outdated/แทรกลบ/noindex JA/ตรวจไม่ได้ขณะ outdated/รอบสองไม่เสียเงิน/accept/keep) + บันทึกถี่ 5 ครั้ง → 1 งาน, คอร์ส+วิทยากร+meta แปลถูก, slug คงที่, block parse + serialize ตรงกัน, HTTP 429/401/529/เนื้อเสียแมปถูก kind, retry 3 ครั้งแล้ว ❌, ไม่มี key = ปิด · หน้าหลังบ้านโหลดไม่มี error, ปุ่ม (nonce/สิทธิ์) ทำงาน · seo-check ผ่าน (llms.txt ข้ามหน้า noindex แล้ว)
 - **⚠️ สถานะ 27 ต.ค. 2569**: merge เข้า `main` ก่อนผ่านการทดสอบกับ API จริง · ทดสอบแล้ว: key ยิง `api.anthropic.com` ได้ (ตอบ HTTP 400 `Your credit balance is too low` = key ถูกต้องแต่บัญชีไม่มีเครดิต) · ระบบจัดการ error โควต้าถูกต้อง (ขึ้น ❌ ไม่ retry วน) · ยังไม่เคยได้คำแปลสำเร็จ · คอร์ส 25 (มีคำแปลมือเดิม) ระบบปฏิเสธ `--adopt` เพราะโครงบล็อกไม่ตรง (พฤติกรรมถูกต้อง)
 - **ยังไม่ได้ทดสอบ (ต้องใช้ API key จริงที่มีเครดิต)**: ตัวเชื่อม Claude เขียนจากเอกสาร API แต่ไม่เคยยิงจริง (ใน sandbox ไม่มี key/เน็ต) · การจัดการโควต้าหมดจริง · คุณภาพ/ราคาจริง (ดู AUTO-TRANSLATE.md §7) · ข้อความหลังบ้านของโมดูลนี้ยังเป็นไทยอย่างเดียว (ไม่มีใน .po EN/JA) · ยังไม่ได้ลองใน Playground จริง
+
+**เช็กลิสต์ทดสอบแปลอัตโนมัติ (ทำเมื่อมี key ที่มีเครดิต)**
+1. สร้าง key ใหม่ใน Anthropic Console (Settings → API Keys) และตรวจว่าบัญชีมีเครดิต/เปิด Billing ก่อน — ห้ามวาง key ในแชทหรือใน repo
+2. ตั้งค่าใน `wp-config.php` ของเว็บทดสอบ (local หรือ staging): `HRI_TRANSLATE_PROVIDER` = `anthropic`, `HRI_TRANSLATE_API_KEY` = key นั้น
+3. ตั้งเว็บ local ใหม่ได้ด้วย `scripts/local-setup.sh` + Polylang 3.9.1 + `wp hri languages` + `wp eval-file playground/seed-languages.php` (ถ้า `/home/claude/hri-local` หายไปแล้ว)
+4. สร้างหน้าไทยทดสอบที่มีทุกชนิด block (heading, paragraph ตัวหนา/ลิงก์, list, quote) และคอร์สไทยใหม่ (อย่าใช้คอร์สตัวอย่างที่มีคำแปลมือ — จะโดนปฏิเสธเพราะโครงบล็อกไม่ตรง)
+5. รัน `wp hri translate run <id> --lang=en,ja` แล้วตรวจ: block valid ใน editor, แท็ก inline ครบ, JA เป็น noindex จนกว่า reviewed, ไม่ทับงานคนแก้, ยอด token ใน `hri_tr_usage`
+6. บันทึกผลและยอดจริงลง `AUTO-TRANSLATE.md` ข้อ 7 แล้วอัปเดตข้อ 4.w ให้ตรงกับผล
+7. รัน `python3 -I scripts/measure.py` และ `python3 -I scripts/seo-check.py` ผ่าน แล้วเพิกถอน key ทดสอบ
 
 ### 4.z SEO + AI SEO (รอบที่ 13)
 
