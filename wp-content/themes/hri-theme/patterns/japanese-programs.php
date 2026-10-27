@@ -9,7 +9,7 @@
  * @package hri-theme
  */
 
-$hri_out  = hri_bm_section();
+$hri_out  = hri_bm_section( '', '', 'programs' );
 $hri_out .= hri_bm_head( __( 'หลักสูตรและบริการ', 'hri-theme' ), 'Our Programs' );
 $hri_out .= hri_bm_cards(
 	array(

@@ -6,11 +6,34 @@
 <!-- wp:group {"className":"hri-header__end","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
 <div class="wp-block-group hri-header__end">
 <!-- wp:navigation {"overlayMenu":"mobile","fontSize":"small","layout":{"type":"flex","justifyContent":"right"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-<!-- wp:navigation-link {"label":"In-house","url":"/in-house/","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Public Training","url":"/public-training/","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Transformation","url":"/transformation-solutions/","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Japanese Concept","url":"/japanese-concept/","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Blog","url":"/blog/","kind":"custom"} /-->
+<!-- wp:navigation-submenu {"label":"In-house","type":"custom","url":"/in-house/","kind":"custom"} -->
+<!-- wp:navigation-submenu {"label":"Leadership Development","type":"custom","url":"/in-house/?pillar%5B%5D=leadership#courses","kind":"custom"} -->
+<!-- wp:navigation-link {"label":"Lead Self","url":"/in-house/?topic%5B%5D=self-improvement\u0026topic%5B%5D=thinking\u0026topic%5B%5D=personal-communication#courses","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Lead Team","url":"/in-house/?topic%5B%5D=coaching\u0026topic%5B%5D=team-communication#courses","kind":"custom"} /-->
+<!-- /wp:navigation-submenu -->
+<!-- wp:navigation-submenu {"label":"Business Development","type":"custom","url":"/in-house/?pillar%5B%5D=business#courses","kind":"custom"} -->
+<!-- wp:navigation-link {"label":"Strategy","url":"/in-house/?topic%5B%5D=strategy#courses","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Sales","url":"/in-house/?topic%5B%5D=sales#courses","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Customer Service","url":"/in-house/?topic%5B%5D=customer-service#courses","kind":"custom"} /-->
+<!-- /wp:navigation-submenu -->
+<!-- /wp:navigation-submenu -->
+<!-- wp:navigation-submenu {"label":"Public Training","type":"custom","url":"/public-training/","kind":"custom","className":"hri-nav-dynamic hri-nav-public"} -->
+<!-- wp:navigation-link {"label":"Public courses (automatic list)","url":"/public-training/","kind":"custom"} /-->
+<!-- /wp:navigation-submenu -->
+<!-- wp:navigation-submenu {"label":"Transformation","type":"custom","url":"/transformation-solutions/","kind":"custom"} -->
+<!-- wp:navigation-link {"label":"Business Strategy","url":"/transformation-solutions/#business-strategy","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Technology Strategy","url":"/transformation-solutions/#technology-strategy","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"People Strategy","url":"/transformation-solutions/#people-strategy","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Culture Strategy","url":"/transformation-solutions/#culture-strategy","kind":"custom"} /-->
+<!-- /wp:navigation-submenu -->
+<!-- wp:navigation-submenu {"label":"Japanese Concept","type":"custom","url":"/japanese-concept/","kind":"custom"} -->
+<!-- wp:navigation-link {"label":"DO·WA·KEI","url":"/japanese-concept/#do-wa-kei","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Japanese Working Philosophy","url":"/japanese-concept/#programs","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Cross-cultural Communication \u0026 Collaboration","url":"/japanese-concept/#programs","kind":"custom"} /-->
+<!-- /wp:navigation-submenu -->
+<!-- wp:navigation-submenu {"label":"Blog","type":"custom","url":"/blog/","kind":"custom","className":"hri-nav-dynamic hri-nav-blog"} -->
+<!-- wp:navigation-link {"label":"Blog categories (automatic list)","url":"/blog/","kind":"custom"} /-->
+<!-- /wp:navigation-submenu -->
 <!-- wp:navigation-link {"label":"About","url":"/about/","kind":"custom"} /-->
 <!-- wp:navigation-link {"label":"Contact","url":"/contact-us/","kind":"custom"} /-->
 <!-- wp:hri/search-form {"variant":"inline"} /-->
