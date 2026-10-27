@@ -180,6 +180,34 @@ add_filter(
 );
 
 /**
+ * Heading link of a submenu (In-house, Public Training, Blog …).
+ *
+ * The filter above cannot reach it: core builds a submenu's `$attributes` before `render_block_data`
+ * runs on the parsed block, and its render callback prints `$attributes['url']`. So the language-aware
+ * URL is applied to the finished HTML: only the first link (the heading). Links of nested submenus
+ * and child items are rendered, and localized, by their own blocks.
+ */
+add_filter(
+	'render_block_core/navigation-submenu',
+	static function ( $content ) {
+		if ( is_admin() || ! hri_has_polylang() || ! str_contains( (string) $content, 'href=' ) ) {
+			return $content;
+		}
+		$tags = new WP_HTML_Tag_Processor( (string) $content );
+		if ( $tags->next_tag( 'a' ) ) {
+			$href = $tags->get_attribute( 'href' );
+			if ( is_string( $href ) && '' !== $href ) {
+				$localized = hri_localize_url( $href );
+				if ( $localized !== $href ) {
+					$tags->set_attribute( 'href', $localized );
+				}
+			}
+		}
+		return $tags->get_updated_html();
+	}
+);
+
+/**
  * Links typed into page content (buttons, paragraphs, headings, lists, images, covers):
  * on an English or Japanese page, "/in-house/" goes to the English or Japanese page, and on a
  * Thai page to the Thai page's permalink (also right in a sub-folder install).
