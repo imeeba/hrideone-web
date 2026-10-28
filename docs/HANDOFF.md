@@ -6,10 +6,11 @@
 > **สถานะ ณ 28 ต.ค. 2569 (ส่งต่อ)**
 > - `main` = `d63f02d` (PR #7 งาน K + PR #8 บันทึกใน HANDOFF) · theme 0.14.0 / plugin 0.15.0 · จุดย้อนกลับงาน K: branch `backup/pre-merge-k-2026-10-27`
 > - ตรวจแล้วบน local จาก `main` จริง: ทุกลิงก์ header × TH/EN/JA = 200 + ภาษาถูก + anchor มี · ปุ่มลูกศร 44×44 · คีย์บอร์ด/มือถือใช้ได้ · `measure.py` 36 ชุด 0 ปัญหา · **Jimmi แจ้ง 28 ต.ค. ว่าเปิด demo ได้แล้ว** (จาก workspace ของ Claude เปิด Playground ไม่ได้: บูตค้าง "Loading…" เกิน 5 นาที ทั้ง URL เดิมและ `&v=2` ไม่มี console error; github.io/playground ถูก proxy ของ workspace ปฏิเสธ — ใช้ built-in browser ของเครื่อง Jimmi เปิดได้)
-> - **ที่ยังค้าง (เรียงตามที่ควรทำ)**: ① งาน G ทดสอบแปลอัตโนมัติกับ API จริง (ต้อง key ที่มีเครดิต เช็กลิสต์ท้ายข้อ 4.w) ② งาน E ย้ายเว็บ + 301 (รอ Jimmi ตัดสิน map ลิงก์เก่า ~44 ลิงก์ ข้อ 7 0.2) ③ โฮสต์ Ruk-com ตาม `HOSTING.md` ④ ของที่ Jimmi ต้องทำเอง ข้อ 7 ข้อ 0 (Google Sheet/Turnstile/ส่งรูป-วิดีโอจริง/ตอบข้อ 6/ตอบ AUTO-TRANSLATE 3.3)
+> - **ที่ยังค้าง (เรียงตามที่ควรทำ)**: ① งาน G ทดสอบแปลอัตโนมัติกับ API จริง (ต้อง key ที่มีเครดิต เช็กลิสต์ท้ายข้อ 4.w) ② งาน E ย้ายเว็บ + 301 — **ตาราง redirect ตัดสินแล้ว 28 ต.ค.** (ข้อ 7 "งาน E: ตาราง redirect") เหลือ Jimmi เช็ก 2 path ที่เว็บเดิมตอบ Blocked แล้วเขียนโค้ดได้ ③ โฮสต์ Ruk-com ตาม `HOSTING.md` ④ ของที่ Jimmi ต้องทำเอง ข้อ 7 ข้อ 0 (Google Sheet/Turnstile/ส่งรูป-วิดีโอจริง/ตอบข้อ 6/ตอบ AUTO-TRANSLATE 3.3)
+> - **งานของทีมการตลาด (คนตรวจ ไม่ใช่ AI)**: ทบทวนเนื้อหาที่เราเรียบเรียง/เขียนเพิ่ม/แปล เทียบกับเว็บเดิม — รายการ วิธีตรวจ และเหตุผลที่เปลี่ยนอยู่ที่ข้อ 6.0 · **ต้องเริ่มก่อนปิดเว็บเดิม** (ใช้เว็บเดิมเป็นต้นฉบับเทียบ)
 > - **ปัญหานอกขอบเขตที่จดไว้ ยังไม่แก้**: การ์ด dropdown ชั้นที่ 3 เมนู JA ถูกตัดที่ ~1220px (ข้อ 8 "ปัญหานอกขอบเขต") · ตัวกรองคอร์ส sticky สูงกว่าจอ · `<title>` หน้า 404 เป็นอังกฤษ
 >
-> อัปเดตล่าสุด: 2026-10-28 (งาน K merge แล้ว 27 ต.ค. ดู "สถานะ ณ 28 ต.ค." ด้านล่าง · ก่อนหน้านั้น: รอบที่ 14 อัปเดต 27 ต.ค.: ทดสอบ API จริงยังไม่ผ่าน ดูข้อ 4.w · **ค้างรอบที่ 14**: ทดสอบแปลอัตโนมัติกับ key ที่มีเครดิต — เช็กลิสต์อยู่ท้ายข้อ 4.w · ถ้า key เคยถูกวางในแชท ให้เพิกถอนแล้วสร้างใหม่ · รอบที่ 14: **แปลอัตโนมัติ TH→EN/JA (งาน G)** branch `feature/auto-translate` **merge เข้า `main` แล้ว 27 ต.ค. 2569 โดยยังไม่ผ่านการทดสอบกับ API จริง** (key ใช้ได้ แต่บัญชีไม่มีเครดิต) ดูข้อ 4.w · จุดย้อนกลับ branch `backup/pre-merge-translate-2026-10-27` (= main เดิม f13270a) · รอบที่ 13: **SEO + AI SEO (งาน D)** **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) — จุดย้อนกลับ branch `backup/pre-merge-seo-2026-10-25` (= main เดิม 90f3c33; ย้อนด้วย `git push -f origin backup/pre-merge-seo-2026-10-25:main`) · รอบที่ 12: **PageSpeed (งาน J)** · รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.14.0 / plugin 0.15.0 (งาน K 27 ต.ค.)
+> อัปเดตล่าสุด: 2026-10-28 บ่าย (ตาราง redirect งาน E ตัดสินแล้ว · เพิ่มข้อ 6.0 งานทบทวนเนื้อหาของทีมการตลาด · ก่อนหน้านั้น: งาน K merge แล้ว 27 ต.ค. ดู "สถานะ ณ 28 ต.ค." ด้านล่าง · ก่อนหน้านั้น: รอบที่ 14 อัปเดต 27 ต.ค.: ทดสอบ API จริงยังไม่ผ่าน ดูข้อ 4.w · **ค้างรอบที่ 14**: ทดสอบแปลอัตโนมัติกับ key ที่มีเครดิต — เช็กลิสต์อยู่ท้ายข้อ 4.w · ถ้า key เคยถูกวางในแชท ให้เพิกถอนแล้วสร้างใหม่ · รอบที่ 14: **แปลอัตโนมัติ TH→EN/JA (งาน G)** branch `feature/auto-translate` **merge เข้า `main` แล้ว 27 ต.ค. 2569 โดยยังไม่ผ่านการทดสอบกับ API จริง** (key ใช้ได้ แต่บัญชีไม่มีเครดิต) ดูข้อ 4.w · จุดย้อนกลับ branch `backup/pre-merge-translate-2026-10-27` (= main เดิม f13270a) · รอบที่ 13: **SEO + AI SEO (งาน D)** **merge เข้า `main` แล้ว 25 ต.ค. 2569** (fast-forward) — จุดย้อนกลับ branch `backup/pre-merge-seo-2026-10-25` (= main เดิม 90f3c33; ย้อนด้วย `git push -f origin backup/pre-merge-seo-2026-10-25:main`) · รอบที่ 12: **PageSpeed (งาน J)** · รอบที่ 11: **รูปใน WordPress ให้เล็กสุด (งาน I)** · รอบที่ 10: **ค้นหาทั้งเว็บภาษาไทย** · รอบที่ 9: **รูปจริงจากเว็บเดิม** · **merge เข้า `main` แล้วทั้งสองรอบ 25 ต.ค. 2569** — จุดย้อนกลับ branch `backup/pre-merge-2026-10-25` (= main เดิม b07d21a)) · theme 0.14.0 / plugin 0.15.0 (งาน K 27 ต.ค.)
 >
 > **ก่อนเริ่มงานใหม่**: ถ้า Jimmi อนุมัติแล้ว ให้ merge `feature/real-images` เข้า `main` ก่อน (prompt ทุกตัวในข้อ 10 เริ่มจาก `main`) — ยังไม่อนุมัติ = ถาม Jimmi ก่อน อย่า merge เอง
 >
@@ -349,6 +350,47 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 ## 6. ข้อมูลที่เป็นของสมมติ (ต้องแทนด้วยของจริง)
 
+### 6.0 งานทบทวนเนื้อหาของทีมการตลาด (เพิ่ม 28 ต.ค. 2569)
+
+> **งานนี้คนตรวจ ไม่ใช่งานของ AI** — AI ไม่ต้องตรวจเนื้อหาแทน หน้าที่ของแชทถัดไปคือรับรายการแก้ที่ทีมการตลาดส่งมาแล้วแก้ใน seed (หรือบน staging) เท่านั้น · รายละเอียดเชิงลึกของแต่ละข้ออยู่ในหัวข้อย่อยของข้อ 6 ด้านล่าง (ข้อนี้เป็นตัวรวมสำหรับส่งให้ทีม)
+
+**ทำไมเนื้อหาในเว็บใหม่ไม่เหมือนเว็บเดิมทุกคำ (เหตุผลที่เราเปลี่ยน)**
+1. **ดึงต้นฉบับเต็มไม่ได้** — เว็บเดิมสร้างด้วย Elementor ข้อความถูกดึงผ่านเครื่องมือที่อ่านแล้วสรุปหน้าเว็บ ไม่ใช่ HTML ต้นฉบับ แล้วเรียบเรียงใหม่อีกชั้น (ไม่คัดลอกยาว) → ถ้อยคำ/รายละเอียดอาจคลาดเคลื่อน
+2. **ทำโครงหน้าเดียวกันทุกหน้า** — ทุกคอร์ส/บริการใช้ลำดับเดียวกัน (hero → ปัญหา → ผลลัพธ์ → ขั้นตอน → FAQ → ปุ่มติดต่อ) เพื่อให้คนอ่านตัดสินใจติดต่อง่ายขึ้น และให้ทีมการตลาดแก้ใน editor ได้เองโดยไม่ต้องเขียนโค้ด → ช่องที่เว็บเดิมไม่มีข้อความ เราเขียนเพิ่มเอง
+3. **แก้จุดที่เว็บเดิมผิด** — เช่น รีวิวของ Oxygen Leadership คัดลอกมาจาก Negotiation (ตัดออก), ปัญหาข้อ 4 ของ Negotiation Masterclass และข้อ 3 ของ The Next Director ข้อความไม่ตรงหัวข้อ (เขียนใหม่)
+4. **ตัดตัวเลขที่ยืนยันที่มาไม่ได้** — เช่น "เพิ่มได้ถึง 200%" ของ High-Performance Leadership (ถ้ามีหลักฐาน ใส่กลับได้)
+5. **รวมหน้าย่อยเป็นหน้าเดียว** — หน้าย่อยของ In-house / Transformation / DO·WA·KEI ย่อลงมาเป็น section ในหน้าหลัก (ดูแลง่าย หน้าน้อยลง) → เนื้อหาหน้าย่อยถูกย่อ
+6. **คำแปล EN/JA ใช้ machine translation** — ยังไม่มีคนตรวจ ยกเว้นหน้า Japanese Concept (ผ่านแล้ว 27 ต.ค.)
+7. **ลิงก์เก่าที่หน้าไม่มีแล้ว** — พาไปหน้าที่ใกล้เคียง (Jimmi ตัดสิน 28 ต.ค. ดูข้อ 7 "งาน E: ตาราง redirect") และหลักสูตร The Sales Master / E-Learning **ไม่ย้ายมา**
+
+**วิธีตรวจ**
+1. **เซฟหน้าเว็บเดิมเก็บไว้ก่อน** (พิมพ์เป็น PDF ทุกหน้าที่ต้องเทียบ) — พอย้ายเว็บแล้วจะไม่มีต้นฉบับให้เทียบ
+2. เปิด demo <https://imeeba.github.io/hrideone-web/> คู่กับ hrideone.com หน้าเดียวกัน ทีละหน้า
+3. ตรวจ 4 เรื่อง: (ก) **ข้อเท็จจริง** — ตัวเลข วันที่ ราคา รุ่น ชื่อคน ชื่อลูกค้า (ข) **ความหมาย** — ตรงกับที่ขาย/สอนจริงไหม (ค) **ข้อความที่เราเขียนเพิ่ม** — ใช้ได้ / แก้ / ตัด (ง) **คำแปล** — EN ให้คนที่ใช้อังกฤษดีตรวจ, JA ให้คนญี่ปุ่นตรวจ
+4. จดผลเป็นตาราง (Google Sheet ก็ได้): หน้า · จุด · ถูก/ต้องแก้/ตัด · ข้อความที่ถูก · คนตรวจ · วันที่ → ส่งให้ Jimmi
+5. **อย่าแก้ใน Playground** — demo รีเซ็ตทุกครั้งที่เปิด แก้แล้วหาย · หลังขึ้น staging ทีมแก้เองใน editor ได้
+
+**รายการที่ต้องตรวจ** (✱ = ต้องตรวจก่อนขึ้นเว็บจริง: ข้อเท็จจริง สิทธิ์ใช้รูป ข้อมูลติดต่อ)
+
+| # | หน้า/ส่วน | อะไรที่เปลี่ยนจากเว็บเดิม | ตรวจอะไร |
+|---|---|---|---|
+| 1 ✱ | คอร์ส Public 5 คอร์ส + TEN X | รุ่น/วันที่/ราคา/Early Bird/ลิงก์ Google Form ณ 19 ต.ค. 2569 · New Manager เลือกรุ่น 22 (เว็บเดิมมีทั้ง 21/22) · Lean เลือกรุ่น 3 (มี 2/3) · รีวิว Negotiation 3 รายการเรียบเรียงใหม่ · Oxygen ไม่ใส่รีวิว · Next Director ปัญหาข้อ 3 เขียนใหม่ | ยืนยันกับทีมจัดอบรม · ผู้รีวิวยินยอมให้ใช้ชื่อ · ข้อความที่เขียนใหม่ |
+| 2 | คอร์ส In-house 15 คอร์ส | intro/ปัญหา/ผลลัพธ์เรียบเรียงใหม่ · บรรทัด "คอร์สนี้ช่วยอย่างไร" (4 ข้อ × 15 คอร์ส) และหัวข้อตัวหนาของ intro **เขียนเองทั้งหมด** · ชื่อภาษาไทยเต็ม (H1 เดิม) ยังไม่ใช้ · ตัดตัวเลขผลลัพธ์ · Negotiation Masterclass ปัญหาข้อ 4 เขียนใหม่ | เทียบกับ `hrideone.com/courses/<slug>/` · รายละเอียดที่คงไว้: 7 ขั้นตอน + FAB (Essential Sales), 8 ขั้นตอน + คู่เจรจา 4 แบบ (Negotiation), TKI (Conflict), VUCA (Change) · ตัดสินว่าจะแสดงชื่อไทยไหม |
+| 3 | หน้าบริการ In-house / Public / Transformation | ย่อจากเว็บเดิม · เขียนเพิ่ม: hero บางหน้า, ป้ายจุดเด่น, ขั้นตอน In-house 4 ข้อ, ขั้นตอนสมัคร Public 3 ข้อ, FAQ ของ Public ทั้งหมด, แถบชวนจัด In-house, กล่อง "สัญญาณที่องค์กรควรทบทวนกลยุทธ์" · Team Simulation / Japanese Working Philosophy / Cross-cultural Communication เป็นข้อความสั้นที่เขียนเอง (ติดป้ายตัวอย่าง) | ข้อความที่เขียนเพิ่มทุกจุด · (Japanese Concept ผ่านแล้ว 27 ต.ค.) |
+| 4 | หน้าย่อยที่รวมเข้าหน้าหลัก | Leadership / Business Development → ตัวกรองคอร์สในหน้า In-house · Business / Technology / People / Culture Strategy → section ในหน้า Transformation · DO·WA·KEI → section ในหน้า Japanese Concept · Team Simulation (เว็บเดิมเป็นหน้าว่าง) | ประเด็นสำคัญของหน้าย่อยยังอยู่ครบไหม · DO·WA·KEI ควรเป็นคอร์สแยกไหม |
+| 5 | หน้าแรก | หัวข้อ hero "พัฒนาผู้นำ ขับเคลื่อนองค์กรสู่อนาคต" เขียนใหม่ · สาส์นผู้บริหารยังไม่ครบย่อหน้า · "What We Do" ตั้งเอง · title หน้าแรก 3 ภาษาตั้งเอง | ข้อความ hero · ส่งสาส์นฉบับเต็ม |
+| 6 | About | พันธกิจ/วิสัยทัศน์/สาส์น/ไทม์ไลน์เรียบเรียงใหม่ · ปีในไทม์ไลน์ขาด (มีแค่ 1993) · Social Impact เป็นตัวอย่าง | ปีที่ขาด · ส่งรูป Social Impact 4 รูป |
+| 7 ✱ | ข้อมูลบริษัท (footer, Contact, Settings → ข้อมูลบริษัท) | ที่อยู่ภาษาไทยแปลเองจากที่อยู่อังกฤษ · ชื่อนิติบุคคลไม่มี "บริษัท" นำหน้า · แถบ CTA ยังมี "(ข้อความตัวอย่าง)" | LINE OA ตัวไหน (`@hrideone` หรือ `@deoneacademy`) · เบอร์โทรรูปแบบเดียว · URL LinkedIn · สะกดชื่อ ดร.ชัยพัชร์ เลิศรักษ์ทวีกุล / Chaipat Lertlucktaweekul |
+| 8 ✱ | รูปและวิดีโอ | ใช้รูปจากเว็บเดิม | สิทธิ์ใช้รูปผู้บริหาร ผู้เข้าอบรม และโลโก้ลูกค้า 40 โลโก้ · alt (ชื่อบริษัท) ของโลโก้ช่อง 10 · อยากเปลี่ยนปกคอร์สที่มืด/ซ้ำไหม · ส่งวิดีโอจริง (hero, DO·WA·KEI, Outcomes) |
+| 9 | บทความ 115 เรื่อง | 63 เรื่องที่เว็บเดิม "ไม่มีหมวดหมู่" เราจัดหมวดเองจากชื่อเรื่อง (Business / Sales / Coaching) · ลิงก์เก่าในบทความเปลี่ยนตามตาราง redirect · ลิงก์ไป 5 คอร์สที่เว็บเดิมลบไปแล้วจะเหลือเป็นข้อความธรรมดา | หมวดถูกไหม · ปลายทางลิงก์ในตาราง redirect เหมาะไหม (โดยเฉพาะ Leading High-Performance Teams → High-Performance Leadership Mastery) |
+| 10 | คำแปล EN/JA ทั้งเว็บ | machine translation ทั้งหมด (ยกเว้น Japanese Concept) | EN: คนที่ใช้อังกฤษดีตรวจ · JA: คนญี่ปุ่นตรวจ (หน้าที่แปลด้วยปุ่มแปลอัตโนมัติจะถูกตั้ง noindex จนกว่ากด "ตรวจแล้ว" แต่คำแปลชุดปัจจุบันใน demo ไม่ได้ทำผ่านปุ่มนั้น จึงยังถูก index ตามปกติ) |
+| 11 | SEO และค้นหา | excerpt คอร์สใช้เป็นข้อความใต้ลิงก์ใน Google · คำพ้องในช่องค้นหา 25 กลุ่ม | คอร์สที่อยากเจาะกลุ่มให้ชัดขึ้น · คำพ้องครบ/ผิดไหม (Settings → ค้นหา) |
+| 12 | หลักสูตรที่ไม่ย้าย | The Sales Master และ E-Learning (ร่วมกับ Conicle) ยังมีหน้าบนเว็บเดิม แต่ไม่ย้ายมา (Jimmi 28 ต.ค.) — ลิงก์เก่าพาไป Public Training / In-house | ยืนยันว่าไม่ได้ขายแล้ว ถ้ายังขายต้องสร้างหน้าใหม่ |
+
+**ลำดับที่ควรทำ**: เซฟหน้าเว็บเดิม → ข้อ ✱ (1, 7, 8) → 2–6, 9, 12 → คำแปล (10) **หลังเนื้อหาไทยนิ่งแล้ว** (ไม่งั้นต้องแปลใหม่) → 11
+
+**ควรทำอะไรต่อหลังตรวจ**: ทีมส่งตารางผลให้ Jimmi → แชทถัดไปแก้ตามตาราง (seed สำหรับ demo หรือแก้บน staging) → Jimmi ดู demo ซ้ำ → บันทึกในข้อนี้ว่าส่วนไหนตรวจแล้ว (วันที่ + คนตรวจ) → ส่วนที่ตรวจแล้วจึงย้ายขึ้นเว็บจริง (งาน E)
+
 - `playground/seed.php`: ชื่อ/slug คอร์สมาจากเว็บจริง แต่ **ระดับผู้เรียน ระยะเวลา รูปแบบ หัวข้อ** และสถานะ "เปิดรับสมัคร" ของ Public เป็นค่าสมมติ เนื้อหาคอร์สเป็นข้อความตัวอย่าง
 - หน้าบริการ: เนื้อหาเรียบเรียง/ย่อจากเว็บเดิม (ดึงข้อความเต็มไม่ได้ ใช้สรุปจากหน้าเว็บ) ต้องให้ Jimmi/การตลาดตรวจ · ส่วนที่ผมเขียนเพิ่มเอง (ไม่มีในเว็บเดิม): หัวข้อ/lead ของ hero บางหน้า, chips จุดเด่น, ขั้นตอน In-house 4 ข้อ (สรุปจาก FAQ เดิม), ขั้นตอนสมัคร Public 3 ข้อ, FAQ ของ Public ทั้งหมด (ส่งหลายคน/รุ่นเต็ม), ข้อ "เหมาะกับการส่งพนักงานบางส่วน…", แถบชวนจัด In-house, คำอธิบาย Japanese Working Philosophy และ Cross-cultural Communication (เว็บเดิมไม่มีหน้า), "3 วัน · ประเทศญี่ปุ่น" ของ Part 3 (เว็บเดิมแบ่งเป็น Day 1–3), กล่อง "สัญญาณที่องค์กรควรทบทวนกลยุทธ์"
 - หน้าบริการ: รูป hero/รูปประกอบเป็นรูปตัวอย่าง · รูปจริงจากเว็บเดิม: In-house `/wp-content/uploads/2026/09/782.webp`, Public `/wp-content/uploads/2026/09/1920x1080-01-1024x576.webp`, โลโก้พาร์ทเนอร์ `/wp-content/uploads/2026/09/logo-partner-01…08.png` (Transformation) · DO·WA·KEI เว็บเดิมมีวิดีโอใน section Business Outcomes (ยังไม่ได้ใส่)
@@ -391,7 +433,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - **หมวดของ 63 เรื่องที่เว็บเดิมเป็น "ไม่มีหมวดหมู่"** ผมจัดเองจากชื่อเรื่อง (`CATEGORY_MAP` ใน `scripts/wxr-to-blog.py`) — Business = องค์กร/วัฒนธรรม/กลยุทธ์/HR/ข่าวบริษัท, Sales = ขาย/เจรจา, Coaching = ภาวะผู้นำ/ผู้จัดการ/พัฒนาตนเอง · ให้การตลาดตรวจ แก้ได้ 2 ทาง: แก้ใน wp-admin ทีละเรื่อง หรือแก้ map แล้วรันสคริปต์ + นำเข้าซ้ำ (การนำเข้าซ้ำจะทับที่แก้ใน wp-admin)
 - เรื่องที่ไม่มีรูปปกในเว็บเดิม: `why-do-managers-need-to-develop-leadership-skills` (และ EN/JA ของเรื่องนี้) → การ์ดไม่มีรูป
 - excerpt: ใช้ excerpt เดิม หรือ meta description ของ Rank Math ถ้ามี (ส่วนใหญ่) ที่เหลือ WordPress ตัดจากเนื้อหาเอง
-- ลิงก์ในเนื้อหาที่ชี้ไปหน้าเก่า (เช่น `/courses/negotiation-skills/`, `/coaching/executive-coaching`) แปลงเป็น path ภายในแล้วแต่ **ยังไม่ได้ redirect** → รวมในงาน 301 (ข้อ 7 รายการ 6)
+- ลิงก์ในเนื้อหาที่ชี้ไปหน้าเก่า (เช่น `/courses/negotiation-skills/`, `/coaching/executive-coaching`) แปลงเป็น path ภายในแล้วแต่ **ยังไม่ได้ redirect** → รวมในงาน 301 (ข้อ 7 รายการ 6 — ตารางตัดสินแล้ว 28 ต.ค.)
 - รูปใน Playground/local ยังโหลดจาก hrideone.com (ถ้าเว็บเดิมปิด/ย้ายโดเมนรูปจะหาย) → ตอนย้ายจริงใช้โหมด download
 
 ### ข้อมูลที่ต้องตรวจ (จากรอบที่ 4: เนื้อหา In-house 15 คอร์ส) — ค่าชั่วคราวอยู่ใน `hri_seed_inhouse_courses()` แก้/ย้อนกลับได้
@@ -418,7 +460,7 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 
 0.0 ~~Merge `feature/search` → `main`~~ — **ทำแล้ว 25 ต.ค. 2569** (fast-forward, branch `backup/pre-merge-2026-10-25` = `main` เดิม b07d21a ย้อนกลับด้วย `git push -f origin backup/pre-merge-2026-10-25:main` · branch `preview/feature-search` ลบไม่ได้จากเซสชันนี้ (403) — ลบเองบน GitHub ได้) · หลัง merge เช็ค demo จริงที่ https://imeeba.github.io/hrideone-web/ (jsDelivr cache `@main` ได้ถึง ~12 ชม. ใส่ `&v=<เลข>` เพื่อเลี่ยง)
 0.1 **ผลทดสอบก่อน merge (25 ต.ค. 2569, เว็บ build ใหม่จาก blueprint บน SQLite):** crawl 620 URL ผ่าน (html lang/h1/title) · measure.py 3 ภาษา × 1280/1220/1024/768/375 × 17 หน้า ไม่มี overflow/tap/contrast/PHP/JS error · ฟอร์ม lead: honeypot, rate limit 5/10 นาที, validate ผ่าน · ค้นหา TH/EN/JA + ไม่พบผล + input แปลก ๆ ผ่าน · แก้ระหว่างทาง: `/en/en/` ซ้ำใน `hri_localize_url`, label ใบประกาศนียบัตรไม่แปล
-0.2 **ปัญหาที่รู้แล้ว ยังไม่แก้:** ~44 ลิงก์ในบทความที่นำเข้าชี้ URL เว็บเดิมที่ไม่มีแล้ว (→ งาน E ทำ redirect mapping — ต้องให้ Jimmi ตัดสิน เช่น negotiation-skills→negotiation-mastery, master-of-communication→communication-mastery, embracing-change→change-transformation-mastery, time-and-priority-management→time-and-priority-mastery, และ consulting, coaching, public-training/e-learning, the-sales-master, logical-and-critical-thinking ฯลฯ) · ไม่มี meta description ทุกหน้า (→ งาน D) · `<img>` ~4,000 รูปไม่มี width/height (→ งาน I/J) · `<title>` ของหน้า 404 เป็นอังกฤษ · ยังไม่ทดสอบ MySQL จริง · ต้องถาม Ruk-com เรื่อง ext-intl
+0.2 **ปัญหาที่รู้แล้ว ยังไม่แก้:** ~~~44 ลิงก์~~ 20 path ในบทความที่นำเข้าชี้ URL เว็บเดิมที่ไม่มีแล้ว (→ งาน E — **ตัดสินแล้ว 28 ต.ค. ดู "งาน E: ตาราง redirect" ในข้อ 7 รายการ 6** ตัวอย่างเดิมด้านหลังนี้ล้าสมัย เช่น negotiation-skills ไป negotiation-masterclass ไม่ใช่ negotiation-mastery · เดิม: ต้องให้ Jimmi ตัดสิน เช่น negotiation-skills→negotiation-mastery, master-of-communication→communication-mastery, embracing-change→change-transformation-mastery, time-and-priority-management→time-and-priority-mastery, และ consulting, coaching, public-training/e-learning, the-sales-master, logical-and-critical-thinking ฯลฯ) · ไม่มี meta description ทุกหน้า (→ งาน D) · `<img>` ~4,000 รูปไม่มี width/height (→ งาน I/J) · `<title>` ของหน้า 404 เป็นอังกฤษ · ยังไม่ทดสอบ MySQL จริง · ต้องถาม Ruk-com เรื่อง ext-intl
 0.1 **Merge `feature/real-images` → `main`** (รอบที่ 9, รอ Jimmi ดู) · ดูก่อน merge: แก้ทุก `main` ใน `playground/blueprint.json` เป็น `feature/real-images` แล้วเปิดผ่าน `https://playground.wordpress.net/#<blueprint JSON>` (ลิงก์สั้นใช้ `main` เสมอ) · หลัง merge: Actions "Site media" ไม่ต้องรันใหม่ (ไฟล์อยู่ใน repo แล้ว), jsDelivr `@main` เห็นไฟล์ใหม่ทันทีเพราะเป็น path ใหม่
 0.2 **รูปที่ยังขาด (รอบที่ 9)**: Jimmi ส่งรูปกิจกรรม Social Impact (About, 4 รูป) · ยืนยันสิทธิ์ใช้รูปผู้บริหาร/ผู้เข้าอบรม/โลโก้ลูกค้ากับลูกค้าก่อนขึ้นเว็บจริง · ตรวจ alt โลโก้ช่อง 10 · อยากได้ปกคอร์สใหม่แทนรูปที่มืด/ซ้ำไหม · วิดีโอ (hero, DO·WA·KEI, Outcomes) จะใส่เมื่อไร
 0. **งานที่ Jimmi ต้องทำเอง**: (ก) สร้าง Google Sheet + Apps Script + ใส่ค่าใน wp-config ตาม `LEAD-SETUP.md`; (ข) สร้าง Turnstile (ฟรี) แล้วใส่ key; (ค) ตอบคำถามในหัวข้อ "ข้อมูลที่ต้องตัดสินใจ" ข้อ 6; (ง) ส่งไฟล์รูป/วิดีโอจริง (บางอย่างโหลดจาก hrideone.com จาก workspace ไม่ได้); (จ) ตอบคำถามแปลอัตโนมัติใน [`AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) ข้อ 3.3 (อย่างน้อยผู้ให้บริการ) ก่อนเริ่มงาน G; (ช) ถาม Ruk-com ตาม `HOSTING.md` ข้อ 2 เมื่อพร้อมขึ้นโฮสต์
@@ -429,7 +471,44 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 3. ~~นำเข้าบทความ~~ — **ทำแล้วในรอบที่ 6** (เว็บเดิมมี 115 เรื่อง ไม่ใช่ ~150 และมี EN/JA ครบอยู่แล้ว) · ตอนย้ายจริง: export ใหม่จากเว็บเดิม → `scripts/wxr-to-blog.py` → Tools → นำเข้าบทความ แบบ "คัดลอกรูปเข้าคลังสื่อ" บน staging
 4. ~~**ค้นหาทั้งเว็บ** (ภาษาไทย, synonym map)~~ — **ทำแล้วในรอบที่ 10 (merge แล้ว)** ดูข้อ 4.y · เหลือ: ทดสอบบน MySQL จริง (Ruk-com), ขอ Ruk-com เปิด ext-intl (เขียนใน HOSTING.md แล้ว), ให้ Jimmi ตรวจ synonym 25 กลุ่ม
 5. ~~**SEO / AI-SEO** → prompt D~~ — **ทำแล้วในรอบที่ 13 (merge แล้ว)** ดูข้อ 4.z · เหลือ: ส่ง sitemap เข้า Search Console/Bing หลังขึ้นโฮสต์จริง, ให้ Jimmi ตัดสินเรื่องบอตเทรนโมเดล (ข้อ 6) · ของเดิม: The SEO Framework (ฟรี) + schema เอง (EducationalOrganization, Course/CourseInstance + offers/Early Bird, FAQPage, BlogPosting, BreadcrumbList, Person สำหรับวิทยากร), hreflang, robots.txt (AI crawlers), llms.txt, Bing/IndexNow
-6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, ลิงก์เก่าในเนื้อหาบทความ) · ของบล็อกทำแล้วใน `blog.php` (เว็บเดิมใช้ `?e-page-…=N` ไม่ใช่ `/blog/page/N`)
+6. **ย้ายเนื้อหา + 301 redirects** (`/public-training/*`, `/courses/*`, หน้าย่อยบริการ, ลิงก์เก่าในเนื้อหาบทความ) · ของบล็อกทำแล้วใน `blog.php` (เว็บเดิมใช้ `?e-page-…=N` ไม่ใช่ `/blog/page/N`) · **ตาราง redirect ตัดสินแล้ว 28 ต.ค. — ดู "งาน E: ตาราง redirect" ด้านล่าง**
+
+**งาน E: ตาราง redirect (ตัดสินแล้วโดย Jimmi 28 ต.ค. 2569 · ยังไม่ได้เขียนโค้ด)**
+
+ที่มา: ลิงก์ในบทความที่นำเข้า (`playground/data/blog-posts.json`) + หน้าใน crawl เว็บเดิม 35 หน้า · เช็กสถานะเว็บเดิมจริง 28 ต.ค. ผ่าน built-in browser ของเครื่อง Jimmi (workspace ของ Claude เข้า hrideone.com และ web.archive.org ไม่ได้)
+- ตัวเลข "~44 ลิงก์" เดิมไม่ถูก: ลิงก์ที่ปลายทางไม่มีจริง = **20 path** (ส่วนใหญ่อยู่ในบทความทั้ง 3 ภาษา) · ลิงก์ไปบทความ (~20 ตัว) ใช้ได้อยู่แล้ว (slug เดิม + permalink `/%postname%/`; ลิงก์ JA ที่ดูเหมือนถูกตัดตรงกับ slug จริง) · JA ที่ลิงก์ `/in-house/` ถูกแปลงเป็นหน้า JA เองตอน render
+- เว็บเดิมมี redirect ของตัวเอง 4 ตัว (คอร์สเปลี่ยนชื่อ) ใช้เป็นหลักฐาน · **negotiation-skills → negotiation-masterclass** (ไม่ใช่ negotiation-mastery ตามที่ข้อ 0.2 เคยเสนอ)
+
+| path เก่า | ปลายทาง (slug ไทย · EN/JA = หน้าแปลของภาษานั้น) | เว็บเดิม 28 ต.ค. |
+|---|---|---|
+| `/courses/negotiation-skills/` | `/courses/negotiation-masterclass/` | 301 ไปที่เดียวกัน |
+| `/courses/time-and-priority-management/` | `/courses/time-and-priority-mastery/` | 301 ไปที่เดียวกัน |
+| `/courses/master-of-communication/` | `/courses/communication-mastery/` | 301 ไปที่เดียวกัน |
+| `/courses/growth-mindset/` | `/courses/growth-mindset-mastery/` | 301 ไปที่เดียวกัน |
+| `/courses/embracing-change/` | `/courses/change-transformation-mastery/` | ⏳ Blocked — **Jimmi เปิดเช็กในเบราว์เซอร์ปกติ** |
+| `/public-training/on-class/professional-brand-new-manager/` | `/courses/the-new-manager/` | ⏳ Blocked — **Jimmi เปิดเช็ก** |
+| `/courses/leading-high-performance-teams/` | `/courses/high-performance-leadership-mastery/` | 404 |
+| `/courses/personality-insights-by-disc/` · `/courses/the-legendary-team/` · `/courses/team-engagement-building/` · `/courses/logical-and-critical-thinking/` | `/in-house/#courses` + **ถอดลิงก์ในบทความเหลือข้อความ** | 404 |
+| `/special-project/ten-x/` | URL ภายนอกของ TEN X (อ่าน `hri_external_url` ของคอร์ส `ten-x`) — ไปทีเดียว ไม่ผ่าน `/courses/ten-x/` ที่ 302 อีกต่อ | 404 |
+| `/special-project/the-sales-master/` · `/public-training/the-sales-master/` | `/public-training/` (ไม่ย้ายหลักสูตร) | 301 → `/public-training/the-sales-master/` (200 มีเนื้อหา) |
+| `/public-training/e-learning/` · `/courses/effective-cross-functional-communication/` | `/in-house/` (ไม่ย้าย E-Learning; Cross-Functional Communication เป็นวิชาใน E-Learning) | 200 มีเนื้อหา / 404 |
+| `/coaching/executive-coaching/` · `/coaching/leadership-coaching/` | `/contact-us/` (ไม่เติมหัวข้อในฟอร์ม — Jimmi 28 ต.ค.) | 301 ไปบทความ JA (WordPress เดาเอง) / 404 |
+| `/coaching/` | `/` | 301 → `/` |
+| `/consulting/` | `/transformation-solutions/` | 404 |
+| `/en/in-house/` · `/en/public-training/` (และ `/ja/…`) | `/en/in-house-en/` · `/en/public-training-en/` | (slug WPML เดิม ซ้ำข้ามภาษาได้ · Polylang ฟรีซ้ำไม่ได้) |
+| `/public-training/{negotiation-mastery,the-next-director,oxygen-leadership,lean-transformation-in-7-weeks}/` | `/courses/<slug เดียวกัน>/` | 200 (หน้าเดิม) |
+| `/public-training/professional-brand-new-manager/` | `/courses/the-new-manager/` | 200 |
+| `/in-house/leadership-development/` · `/in-house/business-development/` | `/in-house/?pillar[]=leadership#courses` · `/in-house/?pillar[]=business#courses` | 200 |
+| `/in-house/team-simulation/` | `/in-house/` | 200 แต่หน้าว่าง |
+| `/transformation-solutions/{business,technology,people,culture}-strategy/` | `/transformation-solutions/#<ชื่อเดียวกัน>` (anchor มีจริง) | 200 |
+| `/japanese-concept/do-wa-kei/` | `/japanese-concept/#do-wa-kei` | 200 |
+
+**วิธีทำที่ตกลง** (ใช้ Polylang ฟรีอย่างเดียว ไม่ใช้ WPML · ไม่เพิ่ม plugin)
+- ตารางเก็บ path เก่า → **slug ไทยของปลายทาง** แล้วหาหน้าแปลด้วย `pll_get_post()` ตามภาษาของ URL ที่เข้ามา (รับทั้ง `/x`, `/en/x`, `/ja/x` เพราะ `hri_localize_url()` เติม prefix ภาษาให้ลิงก์ที่หาโพสต์ไม่เจอ) · ห้าม hardcode URL เต็ม (slug EN/JA ลงท้าย `-en`/`-ja`)
+- redirect เฉพาะเมื่อ URL นั้นเป็น 404 (หน้าที่ทีมสร้างทีหลังชนะ) · 301 hop เดียว · พก query/anchor ของปลายทางไปด้วย · ไว้ใน hri-core (ใกล้ handler เดิมใน `blog.php`) + filter ให้เพิ่มรายการได้
+- แก้ลิงก์ในเนื้อหาที่ต้นทางด้วย `scripts/wxr-to-blog.py` (ใช้ตารางชุดเดียวกัน, 5 คอร์สที่หายไปถอดเป็นข้อความ) แล้ว export ใหม่ตอนย้ายจริง — 301 ไว้รับลิงก์ภายนอก/Google
+- ทดสอบบน local: ทุก path × TH/EN/JA = 301 ครั้งเดียว → 200 ภาษาถูก · Rcache cache 301 ด้วย → แก้ตารางทีหลังต้อง purge
+- **ก่อนย้ายจริง**: ขอรายการ URL เต็มของเว็บเดิม (sitemap / Search Console) มาเทียบ — crawl มีแค่ 35 หน้า
 7. **แปลอัตโนมัติ TH → EN/JA** — สเปกเต็ม: [`docs/AUTO-TRANSLATE.md`](AUTO-TRANSLATE.md) (ทำเองใน hri-core ต่อยอด Polylang ฟรี, แปลทีละ block, ไม่ทับ block ที่คนตรวจแก้, สถานะ 🤖/✅/⚠️, JA noindex จนกว่าตรวจ, จ่าย API ตามใช้ + เพดานงบ) · prompt G ในข้อ 10 · ต้องได้คำตอบข้อ 3.3 ก่อน
 8. ~~แก้ tap target ≥44px + ชื่อคอร์สตัดกลางคำในการ์ดแคบ~~ — **ทำแล้วในรอบที่ 5** · ~~Blog UI~~ ทำแล้วในรอบที่ 6 · เหลือเก็บตก: ตัวกรอง sticky สูงกว่าจอ ดูหัวข้อ "ปัญหานอกขอบเขต"
 9. **โฮสต์ Ruk-com** — **พักไว้จน demo เสร็จ** · ข้อมูลแพ็กเกจ + ข้อความถาม support 19 ข้อ + วิธีขึ้นเว็บที่เป็นไปได้: [`docs/HOSTING.md`](HOSTING.md)
@@ -501,6 +580,8 @@ scripts/local-setup.sh         สร้างเว็บทดสอบใน�
 - **รูป (รอบที่ 11)**: `set_quality()` ของ WordPress ไม่มีผลเมื่อบันทึกเป็นนามสกุลใหม่ (PNG→WebP) เพราะ `save()` ตั้ง quality ใหม่จาก filter `wp_editor_set_quality` → ถ้าจะ override ต้องใช้ filter ที่ priority สูงกว่าและเปิดค้างไว้จน `save()` จบ (`hri_image_convert_file()` ทำให้แล้ว) · `wp_unique_filename()` มองว่า `name.jpg` ชน `name.webp` → ต้องลบต้นฉบับก่อนตั้งชื่อ ไม่งั้นได้ `name-1.webp` · ประเภทไฟล์ของ attachment (`post_mime_type`) ไม่เท่ากับไฟล์จริงเสมอ: WordPress ย่อรูปใหญ่เป็น `-scaled.webp` แต่ attachment ยังเป็น `image/jpeg` และเก็บ `original_image` (JPG ใหญ่) ไว้ → ตัดสินจาก `wp_check_filetype( $file )` · `wp_insert_post()` ต้อง `wp_slash()` ถ้า content มี `\/` (ใน test fixture) · บล็อก Featured Image ถ้าไม่ใส่ `sizeSlug` จะใช้ขนาดเต็ม · `wp-cli eval-file` ที่ไม่มี `mysql` ใช้ `wp db query` ไม่ได้ (SQLite) ให้ใช้ `wp eval 'echo get_post_field(...)'`
 
 - **ความเร็ว (รอบที่ 12)**: Lighthouse ผ่าน `php -S` ตรงๆ ให้ตัวเลขผิด (ไม่บีบอัด) ใช้ `scripts/perf.py` ที่มีพร็อกซี · `pyftsubset` ของ glob `kanit-latin-*` จับ `latin-ext` ด้วย → ตัดไฟล์ ext เหลือ ~700 ไบต์ (เคยพลาด, แก้แล้วในสคริปต์) · core ไม่ใส่ `loading="lazy"` ให้ `<img>` ที่ไม่มี width+height · `git rm` ไฟล์ที่ถูกแก้ค้างอยู่ต้องใส่ `-f` · ทดสอบ before/after ด้วย `git worktree add /tmp/x origin/main` แล้วชี้ symlink ของ `hri-local` ไปที่นั่น (เสร็จแล้วชี้กลับ; `php -S` มี realpath cache สลับ symlink แล้วอาจเห็นของเก่า 1–2 request) · `<details open>` ที่ JS ปิดทีหลังบนมือถือ = layout shift ใหญ่ (ปิดด้วย inline script หลังองค์ประกอบ) · ตัวกรอง `wp_speculation_rules_href_exclude_paths` ใช้ pattern ของ URLPattern: `?` ใน pattern เป็นตัวขยาย ห้ามใส่ query string (core ข้ามทุก URL ที่มี query อยู่แล้ว) · `styles_inline_size_limit` เรียงไฟล์เล็กก่อนแล้ว inline จนเต็มงบ (ค่าเริ่มต้น 20 KB, ตอนนี้ 40 KB) · ฟอนต์ตัวเดียวกันที่ถูก subset ใหม่ไม่ต้องเปลี่ยน `unicode-range` (ตัวอักษรที่หายไปทั้งหมดนอก range เดิมอยู่แล้ว: ตัวผสม Vietnamese)
+
+- **เช็กหน้าเว็บเดิม (hrideone.com)**: workspace ของ Claude เข้า hrideone.com และ web.archive.org ไม่ได้ (WebFetch ไม่อยู่ใน allowlist) → ใช้ built-in browser ของเครื่อง Jimmi (`fetch()` จากหน้า hrideone.com ใน `javascript_tool` ได้สถานะ/URL ปลายทาง/ข้อความ) · ยิงพร้อมกัน ~20 path แล้ว firewall ของเว็บเดิมตอบ 403 "Blocked … IP" บาง path (28 ต.ค.: `/courses/embracing-change/`, `/public-training/on-class/professional-brand-new-manager/`) → ยิงทีละน้อย เว้นระยะ · `javascript_tool` ตัดที่ 45 วินาที: เริ่ม fetch แบบไม่รอ เก็บผลใน `window.__…` แล้วอ่านในคำสั่งถัดไป
 
 ### ปัญหาที่เจอนอกขอบเขต (ยังไม่แก้)
 
