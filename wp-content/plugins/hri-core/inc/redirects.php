@@ -7,7 +7,8 @@
  * - One hop, to the page of the visitor's language (Polylang free): the table holds the *Thai* target
  *   path and `hri_localize_url()` turns it into the EN / JA translation (/x, /en/x and /ja/x all work).
  * - Never hardcode a full URL (EN / JA slugs end in -en / -ja).
- * - Add or change entries with the `hri_redirect_map` filter.
+ * - The table is data/redirects.json; add or change entries there or with the `hri_redirect_map` filter.
+ * - The query string of the old URL (?utm_…) is kept.
  *
  * Target values:
  * - '/path/?query#anchor' : Thai path of the new site (query and anchor are kept)
@@ -20,61 +21,15 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Old path (no leading / trailing slash, no language prefix) => target. See the file header.
+ * Old path (no leading / trailing slash, no language prefix) => target. The table lives in
+ * data/redirects.json (shared with scripts/wxr-to-blog.py); see the file header for the values.
  *
  * @return array<string,string>
  */
 function hri_redirect_map(): array {
-	$map = array(
-		// Renamed courses (the old site has the same 301s itself).
-		'courses/negotiation-skills'                => '/courses/negotiation-masterclass/',
-		'courses/time-and-priority-management'      => '/courses/time-and-priority-mastery/',
-		'courses/master-of-communication'           => '/courses/communication-mastery/',
-		'courses/growth-mindset'                    => '/courses/growth-mindset-mastery/',
-		'courses/leading-high-performance-teams'    => '/courses/high-performance-leadership-mastery/',
-
-		// Waiting for Jimmi to check them on the old site (it answered "Blocked" to Claude): no redirect yet.
-		'courses/embracing-change'                  => '#', // planned: /courses/change-transformation-mastery/
-		'public-training/on-class/professional-brand-new-manager' => '#', // planned: /courses/the-new-manager/
-
-		// Courses that no longer exist.
-		'courses/personality-insights-by-disc'      => '/in-house/#courses',
-		'courses/the-legendary-team'                => '/in-house/#courses',
-		'courses/team-engagement-building'          => '/in-house/#courses',
-		'courses/logical-and-critical-thinking'     => '/in-house/#courses',
-		'courses/effective-cross-functional-communication' => '/in-house/',
-
-		// TEN X lives on its own site.
-		'special-project/ten-x'                     => 'external:ten-x',
-
-		// Sales Master / E-Learning are not migrated.
-		'special-project/the-sales-master'          => '/public-training/',
-		'public-training/the-sales-master'          => '/public-training/',
-		'public-training/e-learning'                => '/in-house/',
-
-		// Coaching / consulting.
-		'coaching/executive-coaching'               => '/contact-us/',
-		'coaching/leadership-coaching'              => '/contact-us/',
-		'coaching'                                  => '/',
-		'consulting'                                => '/transformation-solutions/',
-
-		// Public courses used to live under /public-training/.
-		'public-training/negotiation-mastery'       => '/courses/negotiation-mastery/',
-		'public-training/the-next-director'         => '/courses/the-next-director/',
-		'public-training/oxygen-leadership'         => '/courses/oxygen-leadership/',
-		'public-training/lean-transformation-in-7-weeks' => '/courses/lean-transformation-in-7-weeks/',
-		'public-training/professional-brand-new-manager' => '/courses/the-new-manager/',
-
-		// In-house sub pages → filtered list / sections of the single page.
-		'in-house/leadership-development'           => '/in-house/?pillar[]=leadership#courses',
-		'in-house/business-development'             => '/in-house/?pillar[]=business#courses',
-		'in-house/team-simulation'                  => '/in-house/',
-		'transformation-solutions/business-strategy'   => '/transformation-solutions/#business-strategy',
-		'transformation-solutions/technology-strategy' => '/transformation-solutions/#technology-strategy',
-		'transformation-solutions/people-strategy'     => '/transformation-solutions/#people-strategy',
-		'transformation-solutions/culture-strategy'    => '/transformation-solutions/#culture-strategy',
-		'japanese-concept/do-wa-kei'                => '/japanese-concept/#do-wa-kei',
-	);
+	$json = file_get_contents( HRI_CORE_DIR . 'data/redirects.json' );
+	$doc  = is_string( $json ) ? json_decode( $json, true ) : null;
+	$map  = is_array( $doc ) && is_array( $doc['map'] ?? null ) ? $doc['map'] : array();
 
 	/**
 	 * Filter the old-URL redirect table.
@@ -142,6 +97,17 @@ add_action(
 		$url = hri_redirect_target( (string) $map[ $path ] );
 		if ( '' === $url ) {
 			return;
+		}
+
+		// Keep the query of the old URL (?utm_source=… for analytics); the target's own query comes first.
+		$query = (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_QUERY ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( '' !== $query ) {
+			$hash = '';
+			if ( false !== ( $pos = strpos( $url, '#' ) ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition
+				$hash = substr( $url, $pos );
+				$url  = substr( $url, 0, $pos );
+			}
+			$url .= ( str_contains( $url, '?' ) ? '&' : '?' ) . $query . $hash;
 		}
 
 		// An external target (TEN X) is allowed; everything else stays on this site.
