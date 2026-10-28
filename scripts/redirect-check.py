@@ -76,6 +76,21 @@ def main():
                         bad.append(f'{label}: anchor lost -> {loc}')
                     elif not re.search(r'\bid="%s"' % re.escape(frag), html):
                         bad.append(f'{label}: id="{frag}" not found in {loc}')
+    # Old WPML URLs of EN / JA pages (Thai slug kept in every language) -> the "-en" / "-ja" page.
+    for old in ('in-house', 'public-training', 'japanese-concept', 'contact-us', 'transformation-solutions', 'courses/negotiation-mastery', 'courses/the-next-director'):
+        for prefix, lang in LANG.items():
+            if not prefix:
+                continue
+            n += 1
+            label = f'/{prefix}{old}/ (WPML)'
+            code, loc, _ = get(f'{base}/{prefix}{old}/')
+            if code != 301 or not loc.rstrip('/').endswith('-' + lang):
+                bad.append(f'{label}: expected 301 to a "-{lang}" page, got {code} {loc}')
+                continue
+            code2, loc2, html = get(loc)
+            m = re.search(r'<html[^>]*\blang="([^"]+)"', html)
+            if code2 != 200 or (m.group(1) if m else '')[:2].lower() != lang:
+                bad.append(f'{label}: {loc} answers {code2}, lang {m.group(1) if m else None}')
     print(f'{n} cases, {len(bad)} problems')
     for b in bad:
         print(' -', b)

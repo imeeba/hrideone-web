@@ -116,3 +116,41 @@ add_action(
 	},
 	1
 );
+
+/**
+ * Old WPML URLs of EN / JA pages: /en/in-house/, /ja/public-training/, /en/courses/negotiation-mastery/ …
+ * WPML kept the Thai slug in every language; Polylang free cannot (a slug is unique), so the EN / JA page is
+ * "<slug>-en" / "<slug>-ja". Without this, Polylang sends /en/in-house/ to the Thai page (wrong language).
+ * Runs when nothing of that language owns the slug: look for the Thai page and go to its translation.
+ */
+add_action(
+	'parse_request',
+	static function ( WP $wp ) {
+		if ( ! function_exists( 'pll_get_post' ) || ! preg_match( '#^(en|ja)/(?:courses/)?([^/]+)/?$#u', rawurldecode( (string) $wp->request ), $m ) ) {
+			return;
+		}
+		list( , $lang, $slug ) = $m;
+		$slug  = sanitize_title( $slug );
+		$types = array( 'page', 'course' );
+
+		$all = get_posts( array( 'post_type' => $types, 'name' => $slug, 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'lang' => '' ) );
+		if ( ! $all ) {
+			return;
+		}
+		foreach ( $all as $id ) {
+			if ( pll_get_post_language( $id ) === $lang ) {
+				return; // A real page of that language: not an old URL.
+			}
+		}
+		$thai = array_values( array_filter( $all, static fn( $id ) => pll_get_post_language( $id ) === pll_default_language() ) );
+		$to   = $thai ? (int) pll_get_post( (int) $thai[0], $lang ) : 0;
+		if ( ! $to ) {
+			return;
+		}
+
+		$query = (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_QUERY ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		wp_safe_redirect( (string) get_permalink( $to ) . ( '' !== $query ? '?' . $query : '' ), 301 );
+		exit;
+	},
+	2
+);
