@@ -9,7 +9,13 @@ The old site runs WPML + Elementor. The export has no language or translation da
 - categories: the real Business / Sales / Coaching are kept; posts that only had "ไม่มีหมวดหมู่"
   (uncategorized) get one of those three from CATEGORY_MAP below (decided by title; marketing should review).
 
+Links to pages of the old site that moved are rewritten with the redirect table
+(wp-content/plugins/hri-core/data/redirects.json, the same one the 301s use); links to the courses that
+no longer exist (the table's "unlink" list) become plain text. Links whose target is still undecided ("#")
+or external (TEN X) stay as they are: the 301 handles them.
+
 Usage: python3 -I scripts/wxr-to-blog.py <export.xml> [out.json]
+       python3 -I scripts/wxr-to-blog.py --relink <blog-posts.json> [out.json]   (apply the table to an existing file)
 Needs: beautifulsoup4 (pip install beautifulsoup4)
 """
 
@@ -19,7 +25,9 @@ import json
 import re
 import sys
 import xml.etree.ElementTree as ET
+import urllib.parse
 from html import escape
+from pathlib import Path
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
@@ -29,6 +37,7 @@ NS = {
     'excerpt': 'http://wordpress.org/export/1.2/excerpt/',
 }
 SITE = 'https://hrideone.com'
+REDIRECTS = json.loads((Path(__file__).resolve().parent.parent / 'wp-content/plugins/hri-core/data/redirects.json').read_text(encoding='utf-8'))
 CATEGORIES = ('business', 'sales', 'coaching')
 
 # Thai slug -> category for posts that had no real category on the old site (applies to the EN / JA versions too).
@@ -121,6 +130,34 @@ def local_url(url: str) -> str:
     return url
 
 
+def relink(url: str):
+    """Root-relative link of the old site -> its new URL (str), None (the target is gone: plain text) or the same url."""
+    if not url.startswith('/'):
+        return url
+    path, sep, tail = url.partition('#')
+    path, qsep, query = path.partition('?')
+    key = re.sub(r'^(?:en|ja)(?:/|$)', '', urllib.parse.unquote(path).strip('/').lower())
+    if key in REDIRECTS['unlink']:
+        return None
+    target = REDIRECTS['map'].get(key, '#')
+    if target == '#' or target.startswith('external:'):
+        return url
+    if '#' in target:  # the target's own anchor wins
+        return target + (qsep + query if qsep and '?' not in target else '')
+    return target + (qsep + query if qsep else '') + (sep + tail if sep else '')
+
+
+def relink_html(html: str) -> str:
+    """Apply relink() to the <a href> of already converted block HTML."""
+    def one(m: re.Match) -> str:
+        before, href, after, inner = m.group(1), m.group(2), m.group(3), m.group(4)
+        new = relink(href)
+        if new is None:
+            return inner
+        return f'<a{before}href="{escape(new) if new != href else href}"{after}>{inner}</a>'
+    return re.sub(r'<a(\s[^>]*?)?href="([^"]*)"([^>]*)>(.*?)</a>', lambda m: one(m), html, flags=re.S)
+
+
 def inline_html(node) -> str:
     """Inline content of a node: only strong/em/a/br/sub/sup/code, no attributes except link ones."""
     out = []
@@ -141,8 +178,12 @@ def inline_html(node) -> str:
             if not href:
                 out.append(inner)
                 continue
-            attrs = ' href="' + escape(local_url(href)) + '"'
-            if child.get('target') == '_blank' and not local_url(href).startswith('/'):
+            new = relink(local_url(href))
+            if new is None:  # link to a page that no longer exists
+                out.append(inner)
+                continue
+            attrs = ' href="' + escape(new) + '"'
+            if child.get('target') == '_blank' and not new.startswith('/'):
                 attrs += ' target="_blank" rel="noreferrer noopener"'
             out.append(f'<a{attrs}>{inner}</a>' if inner.strip() else '')
         elif name in INLINE:
@@ -386,7 +427,34 @@ def text_of(html: str) -> str:
     return re.sub(r'\s+', ' ', BeautifulSoup(html or '', 'html.parser').get_text(' ')).strip()
 
 
+def write_json(data: dict, out: str) -> None:
+    text = json.dumps(data, ensure_ascii=False, indent=1)
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write(text)
+    # Small copy for Tools → นำเข้าบทความ (fits the host's upload limit). mtime=0: same bytes on every run.
+    with open(out + '.gz', 'wb') as f:
+        f.write(gzip.compress(text.encode('utf-8'), mtime=0))
+
+
+def relink_file(src: str, out: str) -> None:
+    """Apply the redirect table to the links of an existing blog-posts.json."""
+    data = json.load(open(src, encoding='utf-8'))
+    changed = removed = 0
+    for post in data['posts']:
+        for t in post['translations'].values():
+            new = relink_html(t['content'])
+            if new != t['content']:
+                changed += 1
+                removed += t['content'].count('<a ') - new.count('<a ')
+                t['content'] = new
+    write_json(data, out)
+    print(f'{changed} article versions relinked, {removed} links turned into plain text -> {out}')
+
+
 def main():
+    if len(sys.argv) > 2 and sys.argv[1] == '--relink':
+        relink_file(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else sys.argv[2])
+        return
     src = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else 'playground/data/blog-posts.json'
     channel = ET.parse(src).getroot().find('channel')
@@ -444,12 +512,7 @@ def main():
             v['old_categories'] = v.pop('categories')
         data.append({'date': date, 'category': category, 'category_from_old_site': bool(real), 'translations': {k: g[k] for k in ('th', 'en', 'ja')}})
 
-    text = json.dumps({'source': 'hrideone.com WordPress export', 'categories': list(CATEGORIES), 'posts': data}, ensure_ascii=False, indent=1)
-    with open(out, 'w', encoding='utf-8') as f:
-        f.write(text)
-    # Small copy for Tools → นำเข้าบทความ (fits the host's upload limit). mtime=0: same bytes on every run.
-    with open(out + '.gz', 'wb') as f:
-        f.write(gzip.compress(text.encode('utf-8'), mtime=0))
+    write_json({'source': 'hrideone.com WordPress export', 'categories': list(CATEGORIES), 'posts': data}, out)
     counts = collections.Counter(p['category'] for p in data)
     print(f'{len(data)} articles x 3 languages -> {out} · ' + ', '.join(f'{k} {v}' for k, v in sorted(counts.items())))
 
