@@ -999,3 +999,7 @@ msgstr "Last updated %s"
 #: inc/seo.php
 msgid "บทความและแนวคิดด้านภาวะผู้นำ การขาย การเจรจา และการพัฒนาองค์กร จากทีมผู้เชี่ยวชาญ HRI DeOne"
 msgstr "Articles and ideas on leadership, sales, negotiation and organizational development from the HRI DeOne experts."
+
+#: inc/seo.php
+msgid "ไม่พบหน้านี้"
+msgstr "Page not found"

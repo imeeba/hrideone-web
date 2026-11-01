@@ -88,6 +88,16 @@
 	align-content: end;
 }
 
+.sg-ramp__step.is-tagged {
+	justify-items: start;
+}
+
+.sg-ramp__step.is-tagged > * {
+	background: var(--wp--custom--color--neutral--0);
+	color: var(--wp--custom--color--neutral--900);
+	padding-inline: 4px;
+}
+
 .sg-grads {
 	display: grid;
 	gap: var(--wp--preset--spacing--40);
