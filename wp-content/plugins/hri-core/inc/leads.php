@@ -119,7 +119,12 @@ add_action(
 				'menu_icon'           => 'dashicons-email-alt',
 				'menu_position'       => 25,
 				'capability_type'     => 'post',
-				'capabilities'        => array( 'create_posts' => 'do_not_allow' ),
+				// Leads are personal data (PDPA): only Editors and Administrators see them, not Authors / Contributors.
+				'capabilities'        => array(
+					'create_posts' => 'do_not_allow',
+					'edit_posts'   => 'edit_others_posts',
+					'delete_posts' => 'delete_others_posts',
+				),
 				'map_meta_cap'        => true,
 				'supports'            => array( 'title' ),
 				'rewrite'             => false,
@@ -371,6 +376,15 @@ function hri_lead_notify( int $post_id, array $data, string $message ): void {
 }
 
 /**
+ * A visitor's text as a Google Sheet cell: a value that starts with = + - @ would run as a formula
+ * (=IMPORTXML(…) can send the whole sheet to another site), so it gets a leading apostrophe, which
+ * Sheets hides and stores the value as plain text. "+66 81…" phone numbers also stay readable this way.
+ */
+function hri_lead_sheet_safe( $value ) {
+	return is_string( $value ) && '' !== $value && str_contains( "=+-@\t\r", $value[0] ) ? "'" . $value : $value;
+}
+
+/**
  * Send the lead to the Google Sheet (Apps Script web app). Does not wait for the answer.
  *
  * @param array<string,string> $data
@@ -380,11 +394,11 @@ function hri_lead_webhook( int $post_id, array $data, string $message ): bool {
 		return false;
 	}
 	$payload = array_merge(
-		$data,
+		array_map( 'hri_lead_sheet_safe', $data ),
 		array(
 			'token'     => defined( 'HRI_LEAD_WEBHOOK_TOKEN' ) ? HRI_LEAD_WEBHOOK_TOKEN : '',
 			'timestamp' => current_time( 'c' ),
-			'message'   => $message,
+			'message'   => hri_lead_sheet_safe( $message ),
 			'lead_id'   => $post_id,
 			'site'      => home_url( '/' ),
 		)

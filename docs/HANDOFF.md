@@ -2,6 +2,8 @@
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
 >
+> **ตรวจความปลอดภัย (1 พ.ย. 2569, plugin 0.20.0, branch `security/hardening-2026-11`)** — ผลและแผนรับมือเหตุอยู่ [`SECURITY.md`](SECURITY.md) · โค้ดของเราผ่าน (WPCS Security sniffs ไม่เจอจุดโจมตีได้) · แก้: ปิด File Editor, ซ่อนชื่อผู้ใช้ (`/wp-json/wp/v2/users`, `?author=`), security headers, HSTS เปิดด้วย `HRI_HSTS`, Lead เห็นได้เฉพาะ Editor+, กันสูตรใน Google Sheet · ที่เหลือเป็นเช็กลิสต์หลังบ้านใน SECURITY.md ข้อ 3 (ลบ OneMCP/ปลั๊กอินที่ไม่ใช้, 2FA, auto-update, ตรวจ cron, backup นอกเครื่อง, SSL)
+>
 > **รอบปรับ staging 2 (1 พ.ย. 2569, theme 0.16.0 / plugin 0.19.0, branch `feat/staging-polish-round2`)**
 > - ช่องขาวก่อนแถบ CTA: `.wp-site-blocks > footer { margin-block-start: 0 }` · ตัวกรองหลักสูตร: ระดับผู้เรียนเป็น เริ่มต้น/ปานกลาง/ขั้นสูง (`hri_level` slug `beginner/intermediate/advanced`; seed จับคู่ staff→เริ่มต้น, manager→ปานกลาง, director+executive→ขั้นสูง และ **เปลี่ยนชื่อ term เดิมให้เอง** เมื่อรันตั้งค่าซ้ำ) และตัดตัวกรองระยะเวลา (meta `hri_duration_days` ยังอยู่ แสดงในหน้าคอร์ส)
 > - หน้า About/Home: ข้อความ Mission · Vision · Core Value · สาส์นผู้บริหาร · Social Impact เป็นข้อความเดิมจาก hrideone.com/about คำต่อคำ (TH/EN/JA จากหน้า EN/JA ของเว็บเดิม, เก็บใน `playground/data/old-about.json` + `old-about-*.html` ดึงด้วย `scripts/fetch-old-about.py` ผ่าน GitHub Actions) · ตัด section ที่เขียนเองออกจาก About (values 3 ใบ, timeline, stats, gallery) · โค้ดอยู่ `inc/leaders.php`
