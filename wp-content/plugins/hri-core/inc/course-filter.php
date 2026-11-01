@@ -13,9 +13,9 @@ defined( 'ABSPATH' ) || exit;
 const HRI_COURSES_PER_PAGE = 12;
 
 /**
- * Filter groups, in display order. `taxonomy` groups read terms; `duration` is a meta range.
+ * Filter groups, in display order. each group reads the terms of one taxonomy.
  *
- * @return array<string,array{label:string,taxonomy?:string,options?:array<string,string>}>
+ * @return array<string,array{label:string,taxonomy:string}>
  */
 function hri_filter_groups(): array {
 	return array(
@@ -24,14 +24,6 @@ function hri_filter_groups(): array {
 		'topic'    => array( 'label' => __( 'หัวข้อ', 'hri-core' ), 'taxonomy' => 'hri_topic' ),
 		'level'    => array( 'label' => __( 'ระดับผู้เรียน', 'hri-core' ), 'taxonomy' => 'hri_level' ),
 		'format'   => array( 'label' => __( 'รูปแบบ', 'hri-core' ), 'taxonomy' => 'hri_format' ),
-		'duration' => array(
-			'label'   => __( 'ระยะเวลา', 'hri-core' ),
-			'options' => array(
-				'1' => __( '1 วัน', 'hri-core' ),
-				'2' => __( '2 วัน', 'hri-core' ),
-				'3' => __( '3 วันขึ้นไป', 'hri-core' ),
-			),
-		),
 	);
 }
 
@@ -99,22 +91,6 @@ function hri_filter_query( array $params ): WP_Query {
 		$args['tax_query'] = array_merge( array( 'relation' => 'AND' ), $tax_query ); // phpcs:ignore WordPress.DB.SlowDBQuery
 	}
 
-	$meta_query = array();
-	foreach ( $params['groups']['duration'] ?? array() as $bucket ) {
-		if ( ! isset( hri_filter_groups()['duration']['options'][ $bucket ] ) ) {
-			continue;
-		}
-		$meta_query[] = array(
-			'key'     => 'hri_duration_days',
-			'value'   => (int) $bucket,
-			'compare' => '3' === $bucket ? '>=' : '=',
-			'type'    => 'NUMERIC',
-		);
-	}
-	if ( $meta_query ) {
-		$args['meta_query'] = array_merge( array( 'relation' => 'OR' ), $meta_query ); // phpcs:ignore WordPress.DB.SlowDBQuery
-	}
-
 	if ( '' !== $params['q'] ) {
 		$args['s'] = $params['q'];
 	}
@@ -129,10 +105,6 @@ function hri_filter_query( array $params ): WP_Query {
  * @return array<string,array{0:string,1:int|null}>
  */
 function hri_filter_options( array $group, ?array $object_ids = null ): array {
-	if ( ! empty( $group['options'] ) ) {
-		return hri_duration_options( $group['options'], $object_ids );
-	}
-
 	if ( null !== $object_ids && ! $object_ids ) {
 		return array();
 	}
@@ -159,50 +131,6 @@ function hri_filter_options( array $group, ?array $object_ids = null ): array {
 			$out[ $term->slug ] = array( $term->name, (int) $term->count );
 		} else {
 			$out[ $term->slug ] = array( $term->name, ( $out[ $term->slug ][1] ?? 0 ) + 1 );
-		}
-	}
-	return $out;
-}
-
-/**
- * Duration buckets with course counts; buckets with no courses are left out.
- *
- * @param array<string,string> $buckets    value => label ("3" means 3 days or more).
- * @param int[]|null           $object_ids Limit counting to these courses.
- * @return array<string,array{0:string,1:int}>
- */
-function hri_duration_options( array $buckets, ?array $object_ids = null ): array {
-	$args = array(
-		'post_type'        => 'course',
-		'post_status'      => 'publish',
-		'numberposts'      => -1,
-		'fields'           => 'ids',
-		'no_found_rows'    => true,
-		'suppress_filters' => false,
-	);
-	if ( null !== $object_ids ) {
-		if ( ! $object_ids ) {
-			return array();
-		}
-		$args['post__in'] = $object_ids;
-	}
-
-	$counts = array_fill_keys( array_keys( $buckets ), 0 );
-	foreach ( get_posts( $args ) as $id ) {
-		$days = (int) get_post_meta( $id, 'hri_duration_days', true );
-		if ( $days < 1 ) {
-			continue;
-		}
-		$key = (string) min( $days, 3 );
-		if ( isset( $counts[ $key ] ) ) {
-			++$counts[ $key ];
-		}
-	}
-
-	$out = array();
-	foreach ( $buckets as $value => $label ) {
-		if ( $counts[ $value ] > 0 ) {
-			$out[ $value ] = array( $label, $counts[ $value ] );
 		}
 	}
 	return $out;
