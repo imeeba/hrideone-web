@@ -33,6 +33,7 @@ function hri_setup_steps(): array {
 		'languages' => __( 'ตั้งค่าภาษา TH / EN / JA', 'hri-core' ),
 		'content'   => __( 'สร้างหน้า คอร์ส และข้อมูลตัวอย่าง', 'hri-core' ),
 		'translate' => __( 'สร้างหน้าแปล EN / JA', 'hri-core' ),
+		'media'     => __( 'นำเข้ารูปเข้า Media Library', 'hri-core' ),
 		'images'    => __( 'บันทึกขนาดรูป', 'hri-core' ),
 		'blog'      => __( 'นำเข้าบทความ 115 เรื่อง × 3 ภาษา', 'hri-core' ),
 		'search'    => __( 'สร้างดัชนีค้นหา', 'hri-core' ),
@@ -111,6 +112,27 @@ function hri_setup_run( string $step, int $offset = 0 ) {
 			require $dir . 'seed-languages.php';
 			return array( 'message' => __( 'สร้างหน้าแปลแล้ว', 'hri-core' ) );
 
+		case 'media':
+			$total = count( hri_site_media_list() );
+			if ( ! $total ) {
+				return new WP_Error( 'hri_setup_media', __( 'อ่านรายการรูป (site-media.json) ไม่ได้', 'hri-core' ) );
+			}
+			$batch  = 6;
+			hri_site_media_import( $offset, $batch );
+			$offset += $batch;
+			if ( $offset < $total ) {
+				return array(
+					/* translators: 1: images done, 2: total */
+					'message' => sprintf( __( 'นำเข้ารูปแล้ว %1$d จาก %2$d', 'hri-core' ), $offset, $total ),
+					'next'    => $offset,
+				);
+			}
+			$applied = hri_site_media_apply();
+			return array(
+				/* translators: 1: pages updated, 2: covers set, 3: images missing */
+				'message' => sprintf( __( 'ย้ายรูปเข้า Media Library แล้ว (อัปเดต %1$d หน้า, ตั้งรูปปก %2$d รายการ, ไม่สำเร็จ %3$d รูป)', 'hri-core' ), $applied['posts'], $applied['covers'], $applied['missing'] ),
+			);
+
 		case 'images':
 			$file = $dir . 'data/image-dims.json';
 			$dims = is_readable( $file ) ? json_decode( (string) file_get_contents( $file ), true ) : null; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
@@ -185,10 +207,10 @@ function hri_setup_page(): void {
 		} else {
 			$log[ $step ] = $result['message'];
 			if ( isset( $result['next'] ) ) {
-				$next = array( $step, (int) $result['next'] );
+				$next = array( $step, (int) $result['next'], isset( $_POST['hri_setup_all'] ) );
 			} elseif ( isset( $_POST['hri_setup_all'] ) ) {
 				$pos  = array_search( $step, $keys, true );
-				$next = isset( $keys[ $pos + 1 ] ) ? array( $keys[ $pos + 1 ], 0 ) : null;
+				$next = isset( $keys[ $pos + 1 ] ) ? array( $keys[ $pos + 1 ], 0, true ) : null;
 			}
 		}
 		update_option( 'hri_setup_log', $log, false );
@@ -218,7 +240,7 @@ function hri_setup_page(): void {
 	if ( $next ) {
 		echo '<form method="post" id="hri-setup-next">';
 		wp_nonce_field( 'hri_setup' );
-		echo '<input type="hidden" name="hri_setup_step" value="' . esc_attr( $next[0] ) . '"><input type="hidden" name="offset" value="' . esc_attr( (string) $next[1] ) . '"><input type="hidden" name="hri_setup_all" value="1">';
+		echo '<input type="hidden" name="hri_setup_step" value="' . esc_attr( $next[0] ) . '"><input type="hidden" name="offset" value="' . esc_attr( (string) $next[1] ) . '">' . ( $next[2] ? '<input type="hidden" name="hri_setup_all" value="1">' : '' ) . '';
 		/* translators: %s: step name */
 		echo '<p>' . esc_html( sprintf( __( 'กำลังทำ: %s', 'hri-core' ), $steps[ $next[0] ] ?? $next[0] ) ) . '</p>';
 		// Button not named "submit": that name would hide form.submit().
@@ -231,5 +253,13 @@ function hri_setup_page(): void {
 	wp_nonce_field( 'hri_setup' );
 	echo '<input type="hidden" name="hri_setup_step" value="all"><input type="hidden" name="hri_setup_all" value="1">';
 	submit_button( __( 'เริ่มตั้งค่าทั้งหมด', 'hri-core' ) );
+	echo '</form>';
+
+	// Safe after the team started editing: only image URLs change, text is kept.
+	echo '<hr><h2>' . esc_html__( 'นำเข้ารูปเข้า Media Library', 'hri-core' ) . '</h2><p>' . esc_html__( 'ดาวน์โหลดรูปของหน้าเว็บ (hero, ปกคอร์ส, วิทยากร, โลโก้) เข้า Media Library แล้วให้หน้าต่าง ๆ ใช้รูปจากที่นั่น ทีมจึงเปลี่ยนรูปเองได้ ไม่ทับข้อความที่แก้ไว้ ทำซ้ำได้', 'hri-core' ) . '</p>';
+	echo '<form method="post">';
+	wp_nonce_field( 'hri_setup' );
+	echo '<input type="hidden" name="hri_setup_step" value="media">';
+	submit_button( __( 'นำเข้ารูปเข้า Media Library', 'hri-core' ), 'secondary' );
 	echo '</form></div>';
 }
