@@ -2083,3 +2083,102 @@ video {
 	object-fit: cover;
 	width: 100%;
 }
+
+/* ---------- Executives' message (Home, About): large portrait + text ---------- */
+.hri-leader {
+	gap: var(--wp--preset--spacing--60);
+}
+
+.hri-leader + .hri-leader {
+	margin-block-start: var(--wp--preset--spacing--80);
+}
+
+.hri-leader > .wp-block-image {
+	border-radius: var(--wp--custom--radius--lg);
+	box-shadow: var(--wp--preset--shadow--md);
+	margin: 0;
+	overflow: hidden;
+}
+
+.hri-leader > .wp-block-image img {
+	aspect-ratio: 4 / 5;
+	display: block;
+	object-fit: cover;
+	object-position: 50% 20%;
+	width: 100%;
+}
+
+@media (min-width: 900px) {
+	.hri-leader {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	}
+
+	.hri-leader--reverse {
+		grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+	}
+
+	.hri-leader--reverse > .wp-block-image {
+		order: 2;
+	}
+}
+
+.hri-leader__headline {
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: 1.35;
+	text-transform: none;
+}
+
+.hri-leader__text > p {
+	font-size: var(--wp--preset--font-size--medium);
+	line-height: 1.8;
+}
+
+.hri-leader__sign {
+	color: var(--wp--preset--color--contrast-muted);
+	font-size: var(--wp--preset--font-size--small) !important;
+	line-height: 1.6 !important;
+	text-align: right;
+}
+
+.hri-leader__sign strong {
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+/* ---------- About: mission / vision rows ---------- */
+.hri-about-row {
+	gap: var(--wp--preset--spacing--60);
+}
+
+.hri-about-row + .hri-about-row {
+	margin-block-start: var(--wp--preset--spacing--70);
+}
+
+.hri-about-row > .wp-block-image {
+	background: var(--wp--preset--color--surface-brand);
+	box-shadow: none;
+}
+
+.hri-about-row > .wp-block-image img {
+	aspect-ratio: 4 / 3;
+	object-fit: contain;
+}
+
+.hri-about-row .is-style-eyebrow {
+	border-bottom: 2px solid var(--wp--preset--color--primary);
+	font-style: italic;
+	padding-bottom: var(--wp--preset--spacing--20);
+}
+
+.hri-about-row__title {
+	color: var(--wp--preset--color--primary-strong);
+	font-size: var(--wp--preset--font-size--xx-large);
+	line-height: 1.25;
+	text-transform: none;
+}
+
+@media (min-width: 900px) {
+	.hri-about-row--reverse > .wp-block-image {
+		order: 2;
+	}
+}

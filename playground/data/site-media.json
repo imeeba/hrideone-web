@@ -1139,8 +1139,8 @@
    "partner-08"
   ],
   "portraits": [
-   "person-chaipat",
-   "person-ken"
+   "about-ceo",
+   "about-chairman"
   ],
   "pages": {
    "home": [
@@ -1151,10 +1151,7 @@
    ],
    "about": [
     "page-about",
-    null,
-    null,
-    null,
-    null
+    "about-vision"
    ],
    "in-house": [
     "page-inhouse",
