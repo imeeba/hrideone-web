@@ -16,8 +16,15 @@
 		grid-template-columns: 280px minmax(0, 1fr);
 	}
 
+	/* The filter is taller than most screens (~1390px at 1280), so a sticky filter kept its lower groups out of reach
+	   until the end of the list. Cap it at the viewport and let it scroll on its own; focus rings sit inside the
+	   padding, so the scroll box does not clip them. */
 	.hri-filter {
+		box-sizing: border-box;
+		max-block-size: calc(100vh - 2 * var(--wp--preset--spacing--50));
+		overflow-y: auto;
 		position: sticky;
+		scrollbar-width: thin;
 		top: var(--wp--preset--spacing--50);
 	}
 

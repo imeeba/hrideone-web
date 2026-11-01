@@ -279,6 +279,29 @@ add_filter(
 );
 
 /* ----------------------------------------------------------------------
+ * 404 title in the visitor's language
+ * ---------------------------------------------------------------------- */
+
+// Both TSF and WordPress use core's "Page not found", which stays English unless WordPress' own language
+// packs for th/ja are installed. Use an interface string of this plugin instead (translated in the .po files).
+add_filter(
+	'the_seo_framework_404_title',
+	static function () {
+		return __( 'ไม่พบหน้านี้', 'hri-core' );
+	}
+);
+
+add_filter(
+	'document_title_parts',
+	static function ( $parts ) {
+		if ( is_404() && is_array( $parts ) ) {
+			$parts['title'] = __( 'ไม่พบหน้านี้', 'hri-core' );
+		}
+		return $parts;
+	}
+);
+
+/* ----------------------------------------------------------------------
  * Social image and description helpers
  * ---------------------------------------------------------------------- */
 

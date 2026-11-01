@@ -245,6 +245,11 @@ video {
 
 .hri-header .wp-block-navigation .wp-block-navigation__responsive-container:not(.is-menu-open) .has-child .has-child > .wp-block-navigation__submenu-container {
 	inset-block-start: -7px;
+	/* Core opens nested cards to the left in a right-justified menu, but the first card is pinned to the right edge
+	   of its heading (In-house sits on the left half of the bar), so at 1220-1280px the nested card fell off-screen.
+	   There is always room on the right of the first card. */
+	left: 100%;
+	right: auto;
 }
 
 .hri-header .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
@@ -268,7 +273,7 @@ video {
 	outline: none;
 }
 
-.hri-header .wp-block-navigation__submenu-container .wp-block-navigation-submenu {
+.hri-header .wp-block-navigation__submenu-container li.wp-block-navigation-submenu {
 	align-items: center;
 }
 
