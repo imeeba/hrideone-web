@@ -1,0 +1,17 @@
+{
+ "th": {
+  "url": "https://hrideone.com/about/",
+  "status": 200,
+  "blocks": []
+ },
+ "en": {
+  "url": "https://hrideone.com/en/about-us/",
+  "status": 200,
+  "blocks": []
+ },
+ "ja": {
+  "url": "https://hrideone.com/ja/%e4%bc%9a%e7%a4%be%e6%a6%82%e8%a6%81/",
+  "status": 200,
+  "blocks": []
+ }
+}
