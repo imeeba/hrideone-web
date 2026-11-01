@@ -73,6 +73,20 @@
 
 ข้อควรรู้: รูปบนเว็บใช้ลิงก์จาก jsDelivr (`cdn.jsdelivr.net/gh/imeeba/…`) ที่เบราว์เซอร์ของผู้เข้าชมโหลดเอง ไม่ใช่เซิร์ฟเวอร์ · ขั้นตอนนี้ไม่ตั้ง Google Sheet / Turnstile / Claude API key ให้ · อย่ารันซ้ำหลังทีมเริ่มแก้เนื้อหาจริง (ข้อความตั้งต้นจะทับ)
 
+### 4.2 Deploy อัตโนมัติจาก GitHub ขึ้น staging (ไม่ต้องอัปโหลด zip) — เพิ่ม 1 พ.ย. 2569
+
+ทุกครั้งที่ merge เข้า `main` และมีไฟล์ theme/plugin เปลี่ยน `.github/workflows/deploy-staging.yml` จะสร้างไฟล์ชุดเดียวกับ zip (`scripts/package-staging.sh`) แล้วส่งขึ้น `new.hrideone.com` ทาง FTPS เฉพาะไฟล์ที่เปลี่ยน ไปที่ `wp-content/themes/hri-theme/` และ `wp-content/plugins/hri-core/` เท่านั้น (ฐานข้อมูล, `uploads/`, ปลั๊กอินอื่นไม่ถูกแตะ) · สั่งรันเองได้ที่ Actions → Deploy staging → Run workflow
+
+หลังไฟล์ขึ้น request แรกจะให้ hri-core อัปเดตฐานข้อมูลเอง (`inc/upgrade.php`: ขนาดรูป, ค่า SEO, permalink และ migration ตามเวอร์ชันใน `hri_core_migrations()`) **ไม่สร้าง/ทับหน้า คอร์ส คำแปล บทความ** ถ้าต้องการข้อความตั้งต้นชุดใหม่ยังต้องกด Tools → ตั้งค่าเว็บเริ่มต้น เอง · การเปลี่ยนที่กระทบโครงข้อมูล (เช่นเปลี่ยนชื่อ term) ให้เขียนเป็น migration แล้ว bump Version ของ plugin
+
+ตั้งครั้งเดียว:
+1. DirectAdmin → FTP Management → สร้างบัญชีใหม่ (เช่น `deploy@hrideone.com`) แบบ Custom path = `domains/new.hrideone.com/public_html/wp-content` · รหัสผ่านยาวสุ่ม · อย่าใช้บัญชีหลักของโฮสต์
+2. GitHub repo → Settings → Secrets and variables → Actions → **Secrets**: `STAGING_FTP_SERVER` (host FTP เช่น `ftp.hrideone.com` หรือชื่อเซิร์ฟเวอร์ที่ DirectAdmin แสดง), `STAGING_FTP_USERNAME`, `STAGING_FTP_PASSWORD`
+3. (ถ้าจำเป็น) **Variables**: `STAGING_FTP_DIR` ถ้าบัญชี FTP เริ่มที่โฟลเดอร์อื่นที่ไม่ใช่ `wp-content` (ใส่ path ของ wp-content ลงท้ายด้วย `/`) · `STAGING_FTP_PROTOCOL=ftp` ถ้าโฮสต์ไม่รองรับ FTPS (ไม่แนะนำ)
+4. Actions → Deploy staging → Run workflow → ขั้น "Check the site" ต้องเขียว (หน้าแรก 200 + เวอร์ชัน theme ตรง)
+
+ข้อควรรู้: ยังไม่ตั้ง secrets = job ข้ามเฉยๆ ไม่แดง · ระหว่างอัปโหลด (ไม่กี่วินาที–นาที) เว็บอาจเห็นไฟล์เก่าปนใหม่ เหมาะกับ staging ไม่ใช่เว็บจริง · เทมเพลตที่เคยแก้ใน Site Editor จะบังโค้ดจาก theme ต้อง Reset ก่อน · รายการไฟล์ที่ส่งแล้วเก็บใน `.ftp-deploy-sync-state.json` (ปิดไม่ให้เปิดจากเว็บด้วย `.htaccess`) ถ้าลบไฟล์นี้ รอบถัดไปจะส่งทุกไฟล์ใหม่ · เว็บจริงไม่ได้ผูกกับ workflow นี้
+
 ## 5. ตั้งค่าฝั่งโฮสต์เพื่อความเร็ว (งาน J — โค้ดทำถึงที่สุดแล้ว ที่เหลืออยู่ที่โฮสต์)
 
 > คะแนนที่วัดใน workspace ผ่าน `scripts/perf.py` (พร็อกซีจำลอง Brotli + cache header) ไม่ใช่ความเร็วโฮสต์จริง — พอขึ้นโฮสต์แล้วให้วัดซ้ำด้วย PageSpeed Insights / `scripts/perf.py --base https://<staging>` แล้วเทียบตารางใน HANDOFF รอบที่ 12

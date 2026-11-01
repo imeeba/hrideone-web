@@ -3,6 +3,7 @@
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
 >
 > **ตรวจความปลอดภัย (1 พ.ย. 2569, plugin 0.20.0, branch `security/hardening-2026-11`)** — ผลและแผนรับมือเหตุอยู่ [`SECURITY.md`](SECURITY.md) · โค้ดของเราผ่าน (WPCS Security sniffs ไม่เจอจุดโจมตีได้) · แก้: ปิด File Editor, ซ่อนชื่อผู้ใช้ (`/wp-json/wp/v2/users`, `?author=`), security headers, HSTS เปิดด้วย `HRI_HSTS`, Lead เห็นได้เฉพาะ Editor+, กันสูตรใน Google Sheet · ที่เหลือเป็นเช็กลิสต์หลังบ้านใน SECURITY.md ข้อ 3 (ลบ OneMCP/ปลั๊กอินที่ไม่ใช้, 2FA, auto-update, ตรวจ cron, backup นอกเครื่อง, SSL)
+> **Deploy อัตโนมัติขึ้น staging (1 พ.ย. 2569, plugin 0.21.0, branch `feat/staging-auto-deploy`)**: merge เข้า `main` → GitHub Actions ส่ง theme/plugin ขึ้น `new.hrideone.com` ทาง FTPS (`.github/workflows/deploy-staging.yml`) → hri-core อัปเดตฐานข้อมูลเองตามเวอร์ชัน (`inc/upgrade.php`, ไม่ทับเนื้อหา) · ต้องให้ Jimmi สร้างบัญชี FTP + ใส่ secrets ตาม HOSTING.md ข้อ 4.2 · OneMCP (Softaculous) แก้ไฟล์ theme/plugin ไม่ได้ แนะนำให้ปิด
 >
 > **รอบปรับ staging 2 (1 พ.ย. 2569, theme 0.16.0 / plugin 0.19.0, branch `feat/staging-polish-round2`)**
 > - ช่องขาวก่อนแถบ CTA: `.wp-site-blocks > footer { margin-block-start: 0 }` · ตัวกรองหลักสูตร: ระดับผู้เรียนเป็น เริ่มต้น/ปานกลาง/ขั้นสูง (`hri_level` slug `beginner/intermediate/advanced`; seed จับคู่ staff→เริ่มต้น, manager→ปานกลาง, director+executive→ขั้นสูง และ **เปลี่ยนชื่อ term เดิมให้เอง** เมื่อรันตั้งค่าซ้ำ) และตัดตัวกรองระยะเวลา (meta `hri_duration_days` ยังอยู่ แสดงในหน้าคอร์ส)
