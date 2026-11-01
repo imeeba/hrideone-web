@@ -947,6 +947,81 @@
    "height": 1000,
    "file": "oxy-12.webp",
    "bytes": 48092
+  },
+  "tr-hero": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/379403217_08084538-6f6e-4edb-b92b-a06193bfa5af.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/379403217_08084538-6f6e-4edb-b92b-a06193bfa5af.webp",
+   "kind": "photo"
+  },
+  "svc-business": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/8291.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/8291.webp",
+   "kind": "hero"
+  },
+  "svc-technology": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/103088.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/103088.webp",
+   "kind": "hero"
+  },
+  "svc-people": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/7380.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/7380.webp",
+   "kind": "hero"
+  },
+  "svc-culture": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/10002.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/10002.webp",
+   "kind": "hero"
+  },
+  "jp-prog-1": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/105253.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/105253.webp",
+   "kind": "photo"
+  },
+  "jp-prog-2": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/22.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/22.webp",
+   "kind": "photo"
+  },
+  "jp-prog-3": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/431.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/431.webp",
+   "kind": "photo"
+  },
+  "jp-part-1": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/6238.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/6238.webp",
+   "kind": "photo"
+  },
+  "jp-part-2": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/03/118981.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/03/118981.webp",
+   "kind": "photo"
+  },
+  "jp-part-3": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/milad-fakurian-UYgrVfIhBec-unsplash.jpg",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/milad-fakurian-UYgrVfIhBec-unsplash.jpg",
+   "kind": "photo"
+  },
+  "ih-pillar-1": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/782.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/782.webp",
+   "kind": "photo"
+  },
+  "about-vision": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-23-2026-08_15_44-PM-2.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-23-2026-08_15_44-PM-2.webp",
+   "kind": "photo"
+  },
+  "about-ceo": {
+   "src": "https://hrideone.com/wp-content/uploads/2026/09/866A4635.webp",
+   "fallback": "https://hrideone.com/wp-content/uploads/2026/09/866A4635.webp",
+   "kind": "photo"
+  },
+  "about-chairman": {
+   "src": "https://www.hri-japan.co.jp/career/images/message/img03.webp",
+   "fallback": "https://www.hri-japan.co.jp/career/images/message/img03.webp",
+   "kind": "photo"
   }
  },
  "use": {
