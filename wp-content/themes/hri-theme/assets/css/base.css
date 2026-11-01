@@ -505,6 +505,12 @@ video {
 	max-width: 44rem;
 }
 
+/* The footer (CTA band + footer) sits right under the page content: the root block gap left a
+   white strip between a coloured last section and the CTA band. Sections carry their own padding. */
+.wp-site-blocks > footer {
+	margin-block-start: 0;
+}
+
 /* The hero sits right under the header (no block gap above the page content). */
 .wp-site-blocks > main:has(> .wp-block-post-content > .is-style-hero:first-child) {
 	margin-block-start: 0;
