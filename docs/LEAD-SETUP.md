@@ -35,6 +35,7 @@ function doPost(e) {
 }
 ```
 3. Deploy → New deployment → Web app → Execute as: **Me**, Who has access: **Anyone** → คัดลอก URL (`…/exec`) ใส่ `HRI_LEAD_WEBHOOK_URL`
+   - ค่าที่ขึ้นต้นด้วย `= + - @` เว็บเติม `'` นำหน้าให้ก่อนส่ง (plugin 0.20.0) กันผู้กรอกฝังสูตรอย่าง `=IMPORTXML(…)` ที่ส่งข้อมูลทั้งชีตออกไป — Sheet ซ่อน `'` ไว้ ไม่ต้องแก้สคริปต์
 4. ทดสอบ: กรอกฟอร์มบนเว็บ → ต้องมีแถวใหม่ใน Sheet (ในหลังบ้าน แถวนั้นจะมีช่อง "ส่งเข้า Google Sheet = sent")
 
 ## 2. กันสแปม
