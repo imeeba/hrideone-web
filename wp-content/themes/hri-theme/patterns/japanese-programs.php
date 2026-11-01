@@ -14,6 +14,7 @@ $hri_out .= hri_bm_head( __( 'หลักสูตรและบริกา�
 $hri_out .= hri_bm_cards(
 	array(
 		array(
+			'photo'  => 'DO·WA·KEI',
 			'num'    => '01',
 			'kicker' => 'Japan Leadership Journey',
 			'title'  => 'DO·WA·KEI',
@@ -21,12 +22,14 @@ $hri_out .= hri_bm_cards(
 			'link'   => array( __( 'ดูรายละเอียด DO·WA·KEI', 'hri-theme' ), '#do-wa-kei' ),
 		),
 		array(
+			'photo' => 'Japanese Working Philosophy',
 			'num'   => '02',
 			'title' => 'Japanese Working Philosophy & Core Practice',
 			'text'  => __( 'ปลูกฝังแนวปฏิบัติที่หล่อเลี้ยงองค์กรญี่ปุ่นมาหลายศตวรรษ เช่น Ho-Ren-So, Kaizen, PDCA และ 5S ให้ทีมไทยนำไปใช้ได้ทุกวัน', 'hri-theme' ),
 			'link'  => array( __( 'สอบถามหลักสูตรนี้', 'hri-theme' ), hri_bm_contact() ),
 		),
 		array(
+			'photo' => 'Cross-cultural Communication',
 			'num'   => '03',
 			'title' => 'Cross-cultural Communication & Collaboration',
 			'text'  => __( 'เชื่อมช่องว่างวัฒนธรรมการทำงานไทย–ญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจกับบริษัทแม่ พันธมิตร และลูกค้าชาวญี่ปุ่น', 'hri-theme' ),

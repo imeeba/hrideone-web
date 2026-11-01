@@ -21,6 +21,7 @@ $hri_out .= hri_bm_cards(
 	array(
 		array(
 			'kicker' => 'Lead Self · Lead Team',
+			'photo'  => 'Leadership',
 			'title'  => 'Leadership',
 			'text'   => __( 'พัฒนาผู้นำตั้งแต่การรู้จักและบริหารตัวเอง วิธีคิด การสื่อสาร ไปจนถึงการโค้ชและการนำทีม', 'hri-theme' ),
 			'list'   => array( 'Self Improvement', 'Thinking', 'Personal Communication', 'Coaching', 'Teamwork & Team Communication' ),
@@ -28,6 +29,7 @@ $hri_out .= hri_bm_cards(
 		),
 		array(
 			'kicker' => 'Strategy · Sales · Customer · Operation',
+			'photo'  => 'Business',
 			'title'  => 'Business',
 			'text'   => __( 'ผู้นำที่ไม่เข้าใจธุรกิจ ไม่สามารถพาองค์กรไปในทิศทางที่ถูกต้องได้ หลักสูตรด้านธุรกิจจึงครอบคลุมทุกฟังก์ชันสำคัญขององค์กร', 'hri-theme' ),
 			'list'   => array( 'Strategy', 'Sales', 'Customer Service', 'Marketing', 'Finance', 'HR', 'Operation' ),

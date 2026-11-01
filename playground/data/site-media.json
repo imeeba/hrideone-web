@@ -1157,17 +1157,29 @@
     null
    ],
    "in-house": [
-    "page-inhouse"
+    "page-inhouse",
+    "ih-pillar-1",
+    "home-g2"
    ],
    "public-training": [
     "page-public-hero",
     "page-public-why"
    ],
    "transformation-solutions": [
-    "page-transformation"
+    "tr-hero",
+    "svc-business",
+    "svc-technology",
+    "svc-people",
+    "svc-culture"
    ],
    "japanese-concept": [
-    "page-japanese"
+    "page-japanese",
+    "jp-prog-1",
+    "jp-prog-2",
+    "jp-prog-3",
+    "jp-part-1",
+    "jp-part-2",
+    "jp-part-3"
    ]
   },
   "covers": {

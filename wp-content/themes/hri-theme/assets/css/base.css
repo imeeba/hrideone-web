@@ -2051,3 +2051,35 @@ video {
 	block-size: 20px;
 	inline-size: 20px;
 }
+
+/* ---------- Photos inside landing-page sections ---------- */
+/* Service banner (Transformation Solutions): wide photo between the heading and the cards. */
+.hri-service > .wp-block-image {
+	margin-block: 0 var(--wp--preset--spacing--50);
+}
+
+.hri-service > .wp-block-image img {
+	aspect-ratio: 3 / 1;
+	border-radius: var(--wp--custom--radius--md);
+	display: block;
+	object-fit: cover;
+	width: 100%;
+}
+
+@media (max-width: 781px) {
+	.hri-service > .wp-block-image img {
+		aspect-ratio: 16 / 9;
+	}
+}
+
+/* Card photo: bleeds to the card edges (the card clips its corners and has its own padding). */
+.hri-card > .wp-block-image {
+	margin: calc(-1 * var(--wp--preset--spacing--50)) calc(-1 * var(--wp--preset--spacing--50)) var(--wp--preset--spacing--20) !important;
+}
+
+.hri-card > .wp-block-image img {
+	aspect-ratio: 3 / 2;
+	display: block;
+	object-fit: cover;
+	width: 100%;
+}

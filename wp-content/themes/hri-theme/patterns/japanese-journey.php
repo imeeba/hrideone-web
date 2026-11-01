@@ -17,6 +17,7 @@ $hri_out .= hri_bm_cards(
 			'num'      => '<span lang="ja">道</span>',
 			'num_html' => true,
 			'kicker'   => __( 'Part 1 · DO · 1 วัน · ประเทศไทย', 'hri-theme' ),
+			'photo'    => 'The Leader Within',
 			'title'    => 'The Leader Within',
 			'text'     => __( 'เปลี่ยนระบบภายในของผู้นำ ก่อนนำผู้อื่น', 'hri-theme' ),
 			'list'     => array(
@@ -29,6 +30,7 @@ $hri_out .= hri_bm_cards(
 			'num'      => '<span lang="ja">和</span>',
 			'num_html' => true,
 			'kicker'   => 'Part 2 · WA',
+			'photo'    => 'The Space Between People',
 			'title'    => 'The Space Between People',
 			'text'     => __( 'เปลี่ยนคนเก่งให้เป็นผู้นำที่คนไว้วางใจ', 'hri-theme' ),
 			'list'     => array(
@@ -41,6 +43,7 @@ $hri_out .= hri_bm_cards(
 			'num'      => '<span lang="ja">敬</span>',
 			'num_html' => true,
 			'kicker'   => __( 'Part 3 · KEI · 3 วัน · ประเทศญี่ปุ่น', 'hri-theme' ),
+			'photo'    => 'Beyond a Single Lifetime',
 			'title'    => 'Beyond a Single Lifetime',
 			'text'     => __( 'จุดสูงสุดของเส้นทาง เรียนรู้จากองค์กรที่ยืนหยัดข้ามศตวรรษในญี่ปุ่น', 'hri-theme' ),
 			'list'     => array(

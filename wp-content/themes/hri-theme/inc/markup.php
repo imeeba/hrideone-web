@@ -238,7 +238,7 @@ function hri_bm_contact(): string {
 /**
  * A grid of cards: number / label, title, text, optional list and link.
  *
- * @param array $cards   Each: array( 'num' => '', 'kicker' => '', 'title' => '', 'text' => '', 'list' => string[], 'link' => array( label, href ), 'anchor' => '' ).
+ * @param array $cards   Each: array( 'num' => '', 'kicker' => '', 'title' => '', 'text' => '', 'list' => string[], 'link' => array( label, href ), 'anchor' => '', 'photo' => alt text of a photo shown on top ).
  * @param int   $columns Desktop column count.
  */
 function hri_bm_cards( array $cards, int $columns = 3, string $class = '' ): string {
@@ -250,6 +250,10 @@ function hri_bm_cards( array $cards, int $columns = 3, string $class = '' ): str
 	);
 	foreach ( $cards as $card ) {
 		$out .= hri_bm_group( array( 'className' => 'is-style-card hri-card' ) );
+		if ( ! empty( $card['photo'] ) ) {
+			// Photo slot on top of the card: the sample-content scripts fill it (in page order), the editor replaces it.
+			$out .= hri_bm_photo( is_string( $card['photo'] ) ? $card['photo'] : $card['title'] );
+		}
 		if ( ! empty( $card['num'] ) ) {
 			// 'num_html' = the number is already HTML (e.g. a kanji in <span lang="ja">).
 			$out .= hri_bm_p( empty( $card['num_html'] ) ? esc_html( $card['num'] ) : $card['num'], array( 'className' => 'hri-card__num' ) );
@@ -391,9 +395,10 @@ function hri_bm_problems( string $title, array $items ): string {
  * Service detail section: tagline (eyebrow), service name, lead, then the given inner markup
  * and a "talk to us about …" button.
  */
-function hri_bm_service( string $anchor, string $background, string $tagline, string $name, string $lead, string $inner ): string {
+function hri_bm_service( string $anchor, string $background, string $tagline, string $name, string $lead, string $inner, string $photo_alt = '' ): string {
 	return hri_bm_section( 'hri-service', $background, $anchor )
 		. hri_bm_head( $tagline, $name, $lead )
+		. ( '' !== $photo_alt ? hri_bm_photo( $photo_alt ) : '' )
 		. $inner
 		/* translators: %s: service name, e.g. Business Strategy */
 		. hri_bm_buttons( array( array( sprintf( __( 'ปรึกษาเรื่อง %s', 'hri-theme' ), $name ), hri_bm_contact() ) ), 'center' )

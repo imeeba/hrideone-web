@@ -42,5 +42,6 @@ echo hri_bm_service( // phpcs:ignore WordPress.Security.EscapeOutput -- block ma
 	'Know Your People. Unlock Your Team.',
 	'People Strategy',
 	__( 'คนคือหัวใจของทุกการเปลี่ยนแปลง แต่ต้องถูกออกแบบให้ทำงานร่วมกันได้อย่างลงตัว แม้คนเก่งก็อาจทำผลงานได้ไม่เต็มที่ หากทีมไม่ได้ถูกออกแบบมาให้ทำงานร่วมกัน', 'hri-theme' ),
-	$hri_inner
+	$hri_inner,
+	__( 'ภาพประกอบ People Strategy', 'hri-theme' )
 );
