@@ -71,7 +71,7 @@ function hri_bm_heading( string $text, array $attrs = array() ): string {
 		unset( $attrs['level'] );
 	}
 	$id = ! empty( $attrs['anchor'] ) ? ' id="' . esc_attr( $attrs['anchor'] ) . '"' : '';
-	return '<!-- wp:heading' . hri_bm_attrs( $attrs ) . " -->\n<h{$level}{$id} class=\"" . esc_attr( hri_bm_class( $classes ) ) . '">' . esc_html( $text ) . "</h{$level}>\n<!-- /wp:heading -->\n";
+	return '<!-- wp:heading' . hri_bm_attrs( $attrs ) . " -->\n<h{$level}{$id} class=\"" . esc_attr( hri_bm_class( $classes ) ) . '">' . nl2br( esc_html( $text ) ) . "</h{$level}>\n<!-- /wp:heading -->\n";
 }
 
 /**

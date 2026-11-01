@@ -2,6 +2,11 @@
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
 >
+> **รอบปรับ staging 2 (1 พ.ย. 2569, theme 0.16.0 / plugin 0.19.0, branch `feat/staging-polish-round2`)**
+> - ช่องขาวก่อนแถบ CTA: `.wp-site-blocks > footer { margin-block-start: 0 }` · ตัวกรองหลักสูตร: ระดับผู้เรียนเป็น เริ่มต้น/ปานกลาง/ขั้นสูง (`hri_level` slug `beginner/intermediate/advanced`; seed จับคู่ staff→เริ่มต้น, manager→ปานกลาง, director+executive→ขั้นสูง และ **เปลี่ยนชื่อ term เดิมให้เอง** เมื่อรันตั้งค่าซ้ำ) และตัดตัวกรองระยะเวลา (meta `hri_duration_days` ยังอยู่ แสดงในหน้าคอร์ส)
+> - หน้า About/Home: ข้อความ Mission · Vision · Core Value · สาส์นผู้บริหาร · Social Impact เป็นข้อความเดิมจาก hrideone.com/about คำต่อคำ (TH/EN/JA จากหน้า EN/JA ของเว็บเดิม, เก็บใน `playground/data/old-about.json` + `old-about-*.html` ดึงด้วย `scripts/fetch-old-about.py` ผ่าน GitHub Actions) · ตัด section ที่เขียนเองออกจาก About (values 3 ใบ, timeline, stats, gallery) · โค้ดอยู่ `inc/leaders.php`
+> - หน้า landing: ช่องรูปในแต่ละหัวข้อ (`hri_bm_cards` key `photo`, `hri_bm_service` พารามิเตอร์ `$photo_alt`) + รูปจากเว็บเดิมใน `site-media.json` (`use.pages[slug]` เรียงตามลำดับช่องรูปในหน้า) · แปลภาษาเพิ่มด้วย `scripts/po-build.py` (ไม่ต้องมี WP-CLI/msgfmt)
+>
 > **ตรวจ staging `new.hrideone.com` — 1 พ.ย. 2569 (theme 0.15.0 / plugin 0.18.0 ที่ Jimmi อัปโหลด)**
 > - หน้า Tools → ตั้งค่าเว็บเริ่มต้น **รันครบแล้ว**: sitemap 429 URL (TH/EN/JA ภาษาละ 143) = คอร์ส 60 · หน้า 24 · บทความ 345 · ไม่มีรหัสผ่าน (Jimmi ไม่ได้ตั้ง) · เข้าจาก workspace ได้หลัง Jimmi เพิ่ม `new.hrideone.com` ใน Allowed domains ของ cloud environment
 > - `seo-check.py --base https://new.hrideone.com` → **ผ่านทั้งหมด** (429 หน้า + robots.txt + llms.txt 88 ลิงก์)

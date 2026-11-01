@@ -53,7 +53,7 @@ function hri_bm_leader( array $leader, bool $reverse = false, int $paragraphs = 
 	$out   = hri_bm_group( array( 'className' => hri_bm_class( array( 'hri-split', 'hri-leader', $reverse ? 'hri-leader--reverse' : '' ) ) ) )
 		. hri_bm_image( 'assets/images/placeholder/portrait.svg', $leader['name'], 'hri-leader__photo' )
 		. hri_bm_group( array( 'className' => 'hri-split__text hri-leader__text' ) )
-		. hri_bm_heading( nl2br( esc_html( $leader['headline'] ) ), array( 'level' => 3, 'className' => 'hri-leader__headline' ) );
+		. hri_bm_heading( $leader['headline'], array( 'level' => 3, 'className' => 'hri-leader__headline' ) );
 	foreach ( $items as $item ) {
 		$out .= hri_bm_p( esc_html( $item ) );
 	}
@@ -72,7 +72,7 @@ function hri_about_row( string $kicker, string $statement, string $headline, str
 		. hri_bm_photo( $statement )
 		. hri_bm_group( array( 'className' => 'hri-split__text' ) )
 		. hri_bm_eyebrow( $kicker, false )
-		. hri_bm_heading( nl2br( esc_html( $statement ) ), array( 'level' => 2, 'className' => 'hri-about-row__title' ) )
+		. hri_bm_heading( $statement, array( 'level' => 2, 'className' => 'hri-about-row__title' ) )
 		. hri_bm_p( '<strong>' . nl2br( esc_html( $headline ) ) . '</strong>', array( 'fontSize' => 'large' ) )
 		. hri_bm_p( esc_html( $text ) )
 		. hri_bm_group_end()
