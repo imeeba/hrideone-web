@@ -59,6 +59,20 @@
 
 ข้อควรรู้: ฐานข้อมูลของ local/Playground เป็น SQLite ส่วนโฮสต์ใช้ MySQL → ย้ายทั้งก้อนต้องใช้ปลั๊กอินที่ export เป็น SQL/ไฟล์กลาง ไม่ใช่ copy ไฟล์ DB ตรงๆ
 
+### 4.1 ขึ้น staging `new.hrideone.com` ผ่าน wp-admin (ไม่ต้องมี SSH/WP-CLI) — ทางที่ Jimmi เลือก 1 พ.ย. 2569
+
+เตรียมไฟล์: `scripts/package-staging.sh` → `dist/hri-theme.zip` + `dist/hri-core.zip` (ปลั๊กอินชุดนี้พก `setup/` = seed + รูปตัวอย่าง + บทความ 115 เรื่อง สำหรับหน้า Tools → ตั้งค่าเว็บเริ่มต้น) · ทดสอบแล้ว 1 พ.ย. 2569 บน WordPress เปล่า + SQLite: ครบทุกขั้นใน ~140 วินาที, `measure.py` 3 หน้า × 3 ภาษา 0 ปัญหา, `seo-check.py` 429 หน้าผ่าน
+
+1. สร้างซับโดเมน `new.hrideone.com` (คู่มือ Ruk-com https://help.ruk-com.in.th/topic/7247/) แล้วติดตั้ง WordPress เปล่าด้วย Softaculous (ภาษาไทยหรืออังกฤษก็ได้ ผู้ใช้ผู้ดูแลตั้งเอง) · เลือก PHP 8.3 ถ้าเลือกได้
+2. ตั้ง Settings → Permalinks เป็น "ชื่อโพสต์" · ตั้งรหัสผ่านทั้งเว็บที่ DirectAdmin → Password Protected Directories (กัน Google และคนทั่วไป) หรืออย่างน้อยติ๊ก Settings → Reading → Discourage search engines
+3. Appearance → Themes → Add → Upload `hri-theme.zip` → Activate
+4. Plugins → Add → ค้นหา **Polylang** (ของ Frédéric Demarle) และ **The SEO Framework** แล้วติดตั้ง/เปิดใช้ → Upload `hri-core.zip` → Activate · ถ้าอัปโหลดไม่ผ่านเพราะไฟล์ใหญ่เกินขีดจำกัด: ส่งไฟล์ผ่าน FTP ไปที่ `wp-content/plugins/` แล้วแตก zip ใน File Manager ของ DirectAdmin (คู่มือ FTP https://help.ruk-com.in.th/topic/8240/)
+5. Tools → ตั้งค่าเว็บเริ่มต้น → "เริ่มตั้งค่าทั้งหมด" แล้วรอ (หน้านี้กดต่อเองทีละขั้น อย่าปิด) · ถ้าขั้นไหนค้างหรือขึ้น error ให้โหลดหน้าใหม่แล้วกดเริ่มอีกครั้ง ทำซ้ำได้ ไม่สร้างข้อมูลซ้ำ
+6. ใส่ค่าใน `wp-config.php` (File Manager): `define( 'PLL_COOKIE', false );` (ข้อ 5) · ค่าฟอร์ม Lead ตาม `LEAD-SETUP.md` ถ้าจะทดสอบฟอร์ม
+7. ตรวจ: เปิด `/`, `/en/`, `/ja/`, `/courses/`, ค้นหา, `/sitemap.xml` · แล้ววัดจากเครื่องเราด้วย `scripts/perf.py --base https://new.hrideone.com`, `seo-check.py`, `measure.py` (ถ้าตั้งรหัสผ่านทั้งเว็บ สคริปต์เข้าไม่ได้ ให้เปิดรหัสชั่วคราว)
+
+ข้อควรรู้: รูปบนเว็บใช้ลิงก์จาก jsDelivr (`cdn.jsdelivr.net/gh/imeeba/…`) ที่เบราว์เซอร์ของผู้เข้าชมโหลดเอง ไม่ใช่เซิร์ฟเวอร์ · ขั้นตอนนี้ไม่ตั้ง Google Sheet / Turnstile / Claude API key ให้ · อย่ารันซ้ำหลังทีมเริ่มแก้เนื้อหาจริง (ข้อความตั้งต้นจะทับ)
+
 ## 5. ตั้งค่าฝั่งโฮสต์เพื่อความเร็ว (งาน J — โค้ดทำถึงที่สุดแล้ว ที่เหลืออยู่ที่โฮสต์)
 
 > คะแนนที่วัดใน workspace ผ่าน `scripts/perf.py` (พร็อกซีจำลอง Brotli + cache header) ไม่ใช่ความเร็วโฮสต์จริง — พอขึ้นโฮสต์แล้วให้วัดซ้ำด้วย PageSpeed Insights / `scripts/perf.py --base https://<staging>` แล้วเทียบตารางใน HANDOFF รอบที่ 12
