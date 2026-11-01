@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Save the text of the old hrideone.com /about/ page (Thai, English, Japanese) in reading order.
 
-Output: playground/data/old-about.json   { "th": [ {tag, text, img?}, ... ], "en": [...], "ja": [...] }
+Output: playground/data/old-about.json   per language: url, status, blocks (headings / paragraphs / images in order), text (page innerText)
+        playground/data/old-about-<lang>.html     rendered HTML
         playground/data/crawl/about-<lang>-<n>.jpg   full-page screenshot chunks (to see the layout)
 
 The Claude workspace cannot reach hrideone.com, so this runs on GitHub (.github/workflows/fetch-old-about.yml).
@@ -51,7 +52,14 @@ def main():
                 print(lang, url, resp.status if resp else None, page.url)
                 page.evaluate("() => window.scrollTo(0, document.body.scrollHeight)")
                 page.wait_for_timeout(1500)
-                result[lang] = {'url': page.url, 'status': resp.status if resp else None, 'blocks': page.evaluate(JS)}
+                result[lang] = {
+                    'url': page.url,
+                    'status': resp.status if resp else None,
+                    'blocks': page.evaluate(JS),
+                    'text': page.evaluate('() => document.body.innerText'),
+                }
+                with open(os.path.join(OUT, f'old-about-{lang}.html'), 'w', encoding='utf-8') as f:
+                    f.write(page.content())
                 shot = Image.open(io.BytesIO(page.screenshot(full_page=True))).convert('RGB')
                 for n, y in enumerate(range(0, shot.height, 2400), 1):
                     shot.crop((0, y, shot.width, min(y + 2400, shot.height))).resize((640, round(min(2400, shot.height - y) / 2))).save(
