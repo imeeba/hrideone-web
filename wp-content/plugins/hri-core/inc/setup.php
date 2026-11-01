@@ -65,6 +65,11 @@ function hri_setup_run( string $step, int $offset = 0 ) {
 	if ( ! $dir ) {
 		return new WP_Error( 'hri_setup_missing', __( 'ไม่พบโฟลเดอร์ setup ในปลั๊กอิน (ต้องใช้ hri-core.zip ที่สร้างจาก scripts/package-staging.sh)', 'hri-core' ) );
 	}
+	// The seeds build pages with the theme's functions (hri_course_page_markup() …): without the theme a
+	// step would die with a fatal error instead of saying what is missing.
+	if ( ! function_exists( 'hri_course_page_markup' ) ) {
+		return new WP_Error( 'hri_setup_theme', __( 'ยังไม่ได้เปิดใช้ธีม HRI DeOne (Appearance → Themes → Activate) แล้วกลับมาเริ่มใหม่', 'hri-core' ) );
+	}
 	if ( function_exists( 'set_time_limit' ) ) {
 		@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- some hosts forbid it.
 	}
