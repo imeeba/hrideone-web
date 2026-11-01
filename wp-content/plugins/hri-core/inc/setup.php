@@ -80,6 +80,11 @@ function hri_setup_run( string $step, int $offset = 0 ) {
 			if ( ! function_exists( 'PLL' ) ) {
 				return new WP_Error( 'hri_setup_pll', __( 'ยังไม่ได้เปิดปลั๊กอิน Polylang', 'hri-core' ) );
 			}
+			// Same site options as playground/blueprint.json: a Softaculous install leaves "My Blog"
+			// as the title, which then shows in every <title> and in the JSON-LD.
+			update_option( 'blogname', 'HRI DeOne' );
+			update_option( 'blogdescription', 'สถาบันฝึกอบรม Executive Training ชั้นนำ' );
+			update_option( 'permalink_structure', '/%postname%/' );
 			$log = hri_polylang_setup();
 			return is_wp_error( $log ) ? $log : array( 'message' => implode( ' · ', $log ) );
 
