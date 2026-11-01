@@ -29,9 +29,23 @@ $terms = array(
 		'sales'                  => 'Sales',
 		'customer-service'       => 'Customer Service',
 	),
-	'hri_level'   => array( 'staff' => 'พนักงาน', 'manager' => 'ผู้จัดการ', 'director' => 'ผู้อำนวยการ', 'executive' => 'ผู้บริหารระดับสูง' ),
+	'hri_level'   => array( 'beginner' => 'เริ่มต้น', 'intermediate' => 'ปานกลาง', 'advanced' => 'ขั้นสูง' ),
 	'hri_format'  => array( 'on-site' => 'On-site', 'online' => 'Online', 'hybrid' => 'Hybrid' ),
 );
+
+// Learner level used to be a job title (staff / manager / director / executive); it is now a skill
+// level. Rename the old terms in place so re-running the setup on a staging site keeps its courses.
+$level_migrate = array( 'staff' => 'beginner', 'manager' => 'intermediate', 'director' => 'advanced' );
+foreach ( $level_migrate as $old_slug => $new_slug ) {
+	$old_term = get_term_by( 'slug', $old_slug, 'hri_level' );
+	if ( $old_term && ! get_term_by( 'slug', $new_slug, 'hri_level' ) ) {
+		wp_update_term( $old_term->term_id, 'hri_level', array( 'slug' => $new_slug, 'name' => $terms['hri_level'][ $new_slug ] ) );
+	}
+}
+$old_exec = get_term_by( 'slug', 'executive', 'hri_level' );
+if ( $old_exec ) {
+	wp_delete_term( $old_exec->term_id, 'hri_level' ); // its courses become "advanced" below.
+}
 
 $ids = array();
 foreach ( $terms as $taxonomy => $list ) {
@@ -66,10 +80,9 @@ $term_names = array(
 		'customer-service'       => array( 'Customer Service', 'カスタマーサービス' ),
 	),
 	'hri_level'   => array(
-		'staff'     => array( 'Staff', '一般社員' ),
-		'manager'   => array( 'Manager', 'マネージャー' ),
-		'director'  => array( 'Director', 'ディレクター' ),
-		'executive' => array( 'Senior Executive', '経営層' ),
+		'beginner'     => array( 'Beginner', '初級' ),
+		'intermediate' => array( 'Intermediate', '中級' ),
+		'advanced'     => array( 'Advanced', '上級' ),
 	),
 	'hri_format'  => array(
 		'on-site' => array( 'On-site', '対面' ),
@@ -168,6 +181,7 @@ foreach ( $courses as $c ) {
 	wp_set_object_terms( $post_id, $map( 'hri_program', array( $program ) ), 'hri_program' );
 	wp_set_object_terms( $post_id, $map( 'hri_pillar', array( $pillar ) ), 'hri_pillar' );
 	wp_set_object_terms( $post_id, $map( 'hri_topic', array( $topic ) ), 'hri_topic' );
+	$levels = array_values( array_unique( array_map( static fn( $l ) => array( 'staff' => 'beginner', 'manager' => 'intermediate', 'director' => 'advanced', 'executive' => 'advanced' )[ $l ] ?? $l, $levels ) ) );
 	wp_set_object_terms( $post_id, $map( 'hri_level', $levels ), 'hri_level' );
 	wp_set_object_terms( $post_id, $map( 'hri_format', $formats ), 'hri_format' );
 

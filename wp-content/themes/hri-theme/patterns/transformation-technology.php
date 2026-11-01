@@ -37,5 +37,6 @@ echo hri_bm_service( // phpcs:ignore WordPress.Security.EscapeOutput -- block ma
 	'The Right Technology, Driving the Right Results.',
 	'Technology Strategy',
 	__( 'เทคโนโลยีที่ใช่ ในเวลาที่ถูกต้อง เพื่อผลลัพธ์ที่วัดได้จริง เราผสานความเชี่ยวชาญด้าน Lean เข้ากับ AI ให้องค์กรทำงานได้ฉลาดขึ้น เร็วขึ้น และแข่งขันได้อย่างยั่งยืน', 'hri-theme' ),
-	$hri_inner
+	$hri_inner,
+	__( 'ภาพประกอบ Technology Strategy', 'hri-theme' )
 );

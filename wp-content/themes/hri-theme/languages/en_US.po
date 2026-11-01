@@ -1,18 +1,5 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: HRI DeOne 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/hri-theme\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-18T11:58:38+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: hri-theme\n"
+msgstr "Project-Id-Version: HRI DeOne 0.1.0\nReport-Msgid-Bugs-To: https://wordpress.org/support/theme/hri-theme\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPOT-Creation-Date: 2026-10-18T11:58:38+00:00\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: WP-CLI 2.12.0\nX-Domain: hri-theme\n"
 
 #. Theme Name of the theme
 #. Author of the theme
@@ -185,7 +172,7 @@ msgstr ""
 
 #: patterns/home-clients.php:16
 msgid "ลูกค้าที่ให้ความไว้วางใจ"
-msgstr "Clients who trust us"
+msgstr "Our Trusted Clients"
 
 #: patterns/home-gallery.php
 msgctxt "Pattern title"
@@ -2034,3 +2021,95 @@ msgstr "Instill the practices that have sustained Japanese organizations for cen
 #: patterns/japanese-intro.php
 msgid "เชื่อมช่องว่างวัฒนธรรมการทำงานไทย–ญี่ปุ่น ลดความเข้าใจผิด และสร้างความไว้วางใจกับบริษัทแม่ พันธมิตร และลูกค้าชาวญี่ปุ่น"
 msgstr "Bridge the Thai–Japanese work-culture gap, reduce misunderstandings and build trust with Japanese parent companies, partners and clients."
+
+#: patterns/about (old-site text)
+msgid "Mission | พันธกิจ"
+msgstr "Mission"
+
+#: patterns/about (old-site text)
+msgid "พัฒนาผู้นำ ขับเคลื่อนสู่อนาคต"
+msgstr "Develop leaders, drive the future"
+
+#: patterns/about (old-site text)
+msgid "HRI DeOne มุ่งพัฒนาผู้นำที่ไม่เพียงเติบโตในความสามารถของตนเอง แต่พร้อมสร้างการเปลี่ยนแปลงเชิงบวกให้กับผู้คน องค์กร และสังคม เพื่อร่วมขับเคลื่อนอนาคตที่ดีกว่า"
+msgstr "HRI DeOne is committed to developing leaders who not only grow in their own capabilities, but are ready to create positive change for people, organizations, and society, helping drive a better future together."
+
+#: patterns/about (old-site text)
+msgid "Vision | วิสัยทัศน์"
+msgstr "Vision"
+
+#: patterns/about (old-site text)
+msgid "พันธมิตรที่องค์กรไว้วางใจ\nเพื่อร่วมสร้างองค์กรที่เติบโตอย่างยั่งยืนจากรุ่นสู่รุ่น"
+msgstr "The partner organizations trust\nto build organizations that grow sustainably from generation to generation"
+
+#: patterns/about (old-site text)
+msgid "HRI DeOne มุ่งเป็นมากกว่าผู้ให้บริการฝึกอบรม เราพร้อมเดินเคียงข้างองค์กรในฐานะพันธมิตรระยะยาว ร่วมพัฒนาคน ผู้นำ และองค์กรให้แข็งแกร่ง ปรับตัวได้อย่างยั่งยืนในโลกธุรกิจ และส่งต่อคุณค่าอย่างต่อเนื่องจากรุ่นสู่รุ่น"
+msgstr "HRI DeOne aims to be more than a training provider. We stand beside organizations as a long-term partner, developing people, leaders, and organizations to be strong, adapt sustainably in the business world, and pass on value continuously from generation to generation."
+
+#: patterns/about (old-site text)
+msgid "Core Value | คุณค่าหลัก"
+msgstr "Core Values"
+
+#: patterns/about (old-site text)
+msgid "Where Differences Become Strength."
+msgstr "Where Differences Become Strength."
+
+#: patterns/about (old-site text)
+msgid "เมื่อความแตกต่างกลายเป็นพลัง"
+msgstr "When differences become strength"
+
+#: patterns/about (old-site text)
+msgid "HRI DeOne เกิดจากการผสานจุดแข็งของสององค์กร เราเชื่อว่า\nความแตกต่างของผู้คน ประสบการณ์ และมุมมอง จะกลายเป็นพลังที่ช่วยให้เราเรียนรู้ เติบโต และสร้างคุณค่าที่ดีกว่าร่วมกัน"
+msgstr "HRI DeOne was born from combining the strengths of two organizations. We believe\nthe differences in people, experiences, and perspectives become a strength that helps us learn, grow, and create greater value together."
+
+#: patterns/about (old-site text)
+msgid "สาสน์จากผู้บริหาร"
+msgstr "Message from Our Leadership"
+
+#: patterns/about (old-site text)
+msgid "การก่อตั้ง HRI DeOne\nไม่ใช่เพียงการรวมกันของสองบริษัท\nแต่เป็นการรวมกันของสองจุดแข็ง\nสองวัฒนธรรม และวิสัยทัศน์เดียวกัน"
+msgstr "The founding of HRI DeOne\nis not simply the merger of two companies.\nIt is the union of two strengths,\ntwo cultures, and one shared vision."
+
+#: patterns/about (old-site text)
+msgid "HR Institute เป็นองค์กรชั้นนำด้านการพัฒนาผู้นำและทรัพยากรมนุษย์ที่ได้รับความไว้วางใจจากองค์กรชั้นนำของญี่ปุ่นมาอย่างต่อเนื่องตั้งแต่ปี 1993 ขณะที่ DeOne Academy มีความเชี่ยวชาญด้าน Leadership และ Transformation พร้อมความเข้าใจบริบทขององค์กรไทยอย่างลึกซึ้ง"
+msgstr "HR Institute is a leading leadership and human resource development organization that has been trusted by leading Japanese companies since 1993, while DeOne Academy brings expertise in Leadership and Transformation along with a deep understanding of Thai organizations."
+
+#: patterns/about (old-site text)
+msgid "การผสานจุดแข็งของทั้งสององค์กร ทำให้เราเชื่อมั่นว่า เราจะสามารถสร้างคุณค่าที่มากกว่าการทำงานของแต่ละองค์กรเพียงลำพัง นี่คือก้าวสำคัญในการยกระดับการพัฒนาผู้นำและองค์กรของประเทศไทยให้เชื่อมโยงกับมาตรฐานระดับสากล"
+msgstr "By combining the strengths of both organizations, we are confident we can create value greater than either could achieve alone. This is an important step in elevating leadership and organizational development in Thailand and connecting it with international standards."
+
+#: patterns/about (old-site text)
+msgid "โลกธุรกิจกำลังเปลี่ยนแปลงอย่างรวดเร็วจาก AI เทคโนโลยี และความท้าทายใหม่ ๆ องค์กรจึงไม่ได้ต้องการเพียงหลักสูตรฝึกอบรม แต่ต้องการพันธมิตรที่สามารถพัฒนาผู้นำ สร้างการเปลี่ยนแปลง และยกระดับศักยภาพของทั้งองค์กรได้อย่างเป็นรูปธรรม นี่คือบทบาทที่ HRI DeOne ตั้งใจจะทำ"
+msgstr "The business world is changing rapidly with AI, technology, and new challenges. Organizations no longer need just training programs. They need a partner who can develop leaders, drive change, and elevate the capabilities of the entire organization in concrete ways. This is the role HRI DeOne is committed to playing."
+
+#: patterns/about (old-site text)
+msgid "HRI DeOne มุ่งหวังที่จะเป็น\nสะพานเชื่อมระหว่างญี่ปุ่น ไทย\nและภูมิภาคเอเชียตะวันออกเฉียงใต้\nพร้อมเป็นพันธมิตรที่ร่วมสร้าง\nการเติบโตในอนาคตไปพร้อมกับทุกท่าน"
+msgstr "HRI DeOne aims to be\na bridge between Japan, Thailand,\nand Southeast Asia,\nand a partner in building\nfuture growth together with all of you."
+
+#: patterns/about (old-site text)
+msgid "ตลอดระยะเวลากว่า 30 ปีที่ผ่านมา เราได้พัฒนาและสั่งสมองค์ความรู้ด้านการบริหารจัดการ การพัฒนาทรัพยากรมนุษย์ และการพัฒนาองค์กรร่วมกับบริษัทญี่ปุ่นมาอย่างต่อเนื่อง เราเชื่อมั่นเป็นอย่างยิ่งว่า องค์ความรู้เหล่านี้สามารถก้าวข้ามพรมแดน และสร้างคุณค่าให้แก่องค์กรในประเทศไทย รวมถึงองค์กรในภูมิภาคเอเชียตะวันออกเฉียงใต้ได้อย่างแท้จริง"
+msgstr "Over the past 30 years, we have continuously developed and accumulated expertise in management, human resource development, and organizational development alongside Japanese companies. We firmly believe this knowledge can cross borders and create real value for organizations in Thailand and across Southeast Asia."
+
+#: patterns/about (old-site text)
+msgid "เรามุ่งมั่นที่จะพัฒนาบริการและแนวทางการพัฒนาที่ได้รับการยกระดับจากพลังร่วมของทั้งสององค์กร และส่งมอบคุณค่าเหล่านั้นให้แก่ลูกค้าของเราอย่างดีที่สุด"
+msgstr "We are committed to developing services and development approaches elevated by the combined strengths of both organizations, and to delivering that value to our clients in the best possible way."
+
+#: patterns/about (old-site text)
+msgid "การก้าวเข้าสู่บทใหม่ร่วมกับเพื่อนร่วมงานและพันธมิตรทุกฝ่ายในครั้งนี้ เป็นสิ่งที่เราภาคภูมิใจเป็นอย่างยิ่ง และเต็มไปด้วยความคาดหวังต่ออนาคตที่กำลังจะมาถึง ผมหวังเป็นอย่างยิ่งว่าทุกท่านจะให้การสนับสนุน และร่วมเดินไปกับ HRI DeOne ในเส้นทางแห่งการเติบโตครั้งใหม่นี้ครับ"
+msgstr "We are deeply proud to begin this new chapter together with our colleagues and partners, and we are full of anticipation for the future ahead. I sincerely hope you will support us and join HRI DeOne on this new journey of growth."
+
+#: patterns/about (old-site text)
+msgid "มุ่งพัฒนาสังคมให้น่าอยู่"
+msgstr "Committed to a Better Society"
+
+#: patterns/about (old-site text)
+msgid "ส่งต่อโอกาส สร้างการเติบโตให้กับผู้คนและสังคม"
+msgstr "Passing on opportunities and creating growth for people and society"
+
+#: patterns/about (old-site text)
+msgid "เราเชื่อในศักยภาพของผู้คน และเชื่อว่าการแบ่งปันโอกาส ความห่วงใย และทรัพยากรที่เรามี สามารถสร้างการเปลี่ยนแปลงที่ดีให้เกิดขึ้นได้ นอกเหนือจากการพัฒนาคนและองค์กรผ่านงานของเรา HRI DeOne และบริษัทใน HRI Group ยังมุ่งพัฒนา มีส่วนร่วมกับชุมชนและสังคม ผ่านกิจกรรมเพื่อสังคมในหลากหลายรูปแบบ เพื่อร่วมสร้างโอกาส ส่งต่อกำลังใจ และสนับสนุนการเติบโตของผู้คนอย่างต่อเนื่องไปด้วยกัน"
+msgstr "We believe in people’s potential, and that sharing the opportunities, care, and resources we have can create positive change. Beyond developing people and organizations through our work, HRI DeOne and the companies of HRI Group are committed to engaging with communities and society through a variety of social activities, creating opportunities, passing on encouragement, and continuously supporting people’s growth together."
+
+#: patterns/about (old-site text)
+msgid "อ่านสาส์นฉบับเต็ม"
+msgstr "Read the full message"

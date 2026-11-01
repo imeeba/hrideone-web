@@ -45,5 +45,6 @@ echo hri_bm_service( // phpcs:ignore WordPress.Security.EscapeOutput -- block ma
 	'Think Sharp. Plan Right. Execute Well.',
 	'Business Strategy',
 	__( 'นำพาธุรกิจสู่เป้าหมาย ด้วยโครงสร้างที่แข็งแกร่งและยั่งยืน เราช่วยเปลี่ยนเป้าหมายที่ซับซ้อนให้เป็นกลยุทธ์ที่ทำได้จริง และพากลยุทธ์ออกจากกระดาษสู่การปฏิบัติ', 'hri-theme' ),
-	$hri_inner
+	$hri_inner,
+	__( 'ภาพประกอบ Business Strategy', 'hri-theme' )
 );

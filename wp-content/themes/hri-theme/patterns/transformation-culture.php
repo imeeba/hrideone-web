@@ -26,5 +26,6 @@ echo hri_bm_service( // phpcs:ignore WordPress.Security.EscapeOutput -- block ma
 	'Built Into Every System. Felt By Every Person.',
 	'Culture Strategy',
 	__( 'วัฒนธรรมองค์กรที่ดีไม่ได้เกิดจากคำคมสวยหรู แต่ต้องถูกออกแบบและฝังรากในทุกระบบขององค์กร เพราะวัฒนธรรมคือสิ่งที่ทุกระบบในองค์กรให้รางวัลและสนับสนุนในทุกวัน', 'hri-theme' ),
-	$hri_inner
+	$hri_inner,
+	__( 'ภาพประกอบ Culture Strategy', 'hri-theme' )
 );
