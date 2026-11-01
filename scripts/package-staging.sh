@@ -24,6 +24,11 @@ cp "$REPO/playground/data/site-media.json" "$REPO/playground/data/image-dims.jso
 printf 'Require all denied\n' > "$S/.htaccess"
 printf '<?php // Silence is golden.\n' > "$S/index.php"
 
+# The FTP deploy (.github/workflows/deploy-staging.yml) keeps its list of uploaded files next to them.
+for d in "$TMP/hri-theme" "$TMP/hri-core"; do
+	printf '<Files ".ftp-deploy-sync-state.json">\n\tRequire all denied\n</Files>\n' > "$d/.htaccess"
+done
+
 find "$TMP" -name '.DS_Store' -delete
 rm -f "$OUT/hri-theme.zip" "$OUT/hri-core.zip"
 (cd "$TMP" && zip -qr "$OUT/hri-theme.zip" hri-theme && zip -qr "$OUT/hri-core.zip" hri-core)

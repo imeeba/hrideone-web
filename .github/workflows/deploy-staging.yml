@@ -1,0 +1,111 @@
+# Deploys the theme and plugin to the staging site (new.hrideone.com) over FTPS after every merge
+# into main, so nobody has to upload zips in wp-admin. Only wp-content/themes/hri-theme and
+# wp-content/plugins/hri-core change on the server; the database, uploads and other plugins are
+# never touched. hri-core then updates its own database on the first request (inc/upgrade.php).
+#
+# Set up once (Settings → Secrets and variables → Actions):
+#   secrets   STAGING_FTP_SERVER    FTP host, e.g. ftp.hrideone.com
+#             STAGING_FTP_USERNAME  an FTP account limited to new.hrideone.com's wp-content folder
+#             STAGING_FTP_PASSWORD
+#   variables STAGING_FTP_DIR       (optional) path of wp-content as that FTP account sees it, ending in /
+#                                   default ./ (the account starts inside wp-content)
+#             STAGING_FTP_PROTOCOL  (optional) ftps (default) or ftp
+# Without the secrets the job is skipped, not failed. Production is not deployed from here.
+name: Deploy staging
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - wp-content/**
+      - playground/seed*.php
+      - playground/sample/**
+      - playground/data/site-media.json
+      - playground/data/image-dims.json
+      - playground/data/blog-posts.json.gz
+      - scripts/package-staging.sh
+      - .github/workflows/deploy-staging.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: staging
+      url: https://new.hrideone.com
+    env:
+      FTP_SERVER: ${{ secrets.STAGING_FTP_SERVER }}
+      FTP_DIR: ${{ vars.STAGING_FTP_DIR || './' }}
+      FTP_PROTOCOL: ${{ vars.STAGING_FTP_PROTOCOL || 'ftps' }}
+      SITE: https://new.hrideone.com
+    steps:
+      - name: Check setup
+        id: setup
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "::notice::STAGING_FTP_* secrets are not set; nothing deployed."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.setup.outputs.ready == 'true'
+
+      - name: Build (same files as the wp-admin zips)
+        if: steps.setup.outputs.ready == 'true'
+        run: |
+          scripts/package-staging.sh "$RUNNER_TEMP/zips"
+          mkdir -p "$RUNNER_TEMP/build"
+          unzip -q "$RUNNER_TEMP/zips/hri-theme.zip" -d "$RUNNER_TEMP/build"
+          unzip -q "$RUNNER_TEMP/zips/hri-core.zip" -d "$RUNNER_TEMP/build"
+          grep -m1 '^Version:' "$RUNNER_TEMP/build/hri-theme/style.css"
+          grep -m1 'Version:' "$RUNNER_TEMP/build/hri-core/hri-core.php"
+
+      # Uploads only files that changed since the last run and removes files that were deleted
+      # in the repo (the action keeps a list in .ftp-deploy-sync-state.json on the server).
+      - name: Upload plugin
+        if: steps.setup.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.STAGING_FTP_SERVER }}
+          username: ${{ secrets.STAGING_FTP_USERNAME }}
+          password: ${{ secrets.STAGING_FTP_PASSWORD }}
+          protocol: ${{ env.FTP_PROTOCOL }}
+          local-dir: ${{ runner.temp }}/build/hri-core/
+          server-dir: ${{ env.FTP_DIR }}plugins/hri-core/
+
+      - name: Upload theme
+        if: steps.setup.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.STAGING_FTP_SERVER }}
+          username: ${{ secrets.STAGING_FTP_USERNAME }}
+          password: ${{ secrets.STAGING_FTP_PASSWORD }}
+          protocol: ${{ env.FTP_PROTOCOL }}
+          local-dir: ${{ runner.temp }}/build/hri-theme/
+          server-dir: ${{ env.FTP_DIR }}themes/hri-theme/
+
+      # The first request also runs hri-core's database update. Fails the run if the site is down
+      # or still serves the old theme.
+      - name: Check the site
+        if: steps.setup.outputs.ready == 'true'
+        run: |
+          want=$(grep -m1 '^Version:' "$RUNNER_TEMP/build/hri-theme/style.css" | awk '{print $2}')
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE/?deploy=${GITHUB_SHA::7}")
+            got=$(curl -s "$SITE/wp-content/themes/hri-theme/style.css?v=${GITHUB_SHA::7}" | grep -m1 '^Version:' | awk '{print $2}')
+            echo "home $code · theme $got (want $want)"
+            if [ "$code" = 200 ] && [ "$got" = "$want" ]; then exit 0; fi
+            sleep 10
+          done
+          echo "::error::Staging did not answer 200 with theme $want"
+          exit 1
