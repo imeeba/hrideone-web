@@ -63,13 +63,25 @@
 
 /* ---------- Dropdown (header) ---------- */
 .hri-sf--dropdown {
-	display: none;
+	display: block;
 	position: relative;
 }
 
-@media (min-width: 1220px) {
-	.hri-sf--dropdown {
-		display: block;
+/* Mobile / tablet: the icon sits next to the menu button (left of it); the field opens as a panel
+   across the whole header bar so it never runs off the screen. */
+@media (max-width: 1219px) {
+	.hri-header__end .hri-sf--dropdown {
+		order: -1;
+		position: static;
+	}
+
+	.hri-header__bar {
+		position: relative;
+	}
+
+	.hri-header__end .hri-sf__panel {
+		inline-size: auto;
+		inset: calc(100% + 6px) 0 auto 0;
 	}
 }
 

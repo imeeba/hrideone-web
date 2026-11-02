@@ -23,7 +23,32 @@ defined( 'ABSPATH' ) || exit;
  */
 function hri_core_migrations(): array {
 	return array(
-		// 'x.y.z' => static function () { … },
+		// 0.23.0: the Contact banner no longer shows the tick-mark chips. Remove the one chips list
+		// from the banner of Contact (every language) when it still has the three original lines.
+		'0.23.0' => static function () {
+			$ids = get_posts(
+				array(
+					'post_type'        => 'page',
+					'name'             => 'contact-us',
+					'post_status'      => 'any',
+					'posts_per_page'   => 1,
+					'fields'           => 'ids',
+					'suppress_filters' => true,
+				)
+			);
+			if ( ! $ids ) {
+				return;
+			}
+			$all = function_exists( 'pll_get_post_translations' ) ? array_values( (array) pll_get_post_translations( $ids[0] ) ) : array();
+			foreach ( array_unique( array_merge( $ids, $all ) ) as $id ) {
+				$content = (string) get_post_field( 'post_content', $id );
+				$new     = preg_replace( '#<!-- wp:list \{"className":"hri-chips"[^\n]*?-->.*?<!-- /wp:list -->\s*#s', '', $content, 1, $count );
+				// Only the banner's chips (a list with 3 items), never a list an editor added.
+				if ( $count && null !== $new && substr_count( $content, '<!-- wp:list-item' ) - substr_count( $new, '<!-- wp:list-item' ) === 3 ) {
+					wp_update_post( wp_slash( array( 'ID' => $id, 'post_content' => $new ) ) );
+				}
+			}
+		},
 	);
 }
 

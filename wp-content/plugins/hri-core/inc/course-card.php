@@ -176,7 +176,7 @@ function hri_course_card( int $post_id ): string {
 	ob_start();
 	?>
 	<article class="hri-card hri-course-card hri-card--<?php echo esc_attr( $pillar ?: 'none' ); ?>">
-		<div class="hri-card__media" aria-hidden="true">
+		<div class="hri-card__media<?php echo $media ? '' : ' hri-media-fallback'; ?>" aria-hidden="true">
 			<?php echo $media; // phpcs:ignore WordPress.Security.EscapeOutput -- core markup. ?>
 			<?php if ( $program ) : ?>
 				<span class="hri-card__badge"><?php echo esc_html( implode( ' / ', hri_course_term_names( $post_id, 'hri_program' ) ) ); ?></span>
