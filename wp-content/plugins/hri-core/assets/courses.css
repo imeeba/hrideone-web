@@ -243,13 +243,11 @@
 
 .hri-card__media {
 	aspect-ratio: var(--wp--custom--ratio--thumb, 3 / 2);
-	background: var(--wp--preset--gradient--deep);
+	background: var(--wp--preset--color--surface-brand);
 	overflow: hidden;
 	position: relative;
 }
 
-.hri-card--leadership .hri-card__media { background: var(--wp--preset--gradient--brand); }
-.hri-card--business .hri-card__media { background: var(--wp--preset--gradient--growth); }
 
 .hri-card__media img {
 	block-size: 100%;
@@ -299,6 +297,12 @@
    fits a narrow 3-column card instead of being cut mid-word. */
 .hri-course-card {
 	container-type: inline-size;
+}
+
+/* The photo runs to the top, left and right edges (the theme's .hri-card padding is for text cards). */
+.hri-course-card.hri-card {
+	gap: 0;
+	padding: 0;
 }
 
 .hri-course-card .hri-card__title {

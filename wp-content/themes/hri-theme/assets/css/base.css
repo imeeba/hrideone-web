@@ -446,6 +446,13 @@ video {
 	flex: none;
 }
 
+/* Very narrow phones (320px): logo + search icon + menu button must fit in one row. */
+@media (max-width: 359px) {
+	.hri-header .hri-logo img {
+		inline-size: 150px;
+	}
+}
+
 /* ---------- Button "Outline" ----------
    Same as the outline variation in theme.json. Repeated here because core prints that
    variation only on pages where a parsed Button block renders; buttons printed by PHP
@@ -770,7 +777,7 @@ video {
 /* ---------- Gallery style "Slider" (scroll-snap; slider.js adds buttons and dots) ---------- */
 .wp-block-gallery.is-style-slider {
 	/* Slide width in viewport units: a % would be resolved against the padded content box. */
-	--hri-slide: min(80vw, 46rem);
+	--hri-slide: min(72vw, 22rem);
 	display: flex !important;
 	flex-wrap: nowrap !important;
 	gap: var(--wp--preset--spacing--50) !important;
@@ -793,7 +800,7 @@ video {
 }
 
 .wp-block-gallery.has-nested-images.is-style-slider figure.wp-block-image:not(#individual-image) {
-	aspect-ratio: var(--wp--custom--ratio--thumb);
+	aspect-ratio: 4 / 5; /* the event photos are portrait 4:5 */
 	border-radius: var(--wp--custom--radius--md);
 	flex: 0 0 var(--hri-slide);
 	margin: 0;
@@ -811,7 +818,7 @@ video {
 
 @media (min-width: 782px) {
 	.wp-block-gallery.is-style-slider {
-		--hri-slide: min(52vw, 46rem);
+		--hri-slide: min(34vw, 25rem);
 	}
 
 	/* Side slides turn towards the middle one (pivot on the edge next to it). */
@@ -1669,25 +1676,37 @@ video {
  * Course pages (templates/single-course.html, inc/course-page.php)
  * ===================================================================== */
 
-/* Hero: text + key facts + buttons next to the course image */
+/* Hero: the course photo fills the whole band behind the text (dark overlay keeps the text readable).
+   Without a photo the band is the deep brand gradient, so the text is always white. */
 .wp-site-blocks > main:has(> .hri-coursehero:first-child) {
 	margin-block-start: 0;
+}
+
+.hri-coursehero {
+	background: var(--wp--preset--gradient--deep);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--base);
+	display: grid;
+	align-content: center;
+	isolation: isolate;
+	min-block-size: clamp(26rem, 70vh, 40rem);
+	overflow: hidden;
+	position: relative;
 }
 
 .hri-coursehero__grid {
 	align-items: center;
 	display: grid;
 	gap: var(--wp--preset--spacing--60);
-}
-
-@media (min-width: 900px) {
-	.hri-coursehero__grid:has(.hri-coursehero__image) {
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-	}
+	inline-size: 100%;
 }
 
 .hri-coursehero__grid > * {
 	margin-block: 0;
+}
+
+.hri-coursehero__text {
+	max-inline-size: 40rem;
 }
 
 .hri-coursehero__text > * {
@@ -1706,9 +1725,69 @@ video {
 	margin-block-start: var(--wp--preset--spacing--50);
 }
 
+.hri-coursehero .wp-block-post-title,
+.hri-coursehero .wp-block-post-excerpt,
+.hri-coursehero .wp-block-post-excerpt__excerpt,
+.hri-coursehero .hri-backlink,
+.hri-coursehero .hri-backlink a {
+	color: var(--wp--preset--color--base) !important;
+}
+
+.hri-coursehero .wp-block-post-excerpt {
+	opacity: 0.92;
+}
+
+/* The photo: absolute, covers the band; overlay darker on the text side. */
 .hri-coursehero__image {
-	box-shadow: var(--wp--preset--shadow--md);
-	overflow: hidden;
+	inset: 0;
+	margin: 0 !important;
+	position: absolute;
+	z-index: -1;
+}
+
+.hri-coursehero__image img {
+	aspect-ratio: auto !important;
+	block-size: 100% !important;
+	border-radius: 0 !important;
+	inline-size: 100%;
+	object-fit: cover;
+	object-position: center center;
+}
+
+.hri-coursehero__image::after {
+	background: linear-gradient(90deg, rgb(6 28 33 / 88%) 0%, rgb(6 28 33 / 62%) 55%, rgb(6 28 33 / 30%) 100%);
+	content: '';
+	inset: 0;
+	position: absolute;
+}
+
+@media (max-width: 781px) {
+	.hri-coursehero__image::after {
+		background: rgb(6 28 33 / 72%);
+	}
+}
+
+/* Fact chips stay white pills with dark text */
+.hri-coursehero .hri-chips li {
+	color: var(--wp--preset--color--contrast);
+}
+
+/* Buttons on the dark band */
+.hri-coursehero .wp-block-button:not([class*='is-style-outline']) .wp-block-button__link {
+	background: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--primary-deep);
+}
+
+.hri-coursehero .wp-block-button.is-style-outline .wp-block-button__link {
+	background: transparent;
+	border-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--base);
+}
+
+.hri-coursehero .wp-block-button.is-style-outline .wp-block-button__link:hover {
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--primary-deep);
 }
 
 .hri-register {
@@ -2181,4 +2260,37 @@ video {
 	.hri-about-row--reverse > .wp-block-image {
 		order: 2;
 	}
+}
+
+/* ---------- Space under a section heading (one rule for the whole site) ----------
+   Heading / lead, then a photo, slider or block: 48px on desktop, 32px on mobile. Some photo
+   rules set margin-block: 0 later in this file and used to win over the generic gap. */
+:root {
+	--hri-gap-head: 32px;
+}
+
+@media (min-width: 782px) {
+	:root {
+		--hri-gap-head: 48px;
+	}
+}
+
+.hri-section > :is(.is-style-section-title, .hri-lead) + :is(.wp-block-image, .wp-block-gallery, .wp-block-group, .wp-block-columns, .wp-block-cover, .wp-block-query, .wp-block-media-text, .hri-cards) {
+	margin-block-start: var(--hri-gap-head);
+}
+
+/* ---------- Photo fallback: a card without a photo keeps the same box ---------- */
+.hri-media-fallback,
+.hri-card__media.hri-media-fallback {
+	/* The logo mark, washed out with a 70% layer of the same colour on top. */
+	background:
+		linear-gradient(color-mix(in srgb, var(--wp--preset--color--surface-brand) 70%, transparent), color-mix(in srgb, var(--wp--preset--color--surface-brand) 70%, transparent)),
+		url('../images/logo/mark.svg') center / 22% auto no-repeat,
+		var(--wp--preset--color--surface-brand);
+	display: block;
+}
+
+.hri-media-fallback--ratio {
+	aspect-ratio: 3 / 2;
+	inline-size: 100%;
 }

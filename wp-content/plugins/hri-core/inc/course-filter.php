@@ -92,7 +92,19 @@ function hri_filter_query( array $params ): WP_Query {
 	}
 
 	if ( '' !== $params['q'] ) {
-		$args['s'] = $params['q'];
+		// Same engine as the site search (Thai word splitting, synonyms), so long Thai words and
+		// alternative words find the course; results keep the engine's order (best match first).
+		// Without the search index it falls back to WordPress' plain LIKE search.
+		if ( function_exists( 'hri_search' ) && function_exists( 'hri_search_tables_ready' ) && hri_search_tables_ready() ) {
+			$found = hri_search( $params['q'], array( 'types' => array( 'course' ) ) );
+			$ids   = array_map( 'intval', $found['ids']['course'] ?? array() );
+			$args['post__in'] = $ids ? $ids : array( 0 );
+			if ( $ids ) {
+				$args['orderby'] = 'post__in';
+			}
+		} else {
+			$args['s'] = $params['q'];
+		}
 	}
 
 	return new WP_Query( $args );

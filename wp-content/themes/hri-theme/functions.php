@@ -302,3 +302,20 @@ add_action(
 	},
 	2
 );
+
+/**
+ * A card photo slot with no photo still takes up its box (same 3:2 ratio, brand colour, faint
+ * logo), so the cards in a row stay the same height. core/post-featured-image prints nothing
+ * when a post has no thumbnail; this fills that gap for the card photos (class hri-post__media).
+ */
+add_filter(
+	'render_block_core/post-featured-image',
+	static function ( string $content, array $block ): string {
+		if ( '' !== trim( $content ) || ! str_contains( (string) ( $block['attrs']['className'] ?? '' ), 'hri-post__media' ) ) {
+			return $content;
+		}
+		return '<figure class="wp-block-post-featured-image hri-post__media hri-media-fallback hri-media-fallback--ratio" aria-hidden="true"></figure>';
+	},
+	10,
+	2
+);
