@@ -18,9 +18,9 @@ cd "$DIR"
 [ -d wp ] || git clone -q --depth 1 --branch "$WP_VERSION" https://github.com/WordPress/WordPress wp
 [ -d sqlite ] || git clone -q --depth 1 https://github.com/WordPress/sqlite-database-integration sqlite
 # The release-asset URL answers 504 at times; the builds repo serves the same stable phar.
-if ! php wp-cli.phar --version >/dev/null 2>&1; then
+if ! php wp-cli.phar --allow-root --version >/dev/null 2>&1; then
 	curl -fsSL -o wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-	php wp-cli.phar --version >/dev/null || { echo "wp-cli.phar download failed" >&2; exit 1; }
+	php wp-cli.phar --allow-root --version >/dev/null || { echo "wp-cli.phar download failed" >&2; exit 1; }
 fi
 
 PLUG=wp/wp-content/plugins/sqlite-database-integration
@@ -37,6 +37,8 @@ define( 'DB_DIR', __DIR__ . '/wp-content/database/' );
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 define( 'WP_DEBUG_DISPLAY', false );
+// PHP's built-in server answers one request at a time: WP-Cron's loopback request would block page loads.
+define( 'DISABLE_WP_CRON', true );
 PHP
 fi
 
