@@ -1,0 +1,127 @@
+# Code-quality checks on every pull request (and on main).
+#
+# Phase 1 (now): every check reports, none blocks a merge (continue-on-error). Read the
+# "Summary" of the run. Phase 2 (after the clean-up): remove continue-on-error so a failing
+# check blocks the merge.
+#
+#   php   — PHP syntax (8.0 + 8.3), WordPress Coding Standards + PHP compatibility, PHPStan
+#   site  — local WordPress (scripts/local-setup.sh) → axe WCAG 2.2 AA, layout checks
+#           (measure.py), Theme Check, Lighthouse (accessibility / best practices / SEO)
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PHP 8.0 syntax
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: none
+      - run: find wp-content/themes/hri-theme wp-content/plugins/hri-core playground -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | grep -v '^No syntax errors' || true
+      - name: Fail on syntax errors (8.0)
+        run: '! find wp-content/themes/hri-theme wp-content/plugins/hri-core playground -name "*.php" -print0 | xargs -0 -n1 php -l -n 2>&1 | grep -q "Parse error"'
+
+      - name: PHP 8.3 + Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer, cs2pr
+          coverage: none
+      - name: Fail on syntax errors (8.3)
+        run: '! find wp-content/themes/hri-theme wp-content/plugins/hri-core playground -name "*.php" -print0 | xargs -0 -n1 php -l -n 2>&1 | grep -q "Parse error"'
+      - run: composer install --no-interaction --no-progress
+
+      - name: WordPress Coding Standards (report only)
+        continue-on-error: true
+        run: |
+          vendor/bin/phpcs --report=summary --report-full=phpcs.txt || { tail -n 40 phpcs.txt; echo '### WPCS: issues found (see log)' >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          echo '### WPCS: clean ✓' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: PHPStan level 5 (report only)
+        continue-on-error: true
+        run: |
+          vendor/bin/phpstan analyse --no-progress --memory-limit=1G --error-format=github || { echo '### PHPStan: errors found (see annotations)' >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          echo '### PHPStan: clean ✓' >> "$GITHUB_STEP_SUMMARY"
+
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: sqlite3, pdo_sqlite, intl, gd
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Local WordPress with theme + plugin + sample content
+        run: bash scripts/local-setup.sh "$RUNNER_TEMP/wp" 8899
+
+      - name: PHP errors on the front end
+        run: |
+          for p in / /in-house/ /public-training/ /courses/ /about/ /contact-us/ /accessibility/ /blog/; do
+            code=$(curl -s -o page.html -w '%{http_code}' "http://127.0.0.1:8899/wp$p")
+            echo "$code $p"
+            if grep -qE '(Fatal error|Warning|Notice|Deprecated)</b>:' page.html; then echo "::error::PHP message on $p"; exit 1; fi
+          done
+          if [ -s "$RUNNER_TEMP/wp/wp/wp-content/debug.log" ]; then grep -vE 'wp_version_check|wp_update_(plugins|themes)|HTTP_HOST' "$RUNNER_TEMP/wp/wp/wp-content/debug.log" | tail -n 30 || true; fi
+
+      - name: Browser tools
+        run: |
+          npm i --no-save --no-audit --no-fund playwright axe-core@4.10.2
+          npx playwright install --with-deps chromium
+          pip install -q playwright && python3 -m playwright install chromium
+
+      - name: Accessibility — axe WCAG 2.2 AA (report only)
+        continue-on-error: true
+        run: |
+          node scripts/a11y-check.mjs | tee axe.txt
+          ok=${PIPESTATUS[0]}
+          { echo '### axe WCAG 2.2 AA'; echo '```'; tail -n 40 axe.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit $ok
+
+      - name: Layout — overflow, tap targets, contrast (report only)
+        continue-on-error: true
+        run: python3 scripts/measure.py --base http://127.0.0.1:8899/wp --langs th --widths 1280,375
+
+      - name: Theme Check (report only)
+        continue-on-error: true
+        run: |
+          WP="php $RUNNER_TEMP/wp/wp-cli.phar --path=$RUNNER_TEMP/wp/wp"
+          $WP plugin install theme-check --activate --quiet
+          $WP theme-check run hri-theme --format=table | tee theme-check.txt
+          { echo '### Theme Check'; echo '```'; grep -E 'REQUIRED|WARNING' theme-check.txt | head -n 30; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          ! grep -q 'REQUIRED' theme-check.txt
+
+      - name: Lighthouse — accessibility / best practices / SEO (report only)
+        continue-on-error: true
+        run: npx --yes @lhci/cli@0.14.0 autorun
+
+      - name: Keep Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse
+          path: .lighthouseci
+          if-no-files-found: ignore

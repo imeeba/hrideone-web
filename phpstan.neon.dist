@@ -1,0 +1,13 @@
+# PHPStan with WordPress stubs (szepeviktor/phpstan-wordpress). Run: composer analyse
+parameters:
+	level: 5
+	paths:
+		- wp-content/themes/hri-theme
+		- wp-content/plugins/hri-core
+	excludePaths:
+		- wp-content/*/*/languages/*
+	ignoreErrors:
+		# Polylang and The SEO Framework are optional plugins; every call is behind function_exists().
+		- '#Function (pll_|PLL|tsf)\w* not found#'
+		- '#(Class|Instantiated class) PLL_\w+ not found#'
+		- '#on an unknown class PLL_\w+#'
