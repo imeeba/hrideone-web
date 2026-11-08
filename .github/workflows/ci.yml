@@ -83,6 +83,7 @@ jobs:
           for p in / /in-house/ /public-training/ /courses/ /about/ /contact-us/ /accessibility/ /blog/; do
             code=$(curl -s -o page.html -w '%{http_code}' "http://127.0.0.1:8899/wp$p")
             echo "$code $p"
+            if [ "$code" != 200 ]; then echo "::error::$p answered HTTP $code (WordPress not installed?)"; exit 1; fi
             if grep -qE '(Fatal error|Warning|Notice|Deprecated)</b>:' page.html; then echo "::error::PHP message on $p"; exit 1; fi
           done
           if [ -s "$RUNNER_TEMP/wp/wp/wp-content/debug.log" ]; then grep -vE 'wp_version_check|wp_update_(plugins|themes)|HTTP_HOST' "$RUNNER_TEMP/wp/wp/wp-content/debug.log" | tail -n 30 || true; fi

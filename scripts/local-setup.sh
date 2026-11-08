@@ -17,7 +17,11 @@ cd "$DIR"
 
 [ -d wp ] || git clone -q --depth 1 --branch "$WP_VERSION" https://github.com/WordPress/WordPress wp
 [ -d sqlite ] || git clone -q --depth 1 https://github.com/WordPress/sqlite-database-integration sqlite
-[ -f wp-cli.phar ] || curl -sSL -o wp-cli.phar https://github.com/wp-cli/wp-cli/releases/download/v2.12.0/wp-cli-2.12.0.phar
+# The release-asset URL answers 504 at times; the builds repo serves the same stable phar.
+if ! php wp-cli.phar --version >/dev/null 2>&1; then
+	curl -fsSL -o wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	php wp-cli.phar --version >/dev/null || { echo "wp-cli.phar download failed" >&2; exit 1; }
+fi
 
 PLUG=wp/wp-content/plugins/sqlite-database-integration
 [ -d "$PLUG" ] || cp -rL sqlite/packages/plugin-sqlite-database-integration "$PLUG"

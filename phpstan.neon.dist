@@ -6,7 +6,17 @@ parameters:
 		- wp-content/plugins/hri-core
 	excludePaths:
 		- wp-content/*/*/languages/*
+	scanFiles:
+		- vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+	reportUnmatchedIgnoredErrors: false
 	ignoreErrors:
+		# Block render.php files get $attributes, $content and $block from WordPress.
+		-
+			message: '#Variable \$(attributes|content|block) might not be defined#'
+			path: wp-content/plugins/hri-core/blocks/*
+		# WP_HTML_Tag_Processor::next_tag() accepts a tag name string; the stub only lists the array form.
+		- '#Parameter \#1 \$query of method WP_HTML_Tag_Processor::next_tag\(\) expects#'
+		- '#Constant THE_SEO_FRAMEWORK_\w+ not found#'
 		# Polylang and The SEO Framework are optional plugins; every call is behind function_exists().
 		- '#Function (pll_|PLL|tsf)\w* not found#'
 		- '#(Class|Instantiated class) PLL_\w+ not found#'
