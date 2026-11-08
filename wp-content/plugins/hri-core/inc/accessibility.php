@@ -57,9 +57,28 @@ function hri_iframe_add_titles( string $html ): string {
 add_filter(
 	'render_block',
 	static function ( $content ) {
-		return is_string( $content ) ? hri_iframe_add_titles( $content ) : $content;
+		if ( is_string( $content ) && str_contains( $content, '<iframe' ) ) {
+			$GLOBALS['hri_has_iframe'] = true;
+			return hri_iframe_add_titles( $content );
+		}
+		return $content;
 	},
 	20
+);
+
+/*
+ * Focus ring on an iframe (WCAG 2.4.7). When Tab moves into an embedded page (Google Maps), the
+ * focus is inside that page, so no CSS selector matches the iframe. The window loses focus at
+ * that moment: mark the iframe with a class (styled in the theme) until focus comes back.
+ */
+add_action(
+	'wp_footer',
+	static function () {
+		if ( empty( $GLOBALS['hri_has_iframe'] ) ) {
+			return;
+		}
+		echo "<script>(function(){var c='hri-iframe-focus',f=null;window.addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME'){f=a;a.classList.add(c);}},0);});window.addEventListener('focus',function(){if(f){f.classList.remove(c);f=null;}});})();</script>\n";
+	}
 );
 
 /* ----------------------------------------------------------------------

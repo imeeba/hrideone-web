@@ -1037,3 +1037,7 @@ msgstr "このページには H1 が複数あります。"
 #: inc/accessibility.php
 msgid "คลิกเพื่อไปที่บล็อกนั้น"
 msgstr "クリックしてそのブロックへ移動"
+
+#: inc/course-filter.php
+msgid "รายการหลักสูตร"
+msgstr "講座一覧"

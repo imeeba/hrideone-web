@@ -102,6 +102,10 @@ jobs:
           { echo '### axe WCAG 2.2 AA'; echo '```'; tail -n 40 axe.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           exit $ok
 
+      - name: Keyboard, focus, reflow 320 px (report only)
+        continue-on-error: true
+        run: node scripts/keyboard-check.mjs
+
       - name: Layout — overflow, tap targets, contrast (report only)
         continue-on-error: true
         run: python3 scripts/measure.py --base http://127.0.0.1:8899/wp --langs th --widths 1280,375

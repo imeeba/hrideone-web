@@ -2,6 +2,8 @@
 
 > อ่านไฟล์นี้ก่อนเริ่มงานทุกครั้ง แล้วอัปเดตก่อนจบแต่ละรอบงาน
 >
+> **มาตรฐานระดับโลก PR 4 — คีย์บอร์ด/ซูม (8 พ.ย. 2569, theme 0.18.1 / plugin 0.25.1, branch `feat/a11y-keyboard`)**: `scripts/keyboard-check.mjs` (Tab ทุกจุด, focus มองเห็น, header ไม่บัง, เมนูมือถือ Enter/Esc, reflow 320 px + text spacing) อยู่ใน CI แล้ว · แก้: focus ring ของแผนที่ (iframe, class `hri-iframe-focus` จาก hri-core) · ลำดับหัวข้อ /courses/ (h2 ซ่อน "รายการหลักสูตร") และ /blog/ (ชื่อบทความเป็น H2) · ลิงก์ "อ่านสาส์นฉบับเต็ม" สูง 44 px · checklist screen reader ให้ทีมใน [`A11Y-TESTING.md`](A11Y-TESTING.md)
+>
 > **มาตรฐานระดับโลก PR 3 — รายงานสุขภาพเว็บ (8 พ.ย. 2569, plugin 0.25.0, branch `feat/health-report`)**: `inc/health-report.php` → Tools → สุขภาพเว็บ + widget Dashboard + อีเมลทุกจันทร์ 9:00 + อีเมลด่วน (SSL ≤ 14 วัน / ช่องโหว่ จาก WPVulnerability.net) · คู่มือ Better Stack ใน [`MONITORING.md`](MONITORING.md) · ค้าง: อีเมลสำรอง (Q7) และวิธี backup (Q10) จาก Jimmi
 >
 > **มาตรฐานระดับโลก PR 1 — a11y (8 พ.ย. 2569, theme 0.18.0 / plugin 0.24.0, branch `feat/a11y-statement`)**: แผนและ gap list อยู่ `/mnt/project-files/audit/world-class-gap-2026-11-08.md` (Jimmi ตอบ grill แล้ว: WCAG 2.2 AA, งบ 0 บาท, แจ้งเตือนอีเมล + wp-admin ไม่ใช้ LINE, CI เริ่มแบบเตือน, อนุญาต AI bot ทุกตัว, ไม่ใช้ Cloudflare) · `inc/accessibility.php`: iframe ไม่มี title ได้ title อัตโนมัติ (แผนที่ที่ฝังจาก Google) · หน้า Accessibility Statement TH/EN/JA (`accessibility`, `-en`, `-ja`, migration 0.24.0 สร้างถ้ายังไม่มี + ลิงก์ footer "Accessibility") · panel "ตรวจการเข้าถึง" ใน editor (รูปไม่มี alt / หัวข้อข้ามระดับ / H1 ซ้ำ — แค่เตือน) · footer nav 2 อันชื่อไม่ซ้ำ · `/.well-known/security.txt` (`inc/security.php`) · `scripts/po-build.py --core` ใช้กับ hri-core ได้แล้ว (รองรับ plural)

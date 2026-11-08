@@ -1039,3 +1039,7 @@ msgstr "This page has more than one H1."
 #: inc/accessibility.php
 msgid "คลิกเพื่อไปที่บล็อกนั้น"
 msgstr "Click to go to that block"
+
+#: inc/course-filter.php
+msgid "รายการหลักสูตร"
+msgstr "Course list"
