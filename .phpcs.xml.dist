@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<ruleset name="HRI DeOne">
+	<description>WordPress Coding Standards for hri-theme and hri-core.</description>
+
+	<file>wp-content/themes/hri-theme</file>
+	<file>wp-content/plugins/hri-core</file>
+
+	<exclude-pattern>*/languages/*</exclude-pattern>
+	<exclude-pattern>*.min.js</exclude-pattern>
+	<exclude-pattern>*.min.css</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+	<arg name="parallel" value="8"/>
+
+	<rule ref="WordPress-Extra"/>
+
+	<!-- Text domains and the prefix of everything global. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="hri-theme"/>
+				<element value="hri-core"/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="hri"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- style.css requires PHP 8.1 and WordPress 6.6. -->
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.6"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Patterns and block render files are templates: short files named by WordPress, not by class. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>*/patterns/*</exclude-pattern>
+		<exclude-pattern>*/blocks/*</exclude-pattern>
+	</rule>
+</ruleset>
