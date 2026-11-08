@@ -47,6 +47,7 @@ if ! $WP core is-installed 2>/dev/null; then
 	$WP theme activate hri-theme --quiet
 	$WP plugin activate hri-core --quiet
 	$WP eval-file "$REPO/playground/seed.php"
+	$WP eval 'function_exists( "hri_a11y_statement_create" ) && hri_a11y_statement_create();'
 fi
 
 # Serve $DIR so the site lives at /wp/ (same as the original test setup).
