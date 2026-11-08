@@ -246,6 +246,7 @@ $part_strings = array(
 	'Blog'             => array( 'en' => 'Blog', 'ja' => 'ブログ' ),
 	'About'            => array( 'en' => 'About', 'ja' => '会社概要' ),
 	'Contact'          => array( 'en' => 'Contact', 'ja' => 'お問い合わせ' ),
+	'Accessibility'    => array( 'en' => 'Accessibility', 'ja' => 'アクセシビリティ' ),
 	'หลักสูตรทั้งหมด'      => array( 'en' => 'All courses', 'ja' => 'すべての講座' ),
 	'หลักสูตรและบริการ'    => array( 'en' => 'Programs & services', 'ja' => 'プログラム・サービス' ),
 	'บริษัท'             => array( 'en' => 'Company', 'ja' => '会社情報' ),

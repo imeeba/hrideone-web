@@ -49,6 +49,13 @@ function hri_core_migrations(): array {
 				}
 			}
 		},
+		// 0.24.0: Accessibility Statement page (TH / EN / JA) when it does not exist yet.
+		'0.24.0' => static function () {
+			if ( function_exists( 'hri_a11y_statement_create' ) ) {
+				hri_a11y_statement_create();
+				hri_a11y_footer_label();
+			}
+		},
 	);
 }
 

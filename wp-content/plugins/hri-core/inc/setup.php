@@ -110,6 +110,7 @@ function hri_setup_run( string $step, int $offset = 0 ) {
 
 		case 'translate':
 			require $dir . 'seed-languages.php';
+			hri_a11y_statement_create();
 			return array( 'message' => __( 'สร้างหน้าแปลแล้ว', 'hri-core' ) );
 
 		case 'media':

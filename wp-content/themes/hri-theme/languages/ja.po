@@ -1,5 +1,18 @@
 msgid ""
-msgstr "Project-Id-Version: HRI DeOne 0.1.0\nReport-Msgid-Bugs-To: https://wordpress.org/support/theme/hri-theme\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPOT-Creation-Date: 2026-10-18T11:58:38+00:00\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: WP-CLI 2.12.0\nX-Domain: hri-theme\n"
+msgstr ""
+"Project-Id-Version: HRI DeOne 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/hri-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-18T11:58:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: hri-theme\n"
 
 #. Theme Name of the theme
 #. Author of the theme
@@ -2113,3 +2126,11 @@ msgstr "私たちは人の可能性を信じ、機会、思いやり、そして
 #: patterns/about (old-site text)
 msgid "อ่านสาส์นฉบับเต็ม"
 msgstr "メッセージ全文を読む"
+
+#: functions.php
+msgid "เมนูหลักสูตรและบริการ"
+msgstr "プログラム・サービスメニュー"
+
+#: functions.php
+msgid "เมนูบริษัท"
+msgstr "会社情報メニュー"

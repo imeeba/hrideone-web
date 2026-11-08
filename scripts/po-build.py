@@ -5,7 +5,7 @@
   python3 scripts/po-build.py additions.json       first append the entries of additions.json to the .po files
 
 additions.json:  { "<Thai msgid>": { "en_US": "English", "ja": "日本語" }, ... }  (an existing msgid is updated)
-Only the hri-theme domain (wp-content/themes/hri-theme/languages) is handled.
+  python3 scripts/po-build.py --core [additions.json]   same for the hri-core plugin (languages/hri-core-{locale}.*)
 """
 
 import json
@@ -17,6 +17,11 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LANG_DIR = os.path.join(ROOT, 'wp-content', 'themes', 'hri-theme', 'languages')
 LOCALES = ('en_US', 'ja')
+PREFIX = ''
+if '--core' in sys.argv:
+    sys.argv.remove('--core')
+    LANG_DIR = os.path.join(ROOT, 'wp-content', 'plugins', 'hri-core', 'languages')
+    PREFIX = 'hri-core-'
 
 
 def unquote(line: str) -> str:
@@ -54,10 +59,19 @@ def parse_po(path: str):
                 field, cur['ctxt'] = 'ctxt', unquote(line[8:])
             elif line.startswith('msgid '):
                 field, cur['id'] = 'id', unquote(line[6:])
+            elif line.startswith('msgid_plural '):
+                field, cur['plural'] = 'plural', unquote(line[13:])
             elif line.startswith('msgstr '):
                 field, cur['str'] = 'str', unquote(line[7:])
+            elif line.startswith('msgstr['):
+                n = int(line[7:line.index(']')])
+                cur.setdefault('strs', {})[n] = unquote(line[line.index(']') + 2:])
+                field = ('strs', n)
             elif line.startswith('"'):
-                cur[field] += unquote(line)
+                if isinstance(field, tuple):
+                    cur['strs'][field[1]] += unquote(line)
+                else:
+                    cur[field] += unquote(line)
             else:
                 raise ValueError(f'{path}: cannot parse {line!r}')
         entries.append(cur)
@@ -71,19 +85,36 @@ def write_po(path: str, entries):
         if e['ctxt'] is not None:
             lines.append('msgctxt ' + quote(e['ctxt']))
         lines.append('msgid ' + quote(e['id']))
-        lines.append('msgstr ' + quote(e['str']))
+        if e['id'] == '' and e['ctxt'] is None:  # header: one "Key: value\n" per line, like gettext writes it
+            lines.append('msgstr ""')
+            lines += [quote(part + '\n') for part in e['str'].split('\n') if part]
+        elif 'plural' in e:
+            lines.append('msgid_plural ' + quote(e['plural']))
+            lines += [f'msgstr[{n}] ' + quote(v) for n, v in sorted(e.get('strs', {}).items())]
+        else:
+            lines.append('msgstr ' + quote(e['str']))
         out.append('\n'.join(lines))
     with open(path, 'w', encoding='utf-8') as f:
         f.write('\n\n'.join(out) + '\n')
 
 
-def messages(entries):
+def messages(entries, mo=False):
+    """Translated entries. Plural forms are joined with NUL; in a .mo the key also holds the plural."""
     out = {}
     for e in entries:
-        if e['id'] == '' or e['str'] == '':
-            continue
-        key = e['id'] if e['ctxt'] is None else e['ctxt'] + '\x04' + e['id']
-        out[key] = e['str']
+        if 'plural' in e:
+            forms = [v for _, v in sorted(e.get('strs', {}).items())]
+            if e['id'] == '' or not any(forms):
+                continue
+            key = e['id'] + ('\0' + e['plural'] if mo else '')
+            value = '\0'.join(forms)
+        else:
+            if e['id'] == '' or e['str'] == '':
+                continue
+            key, value = e['id'], e['str']
+        if e['ctxt'] is not None:
+            key = e['ctxt'] + '\x04' + key
+        out[key] = value
     return out
 
 
@@ -127,7 +158,7 @@ def main():
         with open(sys.argv[1], encoding='utf-8') as f:
             additions = json.load(f)
     for loc in LOCALES:
-        po = os.path.join(LANG_DIR, f'{loc}.po')
+        po = os.path.join(LANG_DIR, f'{PREFIX}{loc}.po')
         entries = parse_po(po)
         by_id = {(e['ctxt'], e['id']): e for e in entries}
         for thai, tr in additions.items():
@@ -137,18 +168,19 @@ def main():
             if e:
                 e['str'] = tr[loc]
             else:
-                e = {'comments': ['#: patterns/about (old-site text)'], 'ctxt': None, 'id': thai, 'str': tr[loc]}
+                e = {'comments': ['#: ' + ('inc/' if PREFIX else 'patterns/') + ' (added by po-build.py)'], 'ctxt': None, 'id': thai, 'str': tr[loc]}
                 entries.append(e)
                 by_id[(None, thai)] = e
         if additions:
             write_po(po, entries)
         msgs = messages(entries)
+        mo_msgs = messages(entries, mo=True)
         hdr = {}
         for line in next(e for e in entries if e['id'] == '')['str'].split('\n'):
             if ': ' in line:
                 k, v = line.split(': ', 1)
                 hdr[k] = v
-        write_mo(os.path.join(LANG_DIR, f'{loc}.mo'), hdr, msgs)
+        write_mo(os.path.join(LANG_DIR, f'{PREFIX}{loc}.mo'), hdr, mo_msgs)
         meta = {
             'domain': hdr.get('X-Domain', 'hri-theme'),
             'plural-forms': hdr.get('Plural-Forms', ''),
@@ -158,7 +190,7 @@ def main():
             'po-revision-date': hdr.get('PO-Revision-Date', ''),
             'x-generator': hdr.get('X-Generator', ''),
         }
-        write_l10n(os.path.join(LANG_DIR, f'{loc}.l10n.php'), meta, msgs)
+        write_l10n(os.path.join(LANG_DIR, f'{PREFIX}{loc}.l10n.php'), meta, msgs)
         print(loc, len(msgs), 'messages')
 
 

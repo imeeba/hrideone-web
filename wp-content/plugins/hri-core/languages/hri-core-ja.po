@@ -1001,3 +1001,39 @@ msgstr "リーダーシップ、営業、交渉、組織開発に関する記事
 #: inc/seo.php
 msgid "ไม่พบหน้านี้"
 msgstr "ページが見つかりません"
+
+#: inc/accessibility.php
+msgid "แผนที่สำนักงาน HRI DeOne"
+msgstr "HRI DeOne オフィスの地図"
+
+#: inc/accessibility.php
+msgid "วิดีโอ"
+msgstr "動画"
+
+#: inc/accessibility.php
+msgid "เนื้อหาจากเว็บไซต์ภายนอก"
+msgstr "外部サイトのコンテンツ"
+
+#: inc/accessibility.php
+msgid "ตรวจการเข้าถึง"
+msgstr "アクセシビリティチェック"
+
+#: inc/accessibility.php
+msgid "ไม่พบปัญหา: รูปมีคำอธิบายครบ และหัวข้อเรียงลำดับถูกต้อง"
+msgstr "問題なし：すべての画像に代替テキストがあり、見出しの順序も正しいです。"
+
+#: inc/accessibility.php
+msgid "รูป %d รูปยังไม่มีคำอธิบาย (Alt text) ถ้าเป็นรูปตกแต่งล้วนๆ ปล่อยว่างได้"
+msgstr "代替テキストのない画像が %d 枚あります。装飾だけの画像なら空欄のままで構いません。"
+
+#: inc/accessibility.php
+msgid "หัวข้อข้ามระดับ: H%1$d ต่อจาก H%2$d (ควรเรียง H2 → H3 → H4)"
+msgstr "見出しレベルが飛んでいます：H%2$d の次に H%1$d（H2 → H3 → H4 の順に）。"
+
+#: inc/accessibility.php
+msgid "หน้านี้มี H1 มากกว่า 1 อัน"
+msgstr "このページには H1 が複数あります。"
+
+#: inc/accessibility.php
+msgid "คลิกเพื่อไปที่บล็อกนั้น"
+msgstr "クリックしてそのブロックへ移動"
