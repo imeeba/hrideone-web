@@ -145,7 +145,7 @@ function hri_course_cta( int $post_id ): array {
 /**
  * Card markup for one course.
  */
-function hri_course_card( int $post_id ): string {
+function hri_course_card( int $post_id, bool $eager = false ): string {
 	$meta    = hri_course_meta( $post_id );
 	$pillar  = hri_course_first_slug( $post_id, 'hri_pillar' );
 	$program = hri_course_first_slug( $post_id, 'hri_program' );
@@ -170,7 +170,7 @@ function hri_course_card( int $post_id ): string {
 	$link     = $external ?: get_permalink( $post_id );
 
 	$media = has_post_thumbnail( $post_id )
-		? get_the_post_thumbnail( $post_id, 'hri-card', array( 'loading' => 'lazy', 'alt' => '', 'sizes' => '(min-width: 1280px) 25vw, (min-width: 782px) 33vw, (min-width: 600px) 50vw, 100vw' ) )
+		? get_the_post_thumbnail( $post_id, 'hri-card', array_merge( array( 'loading' => 'lazy', 'alt' => '', 'sizes' => '(min-width: 1280px) 25vw, (min-width: 782px) 33vw, (min-width: 600px) 50vw, 100vw' ), $eager ? array( 'loading' => 'eager', 'fetchpriority' => 'high' ) : array() ) )
 		: '';
 
 	ob_start();

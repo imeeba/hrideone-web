@@ -190,8 +190,10 @@ function hri_render_course_results( WP_Query $query, array $params, string $acti
 
 	if ( $query->have_posts() ) {
 		echo '<div class="hri-grid">';
-		foreach ( $query->posts as $post ) {
-			echo hri_course_card( $post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
+		// On the course archive the first card's photo is the largest thing on screen (LCP): load it first.
+		$eager = is_post_type_archive( 'course' ) && $params['pg'] <= 1;
+		foreach ( $query->posts as $i => $post ) {
+			echo hri_course_card( $post->ID, $eager && 0 === $i ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
 		}
 		echo '</div>';
 
