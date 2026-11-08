@@ -153,7 +153,15 @@ add_filter(
 			return $content;
 		}
 		$is_footer = str_contains( (string) ( $block['attrs']['className'] ?? '' ), 'hri-footer__nav' );
-		$tags->set_attribute( 'aria-label', $is_footer ? __( 'เมนูท้ายเว็บ', 'hri-theme' ) : __( 'เมนูหลัก', 'hri-theme' ) );
+		if ( ! $is_footer ) {
+			$tags->set_attribute( 'aria-label', __( 'เมนูหลัก', 'hri-theme' ) );
+			return $tags->get_updated_html();
+		}
+		// Each footer menu needs its own name (WCAG landmark-unique): named after its column heading.
+		static $footer_count = 0;
+		$footer_names = array( __( 'เมนูหลักสูตรและบริการ', 'hri-theme' ), __( 'เมนูบริษัท', 'hri-theme' ) );
+		$tags->set_attribute( 'aria-label', $footer_names[ $footer_count ] ?? __( 'เมนูท้ายเว็บ', 'hri-theme' ) . ' ' . ( $footer_count + 1 ) );
+		++$footer_count;
 		return $tags->get_updated_html();
 	},
 	10,

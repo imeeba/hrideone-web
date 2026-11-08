@@ -1003,3 +1003,39 @@ msgstr "Articles and ideas on leadership, sales, negotiation and organizational 
 #: inc/seo.php
 msgid "ไม่พบหน้านี้"
 msgstr "Page not found"
+
+#: inc/accessibility.php
+msgid "แผนที่สำนักงาน HRI DeOne"
+msgstr "Map of the HRI DeOne office"
+
+#: inc/accessibility.php
+msgid "วิดีโอ"
+msgstr "Video"
+
+#: inc/accessibility.php
+msgid "เนื้อหาจากเว็บไซต์ภายนอก"
+msgstr "Content from another website"
+
+#: inc/accessibility.php
+msgid "ตรวจการเข้าถึง"
+msgstr "Accessibility check"
+
+#: inc/accessibility.php
+msgid "ไม่พบปัญหา: รูปมีคำอธิบายครบ และหัวข้อเรียงลำดับถูกต้อง"
+msgstr "No problems: every image has alt text and headings are in order."
+
+#: inc/accessibility.php
+msgid "รูป %d รูปยังไม่มีคำอธิบาย (Alt text) ถ้าเป็นรูปตกแต่งล้วนๆ ปล่อยว่างได้"
+msgstr "%d image(s) have no alt text. Leave it empty only for purely decorative images."
+
+#: inc/accessibility.php
+msgid "หัวข้อข้ามระดับ: H%1$d ต่อจาก H%2$d (ควรเรียง H2 → H3 → H4)"
+msgstr "Skipped heading level: H%1$d after H%2$d (use H2 → H3 → H4)."
+
+#: inc/accessibility.php
+msgid "หน้านี้มี H1 มากกว่า 1 อัน"
+msgstr "This page has more than one H1."
+
+#: inc/accessibility.php
+msgid "คลิกเพื่อไปที่บล็อกนั้น"
+msgstr "Click to go to that block"

@@ -85,3 +85,32 @@ add_action(
 		}
 	}
 );
+
+/**
+ * /.well-known/security.txt (RFC 9116): where to report a security problem. Contact = the
+ * company email (Settings → ข้อมูลบริษัท); Expires is always one year ahead.
+ */
+add_action(
+	'parse_request',
+	static function ( $wp ) {
+		if ( '.well-known/security.txt' !== strtolower( trim( (string) $wp->request, '/' ) ) ) {
+			return;
+		}
+		$email = function_exists( 'hri_company' ) ? sanitize_email( hri_company( 'email', 'th' ) ) : '';
+		if ( '' === $email ) {
+			$email = (string) get_option( 'admin_email' );
+		}
+		$lines = array(
+			'Contact: mailto:' . $email,
+			'Expires: ' . gmdate( 'Y-m-d\T00:00:00\Z', time() + YEAR_IN_SECONDS ),
+			'Preferred-Languages: th, en, ja',
+			'Canonical: ' . home_url( '/.well-known/security.txt' ),
+		);
+		status_header( 200 );
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		header( 'Cache-Control: public, max-age=86400' );
+		header( 'X-Robots-Tag: noindex' );
+		echo implode( "\n", $lines ) . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput -- plain text built from a sanitized email and URLs.
+		exit;
+	}
+);
