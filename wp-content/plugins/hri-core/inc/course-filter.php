@@ -176,6 +176,8 @@ function hri_filter_action_url(): string {
 function hri_render_course_results( WP_Query $query, array $params, string $action ): string {
 	ob_start();
 	echo '<div class="hri-results" data-hri-results aria-live="polite">';
+	// The card titles are H3: give them a parent heading (WCAG 1.3.1, axe heading-order).
+	echo '<h2 class="screen-reader-text">' . esc_html__( 'รายการหลักสูตร', 'hri-core' ) . '</h2>';
 
 	echo '<p class="hri-results__head"><span class="hri-results__count">';
 	/* translators: %d: number of courses */

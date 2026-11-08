@@ -21,7 +21,7 @@
 <!-- wp:group {"className":"hri-post__body","layout":{"type":"default"}} -->
 <div class="wp-block-group hri-post__body"><!-- wp:post-terms {"term":"category","fontSize":"small","className":"hri-post__cat"} /-->
 
-<!-- wp:post-title {"level":3,"isLink":true,"fontSize":"large"} /-->
+<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"large"} /-->
 
 <!-- wp:post-excerpt {"excerptLength":28,"fontSize":"small","textColor":"contrast-muted"} /-->
 

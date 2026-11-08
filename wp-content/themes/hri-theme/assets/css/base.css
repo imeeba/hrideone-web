@@ -1672,6 +1672,13 @@ video {
 	width: 100%;
 }
 
+/* Keyboard users reach the embedded map: show where focus is (WCAG 2.4.7). Focus moves into the
+   iframe's own page, so no selector matches: hri-core adds the class (inc/accessibility.php). */
+iframe.hri-iframe-focus {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
 /* =====================================================================
  * Course pages (templates/single-course.html, inc/course-page.php)
  * ===================================================================== */
@@ -2166,6 +2173,12 @@ video {
 /* ---------- Executives' message (Home, About): large portrait + text ---------- */
 .hri-leader {
 	gap: var(--wp--preset--spacing--60);
+}
+
+.hri-leader__more a {
+	align-items: center;
+	display: inline-flex;
+	min-block-size: var(--wp--custom--tap);
 }
 
 .hri-leader + .hri-leader {
