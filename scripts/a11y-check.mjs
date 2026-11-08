@@ -31,7 +31,8 @@ for ( const width of [ 1280, 375 ] ) {
 	for ( const path of pages ) {
 		const url = base + path;
 		try {
-			const res = await page.goto( url, { waitUntil: 'load', timeout: 90000 } );
+			const res = await page.goto( url, { waitUntil: 'domcontentloaded', timeout: 90000 } );
+			await page.waitForLoadState( 'load', { timeout: 15000 } ).catch( () => {} ); // Slow external images: check anyway.
 			if ( ! res || res.status() >= 400 ) {
 				console.log( `${ width } ${ path } SKIP (HTTP ${ res ? res.status() : '?' })` );
 				continue;

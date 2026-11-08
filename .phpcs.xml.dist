@@ -35,8 +35,8 @@
 		</properties>
 	</rule>
 
-	<!-- Shared hosting runs PHP 8.x; WordPress 6.6+ is required. -->
-	<config name="testVersion" value="8.0-"/>
+	<!-- style.css requires PHP 8.1 and WordPress 6.6. -->
+	<config name="testVersion" value="8.1-"/>
 	<config name="minimum_wp_version" value="6.6"/>
 	<rule ref="PHPCompatibilityWP"/>
 

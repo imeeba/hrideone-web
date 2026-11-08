@@ -4,7 +4,7 @@
 # "Summary" of the run. Phase 2 (after the clean-up): remove continue-on-error so a failing
 # check blocks the merge.
 #
-#   php   — PHP syntax (8.0 + 8.3), WordPress Coding Standards + PHP compatibility, PHPStan
+#   php   — PHP syntax (8.1 + 8.3), WordPress Coding Standards + PHP compatibility, PHPStan
 #   site  — local WordPress (scripts/local-setup.sh) → axe WCAG 2.2 AA, layout checks
 #           (measure.py), Theme Check, Lighthouse (accessibility / best practices / SEO)
 name: CI
@@ -28,13 +28,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: PHP 8.0 syntax
+      - name: PHP 8.1 syntax
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.1'
           tools: none
       - run: find wp-content/themes/hri-theme wp-content/plugins/hri-core playground -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | grep -v '^No syntax errors' || true
-      - name: Fail on syntax errors (8.0)
+      - name: Fail on syntax errors (8.1)
         run: '! find wp-content/themes/hri-theme wp-content/plugins/hri-core playground -name "*.php" -print0 | xargs -0 -n1 php -l -n 2>&1 | grep -q "Parse error"'
 
       - name: PHP 8.3 + Composer
