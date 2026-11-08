@@ -41,7 +41,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          tools: composer, cs2pr
+          tools: composer
           coverage: none
       - name: Fail on syntax errors (8.3)
         run: '! find wp-content/themes/hri-theme wp-content/plugins/hri-core playground -name "*.php" -print0 | xargs -0 -n1 php -l -n 2>&1 | grep -q "Parse error"'
